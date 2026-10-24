@@ -1,0 +1,51 @@
+{
+  "name": "@rohan/frontend",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Frontend: the public website and the admin panel — React 19, Vite, Tailwind CSS 4, React Router 7.",
+  "scripts": {
+    "dev": "vite --port 3000 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 3000 --strictPort",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@fontsource-variable/literata": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
+    "@fontsource/mukta": "^5.3.0",
+    "@tiptap/extension-image": "^3.32.0",
+    "@tiptap/extension-link": "^3.32.0",
+    "@tiptap/pm": "^3.32.0",
+    "@tiptap/react": "^3.32.0",
+    "@tiptap/starter-kit": "^3.32.0",
+    "axios": "^1.20.0",
+    "embla-carousel-react": "^8.6.0",
+    "lucide-react": "^1.59.0",
+    "motion": "^14.4.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-helmet-async": "^3.0.0",
+    "react-hook-form": "^7.90.0",
+    "react-router": "^7.18.4",
+    "yet-another-react-lightbox": "^3.32.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "eslint": "^9.39.5",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^17.13.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.2",
+    "vite": "^8.3.4"
+  }
+}

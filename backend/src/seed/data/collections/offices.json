@@ -1,0 +1,42 @@
+[
+ {
+  "id": 1,
+  "name": {
+   "en": "Head Office, Solapur",
+   "mr": "मुख्य कार्यालय, सोलापूर"
+  },
+  "address": {
+   "en": "Lokmangal, Solapur, Maharashtra",
+   "mr": "लोकमंगल, सोलापूर, महाराष्ट्र"
+  },
+  "phone": "+91 8208737624",
+  "email": "connect@rohandeshmukh.in",
+  "notifyEmails": [
+   "connect@rohandeshmukh.in"
+  ],
+  "mapEmbedUrl": null,
+  "order": 1,
+  "createdAt": "2026-10-19T10:08:45.918Z",
+  "updatedAt": "2026-10-19T10:08:45.950Z"
+ },
+ {
+  "id": 2,
+  "name": {
+   "en": "Contact Office, Pune",
+   "mr": "संपर्क कार्यालय, पुणे"
+  },
+  "address": {
+   "en": "Address to be updated",
+   "mr": "पत्ता लवकरच अद्ययावत केला जाईल"
+  },
+  "phone": null,
+  "email": null,
+  "notifyEmails": [
+   "connect@rohandeshmukh.in"
+  ],
+  "mapEmbedUrl": null,
+  "order": 2,
+  "createdAt": "2026-10-19T10:08:45.957Z",
+  "updatedAt": "2026-10-19T10:08:45.967Z"
+ }
+]

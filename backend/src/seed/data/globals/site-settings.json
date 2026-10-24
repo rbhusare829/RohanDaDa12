@@ -1,0 +1,35 @@
+{
+  "siteName": {
+    "en": "Rohan Subhash Deshmukh",
+    "mr": "रोहन सुभाष देशमुख"
+  },
+  "tagline": {
+    "en": "Inspired by Prime Minister Narendra Modi’s vision for a developed and self-reliant India, I work towards turning that vision into meaningful change at the grassroots.",
+    "mr": "सोलापूरच्या मातीने घडवलेलं व्यक्तिमत्त्व, संस्कारांनी दिलेली दिशा आणि समाजासाठीची बांधिलकी."
+  },
+  "logoLight": 1,
+  "logoDark": null,
+  "defaultShareImage": 2,
+  "profilePdf": null,
+  "phone": "+91 8208737624",
+  "email": "connect@rohandeshmukh.in",
+  "address": {
+    "en": "Solapur, Maharashtra",
+    "mr": "सोलापूर, महाराष्ट्र"
+  },
+  "whatsappNumber": "918208737624",
+  "social": {
+    "facebook": "https://www.facebook.com/rohandeshmukh.official/",
+    "instagram": "https://www.instagram.com/rohan1942",
+    "twitter": "https://twitter.com/rohandeshmukhh",
+    "youtube": "https://youtube.com/@rd.connects",
+    "linkedin": "https://www.linkedin.com/in/rohan-deshmukh-politician",
+    "whatsappChannel": null,
+    "telegram": null
+  },
+  "formNotifyEmails": ["connect@rohandeshmukh.in"],
+  "formConsentText": {
+    "en": "I consent to my details being used to contact me.",
+    "mr": "मी माझी माहिती संपर्कासाठी वापरण्यास संमती देतो/देते."
+  }
+}

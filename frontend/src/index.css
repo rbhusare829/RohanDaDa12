@@ -1,0 +1,946 @@
+@import 'tailwindcss';
+
+/* Tiro Devanagari Marathi (self-hosted, one weight): Marathi + English on every page */
+@font-face {
+  font-family: 'Tiro Devanagari Marathi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tiro/tiro-devanagari-marathi-devanagari-400-normal.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+
+@font-face {
+  font-family: 'Tiro Devanagari Marathi';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tiro/tiro-devanagari-marathi-devanagari-400-italic.woff2') format('woff2');
+  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
+}
+
+@font-face {
+  font-family: 'Tiro Devanagari Marathi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-ext-400-normal.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Tiro Devanagari Marathi';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-ext-400-italic.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'Tiro Devanagari Marathi';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-400-normal.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Tiro Devanagari Marathi';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-400-italic.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@theme {
+  /* Stitch design (Oct 2026, "Rohan Deshmukh Official Portal"): BJP navy · kesariya saffron · tricolour green · warm ivory.
+     Token names are kept ("charcoal" = navy, "saffron" = kesariya, "cream" = sand band) so every page follows the new theme. */
+  --color-charcoal-950: #091422;
+  /* navy dark: footer, hero gradient top */
+  --color-charcoal-900: #0e1e34;
+  /* navy: headings, dark buttons, dark bands */
+  --color-charcoal-800: #142540;
+  /* navy surface */
+  --color-charcoal-700: #1c3150;
+  /* navy accent */
+  --color-charcoal-600: #2a4266;
+  --color-saffron-50: #fff7ed;
+  --color-saffron-100: #ffedd5;
+  /* card borders */
+  --color-saffron-200: #fed7aa;
+  --color-saffron-300: #fdba74;
+  /* highlight on navy */
+  --color-saffron-400: #fb923c;
+  --color-saffron-500: #ff7a00;
+  /* kesariya */
+  --color-saffron-600: #e65100;
+  /* kesariya deep: buttons, numbers, eyebrows */
+  --color-saffron-700: #c2410c;
+  /* small orange text on light backgrounds, hover */
+  --color-saffron-800: #9a3412;
+  --color-leaf-50: #e8f5e9;
+  --color-leaf-200: #86d988;
+  --color-leaf-600: #138808;
+  /* tricolour green */
+  --color-cream: #f3ede3;
+  /* sand band (alternate sections) */
+  --color-ivory: #fdfbf7;
+  /* header */
+  --color-paper: #faf6f0;
+  /* page background */
+  --color-surface: #ffffff;
+  /* cards */
+  --color-ink: #374151;
+  /* body text */
+  --color-muted: #4b5563;
+  /* secondary text */
+  --color-line: #ffedd5;
+  /* borders */
+  --color-frame: #fed7aa;
+  --color-highlight: #fdba74;
+  --color-overlay: rgb(9 20 34 / .55);
+  --color-btn: #e65100;
+  --color-btn-hover: #c2410c;
+  --color-btn-active: #9a3412;    /* while pressed */
+  /* form controls (from the UX pass): field edges 3.1:1 on white — the pale --color-line stays for dividers only */
+  --color-field: #8b93a1;
+  --color-field-hover: #5c6779;
+  /* meaning, not decoration: each colour is at least 4.5:1 on white and on its own soft background */
+  --color-success: #1f7a3a;  --color-success-soft: #ebf5ee;
+  --color-warning: #a84a06;  --color-warning-soft: #fdf1df;
+  --color-danger: #b42318;   --color-danger-soft: #fdeceb;
+  --color-info: #1d4ed8;     --color-info-soft: #e8efff;
+
+  --font-display: 'Space Grotesk Variable', 'Space Grotesk', 'Tiro Devanagari Marathi', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Tiro Devanagari Marathi', system-ui, sans-serif;
+  --font-quote: 'Literata Variable', 'Literata', 'Tiro Devanagari Marathi', Georgia, serif;
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+
+  /* never allow sideways scrolling (clip keeps sticky header working, unlike hidden) */
+  html,
+  body {
+    overflow-x: clip;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    font-kerning: normal;
+  }
+
+  /* Space Grotesk, bold and slightly tight (Stitch headline scale) */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    color: var(--color-charcoal-900);
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-highlight);
+    color: var(--color-charcoal-900);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-saffron-700);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  :is(.on-dark, .band-navy, .stat-card, footer, [data-hero-overlay], [class~='bg-charcoal-900'], [class~='bg-charcoal-950']) :focus-visible {
+    outline-color: var(--color-saffron-300);
+  }
+
+  /* People who ask for less motion: nothing slides, grows or bounces. Colour, opacity and shadow changes stay (short fades are fine),
+     loading spinners keep turning, and entrances become plain fades (see the end of this file). */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, outline-color !important;
+    }
+
+    .animate-bounce,
+    .animate-ping {
+      animation: none !important;
+    }
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-quote {
+    font-family: var(--font-quote);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+
+  .container-x {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  /* small label above a heading (like a section mark on an official site) */
+  /* Stitch eyebrow: small bold capitals in deep kesariya, with a short pill-shaped bar before it */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-size: .75rem;
+    line-height: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: var(--color-saffron-600);
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: .625rem;
+    height: .25rem;
+    border-radius: 9999px;
+    background: var(--color-saffron-500);
+  }
+
+  .on-dark .eyebrow {
+    color: var(--color-saffron-200);
+  }
+
+  /* section title with a short saffron bar under it — the one heading style used on every section */
+  /* section title (Stitch: Space Grotesk bold, 30 → 36px, navy, no underline) */
+  .h-section {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-charcoal-900);
+    margin-top: .25rem;
+  }
+
+  @media (min-width: 640px) {
+    .h-section {
+      font-size: 2.25rem;
+      line-height: 2.6rem;
+    }
+  }
+
+  .on-dark .h-section {
+    color: #fff;
+  }
+
+  /* Stitch buttons: 48px tall, 12px corners, bold small text. Primary = kesariya gradient, dark = navy, ghost = white outline card */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    min-height: 3rem;
+    border-radius: .75rem;
+    padding: .75rem 1.75rem;
+    font-weight: 700;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    color: #fff;
+    background-image: linear-gradient(to right, var(--color-saffron-600), var(--color-saffron-500), #f97316);
+    box-shadow: 0 10px 15px -3px rgb(255 122 0 / .3), 0 4px 6px -4px rgb(255 122 0 / .3);
+    transition: background .2s, transform .15s, box-shadow .2s, filter .2s;
+    white-space: nowrap;
+  }
+
+  .btn:hover {
+    filter: brightness(.94);
+    box-shadow: 0 20px 25px -5px rgb(255 122 0 / .4), 0 8px 10px -6px rgb(255 122 0 / .4);
+  }
+
+  .btn:active {
+    transform: scale(.98);
+  }
+
+  .btn svg {
+    transition: transform .2s;
+  }
+
+  .btn:hover svg.lucide-arrow-right {
+    transform: translateX(3px);
+  }
+
+  .btn-dark {
+    background: var(--color-charcoal-950);
+    background-image: none;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
+  }
+
+  .btn-dark:hover {
+    background: var(--color-charcoal-900);
+    filter: none;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / .12);
+  }
+
+  .btn-dark svg {
+    color: var(--color-saffron-500);
+  }
+
+  .btn-ghost,
+  .btn-light {
+    background: #fff;
+    background-image: none;
+    color: var(--color-charcoal-950);
+    box-shadow: inset 0 0 0 1px var(--color-saffron-200), 0 1px 2px rgb(0 0 0 / .05);
+  }
+
+  .btn-ghost:hover,
+  .btn-light:hover {
+    filter: none;
+    box-shadow: inset 0 0 0 1px var(--color-saffron-500), 0 1px 2px rgb(0 0 0 / .05);
+  }
+
+  .btn-ghost svg,
+  .btn-light svg {
+    color: var(--color-saffron-600);
+  }
+
+  /* on an orange band a button keeps a white outline so it stays visible */
+  .on-saffron .btn {
+    box-shadow: inset 0 0 0 2px #fff;
+  }
+
+  /* icon-only buttons (slider arrows, pagination arrows, back to top) */
+  .btn-icon {
+    display: grid;
+    place-items: center;
+    border-radius: .75rem;
+    background: var(--color-charcoal-900);
+    color: #fff;
+    transition: background .2s, opacity .2s;
+  }
+
+  .btn-icon:hover {
+    background: var(--color-btn-hover);
+  }
+
+  .btn-icon:active {
+    background: var(--color-btn-active);
+  }
+
+  /* a second button on a photo or on navy: white text, a clear white outline, no fill (declared after .btn so it wins) */
+  .btn.btn-outline-light {
+    background: transparent;
+    box-shadow: inset 0 0 0 2px rgb(255 255 255 / .9);
+  }
+
+  .btn.btn-outline-light:hover {
+    background: rgb(255 255 255 / .16);
+  }
+
+  .btn.btn-outline-light:active {
+    background: rgb(255 255 255 / .26);
+  }
+
+  /* Stitch card: white, 16px corners, kesariya-100 hairline, soft shadow that grows on hover */
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgb(0 0 0 / .05);
+  }
+
+  .card-hover {
+    transition: transform .25s, box-shadow .25s, border-color .25s;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-saffron-500);
+    box-shadow: 0 10px 15px -3px rgb(14 30 52 / .1), 0 4px 6px -4px rgb(14 30 52 / .1);
+  }
+
+  /* ---------- page rhythm: every section breathes the same amount ---------- */
+  .section {
+    padding-block: 5rem;
+  }
+
+  .section-tight {
+    padding-block: 3.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .section {
+      padding-block: 7rem;
+    }
+
+    .section-tight {
+      padding-block: 4.5rem;
+    }
+  }
+
+  .band-cream {
+    background: var(--color-cream);
+  }
+
+  .band-white {
+    background: var(--color-surface);
+  }
+
+  .band-cream {
+    border-block: 1px solid var(--color-line);
+  }
+
+  .band-navy {
+    background-image: linear-gradient(to bottom, var(--color-charcoal-950), var(--color-charcoal-900));
+    color: #fff;
+    border-top: 4px solid var(--color-saffron-500);
+  }
+
+  /* soft kesariya and green glows on navy bands (decorative, behind the content) */
+  .glow-tl,
+  .glow-br {
+    position: absolute;
+    width: 24rem;
+    height: 24rem;
+    border-radius: 9999px;
+    filter: blur(64px);
+    pointer-events: none;
+  }
+
+  .glow-tl {
+    top: -8rem;
+    right: -8rem;
+    background: rgb(255 122 0 / .18);
+  }
+
+  .glow-br {
+    bottom: 0;
+    left: 2.5rem;
+    background: rgb(19 136 8 / .13);
+  }
+
+  /* section heading: eyebrow → title → short intro; centred variant for list/grid sections */
+  .section-head {
+    max-width: 48rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-head {
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  .section-head.is-center {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .section-head .lead {
+    margin-top: .75rem;
+  }
+
+  /* heading on the left, "View all →" on the right */
+  .section-head-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section-head-row .section-head {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .section-head-row {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+    }
+  }
+
+  .lead {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+  }
+
+  .on-dark .lead {
+    color: rgb(255 255 255 / .75);
+  }
+
+  /* ---------- open "story" tiles: photo + text on the page itself, no box around them ---------- */
+  .tile {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tile-media {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    background: var(--color-saffron-100);
+    isolation: isolate;
+  }
+
+  .tile-media img {
+    transition: transform .7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .tile:hover .tile-media img {
+    transform: scale(1.045);
+  }
+
+  .tile-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding-top: 1.15rem;
+  }
+
+  .tile-kicker {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--color-saffron-600);
+  }
+
+  .tile-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-charcoal-900);
+    font-size: 1.125rem;
+    line-height: 1.4;
+    transition: color .2s;
+  }
+
+  .tile:hover .tile-title {
+    color: var(--color-saffron-700);
+  }
+
+  .tile-text {
+    margin-top: .5rem;
+    color: var(--color-muted);
+    font-size: .9375rem;
+    line-height: 1.65;
+  }
+
+  .on-dark .tile-title {
+    color: #fff;
+  }
+
+  .on-dark .tile:hover .tile-title {
+    color: var(--color-highlight);
+  }
+
+  .on-dark .tile-text {
+    color: rgb(255 255 255 / .7);
+  }
+
+  /* text link with an arrow that nudges on hover */
+  .more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-family: var(--font-display);
+    font-size: .875rem;
+    font-weight: 700;
+    color: var(--color-saffron-600);
+    transition: color .2s, gap .2s;
+  }
+
+  .more-link:hover,
+  .tile:hover .more-link {
+    gap: .55rem;
+    color: var(--color-saffron-700);
+  }
+
+  /* phones: a taller tap area for text links, without changing the layout */
+  @media (max-width: 1023px) {
+    .more-link {
+      padding-block: .6rem;
+      margin-block: -.6rem;
+    }
+  }
+
+  .on-dark .more-link {
+    color: var(--color-saffron-300);
+  }
+
+  .on-dark .more-link:hover,
+  .on-dark .tile:hover .more-link {
+    color: #fff;
+  }
+
+  /* a small text link keeps its looks and gets a 44px-high touch area: padding that its negative margin takes back */
+  .tap-pad {
+    padding-block: .75rem;
+    margin-block: -.75rem;
+  }
+
+  /* checkbox: 24px with a clearly visible edge (the native one is 13px with a pale edge) */
+  .check {
+    appearance: none;
+    flex: none;
+    display: inline-grid;
+    place-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid var(--color-field);
+    border-radius: .4rem;
+    background: #fff;
+    transition: background-color .15s, border-color .15s;
+  }
+
+  .check:hover {
+    border-color: var(--color-field-hover);
+  }
+
+  .check::after {
+    content: '';
+    width: .85rem;
+    height: .85rem;
+    background: #fff;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
+    opacity: 0;
+    transition: opacity .12s;
+  }
+
+  .check:checked {
+    background: var(--color-btn);
+    border-color: var(--color-btn);
+  }
+
+  .check:checked::after {
+    opacity: 1;
+  }
+
+  .check[aria-invalid='true'] {
+    border-color: var(--color-danger);
+  }
+
+  /* a row that scrolls sideways shows a soft fade on the side where more is waiting (ScrollRow sets --fade-l / --fade-r and data-fade) */
+  .scroll-fade[data-fade] {
+    mask-image: linear-gradient(to right, transparent, #000 calc(var(--fade-l, 0) * 2.5rem), #000 calc(100% - var(--fade-r, 0) * 2.5rem), transparent);
+  }
+
+  /* big numbers sitting on the page (no tiles), separated by thin rules */
+  .stat-row {
+    display: grid;
+    gap: 2rem 1.5rem;
+  }
+
+  .stat-item {
+    border-left: 2px solid var(--color-saffron-500);
+    padding-left: 1.1rem;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.875rem, 1.6rem + 1vw, 2.25rem);
+    line-height: 1.1;
+    color: var(--color-charcoal-900);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* a soft, slightly raised card — used only for key numbers */
+  /* key numbers on a navy card (palette: "dark button, stat card") */
+  .stat-card {
+    border-radius: 1rem;
+    background: var(--color-charcoal-900);
+    color: #fff;
+    padding: 1.35rem 1.25rem 1.25rem;
+    box-shadow: 0 18px 40px -28px rgb(14 30 52 / .6);
+    transition: transform .3s, box-shadow .3s;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 46px -26px rgb(20 33 61 / .65);
+  }
+
+  .stat-card .stat-value {
+    color: #7ddc9a;
+  }
+
+  .stat-card .stat-label {
+    color: rgb(255 255 255 / .75);
+  }
+
+  @media (min-width: 768px) {
+    .stat-card {
+      padding: 1.6rem 1.5rem 1.4rem;
+    }
+  }
+
+  .stat-label {
+    margin-top: .4rem;
+    color: var(--color-muted);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .on-dark .stat-value {
+    color: #7ddc9a;
+  }
+
+  .on-dark .stat-label {
+    color: rgb(255 255 255 / .72);
+  }
+
+  /* photo with a soft offset colour block behind it (instead of an outlined frame) */
+  .photo-backdrop {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .photo-backdrop::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 1.5rem -1.25rem -1.25rem 1.5rem;
+    border-radius: 2rem;
+  }
+
+  @media (min-width: 768px) {
+    .photo-backdrop::before {
+      inset: 2rem -1.75rem -1.75rem 2rem;
+    }
+  }
+
+  .prose-rd {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--color-ink);
+  }
+
+  .prose-rd>*+* {
+    margin-top: 1.05em;
+  }
+
+  .prose-rd h2 {
+    font-size: 1.75rem;
+    line-height: 1.3;
+    color: var(--color-charcoal-900);
+    margin-top: 1.7em;
+  }
+
+  .prose-rd h3 {
+    font-size: 1.4rem;
+    line-height: 1.35;
+    color: var(--color-charcoal-900);
+    margin-top: 1.5em;
+  }
+
+  .prose-rd a {
+    color: var(--color-saffron-700);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    transition: color .2s, text-decoration-color .2s;
+  }
+
+  .prose-rd a:hover {
+    color: var(--color-charcoal-900);
+    text-decoration-color: var(--color-saffron-500);
+  }
+
+  .prose-rd ul {
+    list-style: disc;
+    padding-left: 1.4em;
+  }
+
+  .prose-rd ol {
+    list-style: decimal;
+    padding-left: 1.4em;
+  }
+
+  .prose-rd li+li {
+    margin-top: .35em;
+  }
+
+  .prose-rd blockquote {
+    border-left: 4px solid var(--color-saffron-500);
+    padding: .2em 0 .2em 1.2em;
+    font-family: var(--font-quote);
+    font-style: italic;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    color: var(--color-charcoal-900);
+  }
+
+  .prose-rd img {
+    border-radius: 1rem;
+  }
+
+  /* article page (newspaper style): saffron bar on sub-headings */
+  .article-body .prose-rd {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 639px) {
+    .article-body .prose-rd {
+      font-size: 1.02rem;
+      line-height: 1.8;
+    }
+  }
+
+  .article-body .prose-rd h2 {
+    font-size: 1.45em;
+    border-left: 4px solid var(--color-saffron-500);
+    padding-left: .7em;
+    line-height: 1.35;
+  }
+
+  .article-body .prose-rd h3 {
+    font-size: 1.2em;
+    border-left: 3px solid var(--color-saffron-300);
+    padding-left: .7em;
+  }
+
+  .article-body .prose-rd img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media print {
+
+    header,
+    footer,
+    .no-print,
+    .fixed {
+      display: none !important;
+    }
+
+    body {
+      background: #fff !important;
+    }
+
+    .article-body .prose-rd {
+      font-size: 12pt;
+    }
+  }
+
+  .prose-rd strong {
+    color: var(--color-charcoal-900);
+    font-weight: 700;
+  }
+
+  /* scroll reveal: Framer Motion (components/ui/Motion.tsx) */
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: .07;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+
+/* less motion: the entrance that rises 14px becomes a plain fade (the same timing, no movement). It switches the animation to another
+   keyframes name instead of redefining `fade-up`: Tailwind writes the theme's own keyframes after everything else, so a redefinition would lose. */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-only {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up {
+    animation-name: fade-only;
+  }
+
+  /* unlayered on purpose: the layered `.btn:active` above would win over a rule inside @layer base */
+  .btn:active {
+    transform: none;
+  }
+}
+
+/* Phones (most visitors): small print never goes below 13px */
+@media (max-width: 639px) {
+
+  .text-xs,
+  .text-\[0\.75rem\],
+  .text-\[0\.78rem\] {
+    font-size: .8125rem !important;
+  }
+}

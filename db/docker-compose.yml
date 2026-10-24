@@ -1,0 +1,36 @@
+# The data tier for production-like work: a MySQL 8.4 server in Docker.
+#
+#   docker compose -f db/docker-compose.yml up -d        start (data lives in the "mysql-data" volume)
+#   docker compose -f db/docker-compose.yml down         stop (the data stays; add -v to delete it)
+#
+# Then in backend/.env:
+#   DB_DIALECT=mysql
+#   DATABASE_URL=mysql://rohan:rohan-local-password@localhost:3306/rohan
+# and run `npm run dev` (or `npm run seed` first to load the website content).
+#
+# Change the passwords below (or set DB_PASSWORD / DB_ROOT_PASSWORD in your shell) for anything that is not your own computer.
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: rohan-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: rohan
+      MYSQL_USER: rohan
+      MYSQL_PASSWORD: ${DB_PASSWORD:-rohan-local-password}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root-local-password}
+      TZ: UTC
+    # utf8mb4 so Marathi (देवनागरी) text and emoji are stored correctly
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    ports:
+      - "127.0.0.1:3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${DB_ROOT_PASSWORD:-root-local-password}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  mysql-data:

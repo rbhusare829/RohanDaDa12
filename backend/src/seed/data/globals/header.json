@@ -1,0 +1,147 @@
+{
+ "nav": [
+  {
+   "id": "6ad5ec2d15929451e812660a",
+   "label": {
+    "en": "Home",
+    "mr": "मुख्य पृष्ठ"
+   },
+   "url": "/",
+   "newTab": false,
+   "children": []
+  },
+  {
+   "id": "6ad5ec2d15929451e812660f",
+   "label": {
+    "en": "About",
+    "mr": "परिचय"
+   },
+   "url": "/about/introduction",
+   "newTab": false,
+   "children": [
+    {
+     "id": "6ad5ec2d15929451e812660b",
+     "label": {
+      "en": "Introduction",
+      "mr": "स्वपरिचय"
+     },
+     "url": "/about/introduction",
+     "newTab": false,
+     "subItems": []
+    },
+    {
+     "id": "6ad5ec2d15929451e812660c",
+     "label": {
+      "en": "Family Background",
+      "mr": "कौटुंबिक पार्श्वभूमी"
+     },
+     "url": "/about/biography",
+     "newTab": false,
+     "subItems": []
+    },
+    {
+     "id": "6ad5ec2d15929451e812660d",
+     "label": {
+      "en": "Lokmangal Parivar",
+      "mr": "लोकमंगल परिवार"
+     },
+     "url": "/lokmangal/parivar",
+     "newTab": false,
+     "subItems": []
+    },
+    {
+     "id": "6ad5ec2d15929451e812660e",
+     "label": {
+      "en": "Political Career",
+      "mr": "राजकीय कारकीर्द"
+     },
+     "url": "/political-career",
+     "newTab": false,
+     "subItems": []
+    }
+   ]
+  },
+  {
+   "id": "6ad5ec2d15929451e8126613",
+   "label": {
+    "en": "Lokmangal",
+    "mr": "लोकमंगल"
+   },
+   "url": "/lokmangal/foundation",
+   "newTab": false,
+   "children": [
+    {
+     "id": "6ad5ec2d15929451e8126610",
+     "label": {
+      "en": "Lokmangal Foundation",
+      "mr": "लोकमंगल फाऊंडेशन"
+     },
+     "url": "/lokmangal/foundation",
+     "newTab": false,
+     "subItems": []
+    },
+    {
+     "id": "6ad5ec2d15929451e8126611",
+     "label": {
+      "en": "Lokmangal Events",
+      "mr": "लोकमंगल कार्यक्रम"
+     },
+     "url": "/lokmangal/foundation#events",
+     "newTab": false,
+     "subItems": []
+    },
+    {
+     "id": "6ad5ec2d15929451e8126612",
+     "label": {
+      "en": "Lokmangal Projects",
+      "mr": "लोकमंगल प्रकल्प"
+     },
+     "url": "/lokmangal/foundation#projects",
+     "newTab": false,
+     "subItems": []
+    }
+   ]
+  },
+  {
+   "id": "6ad5ec2d15929451e8126616",
+   "label": {
+    "en": "Media",
+    "mr": "मीडिया"
+   },
+   "url": "/media/photos",
+   "newTab": false,
+   "children": [
+    {
+     "id": "6ad5ec2d15929451e8126614",
+     "label": {
+      "en": "Gallery",
+      "mr": "गॅलरी"
+     },
+     "url": "/media/photos",
+     "newTab": false,
+     "subItems": []
+    },
+    {
+     "id": "6ad5ec2d15929451e8126615",
+     "label": {
+      "en": "Blogs",
+      "mr": "ब्लॉग"
+     },
+     "url": "/blog",
+     "newTab": false,
+     "subItems": []
+    }
+   ]
+  },
+  {
+   "id": "6ad5ec2d15929451e8126617",
+   "label": {
+    "en": "Vision",
+    "mr": "व्हिजन"
+   },
+   "url": "/vision",
+   "newTab": false,
+   "children": []
+  }
+ ]
+}

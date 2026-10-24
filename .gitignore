@@ -1,0 +1,17 @@
+node_modules
+.env
+.env*.local
+
+# local database, uploaded files and backups (created when the site first runs)
+/backend/data
+/backend/uploads
+/backend/backups
+
+# the built website
+/frontend/dist
+
+*.tsbuildinfo
+.DS_Store
+
+# screenshots of the end-to-end tests
+/e2e/.shots

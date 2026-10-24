@@ -1,0 +1,51 @@
+{
+  "nav": { "home": "Home", "menu": "Menu", "close": "Close", "contact": "Contact", "search": "Search", "skip": "Skip to content" },
+  "common": {
+    "readMore": "Read more", "readLess": "Read less", "viewAll": "View all", "moreInfo": "More info", "back": "Back", "download": "Download",
+    "share": "Share", "photos": "Photos", "videos": "Videos", "all": "All", "prev": "Previous", "next": "Next",
+    "page": "Page", "of": "of", "noResults": "Nothing found.", "home": "Home", "inThisSection": "In this section",
+    "backToTop": "Back to top", "slides": "Slides", "slide": "Slide", "pauseSlides": "Pause the slideshow", "playSlides": "Play the slideshow", "chatWhatsapp": "Chat on WhatsApp", "phone": "Phone", "email": "Email", "address": "Address",
+    "followUs": "Follow", "importantLinks": "Important links", "relatedPosts": "Related posts", "related": "Related",
+    "by": "By", "watch": "Watch", "close": "Close", "beneficiaries": "Beneficiaries", "organisation": "Organisation", "year": "Year",
+    "categories": "Categories", "tags": "Tags", "readTime": "min read", "contactUs": "Contact us", "engageEyebrow": "New India Manifesto", "engageText": "Building a self-reliant India from its rural heartland — with integrity and enterprise.", "engageQuote": "Mentorship, a network and vetted investors for founders from towns and villages. The goal: 1,00,000 entrepreneurs.", "engageButton": "Apply now", "getInTouch": "Get in touch", "moreReels": "More reels on Instagram"
+  },
+  "search": { "title": "Search", "placeholder": "Search pages, posts, initiatives…", "results": "Search results", "hint": "Type at least 2 characters" },
+  "forms": {
+    "name": "Name", "mobile": "Mobile number", "email": "Email", "subject": "Subject", "office": "Send to office", "message": "Message",
+    "attachment": "Attach file (PDF/JPG, max 5MB)", "submit": "Submit", "sending": "Sending…", "required": "This field is required",
+    "address": "Full address", "issue": "Issue / suggestion", "type": "Type", "grievance": "Grievance", "suggestion": "Suggestion",
+    "success": "Thank you! Your message has been received.", "successRef": "Thank you! Your reference number is:", "error": "Something went wrong. Please try again.",
+    "cv": "CV (PDF/DOC, max 5MB)", "apply": "Apply", "consent": "I consent to my details being used to contact me.",
+    "invalidMobile": "Please enter a valid 10-digit mobile number", "invalidEmail": "Please enter a valid email address", "fileTooBig": "File is larger than 5MB", "fileType": "This file type is not accepted"
+  },
+  "pages": {
+    "socialWork": "Social Initiatives", "initiatives": "Initiatives", "allInitiatives": "All initiatives", "photoGallery": "Photo Gallery", "videoGallery": "Video Gallery",
+    "blog": "Blog", "awards": "Achievements & Awards", "leaders": "Meetings with Leaders",
+    "contact": "Contact", "grievance": "Grievance / Suggestion", "careers": "Careers / Volunteer", "media": "Media", "about": "About", "events": "Events",
+    "officeLocations": "Offices", "openings": "Current openings", "noOpenings": "No openings right now. You can still send us your CV using the form below.",
+    "lastDate": "Last date", "photosInAlbum": "photos", "awardsIntro": "Recognition received for work done for society.",
+    "thanks": "These honours are not mine alone — they belong to every member of the Lokmangal family and every citizen who placed their trust in us.",
+    "contentComing": "Content coming soon."
+  },
+  "blog": {
+    "kicker": "Media room • Official platform", "title": "Articles & Perspectives", "intro": "Articles and ideas by Rohan Subhash Deshmukh on social work, policy, farming, education and development — from Solapur.",
+    "edition": "Solapur edition | Digital media desk", "breaking": "Latest", "topStories": "Top stories & highlights",
+    "topBadge": "TOP STORIES", "lead": "Lead story", "readFull": "Read the full article",
+    "latestUpdates": "Latest articles", "sections": "Sections", "searchPlaceholder": "Search articles or topics…",
+    "allList": "All articles", "showing": "Showing {count} articles", "readMore": "Read more",
+    "topics": "Topics", "recent": "Recent articles", "allTopics": "All articles",
+    "back": "Back to all articles", "fontSize": "Text", "print": "Print",
+    "keyPoints": "Key points", "fullStory": "Full article", "more": "More articles",
+    "seeAll": "See all articles", "place": "Solapur", "results": "Results for “{q}”",
+    "daily": "Daily updates • Public relations desk, Solapur"
+  },
+  "events": {
+    "title": "Events", "intro": "Lokmangal Foundation initiatives, ceremonies, campaigns and articles — in one place.", "initiatives": "Lokmangal Foundation initiatives & events",
+    "initiativesIntro": "Initiatives for the upliftment of rural communities — food, education, health, water, women and youth.", "featured": "Key events & campaigns", "blog": "Blog — latest articles",
+    "readMore": "Read more", "prev": "Previous", "next": "Next",
+    "manifestoText": "A manifesto for a self-reliant India — building one lakh new entrepreneurs.", "event": "Event", "campaign": "Campaign"
+  },
+  "family": {
+    "title": "Family", "intro": "The Deshmukh family — a tradition of values, service and hard work.", "parivar": "Lokmangal Parivar"
+  }
+}

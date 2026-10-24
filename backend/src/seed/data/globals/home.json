@@ -1,0 +1,577 @@
+{
+  "sections": [
+    {
+      "id": "6ad5ec7515929451e81266ab",
+      "blockType": "heroSlider",
+      "hidden": false,
+      "heroStyle": "photo",
+      "photo": 119,
+      "photoMobile": 164,
+      "autoplaySeconds": 5,
+      "slides": [
+        {
+          "id": "6ad5ec7515929451e81266a3",
+          "image": 172,
+          "imageMobile": 172,
+          "kicker": {
+            "en": "Chairman, Lokmangal Foundation",
+            "mr": "अध्यक्ष, लोकमंगल फाऊंडेशन"
+          },
+          "heading": {
+            "en": "I am Rohan Subhash Deshmukh",
+            "mr": "मी रोहन सुभाष देशमुख"
+          },
+          "subheading": {
+            "en": "Inspired by Prime Minister Narendra Modi’s vision for a developed and self-reliant India, I work towards turning that vision into meaningful change at the grassroots.",
+            "mr": "सोलापूरच्या मातीने घडवलेलं व्यक्तिमत्त्व, संस्कारांनी दिलेली दिशा आणि समाजासाठीची बांधिलकी."
+          },
+          "buttons": [
+            {
+              "id": "6ad5ec7515929451e81266a2",
+              "label": {
+                "en": "Get in touch",
+                "mr": "संपर्क साधा"
+              },
+              "url": "/contact",
+              "newTab": false
+            },
+            {
+              "id": "6ad5ec7515929451e81266a1",
+              "label": {
+                "en": "Read more",
+                "mr": "अधिक वाचा"
+              },
+              "url": "/about/biography",
+              "newTab": false
+            }
+          ]
+        },
+        {
+          "id": "6ad5ec7515929451e81266a5",
+          "image": 173,
+          "imageMobile": 173,
+          "kicker": {
+            "en": "Lokmangal Foundation",
+            "mr": "लोकमंगल फाऊंडेशन"
+          },
+          "heading": {
+            "en": "Even a small effort to change society is a big one",
+            "mr": "समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही खूप मोठा असतो"
+          },
+          "subheading": {
+            "en": "Working for rural upliftment through Lokmangal Foundation.",
+            "mr": "लोकमंगल फाऊंडेशनच्या माध्यमातून ग्रामीण समाजाच्या उन्नतीसाठी काम."
+          },
+          "buttons": [
+            {
+              "id": "6ad5ec7515929451e81266a4",
+              "label": {
+                "en": "Social work",
+                "mr": "सामाजिक कार्य"
+              },
+              "url": "/social-work",
+              "newTab": false
+            }
+          ]
+        },
+        {
+          "id": "6b0a1c2d3e4f5a6b7c8d9e01",
+          "image": 174,
+          "imageMobile": 174,
+          "kicker": {
+            "en": null,
+            "mr": null
+          },
+          "heading": {
+            "en": "A good leader is born by understanding the needs of people at the grassroots",
+            "mr": "उत्तम शासकाचा जन्म हा तळागाळातल्या जनतेच्या समस्या आणि गरजा जाणून होतो"
+          },
+          "subheading": {
+            "en": null,
+            "mr": null
+          },
+          "buttons": []
+        }
+      ],
+      "badge": [
+        {
+          "id": "6ad5ec7515929451e81266aa",
+          "value": {
+            "en": "3,221+",
+            "mr": "३,२२१+"
+          },
+          "label": {
+            "en": "Couples married",
+            "mr": "विवाहित जोडपी"
+          }
+        }
+      ]
+    },
+    {
+      "id": "6ad5ec7615929451e81266ca",
+      "blockType": "aboutIntro",
+      "hidden": false,
+      "eyebrow": {
+        "en": "About",
+        "mr": "परिचय"
+      },
+      "heading": {
+        "en": "Rohan Subhash Deshmukh",
+        "mr": "रोहन सुभाष देशमुख"
+      },
+      "image": 163,
+      "text": {
+        "en": "Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. Inspired by the thoughts of Swami Vivekananda, he believes a strong nation is built by confident, self-reliant young people. Youth, enterprise and self-reliance are at the centre of everything he does. For him, social work is not about quick fixes. It is about listening to people, understanding their problems and working on the root cause.",
+        "mr": "रोहन सुभाष देशमुख हे सोलापूरचे उद्योजक, लेखक आणि सामाजिक कार्यकर्ते आहेत. स्वामी विवेकानंदांच्या विचारांनी प्रेरित होऊन, आत्मविश्वासू आणि स्वावलंबी तरुणच सशक्त राष्ट्र घडवतात, असा त्यांचा विश्वास आहे. तरुणाई, उद्योजकता आणि स्वावलंबन हे त्यांच्या प्रत्येक कामाच्या केंद्रस्थानी आहेत. त्यांच्यासाठी सामाजिक काम म्हणजे तात्पुरते उपाय नव्हेत; तर लोकांचे ऐकणे, त्यांच्या समस्या समजून घेणे आणि मूळ कारणावर काम करणे होय."
+      },
+      "pledge": {
+        "en": "A new voice from Solapur. A new voice for a new India.",
+        "mr": "सोलापूरचा नवा आवाज. नव्या भारतासाठी नवा आवाज."
+      },
+      "stats": [],
+      "buttonLabel": {
+        "en": "Read full introduction",
+        "mr": "संपूर्ण परिचय वाचा"
+      },
+      "buttonUrl": "/about/introduction"
+    },
+    {
+      "id": "6ad5ec7615929451e81266cf",
+      "blockType": "homeJourney",
+      "hidden": false,
+      "eyebrow": {
+        "en": "From Solapur to the world",
+        "mr": "सोलापूर ते जग"
+      },
+      "heading": {
+        "en": "Journey",
+        "mr": "प्रवास"
+      },
+      "items": [
+        {
+          "id": "6ad5ec7615929451e81266cb",
+          "place": {
+            "en": "Solapur, Maharashtra — The Foundation",
+            "mr": "सोलापूर, महाराष्ट्र — पायाभरणी"
+          },
+          "title": {
+            "en": "Little Flower Convent School",
+            "mr": "लिटल फ्लॉवर कॉन्व्हेंट स्कूल"
+          },
+          "text": {
+            "en": "Journey began in Solapur, where he pursued his schooling at Little Flower Convent School. From Class 9, he became an active NCC cadet, developing discipline, leadership and a strong sense of responsibility.",
+            "mr": "त्यांच्या प्रवासाची सुरुवात सोलापूरमध्ये झाली, जिथे त्यांनी लिटल फ्लॉवर कॉन्व्हेंट स्कूलमध्ये शालेय शिक्षण घेतले. इयत्ता नववीपासून ते सक्रिय NCC कॅडेट होते — यातून त्यांच्यात शिस्त, नेतृत्व आणि जबाबदारीची भक्कम जाणीव रुजली."
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266cc",
+          "place": {
+            "en": "New Delhi — A Proud Achievement",
+            "mr": "नवी दिल्ली — अभिमानाचा क्षण"
+          },
+          "title": {
+            "en": "NCC Best Cadet",
+            "mr": "NCC सर्वोत्कृष्ट कॅडेट"
+          },
+          "text": {
+            "en": "His dedication and discipline earned him the opportunity to represent at the NCC Parade in New Delhi, where he was honoured with the prestigious distinction of Best Cadet.",
+            "mr": "त्यांच्या निष्ठेमुळे आणि शिस्तीमुळे त्यांना नवी दिल्लीतील NCC संचलनात प्रतिनिधित्व करण्याची संधी मिळाली, जिथे त्यांना ‘सर्वोत्कृष्ट कॅडेट’ हा प्रतिष्ठेचा सन्मान मिळाला."
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266cd",
+          "place": {
+            "en": "Rochester, USA — Expanding Horizons",
+            "mr": "रोचेस्टर, अमेरिका — क्षितिजे विस्तारताना"
+          },
+          "title": {
+            "en": "Higher Education at RIT",
+            "mr": "RIT मध्ये उच्च शिक्षण"
+          },
+          "text": {
+            "en": "Driven by a passion for innovation and entrepreneurship, he pursued higher studies in Biotechnology and Entrepreneurship Development at the Rochester Institute of Technology (RIT), USA.",
+            "mr": "नवनिर्मिती आणि उद्योजकतेच्या ओढीने त्यांनी अमेरिकेतील रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी (RIT) येथे जैवतंत्रज्ञान आणि उद्योजकता विकास या विषयांत उच्च शिक्षण घेतले."
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266ce",
+          "place": {
+            "en": "2016 — A New Chapter of Service",
+            "mr": "२०१६ — सेवेचा नवा अध्याय"
+          },
+          "title": {
+            "en": "Lokmangal Foundation",
+            "mr": "लोकमंगल फाऊंडेशन"
+          },
+          "text": {
+            "en": "Returning with a vision to create meaningful social impact, he took on the responsibility of leading Lokmangal Foundation as its President in 2016, marking the beginning of a new chapter dedicated to community development and social service.",
+            "mr": "समाजात अर्थपूर्ण बदल घडवण्याचा ध्यास घेऊन परतल्यानंतर, २०१६ मध्ये त्यांनी लोकमंगल फाऊंडेशनच्या अध्यक्षपदाची जबाबदारी स्वीकारली — समाजविकास आणि सेवेसाठी समर्पित नव्या अध्यायाची ही सुरुवात होती."
+          }
+        }
+      ],
+      "buttonLabel": {
+        "en": "Introduction",
+        "mr": "स्वपरिचय"
+      },
+      "buttonUrl": "/about/introduction"
+    },
+    {
+      "id": "6ad5ec7615929451e81266d3",
+      "blockType": "homeHighlights",
+      "hidden": false,
+      "eyebrow": {
+        "en": "Social initiatives",
+        "mr": "सामाजिक उपक्रम"
+      },
+      "heading": {
+        "en": "Leadership built on a direct bond with people",
+        "mr": "लोकांशी थेट नात्यावर उभे नेतृत्व"
+      },
+      "text": {
+        "en": null,
+        "mr": null
+      },
+      "items": [
+        {
+          "id": "6ad5ec7615929451e81266d0",
+          "image": 126,
+          "tag": {
+            "en": null,
+            "mr": null
+          },
+          "title": {
+            "en": "Swami Vivekananda Vichar Yatra",
+            "mr": "स्वामी विवेकानंद विचार यात्रा"
+          },
+          "text": {
+            "en": "Carried Vivekananda’s ideas to young people in towns and villages across Dharashiv.",
+            "mr": "धाराशिव जिल्ह्यातील शहरे आणि गावांमधील तरुणांपर्यंत स्वामी विवेकानंदांचे विचार पोहोचवले."
+          },
+          "url": "/political-career"
+        },
+        {
+          "id": "6ad5ec7615929451e81266d1",
+          "image": 102,
+          "tag": {
+            "en": null,
+            "mr": null
+          },
+          "title": {
+            "en": "Bharatiya Janata Yuva Morcha",
+            "mr": "भारतीय जनता युवा मोर्चा"
+          },
+          "text": {
+            "en": "Travelled across Maharashtra, connecting youth with politics and social issues.",
+            "mr": "संपूर्ण महाराष्ट्रात प्रवास करून तरुणांना राजकारणाशी आणि सामाजिक प्रश्नांशी जोडले."
+          },
+          "url": "/political-career"
+        },
+        {
+          "id": "6ad5ec7615929451e81266d2",
+          "image": 99,
+          "tag": {
+            "en": null,
+            "mr": null
+          },
+          "title": {
+            "en": "Dharashiv Lok Sabha election",
+            "mr": "धाराशिव लोकसभा निवडणूक"
+          },
+          "text": {
+            "en": "No party, only people — village to village, door to door.",
+            "mr": "पक्ष नाही, फक्त लोक — गावागावात, घराघरात थेट संवाद."
+          },
+          "url": "/political-career"
+        }
+      ],
+      "buttonLabel": {
+        "en": "Political career",
+        "mr": "राजकीय कारकीर्द"
+      },
+      "buttonUrl": "/political-career"
+    },
+    {
+      "id": "6ad5ec7615929451e81266d4",
+      "blockType": "homeVision",
+      "hidden": false,
+      "eyebrow": {
+        "en": "Vision",
+        "mr": "व्हिजन"
+      },
+      "heading": {
+        "en": "Giving the next generation the confidence to build their own",
+        "mr": "पुढच्या पिढीला स्वतःचे काहीतरी उभे करण्याचा आत्मविश्वास"
+      },
+      "image": 143,
+      "text": {
+        "en": "Rohan’s book New India Manifesto sets out his ideas for a new India. Inspired by it, he is building a strong startup ecosystem across Maharashtra — so young people from big cities and small towns get guidance, support and opportunity.",
+        "mr": "रोहन यांच्या ‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकात नव्या भारताविषयीचे विचार मांडले आहेत. त्यातून प्रेरणा घेऊन ते संपूर्ण महाराष्ट्रात सक्षम स्टार्टअप परिसंस्था उभारत आहेत — मोठ्या शहरातील असो वा छोट्या गावातील, प्रत्येक तरुणाला मार्गदर्शन, पाठबळ आणि संधी मिळावी."
+      },
+      "buttonLabel": {
+        "en": "Read the vision",
+        "mr": "व्हिजन वाचा"
+      },
+      "buttonUrl": "/vision"
+    },
+    {
+      "id": "6ad5ec7615929451e81266da",
+      "blockType": "homeParivar",
+      "hidden": false,
+      "eyebrow": {
+        "en": "Lokmangal Parivar",
+        "mr": "लोकमंगल परिवार"
+      },
+      "heading": {
+        "en": "A family of institutions that grow together",
+        "mr": "एकत्र वाढणाऱ्या संस्थांचा परिवार"
+      },
+      "text": {
+        "en": "Founded by Hon. Shri Subhash Deshmukh. Rohan carries the legacy forward as Director of Lokmangal Multistate and President of Lokmangal Foundation.",
+        "mr": "मा. श्री. सुभाष देशमुख यांनी स्थापन केलेला लोकमंगल समूह. रोहन हा वारसा लोकमंगल मल्टीस्टेटचे संचालक आणि लोकमंगल फाऊंडेशनचे अध्यक्ष म्हणून पुढे नेत आहेत."
+      },
+      "items": [
+        {
+          "id": "6ad5ec7615929451e81266d5",
+          "value": {
+            "en": "4",
+            "mr": "४"
+          },
+          "title": {
+            "en": "Financial institutions",
+            "mr": "वित्तीय संस्था"
+          },
+          "text": {
+            "en": "Save, borrow and grow",
+            "mr": "बचत, कर्ज आणि प्रगती"
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266d6",
+          "value": {
+            "en": "4",
+            "mr": "४"
+          },
+          "title": {
+            "en": "Industries",
+            "mr": "उद्योग"
+          },
+          "text": {
+            "en": "Jobs and value for farm produce",
+            "mr": "रोजगार आणि शेतमालाचे मूल्यवर्धन"
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266d7",
+          "value": {
+            "en": "10",
+            "mr": "१०"
+          },
+          "title": {
+            "en": "Education",
+            "mr": "शैक्षणिक संस्था"
+          },
+          "text": {
+            "en": "School to professional colleges",
+            "mr": "शाळेपासून व्यावसायिक महाविद्यालयांपर्यंत"
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266d8",
+          "value": {
+            "en": "5",
+            "mr": "५"
+          },
+          "title": {
+            "en": "Foundations & research",
+            "mr": "फाऊंडेशन व संशोधन"
+          },
+          "text": {
+            "en": "Health and rural development",
+            "mr": "आरोग्य आणि ग्रामीण विकास"
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266d9",
+          "value": {
+            "en": "1",
+            "mr": "१"
+          },
+          "title": {
+            "en": "Media",
+            "mr": "माध्यमे"
+          },
+          "text": {
+            "en": "Lokmangal Vruttant",
+            "mr": "लोकमंगल वृत्तांत"
+          }
+        }
+      ],
+      "buttonLabel": {
+        "en": "Explore Lokmangal Parivar",
+        "mr": "लोकमंगल परिवार पहा"
+      },
+      "buttonUrl": "/lokmangal/parivar"
+    },
+    {
+      "id": "6ad5ec7615929451e81266de",
+      "blockType": "family",
+      "hidden": true,
+      "eyebrow": {
+        "en": "Family background",
+        "mr": "कौटुंबिक पार्श्वभूमी"
+      },
+      "heading": {
+        "en": null,
+        "mr": null
+      },
+      "members": [
+        {
+          "id": "6ad5ec7615929451e81266db",
+          "image": 120,
+          "relation": {
+            "en": "Grandfather",
+            "mr": "आजोबा"
+          },
+          "name": {
+            "en": "Late Sureshchandra Keshavrao Deshmukh",
+            "mr": "कै. सुरेश्चंद्र केशवराव देशमुख"
+          },
+          "text": {
+            "en": "Teacher and man of faith; started the gurukul at Yedshi, Dharashiv.",
+            "mr": "शिक्षक आणि श्रद्धावान व्यक्तिमत्त्व; धाराशिव जिल्ह्यातील येडशी येथे गुरुकुलाची स्थापना."
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266dc",
+          "image": 121,
+          "relation": {
+            "en": "Father",
+            "mr": "वडील"
+          },
+          "name": {
+            "en": "Hon. Shri Subhash Sureshchandra Deshmukh, MLA",
+            "mr": "मा. श्री. सुभाष सुरेश्चंद्र देशमुख, आमदार"
+          },
+          "text": {
+            "en": "Bapusaheb — Founder President of the Lokmangal Group; elected to the Assembly and the Lok Sabha.",
+            "mr": "‘बापूसाहेब’ — लोकमंगल समूहाचे संस्थापक अध्यक्ष; विधानसभा आणि लोकसभेत लोकप्रतिनिधी."
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266dd",
+          "image": 122,
+          "relation": {
+            "en": "Brother",
+            "mr": "भाऊ"
+          },
+          "name": {
+            "en": "Manish Deshmukh",
+            "mr": "मनीष देशमुख"
+          },
+          "text": {
+            "en": "President, Lokmangal Patsanstha; Vice President, Lokmangal Foundation.",
+            "mr": "लोकमंगल पतसंस्थेचे अध्यक्ष आणि लोकमंगल फाऊंडेशनचे उपाध्यक्ष."
+          }
+        }
+      ],
+      "intro": {
+        "en": "Faith, a strong sense of duty towards society and a spirit of enterprise — still seen as a model joint family across Maharashtra.",
+        "mr": "श्रद्धा, समाजाप्रती कर्तव्याची भावना आणि उद्योजकतेचा वारसा — आजही महाराष्ट्रात एक आदर्श एकत्र कुटुंब म्हणून ओळखला जाणारा परिवार."
+      },
+      "buttonLabel": {
+        "en": "Full family story",
+        "mr": "संपूर्ण माहिती"
+      },
+      "buttonUrl": "/about/biography"
+    },
+    {
+      "id": "6ad5ec7615929451e81266e0",
+      "blockType": "featuredVideo",
+      "hidden": false,
+      "eyebrow": {
+        "en": "Video",
+        "mr": "व्हिडिओ"
+      },
+      "heading": {
+        "en": "Milk Adulteration in India: Pune Milk Reality Check",
+        "mr": "पुण्याच्या दुधात नेमकं काय मिसळतंय?"
+      },
+      "youtubeUrl": "https://www.youtube.com/watch?v=KN_Pb_Cm8Xs",
+      "text": {
+        "en": "Following Pune’s milk from the farmer to your home — conversations with collection centres, dairy workers, vendors, consumers and health experts, and a reality check on a synthetic-milk racket in Dharashiv district.",
+        "mr": "शेतकऱ्यापासून ग्राहकापर्यंत पुण्याच्या दुधाचा प्रवास — संकलन केंद्र, डेअरी कामगार, विक्रेते, ग्राहक आणि आरोग्य तज्ज्ञांशी संवाद, आणि धाराशिव जिल्ह्यातील बनावट दूध रॅकेटचा रिॲलिटी चेक."
+      },
+      "links": [
+        {
+          "id": "6ad5ec7615929451e81266df",
+          "label": {
+            "en": "Watch on YouTube",
+            "mr": "YouTube वर पहा"
+          },
+          "url": "https://youtu.be/KN_Pb_Cm8Xs",
+          "newTab": true,
+          "description": {
+            "en": null,
+            "mr": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "6ad5ec7615929451e81266e4",
+      "blockType": "socialFeeds",
+      "hidden": false,
+      "eyebrow": {
+        "en": "Instagram",
+        "mr": "इंस्टाग्राम"
+      },
+      "heading": {
+        "en": "Reels",
+        "mr": "रील्स"
+      },
+      "text": {
+        "en": "Glimpses of Rohan’s work and his moments with people, as reels.",
+        "mr": "रोहन यांच्या कामाची आणि लोकांसोबतच्या क्षणांची झलक — रील्सच्या स्वरूपात."
+      },
+      "instagramPosts": [
+        {
+          "id": "6ad5ec7615929451e81266e1",
+          "url": "https://www.instagram.com/reel/DcoDuGQs7fB/",
+          "title": {
+            "en": "Rohan Deshmukh — reel",
+            "mr": "रोहन देशमुख — रील"
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266e2",
+          "url": "https://www.instagram.com/reel/DeMgK2oOt5i/",
+          "title": {
+            "en": "Rohan Deshmukh — reel",
+            "mr": "रोहन देशमुख — रील"
+          }
+        },
+        {
+          "id": "6ad5ec7615929451e81266e3",
+          "url": "https://www.instagram.com/reel/Db0vnBzvFn0/",
+          "title": {
+            "en": "Rohan Deshmukh — reel",
+            "mr": "रोहन देशमुख — रील"
+          }
+        }
+      ],
+      "showFacebook": false,
+      "showYoutube": false
+    }
+  ],
+  "meta": {
+    "title": {
+      "en": null,
+      "mr": null
+    },
+    "description": {
+      "en": null,
+      "mr": null
+    },
+    "image": null
+  }
+}

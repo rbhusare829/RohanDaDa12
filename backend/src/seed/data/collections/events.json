@@ -1,0 +1,333 @@
+[
+ {
+  "id": 5,
+  "title": {
+   "en": "Rural Sports Competitions",
+   "mr": "ग्रामीण क्रीडा स्पर्धा"
+  },
+  "slug": "rural-sports-competitions",
+  "initiative": null,
+  "coverImage": null,
+  "description": {
+   "en": "Kabaddi, Kho-Kho and other traditional sports — regular competitions for rural youth.",
+   "mr": "कबड्डी, खो-खो आणि इतर पारंपरिक खेळ — ग्रामीण तरुणांसाठी नियमित स्पर्धा."
+  },
+  "group": "sports",
+  "tagline": {
+   "en": "Keeping traditional sports alive",
+   "mr": "पारंपरिक खेळांचे जतन"
+  },
+  "body": {
+   "en": "Young people in villages often have the talent but not the opportunity. Lokmangal Foundation regularly organises sports competitions in rural areas, with special focus on traditional games like Kabaddi and Kho-Kho, so more young people get the chance to play, compete and grow.",
+   "mr": "गावातील तरुणांकडे कौशल्य असते, पण संधी मिळत नाही. त्यामुळे लोकमंगल फाऊंडेशन ग्रामीण भागात नियमितपणे क्रीडा स्पर्धा आयोजित करते. कबड्डी आणि खो-खो यांसारख्या पारंपरिक खेळांवर विशेष भर देत अधिकाधिक तरुणांना खेळण्याची, स्पर्धा करण्याची आणि प्रगती करण्याची संधी दिली जाते."
+  },
+  "facts": [
+   {
+    "id": "6ad5ec4415929451e8126642",
+    "label": {
+     "en": "Games",
+     "mr": "खेळ"
+    },
+    "value": {
+     "en": "Kabaddi, Kho-Kho and other traditional sports",
+     "mr": "कबड्डी, खो-खो आणि इतर पारंपरिक खेळ"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e8126643",
+    "label": {
+     "en": "Focus",
+     "mr": "केंद्रबिंदू"
+    },
+    "value": {
+     "en": "Rural youth",
+     "mr": "ग्रामीण तरुण"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e8126644",
+    "label": {
+     "en": "Frequency",
+     "mr": "वारंवारता"
+    },
+    "value": {
+     "en": "Held regularly",
+     "mr": "नियमित आयोजन"
+    }
+   }
+  ],
+  "editions": [],
+  "createdAt": "2026-10-19T10:09:08.094Z",
+  "updatedAt": "2026-10-19T10:09:08.109Z"
+ },
+ {
+  "id": 4,
+  "title": {
+   "en": "International Women’s Lawn Tennis Tournament",
+   "mr": "आंतरराष्ट्रीय महिला लॉन टेनिस स्पर्धा"
+  },
+  "slug": "international-womens-lawn-tennis-tournament",
+  "initiative": null,
+  "coverImage": null,
+  "description": {
+   "en": "2011, Solapur — 60 women from 27 countries.",
+   "mr": "२०११, सोलापूर — २७ देशांतील ६० महिला खेळाडू."
+  },
+  "group": "sports",
+  "tagline": {
+   "en": "Bringing world-class tennis to Solapur",
+   "mr": "सोलापुरात जागतिक दर्जाचे टेनिस"
+  },
+  "body": {
+   "en": "In 2011, Lokmangal Foundation and the Maharashtra State Lawn Tennis Association brought an international women’s tennis tournament to Solapur. Players from across the world competed on the city’s courts, and the people of Solapur turned out in large numbers to support them. The event inspired many young boys and girls in the city to take up tennis.",
+   "mr": "२०११ मध्ये लोकमंगल फाऊंडेशन आणि महाराष्ट्र राज्य लॉन टेनिस संघटनेने सोलापुरात आंतरराष्ट्रीय महिला टेनिस स्पर्धा आणली. जगभरातील खेळाडूंनी शहराच्या कोर्टवर आपले कौशल्य दाखवले आणि सोलापूरकरांनी मोठ्या संख्येने उपस्थित राहून त्यांना प्रोत्साहन दिले. या स्पर्धेमुळे शहरातील अनेक मुला-मुलींना टेनिस खेळण्याची प्रेरणा मिळाली."
+  },
+  "facts": [
+   {
+    "id": "6ad5ec4415929451e812663f",
+    "label": {
+     "en": "Year",
+     "mr": "वर्ष"
+    },
+    "value": {
+     "en": "2011, Solapur",
+     "mr": "२०११, सोलापूर"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e8126640",
+    "label": {
+     "en": "Players",
+     "mr": "खेळाडू"
+    },
+    "value": {
+     "en": "60 women from 27 countries",
+     "mr": "२७ देशांतील ६० महिला"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e8126641",
+    "label": {
+     "en": "Partner",
+     "mr": "सहयोगी"
+    },
+    "value": {
+     "en": "Maharashtra State Lawn Tennis Association",
+     "mr": "महाराष्ट्र राज्य लॉन टेनिस संघटना"
+    }
+   }
+  ],
+  "editions": [],
+  "createdAt": "2026-10-19T10:09:08.076Z",
+  "updatedAt": "2026-10-19T10:09:08.088Z"
+ },
+ {
+  "id": 3,
+  "title": {
+   "en": "Yuva Sahitya Sammelan",
+   "mr": "युवा साहित्य संमेलन"
+  },
+  "slug": "yuva-sahitya-sammelan",
+  "initiative": null,
+  "coverImage": null,
+  "description": {
+   "en": "2011, Solapur — 778 young writers and readers.",
+   "mr": "२०११, सोलापूर — ७७८ तरुण लेखक व वाचक."
+  },
+  "group": "youth",
+  "tagline": {
+   "en": "Giving young writers a voice",
+   "mr": "तरुण लेखकांना आवाज"
+  },
+  "body": {
+   "en": "Maharashtra has a proud tradition of literary meets, but young writers rarely get a stage of their own. To fill this gap, Lokmangal Foundation organised the first Yuva Sahitya Sammelan in Solapur in 2011. The meet encouraged a love for reading and gave young writers and artists a platform to share their work with the public.",
+   "mr": "महाराष्ट्राला साहित्य संमेलनांची अभिमानास्पद परंपरा आहे, पण तरुण लेखकांना स्वतःचे व्यासपीठ क्वचितच मिळते. ही उणीव भरून काढण्यासाठी लोकमंगल फाऊंडेशनने २०११ मध्ये सोलापूर येथे पहिले युवा साहित्य संमेलन आयोजित केले. या संमेलनाने वाचनाची आवड वाढवली आणि तरुण लेखक व कलाकारांना आपले साहित्य लोकांसमोर मांडण्याचे व्यासपीठ दिले."
+  },
+  "facts": [
+   {
+    "id": "6ad5ec4415929451e812663c",
+    "label": {
+     "en": "Year",
+     "mr": "वर्ष"
+    },
+    "value": {
+     "en": "2011, Solapur",
+     "mr": "२०११, सोलापूर"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e812663d",
+    "label": {
+     "en": "Participation",
+     "mr": "सहभाग"
+    },
+    "value": {
+     "en": "778 young writers and readers",
+     "mr": "७७८ तरुण लेखक व वाचक"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e812663e",
+    "label": {
+     "en": "Next",
+     "mr": "पुढे"
+    },
+    "value": {
+     "en": "More youth literary meets are planned",
+     "mr": "आणखी युवा साहित्य संमेलनांचे नियोजन"
+    }
+   }
+  ],
+  "editions": [],
+  "createdAt": "2026-10-19T10:09:08.058Z",
+  "updatedAt": "2026-10-19T10:09:08.070Z"
+ },
+ {
+  "id": 2,
+  "title": {
+   "en": "Solapur University Youth Festival",
+   "mr": "सोलापूर विद्यापीठ युवा महोत्सव"
+  },
+  "slug": "solapur-university-youth-festival",
+  "initiative": null,
+  "coverImage": null,
+  "description": {
+   "en": "Lokmangal Foundation with Solapur University — 1st and 10th (2013) editions.",
+   "mr": "लोकमंगल फाऊंडेशन व सोलापूर विद्यापीठ — पहिली आणि दहावी (२०१३) आवृत्ती."
+  },
+  "group": "youth",
+  "tagline": {
+   "en": "A stage for thousands of young talents",
+   "mr": "हजारो तरुण कलागुणांसाठी व्यासपीठ"
+  },
+  "body": {
+   "en": "Every student has a talent waiting for the right stage. Lokmangal Foundation, together with Solapur University, has hosted the university’s Youth Festival twice: its very first edition, and the 10th edition in 2013. The 2013 festival was led by Rohan Deshmukh, bringing thousands of students together for one of the region’s largest youth events.",
+   "mr": "प्रत्येक विद्यार्थ्यामध्ये योग्य व्यासपीठाची वाट पाहणारी कला दडलेली असते. लोकमंगल फाऊंडेशनने सोलापूर विद्यापीठासोबत विद्यापीठाचा युवा महोत्सव दोनदा आयोजित केला: त्याची पहिलीच आवृत्ती आणि २०१३ मधील दहावी आवृत्ती. २०१३ च्या महोत्सवाचे नेतृत्व रोहन देशमुख यांनी केले आणि या प्रदेशातील सर्वात मोठ्या युवा उपक्रमांपैकी एका उपक्रमात हजारो विद्यार्थी एकत्र आले."
+  },
+  "facts": [
+   {
+    "id": "6ad5ec4415929451e8126638",
+    "label": {
+     "en": "Hosted",
+     "mr": "आयोजन"
+    },
+    "value": {
+     "en": "1st edition and 10th edition (2013)",
+     "mr": "पहिली आणि दहावी आवृत्ती (२०१३)"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e8126639",
+    "label": {
+     "en": "Partner",
+     "mr": "सहयोगी"
+    },
+    "value": {
+     "en": "Solapur University",
+     "mr": "सोलापूर विद्यापीठ"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e812663a",
+    "label": {
+     "en": "Participation",
+     "mr": "सहभाग"
+    },
+    "value": {
+     "en": "Thousands of students",
+     "mr": "हजारो विद्यार्थी"
+    }
+   },
+   {
+    "id": "6ad5ec4415929451e812663b",
+    "label": {
+     "en": "Led by",
+     "mr": "नेतृत्व"
+    },
+    "value": {
+     "en": "Rohan Deshmukh (2013)",
+     "mr": "रोहन देशमुख (२०१३)"
+    }
+   }
+  ],
+  "editions": [],
+  "createdAt": "2026-10-19T10:09:08.036Z",
+  "updatedAt": "2026-10-19T10:09:08.050Z"
+ },
+ {
+  "id": 1,
+  "title": {
+   "en": "Lokmangal Community Wedding Ceremony",
+   "mr": "लोकमंगल सामुदायिक विवाह सोहळा"
+  },
+  "slug": "samudayik-vivah-sohala",
+  "initiative": 4,
+  "coverImage": 27,
+  "description": {
+   "en": "Since 2007: 48 ceremonies, 3,000+ couples. 49th ceremony — 13 December 2026.",
+   "mr": "२००७ पासून ४८ सोहळे, ३,०००+ जोडपी. ४९ वा सोहळा — १३ डिसेंबर २०२६."
+  },
+  "group": null,
+  "tagline": {
+   "en": null,
+   "mr": null
+  },
+  "body": {
+   "en": null,
+   "mr": null
+  },
+  "facts": [],
+  "editions": [
+   {
+    "id": "6ad5ec4315929451e8126636",
+    "year": 2026,
+    "title": {
+     "en": "49th ceremony",
+     "mr": "४९ वा सामुदायिक विवाह सोहळा"
+    },
+    "text": {
+     "en": "13 December 2026 — for registration call 7720096488",
+     "mr": "१३ डिसेंबर २०२६ — नोंदणी व अधिक माहितीसाठी संपर्क: ७७२००९६४८८"
+    },
+    "images": [
+     38,
+     39,
+     40,
+     41,
+     42,
+     43,
+     44,
+     45,
+     46,
+     27
+    ]
+   },
+   {
+    "id": "6ad5ec4315929451e8126637",
+    "year": 2025,
+    "title": {
+     "en": "48th ceremony",
+     "mr": "४८ वा सामुदायिक विवाह सोहळा"
+    },
+    "text": {
+     "en": null,
+     "mr": null
+    },
+    "images": [
+     28,
+     29,
+     30,
+     31,
+     32,
+     33,
+     34,
+     35,
+     36,
+     37
+    ]
+   }
+  ],
+  "createdAt": "2026-10-19T10:09:07.979Z",
+  "updatedAt": "2026-10-19T10:09:08.026Z"
+ }
+]

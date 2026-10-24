@@ -1,0 +1,1460 @@
+[
+ {
+  "id": 1,
+  "title": {
+   "en": "Lokmangal Annapurna Yojana",
+   "mr": "लोकमंगल अन्नपूर्णा योजना"
+  },
+  "slug": "annapurna-yojana",
+  "category": "senior-citizens",
+  "organisation": "foundation",
+  "featured": true,
+  "order": 1,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Two home-delivered meals a day for needy senior citizens above 60 who are neglected or without family.",
+   "mr": "कुटुंबाकडून दुर्लक्षित किंवा कुटुंब नसलेल्या ६० वर्षांवरील गरजू ज्येष्ठ नागरिकांना दिवसातून दोन वेळा घरपोच जेवण."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 3,
+  "body": {
+   "en": "<p>Under this scheme, needy senior citizens above 60 who are neglected by family or have no family receive two home-delivered meals a day. Meals are cooked in a clean kitchen and delivered by volunteers.</p><p>The scheme began on 8 March 2013 through Lokmangal Foundation. Today it serves nearly 500–550 senior citizens every day, and more than ten lakh tiffins have been delivered since 2013.</p><blockquote><p>&quot;It feels good that the tiffin arrives, but honestly, it feels even better that someone comes and asks after me.&quot;</p></blockquote><p>With your support, we aim to grow from 550 tiffins to 1,500 senior citizens.</p>",
+   "mr": "<p>सदर योजनेअंतर्गत कुटुंबाकडून दुर्लक्षित किंवा कुटुंब नसलेल्या ६० वर्षांवरील गरजू ज्येष्ठ नागरिकांना दिवसातून दोन वेळा घरपोच जेवण दिले जाते. जाहिरातींच्या माध्यमातून गरजू ज्येष्ठ नागरिकांची माहिती गोळा केली जाते. त्यानंतर स्वच्छ ठिकाणी जेवण तयार करून स्वयंसेवकांच्या मदतीने ते डबे संबंधित ज्येष्ठ नागरिकांच्या घरी पोहोचवले जातात.</p><p>८ मार्च २०१३ रोजी लोकमंगल फाऊंडेशनच्या माध्यमातून ही योजना सुरू झाली. आज दररोज जवळपास ५०० ते ५५० निराधार आणि गरजू ज्येष्ठ नागरिकांपर्यंत दोन वेळचं जेवण पोहोचवलं जातं. २०१३ पासून आजपर्यंत अंदाजे दहा लाखांहून अधिक टिफिन गरजूंच्या घरापर्यंत पोहोचले आहेत.</p><blockquote><p>&quot;डबा येतो म्हणून बरं वाटतं, पण खरं सांगायचं तर, कुणीतरी येऊन विचारपूस करतं, हे जास्त बरं वाटतं.&quot;</p></blockquote><p>तुमच्या सहकार्याने ५००-५५० डब्यांपासून हा प्रवास १,५०० ज्येष्ठ नागरिकांपर्यंत घेऊन जाण्याचा संकल्प आहे.</p>"
+  },
+  "counters": [
+   {
+    "id": "6ad5ec3215929451e812662d",
+    "value": {
+     "en": "550",
+     "mr": "५५०"
+    },
+    "label": {
+     "en": "Beneficiaries (daily)",
+     "mr": "लाभधारक (दररोज)"
+    }
+   },
+   {
+    "id": "6ad5ec3215929451e812662e",
+    "value": {
+     "en": "2013",
+     "mr": "२०१३"
+    },
+    "label": {
+     "en": "Running since",
+     "mr": "पासून सुरू"
+    }
+   },
+   {
+    "id": "6ad5ec3215929451e812662f",
+    "value": {
+     "en": "10,00,000+",
+     "mr": "१०,००,०००+"
+    },
+    "label": {
+     "en": "Tiffins delivered",
+     "mr": "डबे पोहोचवले"
+    }
+   }
+  ],
+  "gallery": [
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   3,
+   11,
+   12,
+   13,
+   14,
+   340
+  ],
+  "youtubeUrl": "https://www.youtube.com/watch?v=xqe6JKzo11I",
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:08:50.705Z",
+  "updatedAt": "2026-10-19T10:08:50.806Z"
+ },
+ {
+  "id": 2,
+  "title": {
+   "en": "Water Conservation Project",
+   "mr": "जलसंधारण प्रकल्प"
+  },
+  "slug": "jalsandharan",
+  "category": "agriculture",
+  "organisation": "foundation",
+  "featured": true,
+  "order": 2,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Planning and using water for farming through the Lokmangal water-conservation pattern.",
+   "mr": "लोकमंगल जलसंधारण पॅटर्नच्या माध्यमातून शेतीसाठी पाण्याचे योग्य नियोजन आणि वापर."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 15,
+  "body": {
+   "en": "<p>Regions like Solapur face frequent droughts, so making water available for farming is vital. Through the Lokmangal water-conservation pattern, work is done to plan and use water well — studying local conditions and building conservation works so that farms get water.</p>",
+   "mr": "<p>सोलापूरसारख्या भागात वारंवार दुष्काळ पडतो. त्यामुळे शेतीसाठी पाणी उपलब्ध करून देणे महत्त्वाचे आहे. लोकमंगल जलसंधारण पॅटर्नच्या माध्यमातून पाण्याचे योग्य नियोजन आणि वापर करण्यासाठी काम केले जाते. स्थानिक परिस्थितीचा अभ्यास करून जलसंधारणाची कामे केली जातात, जेणेकरून शेतीला पाणी मिळण्यास मदत होईल.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   15,
+   16,
+   17,
+   18,
+   19,
+   341,
+   342,
+   343,
+   344,
+   345,
+   346,
+   347,
+   348
+  ],
+  "youtubeUrl": "https://www.youtube.com/watch?v=DyXdiolI1TI",
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:08:53.355Z",
+  "updatedAt": "2026-10-19T10:08:53.470Z"
+ },
+ {
+  "id": 3,
+  "title": {
+   "en": "LOTUS (Lokmangal Organisation for Teaching Underprivileged Students)",
+   "mr": "लोटस (लोकमंगल ऑर्गनायझेशन फॉर टीचिंग अंडरप्रिव्हिलेज्ड स्टुडंट्स)"
+  },
+  "slug": "lotus",
+  "category": "education",
+  "organisation": "foundation",
+  "featured": true,
+  "order": 3,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "No student’s education should stop because of financial hardship.",
+   "mr": "आर्थिक अडचणीमुळे कोणत्याही विद्यार्थ्याचे शिक्षण थांबू नये, हा या योजनेचा मुख्य उद्देश."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 20,
+  "body": {
+   "en": "<p>Many students cannot continue their studies due to financial hardship. Lokmangal Foundation started the Vidyadan scheme — LOTUS — to support deserving students and bear the cost of their education.</p><p>Since 18 November 2015, 225 students have been supported with a total of ₹90,99,226.</p>",
+   "mr": "<p>आर्थिक अडचणींमुळे अनेक विद्यार्थ्यांना पुढील शिक्षण घेता येत नाही. ही अडचण लक्षात घेऊन लोकमंगल फाऊंडेशनने विद्यादान योजना सुरू केली. या योजनेला LOTUS (Lokmangal Organisation for Teaching Underprivileged Students) असेही म्हटले जाते. या योजनेत गरजू विद्यार्थ्यांना मदत केली जाते आणि त्यांच्या शिक्षणाचा आवश्यक खर्च फाऊंडेशनकडून केला जातो.</p><p>१८ नोव्हेंबर २०१५ रोजी सुरू झालेल्या या योजनेतून आजपर्यंत २२५ विद्यार्थ्यांना मदत मिळाली असून एकूण ९० लाख ९९ हजार २२६ रुपयांची आर्थिक मदत करण्यात आली आहे.</p>"
+  },
+  "counters": [
+   {
+    "id": "6ad5ec3815929451e8126630",
+    "value": {
+     "en": "225",
+     "mr": "२२५"
+    },
+    "label": {
+     "en": "Students supported",
+     "mr": "लाभधारक विद्यार्थी"
+    }
+   },
+   {
+    "id": "6ad5ec3815929451e8126631",
+    "value": {
+     "en": "₹90.99 lakh",
+     "mr": "₹९०.९९ लाख"
+    },
+    "label": {
+     "en": "Total assistance",
+     "mr": "एकूण आर्थिक मदत"
+    }
+   },
+   {
+    "id": "6ad5ec3815929451e8126632",
+    "value": {
+     "en": "2015",
+     "mr": "२०१५"
+    },
+    "label": {
+     "en": "Running since",
+     "mr": "पासून सुरू"
+    }
+   }
+  ],
+  "gallery": [
+   21,
+   22,
+   20,
+   23,
+   24,
+   25,
+   26,
+   351,
+   352,
+   353,
+   354,
+   355,
+   356,
+   357,
+   358,
+   359,
+   360
+  ],
+  "youtubeUrl": "https://www.youtube.com/watch?v=Mi-1-IPWPmk",
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:08:56.482Z",
+  "updatedAt": "2026-10-19T10:08:56.526Z"
+ },
+ {
+  "id": 4,
+  "title": {
+   "en": "Community Wedding Ceremony",
+   "mr": "सामुदायिक विवाह सोहळा"
+  },
+  "slug": "samudayik-vivah",
+  "category": "community",
+  "organisation": "foundation",
+  "featured": true,
+  "order": 4,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Since 2007, free wedding facilities for couples from families in need.",
+   "mr": "२००७ पासून गरजू वधू-वरांना विवाहासाठी आवश्यक सुविधा मोफत."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 27,
+  "body": {
+   "en": "<p>Wedding costs are a heavy burden for many poor families. Since 2007, Lokmangal Foundation has organised community weddings with all essentials provided free.</p><p>More than 3,000 couples have begun their married lives through 48 ceremonies.</p><p><strong>The 49th Lokmangal Samudayik Vivah Sohala — 13 December 2026.</strong> For registration call 7720096488.</p>",
+   "mr": "<p>विवाहाचा खर्च अनेक गरीब कुटुंबांसाठी मोठी अडचण ठरतो. ही अडचण कमी करण्यासाठी लोकमंगल फाऊंडेशनने २००७ पासून सामुदायिक विवाह सोहळा सुरू केला. या उपक्रमात गरजू वधू-वरांना विवाहासाठी आवश्यक सुविधा मोफत दिल्या जातात.</p><p>२००७ पासून आजपर्यंत ३,००० पेक्षा अधिक जोडप्यांनी आपल्या नव्या संसाराची सुरुवात केली असून ४८ सोहळे पार पडले आहेत.</p><p><strong>४९ वा लोकमंगल सामुदायिक विवाह सोहळा — १३ डिसेंबर २०२६.</strong> नोंदणी व अधिक माहितीसाठी संपर्क: ७७२००९६४८८</p>"
+  },
+  "counters": [
+   {
+    "id": "6ad5ec4015929451e8126633",
+    "value": {
+     "en": "3,221",
+     "mr": "३,२२१"
+    },
+    "label": {
+     "en": "Couples married",
+     "mr": "विवाहित जोडपी"
+    }
+   },
+   {
+    "id": "6ad5ec4015929451e8126634",
+    "value": {
+     "en": "48",
+     "mr": "४८"
+    },
+    "label": {
+     "en": "Ceremonies",
+     "mr": "सोहळे"
+    }
+   },
+   {
+    "id": "6ad5ec4015929451e8126635",
+    "value": {
+     "en": "2007",
+     "mr": "२००७"
+    },
+    "label": {
+     "en": "Running since",
+     "mr": "पासून सुरू"
+    }
+   }
+  ],
+  "gallery": [
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   27,
+   349,
+   350
+  ],
+  "youtubeUrl": "https://www.youtube.com/watch?v=pooqDuktVeM",
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:04.711Z",
+  "updatedAt": "2026-10-19T10:09:04.788Z"
+ },
+ {
+  "id": 5,
+  "title": {
+   "en": "Ek Muth Dhanya (A Fistful of Grain)",
+   "mr": "एक मूठ धान्य योजना"
+  },
+  "slug": "ek-muth-dhanya",
+  "category": "community",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 10,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "The 'Ek Muth Dhanya' (A Fistful of Grain) initiative helps children build the habit of helping people in need from a young age. School students collect grain and make it available to those who need it.",
+   "mr": "लहान वयातच मुलांना गरजू व्यक्तींना मदत करण्याची सवय लागावी, यासाठी 'एक मूठ धान्य' हा उपक्रम राबवला जातो. शाळेतील विद्यार्थी धान्य जमा करून ते गरजूंसाठी उपलब्ध करून देतात."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 47,
+  "body": {
+   "en": "<p>The 'Ek Muth Dhanya' (A Fistful of Grain) initiative helps children build the habit of helping people in need from a young age. School students collect grain and make it available to those who need it.</p>",
+   "mr": "<p>लहान वयातच मुलांना गरजू व्यक्तींना मदत करण्याची सवय लागावी, यासाठी &#39;एक मूठ धान्य&#39; हा उपक्रम राबवला जातो. शाळेतील विद्यार्थी धान्य जमा करून ते गरजूंसाठी उपलब्ध करून देतात.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   334,
+   335,
+   336,
+   337,
+   338,
+   339
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:05.731Z",
+  "updatedAt": "2026-10-19T10:09:05.824Z"
+ },
+ {
+  "id": 6,
+  "title": {
+   "en": "Lokmangal Literature Award",
+   "mr": "लोकमंगल साहित्य पुरस्कार"
+  },
+  "slug": "sahitya-puraskar",
+  "category": "culture",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 11,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Since 2015, the Lokmangal Literature Award has recognised and honoured talented writers who create literature of quality.",
+   "mr": "गुणवंत आणि दर्जेदार साहित्यनिर्मिती करणाऱ्या साहित्यिकांच्या कार्याची दखल घेऊन त्यांचा सन्मान करण्यासाठी २०१५ पासून लोकमंगल साहित्य पुरस्कार दिला जातो."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 175,
+  "body": {
+   "en": "<p>Since 2015, the Lokmangal Literature Award has recognised and honoured talented writers who create literature of quality.</p>",
+   "mr": "<p>गुणवंत आणि दर्जेदार साहित्यनिर्मिती करणाऱ्या साहित्यिकांच्या कार्याची दखल घेऊन त्यांचा सन्मान करण्यासाठी २०१५ पासून लोकमंगल साहित्य पुरस्कार दिला जातो.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   175,
+   176,
+   177
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:05.916Z",
+  "updatedAt": "2026-10-19T10:09:05.974Z"
+ },
+ {
+  "id": 7,
+  "title": {
+   "en": "Lokmangal Shikshak Ratna Award",
+   "mr": "लोकमंगल शिक्षक रत्न पुरस्कार"
+  },
+  "slug": "shikshak-ratna-puraskar",
+  "category": "education",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 12,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Since 2007, the Lokmangal Shikshak Ratna Award has encouraged teachers doing outstanding work in education and model schools.",
+   "mr": "शिक्षण क्षेत्रात उल्लेखनीय कार्य करणाऱ्या शिक्षकांना आणि आदर्श शाळांना प्रोत्साहन देण्यासाठी २००७ पासून लोकमंगल शिक्षक रत्न पुरस्काराचे आयोजन केले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 48,
+  "body": {
+   "en": "<p>Since 2007, the Lokmangal Shikshak Ratna Award has encouraged teachers doing outstanding work in education and model schools.</p>",
+   "mr": "<p>शिक्षण क्षेत्रात उल्लेखनीय कार्य करणाऱ्या शिक्षकांना आणि आदर्श शाळांना प्रोत्साहन देण्यासाठी २००७ पासून लोकमंगल शिक्षक रत्न पुरस्काराचे आयोजन केले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   178,
+   179,
+   180,
+   181,
+   182,
+   183,
+   184,
+   185,
+   186,
+   187,
+   188,
+   189
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.143Z",
+  "updatedAt": "2026-10-19T10:09:06.200Z"
+ },
+ {
+  "id": 8,
+  "title": {
+   "en": "Lokmangal Sanjivani Medical",
+   "mr": "लोकमंगल संजीवनी मेडिकल"
+  },
+  "slug": "sanjivani-medical",
+  "category": "health",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 13,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Lokmangal Sanjivani Medical was started on 12 December 2025 so that patients in need can get the medicines their treatment requires.",
+   "mr": "गरजू रुग्णांना उपचारासाठी आवश्यक औषधे मिळावीत, यासाठी १२ डिसेंबर २०२५ रोजी लोकमंगल संजीवनी मेडिकलची सुरुवात करण्यात आली."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 49,
+  "body": {
+   "en": "<p>Lokmangal Sanjivani Medical was started on 12 December 2025 so that patients in need can get the medicines their treatment requires.</p>",
+   "mr": "<p>गरजू रुग्णांना उपचारासाठी आवश्यक औषधे मिळावीत, यासाठी १२ डिसेंबर २०२५ रोजी लोकमंगल संजीवनी मेडिकलची सुरुवात करण्यात आली.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   190,
+   191,
+   192
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.492Z",
+  "updatedAt": "2026-10-19T10:09:06.563Z"
+ },
+ {
+  "id": 9,
+  "title": {
+   "en": "Mega Health Camp",
+   "mr": "महाआरोग्य शिबीर"
+  },
+  "slug": "maha-arogya-shibir",
+  "category": "health",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 14,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "A Mega Health Camp was organised to give people in and around Solapur free health check-ups, medicines and surgery.",
+   "mr": "सोलापूर आणि आसपासच्या नागरिकांसाठी मोफत आरोग्य तपासणी, औषधोपचार आणि शस्त्रक्रियेची सुविधा उपलब्ध करून देण्यासाठी महाआरोग्य शिबिराचे आयोजन करण्यात आले."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 193,
+  "body": {
+   "en": "<p>A Mega Health Camp was organised to give people in and around Solapur free health check-ups, medicines and surgery.</p>",
+   "mr": "<p>सोलापूर आणि आसपासच्या नागरिकांसाठी मोफत आरोग्य तपासणी, औषधोपचार आणि शस्त्रक्रियेची सुविधा उपलब्ध करून देण्यासाठी महाआरोग्य शिबिराचे आयोजन करण्यात आले.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   193,
+   194,
+   195,
+   196
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.620Z",
+  "updatedAt": "2026-10-19T10:09:06.658Z"
+ },
+ {
+  "id": 10,
+  "title": {
+   "en": "Divyang Camp",
+   "mr": "दिव्यांग शिबीर"
+  },
+  "slug": "divyang-shibir",
+  "category": "health",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 15,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "To make daily life easier for people with disabilities, aids such as Jaipur feet, calipers, crutches, wheelchairs, hearing aids and orthopaedic shoes are given free of charge.",
+   "mr": "दिव्यांग बांधवांचे दैनंदिन जीवन अधिक सुलभ व्हावे, यासाठी जयपूर फूट, कॅलिपर्स, कुबड्या, व्हीलचेअर, श्रवणयंत्र आणि ऑर्थो शूज यांसारख्या साहित्याचे मोफत वाटप केले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 197,
+  "body": {
+   "en": "<p>To make daily life easier for people with disabilities, aids such as Jaipur feet, calipers, crutches, wheelchairs, hearing aids and orthopaedic shoes are given free of charge.</p>",
+   "mr": "<p>दिव्यांग बांधवांचे दैनंदिन जीवन अधिक सुलभ व्हावे, यासाठी जयपूर फूट, कॅलिपर्स, कुबड्या, व्हीलचेअर, श्रवणयंत्र आणि ऑर्थो शूज यांसारख्या साहित्याचे मोफत वाटप केले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   197,
+   198,
+   199
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.691Z",
+  "updatedAt": "2026-10-19T10:09:06.722Z"
+ },
+ {
+  "id": 11,
+  "title": {
+   "en": "Free Diagnostic Camp",
+   "mr": "मोफत सर्वरोग निदान शिबीर"
+  },
+  "slug": "sarvarog-nidan-shibir",
+  "category": "health",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 16,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Diagnostic camps are held to check people from slums, workers' colonies and other areas in need for a range of illnesses, free of charge.",
+   "mr": "झोपडपट्टी, कामगार आणि गरजू भागातील नागरिकांसाठी विविध आजारांची मोफत तपासणी करण्यासाठी सर्वरोग निदान शिबिरे आयोजित केली जातात."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 200,
+  "body": {
+   "en": "<p>Diagnostic camps are held to check people from slums, workers' colonies and other areas in need for a range of illnesses, free of charge.</p>",
+   "mr": "<p>झोपडपट्टी, कामगार आणि गरजू भागातील नागरिकांसाठी विविध आजारांची मोफत तपासणी करण्यासाठी सर्वरोग निदान शिबिरे आयोजित केली जातात.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   200,
+   201
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.777Z",
+  "updatedAt": "2026-10-19T10:09:06.816Z"
+ },
+ {
+  "id": 12,
+  "title": {
+   "en": "Blood Donation Camp",
+   "mr": "रक्तदान शिबीर"
+  },
+  "slug": "raktadan-shibir",
+  "category": "health",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 17,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Blood cannot be made artificially, so donating blood matters greatly for patients in need.",
+   "mr": "रक्ताची निर्मिती कृत्रिम पद्धतीने करता येत नसल्यामुळे गरजू रुग्णांसाठी रक्तदानाचे महत्त्व मोठे आहे."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 202,
+  "body": {
+   "en": "<p>Blood cannot be made artificially, so donating blood matters greatly for patients in need.</p>",
+   "mr": "<p>रक्ताची निर्मिती कृत्रिम पद्धतीने करता येत नसल्यामुळे गरजू रुग्णांसाठी रक्तदानाचे महत्त्व मोठे आहे.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   202,
+   203,
+   204,
+   205,
+   206
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.857Z",
+  "updatedAt": "2026-10-19T10:09:06.884Z"
+ },
+ {
+  "id": 13,
+  "title": {
+   "en": "School Supplies Distribution",
+   "mr": "विद्यार्थ्यांना शालेय साहित्य व वही वाटप"
+  },
+  "slug": "shaley-sahitya-vatap",
+  "category": "education",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 18,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Children from poor and needy families and of single parents receive notebooks and school supplies free of charge.",
+   "mr": "गरीब, गरजू आणि एकल पालकांच्या मुलांना शिक्षणासाठी आवश्यक वह्या व शालेय साहित्य मोफत दिले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 207,
+  "body": {
+   "en": "<p>Children from poor and needy families and of single parents receive notebooks and school supplies free of charge.</p>",
+   "mr": "<p>गरीब, गरजू आणि एकल पालकांच्या मुलांना शिक्षणासाठी आवश्यक वह्या व शालेय साहित्य मोफत दिले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   207,
+   208,
+   209,
+   210,
+   211,
+   212,
+   213,
+   214,
+   215,
+   216,
+   217,
+   218,
+   219,
+   220
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:06.929Z",
+  "updatedAt": "2026-10-19T10:09:06.976Z"
+ },
+ {
+  "id": 14,
+  "title": {
+   "en": "Balsanskar Camp",
+   "mr": "बालसंस्कार शिबीर"
+  },
+  "slug": "balsanskar-shibir",
+  "category": "youth",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 19,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Residential Balsanskar camps are held to build good habits and values in the new generation.",
+   "mr": "नवीन पिढीमध्ये चांगल्या सवयी आणि संस्कार निर्माण करण्यासाठी निवासी बालसंस्कार शिबिरांचे आयोजन केले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 50,
+  "body": {
+   "en": "<p>Residential Balsanskar camps are held to build good habits and values in the new generation.</p>",
+   "mr": "<p>नवीन पिढीमध्ये चांगल्या सवयी आणि संस्कार निर्माण करण्यासाठी निवासी बालसंस्कार शिबिरांचे आयोजन केले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   221,
+   222
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.063Z",
+  "updatedAt": "2026-10-19T10:09:07.105Z"
+ },
+ {
+  "id": 15,
+  "title": {
+   "en": "Fort-Building Competition",
+   "mr": "किल्ला बांधणी स्पर्धा"
+  },
+  "slug": "killa-bandhani-spardha",
+  "category": "culture",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 20,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "A fort-building competition is held to pass the Diwali tradition of building forts on to the next generation and to introduce children to the history of Maharashtra. Students form teams through their schools and build the forts under their teachers' guidance.",
+   "mr": "दिवाळीत किल्ले बांधण्याची परंपरा पुढील पिढीपर्यंत पोहोचावी आणि मुलांना महाराष्ट्राच्या इतिहासाची ओळख व्हावी, यासाठी किल्ला बांधणी स्पर्धेचे आयोजन केले जाते. शाळांच्या माध्यमातून विद्यार्थ्यांचे गट तयार करून शिक्षकांच्या मार्गदर्शनाखाली किल्ले तयार केले जातात."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 223,
+  "body": {
+   "en": "<p>A fort-building competition is held to pass the Diwali tradition of building forts on to the next generation and to introduce children to the history of Maharashtra. Students form teams through their schools and build the forts under their teachers' guidance.</p>",
+   "mr": "<p>दिवाळीत किल्ले बांधण्याची परंपरा पुढील पिढीपर्यंत पोहोचावी आणि मुलांना महाराष्ट्राच्या इतिहासाची ओळख व्हावी, यासाठी किल्ला बांधणी स्पर्धेचे आयोजन केले जाते. शाळांच्या माध्यमातून विद्यार्थ्यांचे गट तयार करून शिक्षकांच्या मार्गदर्शनाखाली किल्ले तयार केले जातात.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   223,
+   224,
+   225,
+   226,
+   227,
+   228,
+   229,
+   230,
+   231,
+   232,
+   233,
+   234,
+   235,
+   236,
+   237,
+   238,
+   239,
+   240,
+   241
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.153Z",
+  "updatedAt": "2026-10-19T10:09:07.192Z"
+ },
+ {
+  "id": 16,
+  "title": {
+   "en": "Job Fair",
+   "mr": "रोजगार मेळावा"
+  },
+  "slug": "rojgar-melava",
+  "category": "youth",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 21,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "A job fair was organised jointly by the Skill Development, Employment and Entrepreneurship Department and Lokmangal Foundation to open up job opportunities for young people.",
+   "mr": "तरुणांना रोजगाराच्या संधी मिळाव्यात, यासाठी कौशल्य विकास, रोजगार व उद्योजकता विभाग आणि लोकमंगल फाऊंडेशन यांच्या संयुक्त विद्यमाने रोजगार मेळाव्याचे आयोजन करण्यात आले."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 242,
+  "body": {
+   "en": "<p>A job fair was organised jointly by the Skill Development, Employment and Entrepreneurship Department and Lokmangal Foundation to open up job opportunities for young people.</p>",
+   "mr": "<p>तरुणांना रोजगाराच्या संधी मिळाव्यात, यासाठी कौशल्य विकास, रोजगार व उद्योजकता विभाग आणि लोकमंगल फाऊंडेशन यांच्या संयुक्त विद्यमाने रोजगार मेळाव्याचे आयोजन करण्यात आले.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   242,
+   243,
+   244,
+   245,
+   246,
+   247,
+   248,
+   249,
+   250,
+   251,
+   252,
+   253,
+   254,
+   255,
+   256,
+   257,
+   258,
+   259,
+   260,
+   261,
+   262
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.246Z",
+  "updatedAt": "2026-10-19T10:09:07.287Z"
+ },
+ {
+  "id": 17,
+  "title": {
+   "en": "Women's Day",
+   "mr": "महिला दिन"
+  },
+  "slug": "mahila-din",
+  "category": "women",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 22,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "On International Women's Day, capable and successful women are honoured. Cultural games and competitions encourage women to take part, and the experience and guidance of successful women is shared with others.",
+   "mr": "जागतिक महिला दिनाच्या निमित्ताने कर्तबगार आणि यशस्वी महिलांचा सन्मान केला जातो. महिलांसाठी सांस्कृतिक खेळ व विविध स्पर्धांचे आयोजन करून त्यांच्या सहभागाला प्रोत्साहन दिले जाते, तसेच यशस्वी महिलांचे अनुभव आणि मार्गदर्शन इतर महिलांपर्यंत पोहोचवले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 263,
+  "body": {
+   "en": "<p>On International Women's Day, capable and successful women are honoured. Cultural games and competitions encourage women to take part, and the experience and guidance of successful women is shared with others.</p>",
+   "mr": "<p>जागतिक महिला दिनाच्या निमित्ताने कर्तबगार आणि यशस्वी महिलांचा सन्मान केला जातो. महिलांसाठी सांस्कृतिक खेळ व विविध स्पर्धांचे आयोजन करून त्यांच्या सहभागाला प्रोत्साहन दिले जाते, तसेच यशस्वी महिलांचे अनुभव आणि मार्गदर्शन इतर महिलांपर्यंत पोहोचवले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   263,
+   264,
+   265,
+   266,
+   267,
+   268,
+   269,
+   270,
+   271,
+   272,
+   273,
+   274,
+   275,
+   276,
+   277
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.333Z",
+  "updatedAt": "2026-10-19T10:09:07.381Z"
+ },
+ {
+  "id": 18,
+  "title": {
+   "en": "Bhajan & Bharud Competition",
+   "mr": "भजन व भारूड स्पर्धा"
+  },
+  "slug": "bhajan-bharud-spardha",
+  "category": "culture",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 23,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "A Bhajan and Bharud competition is held every year to carry the cultural traditions of bhajan, bharud and kirtan on to the next generation.",
+   "mr": "भजन, भारूड आणि कीर्तनाच्या माध्यमातून सांस्कृतिक परंपरा पुढील पिढीपर्यंत पोहोचाव्यात, यासाठी दरवर्षी भजन-भारूड स्पर्धेचे आयोजन केले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 278,
+  "body": {
+   "en": "<p>A Bhajan and Bharud competition is held every year to carry the cultural traditions of bhajan, bharud and kirtan on to the next generation.</p>",
+   "mr": "<p>भजन, भारूड आणि कीर्तनाच्या माध्यमातून सांस्कृतिक परंपरा पुढील पिढीपर्यंत पोहोचाव्यात, यासाठी दरवर्षी भजन-भारूड स्पर्धेचे आयोजन केले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   278,
+   279,
+   280,
+   281,
+   282,
+   283,
+   284,
+   285,
+   286,
+   287,
+   288,
+   289,
+   290,
+   291,
+   292,
+   293,
+   294
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.422Z",
+  "updatedAt": "2026-10-19T10:09:07.453Z"
+ },
+ {
+  "id": 19,
+  "title": {
+   "en": "Yoga Day",
+   "mr": "योग दिन"
+  },
+  "slug": "yog-din",
+  "category": "health",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 24,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Every year on 21 June, International Yoga Day, yoga training and awareness sessions are held in schools, colleges and other places.",
+   "mr": "दरवर्षी २१ जून रोजी आंतरराष्ट्रीय योग दिनानिमित्त शाळा, महाविद्यालये आणि इतर ठिकाणी योग प्रशिक्षण व जनजागृती केली जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 295,
+  "body": {
+   "en": "<p>Every year on 21 June, International Yoga Day, yoga training and awareness sessions are held in schools, colleges and other places.</p>",
+   "mr": "<p>दरवर्षी २१ जून रोजी आंतरराष्ट्रीय योग दिनानिमित्त शाळा, महाविद्यालये आणि इतर ठिकाणी योग प्रशिक्षण व जनजागृती केली जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   295,
+   296,
+   297,
+   298,
+   299,
+   300,
+   301,
+   302,
+   303,
+   304,
+   305,
+   306,
+   307,
+   308,
+   309,
+   310,
+   311,
+   312,
+   313,
+   314,
+   315,
+   316
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.481Z",
+  "updatedAt": "2026-10-19T10:09:07.505Z"
+ },
+ {
+  "id": 20,
+  "title": {
+   "en": "Single Women Initiative",
+   "mr": "एकल महिला उपक्रम"
+  },
+  "slug": "ekal-mahila-upakram",
+  "category": "women",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 25,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "This initiative gives widowed, divorced, separated and destitute women job opportunities, help with their children's education, and school supplies.",
+   "mr": "पतीचे निधन झालेल्या, घटस्फोटित, विभक्त किंवा निराधार महिलांना रोजगाराच्या संधी, मुलांच्या शिक्षणासाठी मदत आणि शालेय साहित्य उपलब्ध करून देण्यासाठी हा उपक्रम राबवला जातो."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 51,
+  "body": {
+   "en": "<p>This initiative gives widowed, divorced, separated and destitute women job opportunities, help with their children's education, and school supplies.</p>",
+   "mr": "<p>पतीचे निधन झालेल्या, घटस्फोटित, विभक्त किंवा निराधार महिलांना रोजगाराच्या संधी, मुलांच्या शिक्षणासाठी मदत आणि शालेय साहित्य उपलब्ध करून देण्यासाठी हा उपक्रम राबवला जातो.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   317,
+   318,
+   319
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.530Z",
+  "updatedAt": "2026-10-19T10:09:07.552Z"
+ },
+ {
+  "id": 21,
+  "title": {
+   "en": "Tree Plantation",
+   "mr": "वृक्षारोपण"
+  },
+  "slug": "vrukshaaropan",
+  "category": "agriculture",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 26,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "Trees are planted around schools and neighbourhoods to spread the message of protecting the environment. The focus is on caring for the trees, not just planting them, and on building a sense of responsibility for the environment in children from an early age.",
+   "mr": "शाळा परिसर आणि लोकवस्तीमध्ये वृक्षारोपण करून पर्यावरण संवर्धनाचा संदेश दिला जातो. केवळ झाडे लावण्याऐवजी त्यांचे संगोपन करण्यावर भर दिला जातो आणि मुलांमध्ये लहानपणापासून पर्यावरणाप्रती जबाबदारीची भावना निर्माण केली जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 320,
+  "body": {
+   "en": "<p>Trees are planted around schools and neighbourhoods to spread the message of protecting the environment. The focus is on caring for the trees, not just planting them, and on building a sense of responsibility for the environment in children from an early age.</p>",
+   "mr": "<p>शाळा परिसर आणि लोकवस्तीमध्ये वृक्षारोपण करून पर्यावरण संवर्धनाचा संदेश दिला जातो. केवळ झाडे लावण्याऐवजी त्यांचे संगोपन करण्यावर भर दिला जातो आणि मुलांमध्ये लहानपणापासून पर्यावरणाप्रती जबाबदारीची भावना निर्माण केली जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   320,
+   321,
+   322,
+   323,
+   324,
+   325,
+   326,
+   327,
+   328,
+   329
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.579Z",
+  "updatedAt": "2026-10-19T10:09:07.605Z"
+ },
+ {
+  "id": 22,
+  "title": {
+   "en": "Dandiya Festival",
+   "mr": "दांडिया उत्सव"
+  },
+  "slug": "dandiya-utsav",
+  "category": "women",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 27,
+  "stat": {
+   "en": null,
+   "mr": null
+  },
+  "excerpt": {
+   "en": "During Navratri, Dandiya and Garba competitions are held for women. Women can perform in groups or individually, and winners are encouraged with a range of prizes.",
+   "mr": "नवरात्रोत्सवानिमित्त महिलांसाठी दांडिया आणि गरबा स्पर्धांचे आयोजन केले जाते. समूह तसेच वैयक्तिक सहभागातून महिलांना आपली कला सादर करण्याची संधी दिली जाते आणि विजेत्यांना विविध स्वरूपातील बक्षिसे देऊन प्रोत्साहन दिले जाते."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": 52,
+  "body": {
+   "en": "<p>During Navratri, Dandiya and Garba competitions are held for women. Women can perform in groups or individually, and winners are encouraged with a range of prizes.</p>",
+   "mr": "<p>नवरात्रोत्सवानिमित्त महिलांसाठी दांडिया आणि गरबा स्पर्धांचे आयोजन केले जाते. समूह तसेच वैयक्तिक सहभागातून महिलांना आपली कला सादर करण्याची संधी दिली जाते आणि विजेत्यांना विविध स्वरूपातील बक्षिसे देऊन प्रोत्साहन दिले जाते.</p>"
+  },
+  "counters": [],
+  "gallery": [
+   330,
+   331,
+   332,
+   333
+  ],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-19T10:09:07.923Z",
+  "updatedAt": "2026-10-19T10:09:07.945Z"
+ },
+ {
+  "id": 23,
+  "title": {
+   "en": "Media Coverage",
+   "mr": "वृत्तपत्रांतील प्रसिद्धी"
+  },
+  "slug": "madhyamanchi-dakhal",
+  "category": "community",
+  "organisation": "foundation",
+  "featured": false,
+  "order": 28,
+  "stat": {
+   "en": "Media Recognition & News Coverage",
+   "mr": "वृत्तपत्रे व प्रसारमाध्यमांतून गौरव"
+  },
+  "excerpt": {
+   "en": "Lokmangal Foundation’s work in social welfare, education, health, women’s empowerment, employment and culture has been covered by many newspapers. This coverage has helped more people learn about the Foundation and the difference it is making in their communities.",
+   "mr": "संस्थेच्या सामाजिक उपक्रमांचे कार्य व यश प्रसारमाध्यमांद्वारे व्यापक जनसामान्यांपर्यंत पोहोचवणे."
+  },
+  "objective": {
+   "en": null,
+   "mr": null
+  },
+  "heroImage": null,
+  "body": {
+   "en": "<p>Lokmangal Foundation’s work in social welfare, education, health, women’s empowerment, employment and culture has been covered by many newspapers. This coverage has helped more people learn about the Foundation and the difference it is making in their communities.</p><h3>Key Highlights in the Press</h3><ul><li>Sahitya Award and honouring of writers</li><li>Support for students under the LOTUS scheme</li><li>Residential Bal Sanskar camps</li><li>Musical instruments given to bhajan groups</li><li>Assistive aids given to persons with disabilities</li><li>Health camps and health initiatives</li><li>Water conservation work and job fairs</li></ul><p>These news stories are more than headlines. Together, they are a valuable record of the Foundation’s journey, showing how far its work has reached and how many lives it has touched.</p>",
+   "mr": "<p>लोकमंगल फाऊंडेशनच्या विविध सामाजिक, शैक्षणिक, आरोग्यविषयक, महिला सक्षमीकरण, रोजगार आणि सांस्कृतिक उपक्रमांची दखल विविध वृत्तपत्रांनी घेतली आहे. या प्रसिद्धीमुळे संस्थेच्या कार्याची माहिती समाजातील अधिकाधिक लोकांपर्यंत पोहोचली आहे.</p><h3>वृत्तपत्रांमध्ये प्रसिद्ध झालेल्या प्रमुख बातम्या</h3><ul><li>साहित्य पुरस्कार आणि साहित्यिकांचा सन्मान</li><li>लोटस योजनेअंतर्गत विद्यार्थ्यांना मदत</li><li>निवासी बालसंस्कार शिबिरांचे आयोजन</li><li>भजन मंडळांना वाद्यसाहित्याचे वाटप</li><li>दिव्यांग व्यक्तींना सहाय्यक साहित्याचे वितरण</li><li>आरोग्य शिबिरे आणि आरोग्यविषयक उपक्रम</li><li>जलसंधारण आणि रोजगार मेळाव्यांचे आयोजन</li></ul><p>विविध वृत्तपत्रांतील या बातम्या लोकमंगल फाऊंडेशनच्या सामाजिक कार्याची नोंद घेणारा महत्त्वाचा दस्तऐवज आहेत. त्यातून संस्थेच्या विविध उपक्रमांची व्याप्ती आणि समाजापर्यंत पोहोचलेले कार्य अधोरेखित होते.</p>"
+  },
+  "counters": [],
+  "gallery": [],
+  "youtubeUrl": null,
+  "videos": [],
+  "relatedPosts": [],
+  "meta": {
+   "title": {
+    "en": null,
+    "mr": null
+   },
+   "description": {
+    "en": null,
+    "mr": null
+   },
+   "image": null
+  },
+  "_status": "published",
+  "createdAt": "2026-10-21T11:45:57.000Z",
+  "updatedAt": "2026-10-21T11:45:57.000Z"
+ }
+]

@@ -1,0 +1,66 @@
+[
+ {
+  "id": 4,
+  "title": {
+   "en": "Community Wedding Ceremony",
+   "mr": "सामुदायिक विवाह सोहळा"
+  },
+  "youtubeUrl": "https://www.youtube.com/watch?v=pooqDuktVeM",
+  "playlist": {
+   "en": "Lokmangal Foundation",
+   "mr": "लोकमंगल फाऊंडेशन"
+  },
+  "featured": false,
+  "publishedAt": "2026-10-19T10:09:30.686Z",
+  "createdAt": "2026-10-19T10:09:30.687Z",
+  "updatedAt": "2026-10-19T10:09:30.693Z"
+ },
+ {
+  "id": 3,
+  "title": {
+   "en": "LOTUS scholarship scheme",
+   "mr": "लोटस शिष्यवृत्ती योजना"
+  },
+  "youtubeUrl": "https://www.youtube.com/watch?v=Mi-1-IPWPmk",
+  "playlist": {
+   "en": "Lokmangal Foundation",
+   "mr": "लोकमंगल फाऊंडेशन"
+  },
+  "featured": false,
+  "publishedAt": "2026-10-19T10:09:30.678Z",
+  "createdAt": "2026-10-19T10:09:30.678Z",
+  "updatedAt": "2026-10-19T10:09:30.684Z"
+ },
+ {
+  "id": 2,
+  "title": {
+   "en": "Water Conservation Project",
+   "mr": "जलसंधारण प्रकल्प"
+  },
+  "youtubeUrl": "https://www.youtube.com/watch?v=DyXdiolI1TI",
+  "playlist": {
+   "en": "Lokmangal Foundation",
+   "mr": "लोकमंगल फाऊंडेशन"
+  },
+  "featured": false,
+  "publishedAt": "2026-10-19T10:09:30.669Z",
+  "createdAt": "2026-10-19T10:09:30.669Z",
+  "updatedAt": "2026-10-19T10:09:30.675Z"
+ },
+ {
+  "id": 1,
+  "title": {
+   "en": "Lokmangal Annapurna Yojana",
+   "mr": "लोकमंगल अन्नपूर्णा योजना"
+  },
+  "youtubeUrl": "https://www.youtube.com/watch?v=xqe6JKzo11I",
+  "playlist": {
+   "en": "Lokmangal Foundation",
+   "mr": "लोकमंगल फाऊंडेशन"
+  },
+  "featured": true,
+  "publishedAt": "2026-10-19T10:09:30.653Z",
+  "createdAt": "2026-10-19T10:09:30.653Z",
+  "updatedAt": "2026-10-19T10:09:30.666Z"
+ }
+]

@@ -1,0 +1,155 @@
+{
+ "columns": [
+  {
+   "id": "6ad5ec2d15929451e812661f",
+   "title": {
+    "en": "Quick links",
+    "mr": "महत्त्वाचे दुवे"
+   },
+   "links": [
+    {
+     "id": "6ad5ec2d15929451e812661a",
+     "label": {
+      "en": "Home",
+      "mr": "मुख्य पृष्ठ"
+     },
+     "url": "/",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e812661b",
+     "label": {
+      "en": "Events",
+      "mr": "कार्यक्रम"
+     },
+     "url": "/events",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e812661c",
+     "label": {
+      "en": "New India Manifesto",
+      "mr": "न्यू इंडिया मॅनिफेस्टो"
+     },
+     "url": "/vision",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e812661e",
+     "label": {
+      "en": "Blog",
+      "mr": "ब्लॉग"
+     },
+     "url": "/blog",
+     "newTab": false
+    }
+   ]
+  },
+  {
+   "id": "6ad5ec2d15929451e8126625",
+   "title": {
+    "en": "About",
+    "mr": "परिचय"
+   },
+   "links": [
+    {
+     "id": "6ad5ec2d15929451e8126620",
+     "label": {
+      "en": "Family Background",
+      "mr": "कौटुंबिक पार्श्वभूमी"
+     },
+     "url": "/about/biography",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e8126622",
+     "label": {
+      "en": "Political Career",
+      "mr": "राजकीय कारकीर्द"
+     },
+     "url": "/political-career",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e8126623",
+     "label": {
+      "en": "Photo Gallery",
+      "mr": "फोटो संग्रह"
+     },
+     "url": "/media/photos",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e8126624",
+     "label": {
+      "en": "Contact",
+      "mr": "संपर्क"
+     },
+     "url": "/contact",
+     "newTab": false
+    }
+   ]
+  },
+  {
+   "id": "6ad5ec2d15929451e812662c",
+   "title": {
+    "en": "Social initiatives",
+    "mr": "सामाजिक उपक्रम"
+   },
+   "links": [
+    {
+     "id": "6ad5ec2d15929451e8126626",
+     "label": {
+      "en": "Lokmangal Foundation",
+      "mr": "लोकमंगल फाऊंडेशन"
+     },
+     "url": "/lokmangal/foundation",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e8126627",
+     "label": {
+      "en": "Annapurna Yojana",
+      "mr": "अन्नपूर्णा योजना"
+     },
+     "url": "/social-work/annapurna-yojana",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e8126628",
+     "label": {
+      "en": "LOTUS",
+      "mr": "लोटस"
+     },
+     "url": "/social-work/lotus",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e8126629",
+     "label": {
+      "en": "Community Weddings",
+      "mr": "सामुदायिक विवाह"
+     },
+     "url": "/social-work/samudayik-vivah",
+     "newTab": false
+    },
+    {
+     "id": "6ad5ec2d15929451e812662a",
+     "label": {
+      "en": "Water Conservation",
+      "mr": "जलसंधारण"
+     },
+     "url": "/social-work/jalsandharan",
+     "newTab": false
+    }
+   ]
+  }
+ ],
+ "legalLinks": [],
+ "copyright": {
+  "en": "© 2026. All Rights Reserved by Rohan Deshmukh",
+  "mr": "© २०२६. सर्व हक्क राखीव — रोहन देशमुख"
+ },
+ "developerCredit": null,
+ "developerUrl": null
+}

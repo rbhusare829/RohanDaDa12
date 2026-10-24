@@ -1,0 +1,22 @@
+[
+ {
+  "id": 2,
+  "title": {
+   "en": "Policy & ideas",
+   "mr": "धोरण व विचार"
+  },
+  "slug": "policy",
+  "createdAt": "2026-10-19T10:09:43.520Z",
+  "updatedAt": "2026-10-19T10:09:43.525Z"
+ },
+ {
+  "id": 1,
+  "title": {
+   "en": "Social work",
+   "mr": "सामाजिक कार्य"
+  },
+  "slug": "social",
+  "createdAt": "2026-10-19T10:09:43.505Z",
+  "updatedAt": "2026-10-19T10:09:43.517Z"
+ }
+]

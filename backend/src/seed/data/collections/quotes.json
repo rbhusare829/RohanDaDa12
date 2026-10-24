@@ -1,0 +1,110 @@
+[
+ {
+  "id": 9,
+  "text": {
+   "en": "Building one lakh new entrepreneurs — that is the goal of a self-reliant India.",
+   "mr": "एक लाख नव्या उद्योजकांना घडवणं — हे स्वावलंबी भारताचं ध्येय आहे."
+  },
+  "image": null,
+  "category": "entrepreneurship",
+  "publishedAt": "2026-10-19T10:09:30.778Z",
+  "createdAt": "2026-10-19T10:09:30.778Z",
+  "updatedAt": "2026-10-19T10:09:30.784Z"
+ },
+ {
+  "id": 8,
+  "text": {
+   "en": "A meal satisfies hunger, but a sense of belonging enriches a life.",
+   "mr": "जेवण पोटाची भूक भागवतं; पण आपलेपणाची भावना माणसाचं आयुष्य समृद्ध करते."
+  },
+  "image": null,
+  "category": "service",
+  "publishedAt": "2026-10-19T10:09:30.768Z",
+  "createdAt": "2026-10-19T10:09:30.768Z",
+  "updatedAt": "2026-10-19T10:09:30.775Z"
+ },
+ {
+  "id": 7,
+  "text": {
+   "en": "New India must begin in our villages.",
+   "mr": "नव्या भारताची सुरुवातही गावांपासून झाली पाहिजे."
+  },
+  "image": null,
+  "category": "new-india",
+  "publishedAt": "2026-10-19T10:09:30.758Z",
+  "createdAt": "2026-10-19T10:09:30.759Z",
+  "updatedAt": "2026-10-19T10:09:30.764Z"
+ },
+ {
+  "id": 6,
+  "text": {
+   "en": "If we want to change something, there is no use waiting for others to start.",
+   "mr": "आपल्याला काहीतरी बदलायचं असेल, तर त्याची सुरुवात दुसऱ्यांकडून होण्याची वाट पाहून उपयोग नाही."
+  },
+  "image": null,
+  "category": "inspiration",
+  "publishedAt": "2026-10-19T10:09:30.750Z",
+  "createdAt": "2026-10-19T10:09:30.750Z",
+  "updatedAt": "2026-10-19T10:09:30.756Z"
+ },
+ {
+  "id": 5,
+  "text": {
+   "en": "What education needs most is determination and perseverance — not financial background.",
+   "mr": "शिक्षण मिळवण्यासाठी लागणारी सगळ्यात महत्त्वाची गोष्ट म्हणजे जिद्द आणि चिकाटी, आर्थिक पार्श्वभूमी नाही."
+  },
+  "image": null,
+  "category": "youth",
+  "publishedAt": "2026-10-19T10:09:30.741Z",
+  "createdAt": "2026-10-19T10:09:30.742Z",
+  "updatedAt": "2026-10-19T10:09:30.747Z"
+ },
+ {
+  "id": 4,
+  "text": {
+   "en": "Helping someone matters — but giving them the chance to stand on their own feet matters just as much.",
+   "mr": "एखाद्याला मदत करणं महत्त्वाचं आहेच; पण त्याला स्वतःच्या पायावर उभं राहता यावं, ही संधी देणंही तितकंच महत्त्वाचं आहे."
+  },
+  "image": null,
+  "category": "service",
+  "publishedAt": "2026-10-19T10:09:30.731Z",
+  "createdAt": "2026-10-19T10:09:30.732Z",
+  "updatedAt": "2026-10-19T10:09:30.739Z"
+ },
+ {
+  "id": 3,
+  "text": {
+   "en": "Even a small effort to change society is a big one.",
+   "mr": "समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही खूप मोठा असतो."
+  },
+  "image": null,
+  "category": "service",
+  "publishedAt": "2026-10-19T10:09:30.723Z",
+  "createdAt": "2026-10-19T10:09:30.723Z",
+  "updatedAt": "2026-10-19T10:09:30.729Z"
+ },
+ {
+  "id": 2,
+  "text": {
+   "en": "Even a small beginning can build something big with hard work, consistency and the right thinking.",
+   "mr": "सुरुवात छोटी असली तरी मेहनत, सातत्य आणि योग्य विचार असेल तर मोठं काम उभं करता येतं."
+  },
+  "image": null,
+  "category": "inspiration",
+  "publishedAt": "2026-10-19T10:09:30.713Z",
+  "createdAt": "2026-10-19T10:09:30.713Z",
+  "updatedAt": "2026-10-19T10:09:30.720Z"
+ },
+ {
+  "id": 1,
+  "text": {
+   "en": "New India is not a hashtag. It is not a slogan. It is the foundation of tomorrow’s India.",
+   "mr": "नवभारत हा केवळ हॅशटॅग नाही. तो केवळ नारा नाही. तो उद्याच्या भारताचा पाया आहे."
+  },
+  "image": null,
+  "category": "new-india",
+  "publishedAt": "2026-10-19T10:09:30.697Z",
+  "createdAt": "2026-10-19T10:09:30.697Z",
+  "updatedAt": "2026-10-19T10:09:30.709Z"
+ }
+]

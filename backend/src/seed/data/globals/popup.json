@@ -1,0 +1,20 @@
+{
+ "enabled": false,
+ "image": null,
+ "title": {
+  "en": null,
+  "mr": null
+ },
+ "text": {
+  "en": null,
+  "mr": null
+ },
+ "linkLabel": {
+  "en": null,
+  "mr": null
+ },
+ "linkUrl": null,
+ "startDate": null,
+ "endDate": null,
+ "delaySeconds": 2
+}

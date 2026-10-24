@@ -1,0 +1,14 @@
+/* The admin panel's own look: Mukta (clear Marathi and English letters in forms and lists); headings keep the site's Tiro face */
+.admin-root {
+  font-family: 'Mukta', 'Tiro Devanagari Marathi', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--color-charcoal-900);
+  background: #f5f1ea;
+  min-height: 100dvh;
+}
+
+/* the text editor shows articles the way the website does */
+.admin-root .ProseMirror { outline: none; }
+.admin-root .ProseMirror img { max-width: 100%; height: auto; border-radius: 0.5rem; }
+.admin-root .ProseMirror img.ProseMirror-selectednode { outline: 3px solid var(--color-saffron-500); }

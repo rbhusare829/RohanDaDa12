@@ -59,38 +59,7 @@
    },
    "url": "/lokmangal/foundation",
    "newTab": false,
-   "children": [
-    {
-     "id": "6ad5ec2d15929451e8126610",
-     "label": {
-      "en": "Lokmangal Foundation",
-      "mr": "लोकमंगल फाऊंडेशन"
-     },
-     "url": "/lokmangal/foundation",
-     "newTab": false,
-     "subItems": []
-    },
-    {
-     "id": "6ad5ec2d15929451e8126611",
-     "label": {
-      "en": "Lokmangal Events",
-      "mr": "लोकमंगल कार्यक्रम"
-     },
-     "url": "/lokmangal/foundation#events",
-     "newTab": false,
-     "subItems": []
-    },
-    {
-     "id": "6ad5ec2d15929451e8126612",
-     "label": {
-      "en": "Lokmangal Projects",
-      "mr": "लोकमंगल प्रकल्प"
-     },
-     "url": "/lokmangal/foundation#projects",
-     "newTab": false,
-     "subItems": []
-    }
-   ]
+   "children": []
   },
   {
    "id": "6ad5ec2d15929451e8126616",

@@ -36,7 +36,7 @@ export default function CmsPage() {
   return (
     <>
       <Seo title={page.meta?.title || page.title} description={page.meta?.description || page.subtitle} image={img} />
-      <InnerPage path={path} title={page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant={STITCH_HEADER[path]}>
+      <InnerPage path={path} title={page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant={STITCH_HEADER[path]} sideMenu={path === '/lokmangal/foundation' ? false : (page.showSideMenu ?? true)}>
         {path === FAMILY_PATH ? <FamilyBackground blocks={page.layout} locale={LOCALE} /> : path === INTRO_PATH ? <IntroJourney blocks={page.layout} locale={LOCALE} /> : path === VISION_PATH ? <Manifesto blocks={page.layout} /> : <PageBlocks blocks={page.layout} design={STITCH_HEADER[path] ? 'stitch' : undefined} />}
       </InnerPage>
     </>

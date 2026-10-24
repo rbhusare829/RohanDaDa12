@@ -155,7 +155,7 @@ function StitchBanner({
         <div className={cn('container-x relative', navy ? 'pb-14 pt-9 lg:pb-18 lg:pt-12' : 'pb-12 pt-8 lg:pb-16')}>
           {navy ? (
             <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
-              <div className="max-w-4xl space-y-4 lg:col-span-8">
+              <div className="max-w-4xl space-y-4 lg:col-span-7 xl:col-span-8">
                 {eyebrow ? (
                   <span className="inline-flex items-center gap-2 rounded-full border border-saffron-500/30 bg-saffron-500/15 px-3.5 py-1 text-xs font-bold uppercase tracking-[0.2em] text-saffron-300 backdrop-blur-md">
                     <Sparkles className="size-3.5 text-saffron-400" />
@@ -169,16 +169,28 @@ function StitchBanner({
                 </div>
                 {subtitle && <p className="max-w-3xl text-base sm:text-lg lg:text-xl font-normal leading-relaxed text-slate-200">{subtitle}</p>}
               </div>
-              <div className="hidden lg:col-span-4 lg:flex lg:justify-end">
-                <div className="relative size-40 xl:size-48 overflow-hidden rounded-full border-4 border-white/20 shadow-2xl ring-4 ring-saffron-500/30 bg-[#000d3d]">
-                  <Img
-                    src="/images/portraits/rohan-deshmukh-office.webp"
-                    alt={title}
-                    fill
-                    priority
-                    className="object-cover object-top"
-                    sizes="200px"
-                  />
+              <div className="hidden lg:col-span-5 xl:col-span-4 lg:flex lg:justify-end">
+                {/* Prominent Original Layout Photo Card with Deep Elevated Shadow */}
+                <div className="group relative overflow-hidden rounded-2xl border-4 border-white/95 bg-white p-1 shadow-[0_25px_60px_-12px_rgba(0,0,0,0.7),0_12px_24px_-6px_rgba(0,0,0,0.5)] ring-1 ring-black/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_32px_75px_-12px_rgba(0,0,0,0.85)]">
+                  <div className="relative aspect-[4/3] w-72 xl:w-84 overflow-hidden rounded-xl bg-charcoal-950">
+                    <Img
+                      src="/images/portraits/rohan-deshmukh-office.webp"
+                      alt={title}
+                      fill
+                      priority
+                      className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-102"
+                      sizes="(max-width:1280px) 290px, 340px"
+                    />
+                    {/* Bottom gradient nameplate */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-4 py-2.5 text-white">
+                      <p className="font-display text-sm font-bold text-white drop-shadow-md">
+                        रोहन सुभाष देशमुख
+                      </p>
+                      <p className="text-[11px] font-medium text-saffron-300">
+                        सोलापूर
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

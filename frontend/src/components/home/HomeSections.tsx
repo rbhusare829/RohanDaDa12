@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import type { Event, Home, Page, Post, Video as VideoDoc } from '@/types/cms'
 import { useLayout } from '@/lib/layout'
 import { LOCALE, useTranslations, type Locale } from '@/lib/i18n'
-import { mediaAlt, mediaPosition, mediaSize, mediaUrl, photoFit } from '@/lib/media'
+import { mediaAlt, mediaPosition, mediaUrl, photoFit } from '@/lib/media'
 import { cn } from '@/lib/utils'
 import { CMSLink } from '../ui/CMSLink'
 import { CountUp } from '../ui/CountUp'
@@ -14,7 +14,7 @@ import { socialLabels } from '@/lib/social'
 import { YouTube } from '../ui/YouTube'
 import { LatestList, LeadStory } from '../blog/BlogParts'
 import { FaqAccordion } from './FaqAccordion'
-import { HeroSlider } from './HeroSlider'
+import { HeroSlider, type Slide } from './HeroSlider'
 import { InstagramReels } from './InstagramReels'
 import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { CitizenEngagementBanner } from './CitizenEngagementBanner'
@@ -94,26 +94,38 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const { settings } = useLayout()
   const t = useTranslations('common')
   const textOnly = b.heroStyle === 'text'
-  const slides = (b.slides ?? [])
-    .map((s) => ({
-      image: mediaUrl(s.image, 'hero') ?? '',
-      position: mediaPosition(s.image),
-      mobileImage: mediaUrl(s.imageMobile, 'card'),
-      mobilePosition: mediaPosition(s.imageMobile),
-      ratio: mediaSize(s.image).width / mediaSize(s.image).height,
-      mobileRatio: mediaUrl(s.imageMobile, 'card') ? mediaSize(s.imageMobile).width / mediaSize(s.imageMobile).height : undefined,
-      alt: mediaAlt(s.image, s.heading ?? ''),
-      kicker: s.kicker,
-      heading: s.heading,
-      subheading: s.subheading,
-      buttons: s.buttons ?? [],
-    }))
-    .filter((s) => (textOnly ? s.heading || s.kicker || s.subheading : s.image))
-  if (!slides.length) return null
+  const isMr = locale !== 'en'
+
+  // Construct slides matching Image 3 with both user-uploaded hero images:
+  // Slide 1: Speaking at podium as in Image 3
+  // Slide 2: Speaking to crowd in white kurta with BJP scarf
+  const slides: Slide[] = [
+    {
+      image: '/images/hero/rohan-hero-podium.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख - अध्यक्ष, लोकमंगल फाऊंडेशन' : 'Rohan Subhash Deshmukh - Chairman, Lokmangal Foundation',
+      kicker: isMr ? 'अध्यक्ष, लोकमंगल फाऊंडेशन' : 'CHAIRMAN, LOKMANGAL FOUNDATION',
+      heading: isMr ? 'मी रोहन\nसुभाष देशमुख' : 'I Am Rohan\nSubhash Deshmukh',
+      subheading: isMr
+        ? 'सोलापूरच्या मातीने घडवलेलं व्यक्तिमत्त्व, संस्कारांनी दिलेली दिशा आणि समाजासाठीची बांधिलकी.'
+        : 'Inspired by Prime Minister Narendra Modi’s vision for a developed and self-reliant India, working towards grassroots empowerment.',
+      position: 'center 15%',
+    },
+    {
+      image: '/images/hero/rohan-hero-crowd.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख - जनसंवाद' : 'Rohan Subhash Deshmukh - Public Meeting',
+      kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
+      heading: isMr ? 'तळागाळातील जनतेशी\nथेट संवाद आणि विकास' : 'Connecting Directly\nWith The People',
+      subheading: isMr
+        ? 'सर्वसामान्यांचे प्रश्न सोडवण्यासाठी, शेतकऱ्यांना व तरुणांना सक्षम करण्यासाठी आम्ही सातत्याने कटिबद्ध आहोत.'
+        : 'Understanding grassroots needs of farmers, youth, and citizens to drive lasting social and economic progress.',
+      position: 'center 25%',
+    },
+  ]
+
   const social = (Object.entries(settings.social ?? {}).filter(([k, v]) => v && k !== 'id') as [string, string][]).map(([key, url]) => ({ key, url, label: socialLabels[key] ?? key }))
   return (
     <>
-      <HeroSlider slides={slides} autoplay={b.autoplaySeconds ?? 5} social={social} textOnly={textOnly} labels={{ prev: t('prev'), next: t('next') }} />
+      <HeroSlider slides={slides} autoplay={b.autoplaySeconds ?? 6} social={social} textOnly={textOnly} labels={{ prev: t('prev'), next: t('next') }} />
       <CitizenEngagementBanner locale={locale} />
     </>
   )

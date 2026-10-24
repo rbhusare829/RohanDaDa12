@@ -1,70 +1,62 @@
 import { Link } from 'react-router'
-import { Award, ChevronRight } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Reveal } from '../ui/Motion'
+import { cn } from '@/lib/utils'
 
-interface AwardItem {
-  titleMr: string
-  titleEn: string
+interface FamilyItem {
+  nameMr: string
+  nameEn: string
+  relationMr: string
+  relationEn: string
   descMr: string
   descEn: string
   image: string
-  imgPos?: string
+  link: string
 }
 
-const AWARDS: AwardItem[] = [
+const FAMILY_MEMBERS: FamilyItem[] = [
   {
-    titleMr: 'NCC बेस्ट कॅडेट राष्ट्रीय सन्मान',
-    titleEn: 'NCC Best Cadet National Honour',
-    descMr: 'नवी दिल्ली — प्रजासत्ताक दिन संचलन',
-    descEn: 'Republic Day Camp, New Delhi',
-    image: '/images/gallery/political/rd-political-06.webp',
-    imgPos: 'object-top',
+    nameMr: 'कै. सुरेश्चंद्र केशवराव देशमुख',
+    nameEn: 'Late Sureshchandra Keshavrao Deshmukh',
+    relationMr: 'आजोबा',
+    relationEn: 'Grandfather',
+    descMr: 'व्यवसायाने शिक्षक आणि अत्यंत श्रद्धाळू असलेल्या आजोबांनी पंढरपूरची वारी, नामस्मरण आणि भक्तीतून आयुष्य व्यतीत केले. उच्च नैतिक संस्कार हाच त्यांचा वारसा.',
+    descEn: 'A devoted teacher whose spiritual life, dedication to Pandharpur wari, and strong moral values laid the guiding foundation for the family.',
+    image: '/images/family/family-suresh-deshmukh.webp',
+    link: '/about/biography',
   },
   {
-    titleMr: 'RIT अमेरिका उच्च शिक्षण गौरव',
-    titleEn: 'RIT USA Higher Education',
-    descMr: 'रोचेस्टर इन्स्टिट्यूट (जैवतंत्रज्ञान व उद्योजकता)',
-    descEn: 'Rochester Institute of Tech (Biotechnology)',
-    image: '/images/gallery/political/rd-political-02.webp',
-    imgPos: 'object-[center_15%]',
+    nameMr: 'मा. श्री. सुभाष (बापूसाहेब) देशमुख',
+    nameEn: 'Hon. Shri Subhash (Bapusaheb) Deshmukh',
+    relationMr: 'वडील',
+    relationEn: 'Father',
+    descMr: 'लोकमंगल समूहाचे संस्थापक अध्यक्ष व माजी कॅबिनेट मंत्री. सहकार, शिक्षण, कृषी आणि जलसंधारणाच्या माध्यमातून सोलापूर व महाराष्ट्रातील लाखो कुटुंबांचे जीवन समृद्ध केले.',
+    descEn: 'Founder Chairman of Lokmangal Group, former Cabinet Minister & MLA. A visionary leader transforming agriculture, cooperative banking, and rural Maharashtra.',
+    image: '/images/family/family-subhash-deshmukh.webp',
+    link: '/about/biography',
   },
   {
-    titleMr: 'सहकार गौरव व बँक नेतृत्व सन्मान',
-    titleEn: 'Cooperative Banking Leadership',
-    descMr: 'शेतकरी व महिला बचत गट सबलीकरण',
-    descEn: 'Farmers & Women SHG Empowerment',
-    image: '/images/gallery/political/rd-political-05.webp',
-    imgPos: 'object-top',
-  },
-  {
-    titleMr: 'लोकमंगल लोटस शिष्यवृत्ती गौरव',
-    titleEn: 'LOTUS Scholarship Scheme',
-    descMr: '२२५+ गुणवंत विद्यार्थ्यांना ९० लाखांचे साहाय्य',
-    descEn: '225+ Students supported with ₹90+ Lakhs',
-    image: '/images/gallery/political/rd-political-04.webp',
-    imgPos: 'object-top',
-  },
-  {
-    titleMr: 'लोकमंगल अन्नपूर्णा सेवा सन्मान',
-    titleEn: 'Annapurna Seva Recognition',
-    descMr: 'सिव्हिल हॉस्पिटल येथे दररोज मोफत भोजन सेवा',
-    descEn: 'Daily Free Meals for Hospital Patients',
-    image: '/images/gallery/political/rd-political-01.webp',
-    imgPos: 'object-top',
-  },
-  {
-    titleMr: 'सर्वधर्मीय सामूहिक विवाह सोहळे',
-    titleEn: 'Mass Community Weddings',
-    descMr: '३,०००+ गरीब कुटुंबांचे कर्जमुक्त विवाह',
-    descEn: '3,000+ Couples Married Debt-free',
-    image: '/images/gallery/political/rd-political-03.webp',
-    imgPos: 'object-top',
+    nameMr: 'मनीष देशमुख',
+    nameEn: 'Manish Deshmukh',
+    relationMr: 'बंधू',
+    relationEn: 'Brother',
+    descMr: 'लोकमंगल पतसंस्थेचे अध्यक्ष, लोकमंगल बायोटेकचे चेअरमन आणि सोलापूर कृषी उत्पन्न बाजार समितीचे (APMC) संचालक. सहकार, कृषी उद्योग व युवक सक्षमीकरणात आघाडीवर.',
+    descEn: 'Chairman of Lokmangal Patsanstha, Vice Chairman of Lokmangal Foundation, and Director of Solapur APMC leading cooperative and rural agri-business.',
+    image: '/images/family/family-manish-deshmukh.webp',
+    link: '/about/biography',
   },
 ]
 
+/** Same colour families as the कौटुंबिक पार्श्वभूमी page (kesariya, green, navy): the photo panel tint, the halo (father only) */
+const ACCENTS = [
+  { panel: 'from-saffron-100/90 via-saffron-50 to-orange-50/60', halo: '' },
+  { panel: 'from-emerald-100/80 via-leaf-50 to-emerald-50/50', halo: 'bg-leaf-300/35' },
+  { panel: 'from-slate-200/90 via-slate-100 to-indigo-50/50', halo: '' },
+] as const
+
 /**
- * Achievements & Awards Section (100% Supriya Sule speasyimagegallery Layout):
- * Deep navy background, white heading, 6-column image card gallery with title beneath.
+ * Family Background Section on Home Page: the three family members as cards in the style of the कौटुंबिक पार्श्वभूमी page —
+ * a tinted photo panel with the cut-out portrait and relation label, then the name, a short description and "अधिक वाचा".
  */
 export function SupriyaAwardsSection({
   locale = 'mr',
@@ -76,57 +68,65 @@ export function SupriyaAwardsSection({
   return (
     <section className="bg-[#000d3d] py-14 sm:py-20 text-white overflow-hidden border-b border-white/10">
       <div className="container-x">
-        <div className="flex items-end justify-between gap-4 mb-10">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <Award className="size-5 text-saffron-400" />
-              <span className="text-xs font-extrabold uppercase tracking-widest text-saffron-400">
-                {isMr ? 'गौरव व सन्मान' : 'Recognition'}
-              </span>
-            </div>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
-              {isMr ? 'सन्मान आणि पुरस्कार' : 'Achievements & Awards'}
+              {isMr ? 'कौटुंबिक पार्श्वभूमी' : 'Family Background'}
             </h2>
+            <div className="mt-2.5 flex items-center gap-1.5">
+              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-3 rounded-full bg-saffron-500" />
+            </div>
           </div>
-
-          <Link
-            to="/political-career"
-            className="group inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-white hover:text-saffron-400 transition-colors shrink-0"
-          >
-            <span>{isMr ? 'सर्व पहा' : 'View all'}</span>
-            <ChevronRight className="size-4.5 transition-transform group-hover:translate-x-1" />
-          </Link>
         </div>
 
-        {/* 6-Column Speasy Image Gallery Grid */}
         <Reveal delay={0.1}>
-          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-            {AWARDS.map((item, i) => (
-              <div key={i} className="w-[60vw] max-w-[210px] shrink-0 snap-center sm:w-auto sm:shrink">
-                <Link
-                  to="/political-career"
-                  className="group flex flex-col h-full overflow-hidden rounded-xl bg-white/5 border border-white/15 p-2 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/10 hover:border-saffron-400"
+          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3 lg:gap-7">
+            {FAMILY_MEMBERS.map((member, i) => {
+              const a = ACCENTS[i % ACCENTS.length]
+              return (
+                <article
+                  key={i}
+                  className={cn(
+                    'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl sm:h-full sm:w-auto sm:max-w-none sm:shrink sm:snap-align-none bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.25)] ring-1 ring-stone-200/85',
+                    'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(14,30,52,0.35)] motion-safe:hover:-translate-y-1.5',
+                                  )}
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-black/40">
+                  {/* Photo panel: a soft tint, a halo behind the person, the relation label */}
+                  <div className={cn('relative isolate aspect-[4/3.1] overflow-hidden rounded-2xl bg-gradient-to-b', a.panel)}>
+                    {a.halo && <span aria-hidden className={cn('absolute left-1/2 top-[56%] -z-10 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full', a.halo)} />}
+                    <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-[#800020]">
+                      {isMr ? member.relationMr : member.relationEn}
+                    </span>
                     <img
-                      src={item.image}
-                      alt={isMr ? item.titleMr : item.titleEn}
+                      src={member.image}
+                      alt={isMr ? member.nameMr : member.nameEn}
                       loading="lazy"
-                      className={`size-full object-cover ${item.imgPos || 'object-top'} transition-transform duration-500 group-hover:scale-105`}
+                      className="absolute inset-x-[4%] bottom-0 top-[10%] h-[90%] w-[92%] origin-bottom object-contain object-bottom transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
                   </div>
-                  <div className="p-2.5 text-center flex-1 flex flex-col justify-center">
-                    <span className="font-display text-xs sm:text-[13px] font-bold text-white leading-snug line-clamp-2 group-hover:text-saffron-300 transition-colors">
-                      {isMr ? item.titleMr : item.titleEn}
-                    </span>
-                    <span className="text-[11px] text-slate-300 mt-1 line-clamp-1">
-                      {isMr ? item.descMr : item.descEn}
-                    </span>
+
+                  {/* Name, rule and short description */}
+                  <div className="flex flex-1 flex-col px-2 pb-2 pt-3.5">
+                    <h3 className="font-display text-lg sm:text-xl font-bold leading-snug tracking-tight text-charcoal-950 line-clamp-2">
+                      {isMr ? member.nameMr : member.nameEn}
+                    </h3>
+                    <p className="mt-2 text-[13px] leading-relaxed text-slate-600 mb-3 flex-1 line-clamp-3">
+                      {isMr ? member.descMr : member.descEn}
+                    </p>
+
+                    <Link
+                      to={member.link}
+                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-semibold text-slate-500 hover:text-charcoal-900 transition-colors"
+                    >
+                      <span>{isMr ? 'अधिक वाचा' : 'Read more'}</span>
+                      <ArrowRight className="size-3 transition-transform group-hover/btn:translate-x-0.5" />
+                    </Link>
                   </div>
-                </Link>
-              </div>
-            ))}
+                </article>
+              )
+            })}
           </div>
         </Reveal>
       </div>

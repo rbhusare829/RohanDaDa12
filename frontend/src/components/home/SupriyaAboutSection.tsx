@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { PlayCircle, FileText } from 'lucide-react'
+import { PlayCircle } from 'lucide-react'
 import type { Home } from '@/types/cms'
 import { Reveal } from '../ui/Motion'
 
@@ -22,6 +22,16 @@ export function SupriyaAboutSection({
 }) {
   const isMr = locale !== 'en'
   const [showVideo, setShowVideo] = useState(false)
+
+  const bio =
+    b.text ||
+    (isMr
+      ? 'रोहन सुभाष देशमुख हे सोलापूरचे उद्योजक, लेखक आणि सामाजिक कार्यकर्ते आहेत. स्वामी विवेकानंदांच्या विचारांनी प्रेरित होऊन, आत्मविश्वासू आणि स्वावलंबी तरुणच सशक्त राष्ट्र घडवतात, असा त्यांचा विश्वास आहे. तरुणाई, उद्योजकता आणि स्वावलंबन हे त्यांच्या प्रत्येक कामाच्या केंद्रस्थानी आहेत.'
+      : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. Inspired by the thoughts of Swami Vivekananda, he believes a strong nation is built by confident, self-reliant young people.')
+  // On mobile only the first two sentences are shown; the rest appears from the sm breakpoint up
+  const sentences = bio.split(/(?<=[.।])\s+/)
+  const bioShort = sentences.slice(0, 2).join(' ')
+  const bioRest = sentences.slice(2).join(' ')
 
   return (
     <section className="bg-white py-16 sm:py-20 lg:py-28 overflow-hidden">
@@ -48,16 +58,14 @@ export function SupriyaAboutSection({
             {/* Bio Body Text */}
             <div className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-700">
               <p>
-                {b.text ||
-                  (isMr
-                    ? 'रोहन सुभाष देशमुख हे सोलापूरचे उद्योजक, लेखक आणि सामाजिक कार्यकर्ते आहेत. स्वामी विवेकानंदांच्या विचारांनी प्रेरित होऊन, आत्मविश्वासू आणि स्वावलंबी तरुणच सशक्त राष्ट्र घडवतात, असा त्यांचा विश्वास आहे. तरुणाई, उद्योजकता आणि स्वावलंबन हे त्यांच्या प्रत्येक कामाच्या केंद्रस्थानी आहेत.'
-                    : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. Inspired by the thoughts of Swami Vivekananda, he believes a strong nation is built by confident, self-reliant young people.')}
+                {bioShort}
+                {bioRest && <span className="hidden sm:inline"> {bioRest}</span>}
                 {' '}
                 <Link
-                  to="/about/biography"
+                  to="/about/introduction"
                   className="font-bold text-[#000d3d] hover:text-red-600 underline underline-offset-4 ml-1 inline-block"
                 >
-                  {isMr ? 'अधिक वाचा..' : 'Read More..'}
+                  {isMr ? 'अधिक वाचा' : 'Read More'}
                 </Link>
               </p>
             </div>
@@ -74,24 +82,17 @@ export function SupriyaAboutSection({
               <span className="font-serif text-3xl sm:text-4xl leading-none text-red-600 select-none">&rdquo;</span>
             </div>
 
-            {/* Two Action Buttons (Supriya Sule style: 1 blue, 1 navy) */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-2">
+            {/* Vision button (opens the video) */}
+            <div className="flex w-full justify-center pt-2">
               <button
                 type="button"
                 onClick={() => setShowVideo(true)}
                 className="inline-flex items-center gap-2 rounded-md bg-[#000d3d] px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-95 cursor-pointer"
               >
                 <PlayCircle className="size-4.5 text-red-400" />
-                <span>{isMr ? 'विकास कामे व नेतृत्व' : 'Performance & Leadership'}</span>
+                <span>{isMr ? 'दृष्टिकोन' : 'Vision'}</span>
               </button>
 
-              <Link
-                to="/political-career"
-                className="inline-flex items-center gap-2 rounded-md bg-[#000d3d] px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-saffron-600 hover:shadow-md active:scale-95"
-              >
-                <FileText className="size-4.5 text-saffron-400" />
-                <span>{isMr ? 'जनसंवाद मासिक कार्यअहवाल' : 'Monthly Work Report'}</span>
-              </Link>
             </div>
           </Reveal>
 
@@ -125,7 +126,7 @@ export function SupriyaAboutSection({
           )}
 
           {/* Right Column: Portrait Photo (Supriya Sule style framed presentation) */}
-          <Reveal className="relative flex items-center justify-center lg:col-span-5" delay={0.15}>
+          <Reveal className="relative order-first flex items-center justify-center lg:order-none lg:col-span-5" delay={0.15}>
             <div className="relative w-full max-w-[420px]">
               {/* Subtle ambient backdrop glow */}
               <div
@@ -144,15 +145,6 @@ export function SupriyaAboutSection({
                     loading="eager"
                     className="size-full object-cover object-top transition-transform duration-700 hover:scale-105"
                   />
-                </div>
-                {/* Clean signature nameplate tag at bottom */}
-                <div className="bg-[#000d3d] p-3 text-center text-white">
-                  <p className="font-display text-base font-bold tracking-tight">
-                    {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-                  </p>
-                  <p className="text-[11px] font-semibold text-saffron-400">
-                    {isMr ? 'अध्यक्ष, लोकमंगल फाऊंडेशन' : 'Chairman, Lokmangal Foundation'}
-                  </p>
                 </div>
               </div>
             </div>

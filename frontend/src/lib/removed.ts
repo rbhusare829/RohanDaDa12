@@ -8,6 +8,7 @@ export const REMOVED_REDIRECTS: Record<string, string> = {
   '/about/party-organisation': '/political-career',
   '/about/thoughts': '/blog',
   '/about/leaders': '/about/biography',
+  '/lokmangal/parivar': '/lokmangal/foundation',
   '/lokmangal/vishwamangal': '/lokmangal/foundation',
   '/media/downloads': '/media/photos',
   '/grievance': '/contact',

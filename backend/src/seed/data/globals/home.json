@@ -407,10 +407,10 @@
         }
       ],
       "buttonLabel": {
-        "en": "Explore Lokmangal Parivar",
-        "mr": "लोकमंगल परिवार पहा"
+        "en": "Explore Lokmangal Foundation",
+        "mr": "लोकमंगल फाऊंडेशन पहा"
       },
-      "buttonUrl": "/lokmangal/parivar"
+      "buttonUrl": "/lokmangal/foundation"
     },
     {
       "id": "6ad5ec7615929451e81266de",

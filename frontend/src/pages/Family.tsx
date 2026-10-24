@@ -46,7 +46,7 @@ export default function FamilyPage() {
           })}
         </div>
         <div className="mt-16 border-t border-line pt-10 md:mt-24">
-          <Link to="/lokmangal/parivar" className="btn btn-dark">{t('parivar')} <ArrowRight className="size-4" /></Link>
+          <Link to="/political-career" className="btn btn-dark">{t('next')} <ArrowRight className="size-4" /></Link>
         </div>
       </InnerPage>
     </>

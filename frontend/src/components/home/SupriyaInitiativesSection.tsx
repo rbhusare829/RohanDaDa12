@@ -8,7 +8,7 @@ const INITIATIVES = [
     title: 'सहकारी बँकिंग व पतसंस्था',
     enTitle: 'Cooperative Banking',
     description: 'शेतकरी, छोटे व्यावसायिक व महिला बचत गटांना स्वावलंबी बनवण्यासाठी आधुनिक व विश्वासार्ह बँकिंग सेवा.',
-    link: '/lokmangal/parivar',
+    link: '/lokmangal/foundation',
     badge: '४ संस्था',
   },
   {
@@ -16,7 +16,7 @@ const INITIATIVES = [
     title: 'उद्योग व शेतमाल मूल्यवर्धन',
     enTitle: 'Agro-Industries & Jobs',
     description: 'साखर, इथेनॉल व सहवीज निर्मितीच्या माध्यमातून ग्रामीण भागात रोजगार निर्मिती आणि शेतकऱ्यांच्या मालाला योग्य दर.',
-    link: '/lokmangal/parivar',
+    link: '/lokmangal/foundation',
     badge: '४ उद्योग',
   },
   {
@@ -24,7 +24,7 @@ const INITIATIVES = [
     title: 'दर्जेदार शिक्षण व प्रशिक्षण',
     enTitle: 'Education & Academics',
     description: 'प्राथमिक शाळेपासून व्यावसायिक महाविद्यालयांपर्यंत ग्रामीण विद्यार्थ्यांना गुणवत्तापूर्ण शिक्षण व करिअर मार्गदर्शन.',
-    link: '/lokmangal/parivar',
+    link: '/lokmangal/foundation',
     badge: '१० महाविद्यालये',
   },
   {

@@ -1,19 +1,11 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
-import { Award, Building2, ChevronRight, Home, Sparkles, User, Users } from 'lucide-react'
+import { type ReactNode } from 'react'
+import { ChevronRight, Home, Sparkles } from 'lucide-react'
 import { Link } from 'react-router'
 import { cn } from '@/lib/utils'
 import { Img } from '../ui/Img'
 
 export type Crumb = { label: string; href?: string }
 export type BannerTab = { label: string; href: string; active?: boolean }
-
-const getTabIcon = (href: string) => {
-  if (href.includes('introduction')) return User
-  if (href.includes('biography') || href.includes('family')) return Users
-  if (href.includes('parivar') || href.includes('foundation')) return Building2
-  if (href.includes('political-career')) return Award
-  return null
-}
 
 /**
  * Real photos of Rohan among people, used behind the page title when a page has no banner photo of its own.
@@ -70,7 +62,7 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
  * - Sibling pages as horizontal tab bar
  */
 export function PageBanner({
-  title, subtitle, image, imagePosition, tabs, tabsLabel, compact, eyebrow, children, path, light, variant, crumbs,
+  title, subtitle, image, imagePosition, compact, eyebrow, children, path, light, variant, crumbs,
 }: {
   title: string; eyebrow?: string | null; subtitle?: string | null
   crumbs?: Crumb[]; image?: string | null; imagePosition?: string
@@ -90,7 +82,7 @@ export function PageBanner({
   const photo = light ? null : (image ?? fallback.src)
   const position = image ? imagePosition : fallback.position
 
-  if (variant) return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} tabs={tabs} tabsLabel={tabsLabel} variant={variant} path={path} crumbs={crumbs} />
+  if (variant) return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant} crumbs={crumbs} />
 
   return (
     <>
@@ -125,9 +117,6 @@ export function PageBanner({
 
       {/* Breadcrumbs Row (100% Supriya Sule layout) */}
       <BreadcrumbsBar crumbs={crumbs} />
-
-      {/* the section's pages as pills under the header (the current page in kesariya) */}
-      {!!tabs?.length && <SubNavTabs tabs={tabs} tabsLabel={tabsLabel} path={path} />}
     </>
   )
 }
@@ -137,9 +126,9 @@ export function PageBanner({
  * a card beside the title). The section's sibling pages follow as a row of pills.
  */
 function StitchBanner({
-  title, subtitle, eyebrow, tabs, tabsLabel, variant, path, crumbs,
+  title, subtitle, eyebrow, variant, crumbs,
 }: {
-  title: string; subtitle?: string | null; eyebrow?: string | null; tabs?: BannerTab[]; tabsLabel?: string; variant: 'navy' | 'light'; path?: string; crumbs?: Crumb[]
+  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'; crumbs?: Crumb[]
 }) {
   const navy = variant === 'navy'
   return (
@@ -217,130 +206,7 @@ function StitchBanner({
       {/* Breadcrumbs Row (100% Supriya Sule layout) */}
       <BreadcrumbsBar crumbs={crumbs} />
 
-      {/* Floating Segmented Capsule Dock with Edge Fade Gradient & Auto-centering */}
-      {!!tabs?.length && <SubNavTabs tabs={tabs} tabsLabel={tabsLabel} path={path} />}
     </>
   )
 }
 
-/**
- * Dynamic Expanding Island Sub-Navigation (Concept 1):
- * - Mobile: Inactive tabs are sleek circular icon buttons; active tab expands into a full radiant pill with icon + label.
- * - Fits all 4 buttons on mobile simultaneously without crowding or clipping!
- * - Desktop: Spacious segmented capsule dock with icon + full label on all tabs.
- * - Auto-centering & edge-fade protection included.
- */
-function SubNavTabs({ tabs, tabsLabel, path }: { tabs: BannerTab[]; tabsLabel?: string; path?: string }) {
-  const scrollRef = useRef<HTMLDivElement>(null)
-  const [canScrollLeft, setCanScrollLeft] = useState(false)
-  const [canScrollRight, setCanScrollRight] = useState(false)
-
-  const checkScroll = useCallback(() => {
-    const el = scrollRef.current
-    if (!el) return
-    const tolerance = 4
-    const room = el.scrollWidth - el.clientWidth
-    setCanScrollLeft(room > tolerance && el.scrollLeft > tolerance)
-    setCanScrollRight(room > tolerance && el.scrollLeft < room - tolerance)
-  }, [])
-
-  // Auto-center the active tab smoothly into view whenever route / tabs change
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    const activeEl = el.querySelector<HTMLElement>('[aria-current="page"]')
-    if (activeEl) {
-      const left = activeEl.offsetLeft - el.clientWidth / 2 + activeEl.offsetWidth / 2
-      el.scrollTo({ left, behavior: 'smooth' })
-    }
-    const t = setTimeout(checkScroll, 120)
-    return () => clearTimeout(t)
-  }, [path, tabs, checkScroll])
-
-  useEffect(() => {
-    const el = scrollRef.current
-    if (!el) return
-    checkScroll()
-    el.addEventListener('scroll', checkScroll, { passive: true })
-    window.addEventListener('resize', checkScroll)
-    return () => {
-      el.removeEventListener('scroll', checkScroll)
-      window.removeEventListener('resize', checkScroll)
-    }
-  }, [checkScroll])
-
-  return (
-    <nav
-      aria-label={tabsLabel}
-      className="sticky top-16 sm:top-[4.5rem] lg:top-20 z-40 relative border-b border-stone-200/80 bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-4px_rgba(14,30,52,0.06)] py-2 sm:py-2.5"
-    >
-      {/* Left edge fade gradient (appears only if overflow occurs on narrow screen) */}
-      <div
-        aria-hidden
-        className={cn(
-          'pointer-events-none absolute left-0 top-0 bottom-0 z-20 w-8 sm:w-12',
-          'bg-gradient-to-r from-white via-white/90 to-transparent transition-opacity duration-300 md:hidden',
-          canScrollLeft ? 'opacity-100' : 'opacity-0',
-        )}
-      />
-
-      {/* Right edge fade gradient (appears only if overflow occurs on narrow screen) */}
-      <div
-        aria-hidden
-        className={cn(
-          'pointer-events-none absolute right-0 top-0 bottom-0 z-20 w-8 sm:w-12',
-          'bg-gradient-to-l from-white via-white/90 to-transparent transition-opacity duration-300 md:hidden',
-          canScrollRight ? 'opacity-100' : 'opacity-0',
-        )}
-      />
-
-      <div className="container-x">
-        {/* Dynamic Expanding Island Dock */}
-        <div
-          ref={scrollRef}
-          onScroll={checkScroll}
-          className="no-scrollbar flex items-center justify-center md:justify-start overflow-x-auto scroll-smooth py-0.5 -mx-4 px-4 sm:mx-0 sm:px-0"
-        >
-          <ul className="inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-stone-200/90 bg-stone-100/90 p-1.5 shadow-[0_2px_12px_-3px_rgba(14,30,52,0.08)] backdrop-blur-md shrink-0">
-            {tabs.map((tab) => {
-              const Icon = getTabIcon(tab.href)
-              return (
-                <li key={tab.href} className="shrink-0">
-                  <Link
-                    to={tab.href}
-                    title={tab.label}
-                    aria-label={tab.label}
-                    aria-current={tab.active ? 'page' : undefined}
-                    className={cn(
-                      'group relative flex items-center justify-center transition-all duration-300 ease-out select-none',
-                      tab.active
-                        ? 'h-10 px-3.5 sm:px-4 gap-2 rounded-full bg-gradient-to-r from-saffron-600 via-saffron-500 to-[#f97316] text-white shadow-md shadow-saffron-600/30 scale-[1.02]'
-                        : 'size-10 rounded-full text-charcoal-700 hover:text-charcoal-950 hover:bg-white active:scale-90 md:w-auto md:h-10 md:px-4 md:gap-2',
-                    )}
-                  >
-                    {Icon && (
-                      <Icon
-                        className={cn(
-                          'size-4 shrink-0 transition-transform duration-200 group-hover:scale-110',
-                          tab.active ? 'text-white' : 'text-saffron-600 group-hover:text-saffron-700',
-                        )}
-                      />
-                    )}
-                    <span
-                      className={cn(
-                        'font-semibold text-xs sm:text-sm whitespace-nowrap tracking-wide transition-all duration-300',
-                        tab.active ? 'inline-block opacity-100 max-w-[200px]' : 'hidden md:inline-block md:opacity-100',
-                      )}
-                    >
-                      {tab.label}
-                    </span>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </div>
-      </div>
-    </nav>
-  )
-}

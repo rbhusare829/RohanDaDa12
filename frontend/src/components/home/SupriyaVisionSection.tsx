@@ -45,6 +45,8 @@ export function SupriyaVisionSection({
   const url = (b ? b.buttonUrl : null) || FALLBACK.url
   const cover = mediaUrl(b?.image) || COVER
   const book = isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'The New India Manifesto'
+  /** the book's full title, in Marathi on the Marathi site (as the RD Content document writes it) */
+  const bookTitle = isMr ? 'न्यू इंडिया मॅनिफेस्टो: गोइंग बियॉन्ड पॉसिबल' : 'The New India Manifesto: Going Beyond Possible'
 
   return (
     <section className="bg-[#f0f6fc] border-t border-stone-200 py-16 sm:py-24" aria-labelledby="home-vision-title">
@@ -64,7 +66,7 @@ export function SupriyaVisionSection({
 
         <Reveal className="grid grid-cols-1 overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-sm lg:grid-cols-12">
           {/* the book */}
-          <Link to={url} aria-label={label} className="group flex items-center justify-center bg-[#f0f6fc]/70 px-6 py-10 lg:col-span-4 lg:py-12">
+          <Link to={url} aria-label={label} className="group flex items-center justify-center px-6 py-10 lg:col-span-4 lg:py-12">
             <div className="w-44 overflow-hidden rounded-lg border border-stone-200 shadow-xl transition-transform duration-500 group-hover:-translate-y-1.5 sm:w-52">
               <img src={cover} alt={isMr ? `${book} — पुस्तकाचे मुखपृष्ठ` : `${book} — book cover`} width={1260} height={1946} loading="lazy" decoding="async" className="h-auto w-full" />
             </div>
@@ -74,7 +76,7 @@ export function SupriyaVisionSection({
           <div className="flex flex-col justify-center p-6 sm:p-10 lg:col-span-8">
             <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'पुस्तक' : 'The book'}</p>
             <h3 className="mt-2 font-display text-xl font-bold leading-snug text-[#000d3d] sm:text-2xl">
-              The New India Manifesto: Going Beyond Possible
+              {bookTitle}
             </h3>
             <div className="mt-3 mb-4 flex items-center gap-1.5">
               <span className="h-1 w-10 rounded-full bg-red-600" />

@@ -2,6 +2,7 @@ import { type ReactNode } from 'react'
 import { ChevronRight, Home, Sparkles } from 'lucide-react'
 import { Link } from 'react-router'
 import { cn } from '@/lib/utils'
+import { LOCALE } from '@/lib/i18n'
 import { Img } from '../ui/Img'
 
 export type Crumb = { label: string; href?: string }
@@ -32,7 +33,7 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
       <div className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap">
         <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] hover:text-red-600 transition-colors">
           <Home className="size-3.5" />
-          <span>मुख्यपृष्ठ</span>
+          <span>{LOCALE === 'en' ? 'Home' : 'मुख्यपृष्ठ'}</span>
         </Link>
         {crumbs.map((crumb, idx) => {
           const isLast = idx === crumbs.length - 1
@@ -173,10 +174,10 @@ function StitchBanner({
                     {/* Bottom gradient nameplate */}
                     <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent px-4 py-2.5 text-white">
                       <p className="font-display text-sm font-bold text-white drop-shadow-md">
-                        रोहन सुभाष देशमुख
+                        {LOCALE === 'en' ? 'Rohan Subhash Deshmukh' : 'रोहन सुभाष देशमुख'}
                       </p>
                       <p className="text-[11px] font-medium text-saffron-300">
-                        सोलापूर
+                        {LOCALE === 'en' ? 'Solapur' : 'सोलापूर'}
                       </p>
                     </div>
                   </div>

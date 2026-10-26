@@ -14,6 +14,7 @@ import {
 } from 'lucide-react'
 import type { Page } from '@/types/cms'
 import { cn } from '@/lib/utils'
+import { LOCALE } from '@/lib/i18n'
 import { mediaUrl } from '@/lib/media'
 import { PageBlocks } from '@/components/blocks/PageBlocks'
 import { RichText } from '@/components/ui/RichText'
@@ -630,11 +631,11 @@ function InstitutionCard({
       <div className="mt-4 flex items-center justify-between border-t border-stone-100 pt-3 text-[11px] font-medium text-stone-400">
         <span className="flex items-center gap-1.5">
           <span className={cn('size-1.5 rounded-full', item.url ? 'bg-saffron-500' : 'bg-stone-300')} />
-          <span>{item.url ? 'अधिक माहिती' : 'लोकमंगल परिवार'}</span>
+          <span>{LOCALE === 'en' ? (item.url ? 'More info' : 'Lokmangal Parivar') : item.url ? 'अधिक माहिती' : 'लोकमंगल परिवार'}</span>
         </span>
         {item.url && (
           <span className="text-saffron-600 font-semibold group-hover:underline">
-            पहा &rarr;
+            {LOCALE === 'en' ? 'View' : 'पहा'} &rarr;
           </span>
         )}
       </div>

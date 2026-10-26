@@ -111,7 +111,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
     {
       image: '/images/hero/rohan-hero-podium.webp',
       alt: isMr ? 'रोहन सुभाष देशमुख - अध्यक्ष, लोकमंगल फाऊंडेशन' : 'Rohan Subhash Deshmukh - Chairman, Lokmangal Foundation',
-      kicker: isMr ? 'अध्यक्ष, लोकमंगल फाऊंडेशन' : 'CHAIRMAN, LOKMANGAL FOUNDATION',
+      kicker: isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'PRESIDENT, LOKMANGAL FOUNDATION',
       heading: isMr
         ? 'चांगल्या नेतृत्वाची सुरुवात तळागाळातील लोकांचे प्रश्न समजून घेण्यापासून होते'
         : 'Good leadership begins with understanding the problems of people at the grassroots',
@@ -122,7 +122,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
       alt: isMr ? 'रोहन सुभाष देशमुख - जनसंवाद' : 'Rohan Subhash Deshmukh - Public Meeting',
       kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
       heading: isMr
-        ? '‘The New India Manifesto: Going Beyond Possible’ या पुस्तकाचे लेखक'
+        ? '‘न्यू इंडिया मॅनिफेस्टो: गोइंग बियॉन्ड पॉसिबल’ या पुस्तकाचे लेखक'
         : 'Author of The New India Manifesto: Going Beyond Possible',
       position: 'center 25%',
     },

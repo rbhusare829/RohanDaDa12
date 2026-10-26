@@ -49,7 +49,9 @@ export function SupriyaLatestNewsSection({
   const displayItems = posts.map((p, i) => {
     const rawCat = p.categories?.[0]
     const catName = typeof rawCat === 'object' && rawCat !== null ? (rawCat as { title?: string }).title : null
-    const tag = (p.tags?.[0] as string) || catName || (isMr ? SOURCES[i % SOURCES.length] : 'Media Update')
+    // the admin's tags are typed in Marathi: on the English site a Marathi tag gives way to the category or "Media Update"
+    const rawTag = (p.tags?.[0] as string) || catName
+    const tag = (isMr ? rawTag : rawTag && !/[\u0900-\u097F]/.test(rawTag) ? rawTag : null) || (isMr ? SOURCES[i % SOURCES.length] : 'Media Update')
     const img = mediaUrl(p.coverImage, 'card') || (
       i === 0 ? '/images/gallery/political/rd-political-06.webp' :
       i === 1 ? '/images/gallery/political/rd-political-02.webp' :

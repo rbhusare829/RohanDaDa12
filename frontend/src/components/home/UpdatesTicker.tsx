@@ -2,12 +2,12 @@ import { Fragment } from 'react'
 import { Link } from 'react-router'
 
 const UPDATES = [
-  { to: '/blog/lotus-blog-merit-determination-opportunity', label: 'लोटस शिष्यवृत्ती योजना' },
-  { to: '/blog/lokmangal-annapurna-yojana', label: 'लोकमंगल अन्नपूर्णा मोफत भोजन योजना' },
-  { to: '/blog/lokmangal-samudayik-vivah-sohala', label: 'सर्वधर्मीय सामुदायिक विवाह सोहळा' },
-  { to: '/social-work', label: 'ग्रामीण विकास व जलसंधारण प्रकल्प' },
-  { to: '/vision', label: 'नव्या भारताचा संकल्पनामा (Vision 2047)' },
-  { to: '/media/photos', label: 'छायाचित्र दालन व महत्त्वाचे क्षण' },
+  { to: '/blog/lotus-blog-merit-determination-opportunity', mr: 'लोटस शिष्यवृत्ती योजना', en: 'LOTUS Scholarship Scheme' },
+  { to: '/blog/lokmangal-annapurna-yojana', mr: 'लोकमंगल अन्नपूर्णा मोफत भोजन योजना', en: 'Lokmangal Annapurna Free Meal Scheme' },
+  { to: '/blog/lokmangal-samudayik-vivah-sohala', mr: 'सर्वधर्मीय सामुदायिक विवाह सोहळा', en: 'Inter-faith Community Weddings' },
+  { to: '/social-work', mr: 'ग्रामीण विकास व जलसंधारण प्रकल्प', en: 'Rural Development & Water Conservation' },
+  { to: '/vision', mr: 'नव्या भारताचा संकल्पनामा (Vision 2047)', en: 'New India Manifesto (Vision 2047)' },
+  { to: '/media/photos', mr: 'छायाचित्र दालन व महत्त्वाचे क्षण', en: 'Photo Gallery & Key Moments' },
 ]
 
 /**
@@ -36,7 +36,7 @@ export function UpdatesTicker({ locale = 'mr' }: { locale?: 'mr' | 'en' }) {
                       tabIndex={copy === 1 ? -1 : undefined}
                       className="inline-flex items-center gap-1.5 hover:text-[#e65100] transition-colors"
                     >
-                      <span className="text-[#ff7a00] font-bold">&rarr;</span> {u.label}
+                      <span className="text-[#ff7a00] font-bold">&rarr;</span> {isMr ? u.mr : u.en}
                     </Link>
                   </Fragment>
                 ))}

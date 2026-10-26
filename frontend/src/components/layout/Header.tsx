@@ -85,7 +85,7 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
           if (currentLocale !== 'mr') setLocale('mr')
         }}
         aria-pressed={currentLocale === 'mr'}
-        title="मराठी मध्ये वाचा"
+        title={currentLocale === 'en' ? 'Read in Marathi' : 'मराठी मध्ये वाचा'}
         className={cn(
           'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
           isMobile ? 'px-2 py-0.5' : 'px-2.5 py-1',
@@ -102,7 +102,7 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
           if (currentLocale !== 'en') setLocale('en')
         }}
         aria-pressed={currentLocale === 'en'}
-        title="Read in English"
+        title={currentLocale === 'en' ? 'Read in English' : 'इंग्रजीमध्ये वाचा'}
         className={cn(
           'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
           isMobile ? 'px-2 py-0.5' : 'px-2.5 py-1',

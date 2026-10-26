@@ -17,7 +17,7 @@ export const allowedOrigins = (cfg) =>
 
 /**
  * Security headers. The content-security-policy spells out what the site is allowed to load:
- * its own files, YouTube (videos + thumbnails), Instagram reels, Facebook page plugin, Google Maps and reCAPTCHA.
+ * its own files, YouTube (videos + thumbnails), Instagram reels, Facebook page plugin and post photos (fbcdn.net), Google Maps and reCAPTCHA.
  */
 export function securityHeaders(cfg) {
   const s3Origin = cfg.storage.driver === 's3' ? originOf(cfg.storage.s3.publicUrl || cfg.storage.s3.endpoint || `https://${cfg.storage.s3.bucket}.s3.${cfg.storage.s3.region}.amazonaws.com`) : null
@@ -30,7 +30,7 @@ export function securityHeaders(cfg) {
         'default-src': ["'self'"],
         'script-src': ["'self'", 'https://www.googletagmanager.com', 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'],
         'style-src': ["'self'", "'unsafe-inline'"],
-        'img-src': ["'self'", 'data:', 'blob:', 'https://i.ytimg.com', 'https://www.google-analytics.com', 'https://*.googletagmanager.com', ...files],
+        'img-src': ["'self'", 'data:', 'blob:', 'https://i.ytimg.com', 'https://*.fbcdn.net', 'https://www.google-analytics.com', 'https://*.googletagmanager.com', ...files],
         'media-src': ["'self'", 'blob:', 'https:'],
         'font-src': ["'self'", 'data:'],
         'connect-src': ["'self'", 'https://www.google-analytics.com', 'https://*.analytics.google.com', 'https://*.googletagmanager.com', ...files],

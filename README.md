@@ -336,6 +336,7 @@ header `X-Requested-With: XMLHttpRequest` (and, if the browser adds one, an `Ori
 | `S3_BUCKET`, `S3_REGION`, `S3_ACCESS_KEY_ID`, `S3_SECRET_ACCESS_KEY` | — | required for `s3`; optional `S3_ENDPOINT` (R2, Spaces, MinIO), `S3_PREFIX`, `S3_PUBLIC_URL` (CDN), `S3_FORCE_PATH_STYLE` |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_USER`, `SMTP_PASS`, `EMAIL_FROM` | empty | e-mail for form notifications and password reset; without `SMTP_HOST` messages are only written to the log |
 | `RECAPTCHA_SECRET_KEY` | empty | Google reCAPTCHA v3 secret (empty = off) |
+| `FACEBOOK_PAGE_ID`, `FACEBOOK_PAGE_TOKEN` | empty | the Facebook Page and its access token — the home page shows the Page's latest posts when both are set (see below); optional `FACEBOOK_GRAPH_VERSION` (default `v25.0`) |
 | `BACKUP_CRON`, `BACKUP_DIR`, `BACKUP_KEEP` | `30 2 * * *` (production, SQLite), `backups`, `14` | nightly copy of the SQLite file; empty `BACKUP_CRON` = off |
 | `SERVE_FRONTEND`, `FRONTEND_DIST` | auto (on when `frontend/dist` exists) | let the backend serve the built website |
 | `LOG_REQUESTS`, `RATE_LIMIT_DISABLED` | on in development, off | |
@@ -348,6 +349,23 @@ header `X-Requested-With: XMLHttpRequest` (and, if the browser adds one, an `Ori
 | `VITE_GA_ID` | Google Analytics measurement id, e.g. `G-XXXXXXXXXX` (empty = no analytics) |
 | `VITE_API_URL` | only when the website is hosted separately from the backend: the backend's address (also add it to `CORS_ORIGINS`) |
 | `BACKEND_URL` *(shell variable)* | where `npm run dev` forwards `/api`, `/uploads`, `sitemap.xml` and `robots.txt` (default `http://localhost:3001`) |
+
+### Facebook posts on the home page
+
+Facebook no longer lets a Page's posts be embedded on other sites (its plugin shows only the Page's name and a Follow button), so the
+home page's **Stay Connected** section reads them on the server with the Graph API and the Page's access token. The backend answers
+`GET /api/facebook/posts`, keeps the result for 10 minutes and the token never reaches the browser. Until the two variables below are set
+(or if Facebook does not answer) the section shows a plain "Visit our Facebook page" button — never made-up posts.
+
+1. At [developers.facebook.com](https://developers.facebook.com) → **My Apps → Create app** (use case *Other*, type *Business*). You must be an admin of the Facebook Page.
+2. **Tools → Graph API Explorer** → pick your app → **Get User Access Token** with the permissions `pages_show_list` and `pages_read_engagement`.
+3. Make it long-lived: **Tools → Access Token Debugger → Extend Access Token**, paste that long token back into the Explorer and run `GET me/accounts`.
+   The entry for your Page has its `id` and an `access_token` — a Page token made from a long-lived user token does not expire.
+4. Put them in `backend/.env` (on Vercel: *Project → Settings → Environment Variables*) and restart:
+   `FACEBOOK_PAGE_ID=<id>` and `FACEBOOK_PAGE_TOKEN=<access_token>`.
+
+If the posts disappear later, the backend log says `[facebook] could not read the Page's posts: …`. The usual causes: the token's owner changed
+their password, lost admin rights on the Page, or removed the app — make a new token the same way.
 
 ---
 
@@ -525,6 +543,7 @@ before upload; the nightly SQLite backup is off on Vercel (use Neon's own backup
 | Signed in but every save says *Blocked: this request did not come from the website* | The address in the browser is not `PUBLIC_URL` (or in `CORS_ORIGINS`). Fix `PUBLIC_URL`, restart. |
 | Sign-in works on http but not behind HTTPS | Set `PUBLIC_URL=https://…` (the cookie becomes `Secure`) and `TRUST_PROXY=1`, and forward `X-Forwarded-Proto`. |
 | A YouTube / Instagram / map embed shows blank | The content-security-policy allows YouTube, Instagram, Facebook, Google Maps and reCAPTCHA; another site must be added in `backend/src/middleware/security.js`. |
+| The home page shows "Visit our Facebook page" instead of posts | `FACEBOOK_PAGE_ID` / `FACEBOOK_PAGE_TOKEN` are not set, or the token is no longer valid — see *Facebook posts on the home page* in section 8 and the backend log. |
 | Photo upload says the type is not accepted | Only real JPEG, PNG, WebP, GIF, AVIF (photos) and PDF (documents) are accepted; SVG is refused on purpose. Keep nginx's `client_max_body_size` above 15 MB. |
 | Content looks old on the live site | The website caches API answers for 60 seconds; the admin clears its own cache on save. Visitors' browsers may keep answers for 30 s. |
 | Start fresh | `npm run seed:fresh` deletes **all content** (not users) and loads the bundled content again. Back up first. |

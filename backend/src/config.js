@@ -114,6 +114,13 @@ export function loadConfig(env = process.env) {
     },
 
     recaptchaSecret: env.RECAPTCHA_SECRET_KEY || '',
+    // the Facebook Page whose latest posts the home page shows: read with the Page's access token (kept on the server, see the README)
+    facebook: {
+      pageId: env.FACEBOOK_PAGE_ID || '',
+      pageToken: env.FACEBOOK_PAGE_TOKEN || '',
+      graphUrl: trimSlash(env.FACEBOOK_GRAPH_URL || 'https://graph.facebook.com'),
+      graphVersion: env.FACEBOOK_GRAPH_VERSION || 'v25.0',
+    },
     admin: { email: env.ADMIN_EMAIL || 'admin@rohandeshmukh.in', password: env.ADMIN_PASSWORD || 'ChangeMe@123' },
 
     frontendDist,

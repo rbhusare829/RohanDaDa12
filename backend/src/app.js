@@ -14,6 +14,7 @@ import { authenticate, cacheHeaders, errorHandler, requestLogger } from './middl
 import { corsMiddleware, csrfGuard, rateLimiters, securityHeaders } from './middleware/security.js'
 import { adminRoutes } from './routes/admin.js'
 import { contentRoutes } from './routes/content.js'
+import { facebookRoutes } from './routes/facebook.js'
 import { formsRoutes } from './routes/forms.js'
 import { siteRoutes } from './routes/site.js'
 import { usersRoutes } from './routes/users.js'
@@ -75,6 +76,7 @@ export async function createApp({ cfg = loadConfig(), log = logger } = {}) {
   app.use('/api/users', usersRoutes(ctx, { limiters }))
   app.use('/api/admin', adminRoutes(ctx))
   app.use('/api/forms', formsRoutes(ctx, { limiters }))
+  app.use('/api/facebook', facebookRoutes(ctx))
   app.use('/api', contentRoutes(ctx))
   app.use('/api', (_req, res) => res.status(404).json({ message: 'Not found.' }))
 

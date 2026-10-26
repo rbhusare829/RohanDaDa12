@@ -152,6 +152,7 @@ describe('website routes (SEO, redirects, security)', () => {
       assert.match(csp, /frame-src [^;]*https:\/\/www\.youtube-nocookie\.com/)
       assert.match(csp, /frame-src [^;]*https:\/\/www\.instagram\.com/)
       assert.match(csp, /img-src [^;]*https:\/\/i\.ytimg\.com/)
+      assert.match(csp, /img-src [^;]*https:\/\/\*\.fbcdn\.net/) // photos of the Facebook posts on the home page
       assert.match(csp, /object-src 'none'/)
       assert.match(csp, /frame-ancestors 'self'/)
       assert.ok(!/script-src[^;]*unsafe-eval/.test(csp))

@@ -11,13 +11,12 @@ export async function loader() {
   const sections = (home.sections ?? []).filter((s) => !s.hidden)
   const has = (type: string) => sections.some((s) => s.blockType === type)
 
-  const [events, posts, foundationPage, videos] = await Promise.all([
+  const [events, posts, foundationPage] = await Promise.all([
     has('homeEvents') ? cms.find('events', { limit: 50, sort: 'createdAt', depth: 1 }).then((r) => r.docs).catch(() => []) : [],
     cms.find('posts', { limit: 20, sort: '-publishedAt', depth: 1 }).then((r) => r.docs).catch(() => []),
     cms.findOne('pages', { where: { path: { equals: '/lokmangal/foundation' } }, depth: 1 }).catch(() => null),
-    cms.find('videos', { limit: 10, sort: '-publishedAt' }).then((r) => r.docs).catch(() => []),
   ])
-  const extras: HomeExtras = { events, posts, foundationPage, videos }
+  const extras: HomeExtras = { events, posts, foundationPage }
   return { home, extras }
 }
 

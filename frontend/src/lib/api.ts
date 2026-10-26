@@ -27,6 +27,8 @@ api.interceptors.response.use(
 )
 
 export type Locale = 'en' | 'mr'
+/** One post of the Facebook Page, as the backend's /api/facebook/posts sends it */
+export type FacebookPost = { id: string; text: string; image: string | null; url: string; createdAt: string | null }
 export type Where = Record<string, unknown>
 export type FindQuery = { where?: Where; sort?: string; limit?: number; page?: number; depth?: number; locale?: Locale | 'all' }
 
@@ -106,5 +108,9 @@ export const cms = {
   },
   global<K extends keyof Globals>(slug: K, q?: Pick<FindQuery, 'depth' | 'locale'>) {
     return get<Globals[K]>(`/api/globals/${slug}`, { locale: q?.locale ?? getActiveLocale(), depth: 2, ...q })
+  },
+  /** The Facebook Page's latest posts (an empty list until the Page's access token is set up on the server) */
+  async facebookPosts() {
+    return (await get<{ posts: FacebookPost[] }>('/api/facebook/posts')).posts
   },
 }

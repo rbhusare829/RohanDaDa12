@@ -30,7 +30,7 @@ type Block = NonNullable<Home['sections']>[number]
 type Of<T extends Block['blockType']> = Extract<Block, { blockType: T }>
 
 /** Extra content some homepage sections show (loaded together with the homepage, see pages/Home.tsx) */
-export type HomeExtras = { events: Event[]; posts: Post[]; foundationPage: Page | null; videos: VideoDoc[] }
+export type HomeExtras = { events: Event[]; posts: Post[]; foundationPage: Page | null }
 
 const icons = { user: User, heart: Heart, book: BookOpen, camera: Camera, video: Video, vote: Vote, pen: PenLine, phone: Phone, info: Info, flag: Flag, leaf: Leaf, award: Award }
 
@@ -76,8 +76,8 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
       {/* 7. Key Focus Areas / Initiatives Showcase */}
       <SupriyaInitiativesSection locale={locale} />
 
-      {/* 8. Stay Connected (3 Columns: Facebook, Twitter/X, YouTube 2x2 Grid with Real CMS Videos) */}
-      <SupriyaStayConnectedSection videos={extras.videos} locale={locale} />
+      {/* 8. Stay Connected (the Facebook Page's latest posts) */}
+      <SupriyaStayConnectedSection locale={locale} />
     </>
   )
 }

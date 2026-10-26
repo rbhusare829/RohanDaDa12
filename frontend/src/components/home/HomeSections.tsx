@@ -24,7 +24,6 @@ import { SupriyaAwardsSection } from './SupriyaAwardsSection'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
 import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
-import { SupriyaNewsletterSection } from './SupriyaNewsletterSection'
 import { SupriyaStayConnectedSection } from './SupriyaStayConnectedSection'
 
 type Block = NonNullable<Home['sections']>[number]
@@ -77,10 +76,7 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
       {/* 7. Key Focus Areas / Initiatives Showcase */}
       <SupriyaInitiativesSection locale={locale} />
 
-      {/* 8. Newsletter Subscription Bar */}
-      <SupriyaNewsletterSection locale={locale} />
-
-      {/* 9. Stay Connected (3 Columns: Facebook, Twitter/X, YouTube 2x2 Grid with Real CMS Videos) */}
+      {/* 8. Stay Connected (3 Columns: Facebook, Twitter/X, YouTube 2x2 Grid with Real CMS Videos) */}
       <SupriyaStayConnectedSection videos={extras.videos} locale={locale} />
     </>
   )

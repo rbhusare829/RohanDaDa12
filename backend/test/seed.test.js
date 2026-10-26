@@ -77,7 +77,8 @@ describe('the bundled website content', () => {
     const header = (await c.get('/api/globals/header?locale=en')).data
     // no "Connect" item: the header's orange Contact button is the way to the Contact page
     assert.deepEqual(header.nav.map((n) => n.label), ['Home', 'About', 'Lokmangal', 'Media', 'Vision'])
-    assert.equal(header.nav[1].children.length, 4)
+    assert.equal(header.nav[1].children.length, 3)
+    assert.equal(header.nav[2].children.length, 2)
     const footer = (await c.get('/api/globals/footer?locale=en')).data
     assert.equal(footer.columns.length, 3)
     const settings = (await c.get('/api/globals/site-settings?locale=en&depth=1')).data

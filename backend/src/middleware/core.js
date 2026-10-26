@@ -15,7 +15,7 @@ export const authenticate = ({ cfg, auth }) => async (req, _res, next) => {
       return next()
     }
     const header = req.get('authorization')
-    const token = req.cookies?.[cfg.cookieName] || (header?.startsWith('JWT ') ? header.slice(4) : null)
+    const token = req.cookies?.[cfg.cookieName] || (header?.startsWith('Bearer ') ? header.slice(7) : header?.startsWith('JWT ') ? header.slice(4) : null)
     req.user = await auth.userFromToken(token)
     next()
   } catch (err) {

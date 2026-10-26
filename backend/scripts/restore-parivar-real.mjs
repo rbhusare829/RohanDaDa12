@@ -10,6 +10,7 @@ const seedPagesPath = path.join(here, '..', 'src', 'seed', 'data', 'collections'
 
 // 1. Definition of the authentic /lokmangal/parivar page data from https://www.subhashdeshmukh.com/lokmangal
 const parivarPageData = {
+  id: 11,
   title: {
     en: 'Lokmangal Parivar',
     mr: 'लोकमंगल परिवार'

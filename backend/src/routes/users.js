@@ -9,7 +9,11 @@ import { requireUser, validate } from '../middleware/core.js'
 export function usersRoutes({ cfg, auth, mailer, logger }, { limiters }) {
   const r = Router()
 
-  const setSession = (res, row) => res.cookie(cfg.cookieName, auth.issueSession(row), auth.cookieOptions())
+  const setSession = (res, row) => {
+    const token = auth.issueSession(row)
+    res.cookie(cfg.cookieName, token, auth.cookieOptions())
+    return token
+  }
 
   const permissions = (user) => ({
     collections: Object.fromEntries(collections.map((c) => [c.slug, permissionsFor(c, user)])),
@@ -22,8 +26,8 @@ export function usersRoutes({ cfg, auth, mailer, logger }, { limiters }) {
     validate,
     asyncHandler(async (req, res) => {
       const row = await auth.login(req.body.email, req.body.password)
-      setSession(res, row)
-      res.json({ message: 'Signed in.', user: auth.publicUser(row) })
+      const token = setSession(res, row)
+      res.json({ message: 'Signed in.', user: auth.publicUser(row), token })
     }),
   )
 

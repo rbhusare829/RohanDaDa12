@@ -62,12 +62,16 @@ function createLocalStorage(cfg) {
 
 function createS3Storage(cfg) {
   const { s3 } = cfg.storage
-  const client = new S3Client({
+  const clientConfig = {
     region: s3.region,
     endpoint: s3.endpoint,
     forcePathStyle: s3.forcePathStyle,
-    credentials: { accessKeyId: s3.accessKeyId, secretAccessKey: s3.secretAccessKey },
-  })
+  }
+  // If explicit credentials are provided, use them; otherwise let AWS SDK automatically use the EC2 IAM Instance Role / credential chain
+  if (s3.accessKeyId && s3.secretAccessKey) {
+    clientConfig.credentials = { accessKeyId: s3.accessKeyId, secretAccessKey: s3.secretAccessKey }
+  }
+  const client = new S3Client(clientConfig)
   const objectKey = (key) => (s3.prefix ? `${s3.prefix}/${safeKey(key)}` : safeKey(key))
   const base = s3.publicUrl || (s3.endpoint ? `${s3.endpoint.replace(/\/$/, '')}/${s3.bucket}` : `https://${s3.bucket}.s3.${s3.region}.amazonaws.com`)
   return {
@@ -107,71 +111,5 @@ function createS3Storage(cfg) {
   }
 }
 
-/**
- * Vercel Blob. The store is public (anyone with a file's address can open it), so:
- *   - photos and documents are stored at "<prefix>/<key>" and linked directly, cached for a year
- *   - private files (form attachments, key "private/…") are stored under a folder named by an HMAC of the key, so their
- *     address cannot be guessed; the site only ever serves them to signed-in admins, through the API
- * The public address of the store comes from the token (vercel_blob_rw_<storeId>_…) unless BLOB_PUBLIC_URL is set.
- */
-// @vercel/blob is loaded only when this driver is used, so a local setup without it (SQLite + local files) never needs it
-let blobModule = null
-const loadBlob = async () => (blobModule ??= await import('@vercel/blob'))
-const vercelBlobClient = {
-  put: async (...a) => (await loadBlob()).put(...a),
-  del: async (...a) => (await loadBlob()).del(...a),
-  head: async (...a) => (await loadBlob()).head(...a),
-  fetch: (...a) => fetch(...a),
-}
-
-export function createBlobStorage(cfg, client = vercelBlobClient) {
-  const { blob } = cfg.storage
-  const storeId = blob.token.match(/^vercel_blob_rw_([a-z\d]+)_[a-z\d]+$/i)?.[1]?.toLowerCase()
-  const base = blob.publicUrl || (storeId ? `https://${storeId}.public.blob.vercel-storage.com` : '')
-  if (!base) throw new Error('BLOB_READ_WRITE_TOKEN does not look like a Vercel Blob token (vercel_blob_rw_<store>_…); set BLOB_PUBLIC_URL')
-  const pathname = (key) => {
-    const k = safeKey(key)
-    const p = k.startsWith('private/') ? `private/${createHmac('sha256', blob.token).update(k).digest('hex').slice(0, 32)}/${k.slice(8)}` : k
-    return blob.prefix ? `${blob.prefix}/${p}` : p
-  }
-  const address = (key) => `${base}/${pathname(key).split('/').map(encodeURIComponent).join('/')}`
-  const opts = { token: blob.token }
-  return {
-    driver: 'vercel-blob',
-    async put(key, buffer, contentType) {
-      const isPrivate = key.startsWith('private/')
-      await client.put(pathname(key), buffer, {
-        ...opts,
-        access: 'public',
-        contentType: contentType || 'application/octet-stream',
-        addRandomSuffix: false,
-        allowOverwrite: true,
-        cacheControlMaxAge: isPrivate ? 60 : 31536000,
-      })
-    },
-    async remove(key) {
-      try {
-        await client.del(address(key), opts)
-      } catch {
-        /* already gone */
-      }
-    },
-    async exists(key) {
-      try {
-        await client.head(address(key), opts)
-        return true
-      } catch {
-        return false
-      }
-    },
-    async read(key) {
-      const res = await client.fetch(address(key), { cache: 'no-store' })
-      if (!res.ok || !res.body) throw notFound('File not found.')
-      return { stream: Readable.fromWeb(res.body), size: Number(res.headers.get('content-length')) || undefined, contentType: res.headers.get('content-type') || undefined }
-    },
-    url: (key) => address(key),
-  }
-}
-
 export const createStorage = (cfg) =>
-  cfg.storage.driver === 's3' ? createS3Storage(cfg) : cfg.storage.driver === 'vercel-blob' ? createBlobStorage(cfg) : createLocalStorage(cfg)
+  cfg.storage.driver === 's3' ? createS3Storage(cfg) : createLocalStorage(cfg)

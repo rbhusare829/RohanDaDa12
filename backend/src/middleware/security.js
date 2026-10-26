@@ -21,8 +21,7 @@ export const allowedOrigins = (cfg) =>
  */
 export function securityHeaders(cfg) {
   const s3Origin = cfg.storage.driver === 's3' ? originOf(cfg.storage.s3.publicUrl || cfg.storage.s3.endpoint || `https://${cfg.storage.s3.bucket}.s3.${cfg.storage.s3.region}.amazonaws.com`) : null
-  const blobOrigin = cfg.storage.driver === 'vercel-blob' ? originOf(cfg.storage.blob.publicUrl || `https://${cfg.storage.blob.token.match(/^vercel_blob_rw_([a-z\d]+)_/i)?.[1]?.toLowerCase()}.public.blob.vercel-storage.com`) : null
-  const files = [s3Origin, blobOrigin].filter(Boolean)
+  const files = [s3Origin].filter(Boolean)
   return helmet({
     contentSecurityPolicy: {
       useDefaults: false,
@@ -64,7 +63,8 @@ export const corsMiddleware = (cfg) => {
     origin: (origin, cb) => cb(null, !origin || allowed.has(origin)),
     credentials: true,
     methods: ['GET', 'HEAD', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'X-Requested-With', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'X-Requested-With', 'Authorization', 'X-Public-View', 'Accept', 'Origin', 'Cache-Control'],
+    exposedHeaders: ['Content-Disposition'],
     maxAge: 600,
   })
 }

@@ -13,7 +13,6 @@
     "preview": "node scripts/dev.mjs --prod",
     "build": "npm run build -w frontend",
     "start": "npm run start -w backend",
-    "vercel-build": "npm run build -w frontend && node backend/scripts/vercel-prepare.mjs",
     "seed": "npm run seed -w backend",
     "seed:fresh": "npm run seed:fresh -w backend",
     "migrate": "npm run migrate -w backend",

@@ -506,32 +506,20 @@ and use `COOKIE_SAMESITE=none` with https — but then the search-engine tags ar
 
 ---
 
-### Deploying on Vercel
+### Deploying Backend on AWS EC2 & Frontend on AWS Amplify
 
-The repository deploys to Vercel as **one project** (website + admin + API), using the **Neon PostgreSQL** database and the
-**Vercel Blob** store connected to it. Everything is in `vercel.json`, `api/index.js` and `backend/scripts/vercel-prepare.mjs`.
+The architecture separates the frontend SPA and the backend API:
 
-| Project setting | Value |
-|---|---|
-| Root Directory | *(empty — the repository root)* |
-| Framework Preset | Other (`vercel.json` sets the build: `npm run vercel-build`, output `frontend/dist`) |
-| Node.js | 20 or newer |
+#### 1. Backend on AWS EC2
+* **Server Setup**: Run `backend/ec2-setup.sh` on your Ubuntu or Amazon Linux EC2 instance to configure Node.js, PM2, and directory permissions.
+* **Process Management**: Start with PM2 using `pm2 start backend/ecosystem.config.cjs` (auto-restarts on reboot / crash).
+* **Reverse Proxy**: Copy `backend/nginx.conf.example` to `/etc/nginx/sites-available/` to route traffic to port 3001, handle SSL (Let's Encrypt), and enable Gzip & 50MB upload limits.
+* **Storage**: Store files locally or use AWS S3 (`STORAGE_DRIVER=s3`, `S3_BUCKET=...`). When an IAM role is attached to the EC2 instance, no AWS credentials in `.env` are required!
+* **Environment (`backend/.env`)**: Set `PUBLIC_URL` to your frontend Amplify URL, `CORS_ORIGINS` to allow your frontend, `TRUST_PROXY=1`, and `JWT_SECRET`.
 
-| Environment variable | |
-|---|---|
-| `DATABASE_URL`, `DATABASE_URL_UNPOOLED` | set by the Neon integration (the direct one is used) |
-| `BLOB_READ_WRITE_TOKEN` | set by the Blob integration — files go to Blob automatically |
-| `DB_SCHEMA` | `site` — the site's tables live in their own schema, so other tables in the same database are never touched |
-| `JWT_SECRET` | 32+ random characters (`node -e "console.log(require('crypto').randomBytes(48).toString('hex'))"`) |
-| `ADMIN_EMAIL`, `ADMIN_PASSWORD` | the first admin, created on the first deploy (12+ characters; the example password is refused) |
-| `PUBLIC_URL` | optional: the live address once a custom domain is added (otherwise the Vercel address is used) |
-
-Every deploy runs `npm run vercel-build`: it builds the website, then `vercel-prepare` runs the migrations, loads the bundled
-content **only when the database is empty** (the photos are uploaded to Blob), and creates the first admin. Built files are served by
-Vercel's CDN; every other request (pages with their title and share tags, `/api`, `/sitemap.xml`, `/robots.txt`, old-address redirects)
-goes to the function in `api/index.js`. Notes: a Vercel function accepts requests up to 4.5 MB, so larger photos must be made smaller
-before upload; the nightly SQLite backup is off on Vercel (use Neon's own backups / branches). Test the PostgreSQL path locally with
-`TEST_POSTGRES_URL=postgres://postgres@127.0.0.1:5432/postgres npm test`.
+#### 2. Frontend on AWS Amplify
+* **Build Settings**: Framework: React / Vite. Build command: `npm run build`, Output directory: `dist` (or `frontend/dist`).
+* **Environment Variable**: Set `VITE_API_URL` to your EC2 backend domain (e.g. `https://api.rohandeshmukh.in`).
 
 ## 15. Maintenance & troubleshooting
 

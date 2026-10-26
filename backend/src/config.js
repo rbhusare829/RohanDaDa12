@@ -39,11 +39,8 @@ function parseDatabaseUrl(url) {
 export function loadConfig(env = process.env) {
   const nodeEnv = env.NODE_ENV || 'development'
   const production = nodeEnv === 'production'
-  // on Vercel the production address (and each preview deployment's own address) is known without being set
-  const vercelUrl = (host) => (host ? `https://${host}` : '')
-  const publicUrl = trimSlash(env.PUBLIC_URL || vercelUrl(env.VERCEL_ENV === 'production' ? env.VERCEL_PROJECT_PRODUCTION_URL : env.VERCEL_URL) || (production ? '' : 'http://localhost:3000'))
-  // Vercel + Neon: DATABASE_URL_UNPOOLED is the direct connection (the pooled one cannot keep a session); DB_URL wins over both
-  const dbUrl = env.DB_URL || (env.DB_DIALECT === 'postgres' || /^postgres/.test(env.DATABASE_URL || '') ? env.DATABASE_URL_UNPOOLED || env.DATABASE_URL : env.DATABASE_URL)
+  const publicUrl = trimSlash(env.PUBLIC_URL || (production ? '' : 'http://localhost:3000'))
+  const dbUrl = env.DB_URL || env.DATABASE_URL
   const fromUrl = dbUrl ? parseDatabaseUrl(dbUrl) : {}
   const dialect = (env.DB_DIALECT || fromUrl.dialect || 'sqlite').toLowerCase()
   const frontendDist = path.resolve(backendRoot, env.FRONTEND_DIST || '../frontend/dist')
@@ -55,10 +52,10 @@ export function loadConfig(env = process.env) {
     port: int(env.PORT, 3001),
     logRequests: bool(env.LOG_REQUESTS, !production),
     rateLimitDisabled: bool(env.RATE_LIMIT_DISABLED, nodeEnv === 'test'),
-    autoMigrate: bool(env.AUTO_MIGRATE, !env.VERCEL), // on Vercel the build step migrates (backend/scripts/vercel-prepare.mjs)
+    autoMigrate: bool(env.AUTO_MIGRATE, true),
     publicUrl,
-    corsOrigins: [...list(env.CORS_ORIGINS), vercelUrl(env.VERCEL_URL), vercelUrl(env.VERCEL_BRANCH_URL), vercelUrl(env.VERCEL_PROJECT_PRODUCTION_URL)].filter(Boolean).map(trimSlash),
-    trustProxy: env.TRUST_PROXY === undefined || env.TRUST_PROXY === '' ? (env.VERCEL ? 1 : false) : /^\d+$/.test(env.TRUST_PROXY) ? Number(env.TRUST_PROXY) : bool(env.TRUST_PROXY, false) ? true : env.TRUST_PROXY,
+    corsOrigins: list(env.CORS_ORIGINS).map(trimSlash),
+    trustProxy: env.TRUST_PROXY === undefined || env.TRUST_PROXY === '' ? false : /^\d+$/.test(env.TRUST_PROXY) ? Number(env.TRUST_PROXY) : bool(env.TRUST_PROXY, false) ? true : env.TRUST_PROXY,
 
     bcryptRounds: nodeEnv === 'test' ? 4 : 12, // password hashing cost (kept low only in tests)
     jwtSecret: env.JWT_SECRET || '',
@@ -79,28 +76,21 @@ export function loadConfig(env = process.env) {
       user: env.DB_USER || fromUrl.user || 'root',
       password: env.DB_PASSWORD ?? fromUrl.password ?? '',
       ssl: bool(env.DB_SSL, fromUrl.ssl ?? false),
-      poolMax: int(env.DB_POOL_MAX, env.VERCEL ? 3 : 10),
+      poolMax: int(env.DB_POOL_MAX, 10),
     },
 
     storage: {
-      // on Vercel (BLOB_READ_WRITE_TOKEN set by the Blob integration) files go to Vercel Blob unless STORAGE_DRIVER says otherwise
-      driver: (env.STORAGE_DRIVER || (env.BLOB_READ_WRITE_TOKEN ? 'vercel-blob' : 'local')).toLowerCase(),
+      driver: (env.STORAGE_DRIVER || 'local').toLowerCase(),
       dir: path.resolve(backendRoot, env.UPLOAD_DIR || 'uploads'),
       s3: {
         bucket: env.S3_BUCKET || '',
-        region: env.S3_REGION || 'ap-south-1',
+        region: env.S3_REGION || env.AWS_REGION || 'ap-south-1',
         endpoint: env.S3_ENDPOINT || undefined,
-        accessKeyId: env.S3_ACCESS_KEY_ID || '',
-        secretAccessKey: env.S3_SECRET_ACCESS_KEY || '',
+        accessKeyId: env.S3_ACCESS_KEY_ID || env.AWS_ACCESS_KEY_ID || '',
+        secretAccessKey: env.S3_SECRET_ACCESS_KEY || env.AWS_SECRET_ACCESS_KEY || '',
         forcePathStyle: bool(env.S3_FORCE_PATH_STYLE, false),
         prefix: String(env.S3_PREFIX || '').replace(/^\/+|\/+$/g, ''),
         publicUrl: trimSlash(env.S3_PUBLIC_URL || ''),
-      },
-      blob: {
-        token: env.BLOB_READ_WRITE_TOKEN || '',
-        // https://<store>.public.blob.vercel-storage.com — worked out from the token when not given
-        publicUrl: trimSlash(env.BLOB_PUBLIC_URL || ''),
-        prefix: String(env.BLOB_PREFIX ?? 'site').replace(/^\/+|\/+$/g, ''),
       },
     },
 
@@ -125,9 +115,8 @@ export function loadConfig(env = process.env) {
 
     frontendDist,
     serveFrontend: bool(env.SERVE_FRONTEND, existsSync(path.join(frontendDist, 'index.html'))),
-    backupCron: env.BACKUP_CRON === undefined ? (dialect === 'sqlite' && production && !env.VERCEL ? '30 2 * * *' : '') : env.BACKUP_CRON,
-    /** running as a Vercel function: no long-lived process (no scheduled jobs), read-only disk except /tmp */
-    serverless: Boolean(env.VERCEL),
+    backupCron: env.BACKUP_CRON === undefined ? (dialect === 'sqlite' && production ? '30 2 * * *' : '') : env.BACKUP_CRON,
+    serverless: false,
     backupDir: path.resolve(backendRoot, env.BACKUP_DIR || 'backups'),
     backupKeep: int(env.BACKUP_KEEP, 14),
   }
@@ -137,11 +126,9 @@ export function loadConfig(env = process.env) {
     cfg.jwtSecret = 'dev-only-secret-change-me'
   }
   if (production && cfg.jwtSecret.length < 32) throw new Error('JWT_SECRET must be at least 32 characters in production')
-  if (cfg.storage.driver === 'vercel-blob' && !cfg.storage.blob.token) throw new Error('STORAGE_DRIVER=vercel-blob needs BLOB_READ_WRITE_TOKEN (Vercel → Storage → Blob)')
   if (!['sqlite', 'mysql', 'postgres'].includes(dialect)) throw new Error(`DB_DIALECT must be sqlite, mysql or postgres (got "${dialect}")`)
-  if (cfg.serverless && dialect === 'sqlite') throw new Error('On Vercel the site needs a real database: set DATABASE_URL to a PostgreSQL (e.g. Neon) or MySQL address — an SQLite file would be lost after every request')
-  if (cfg.storage.driver === 's3' && (!cfg.storage.s3.bucket || !cfg.storage.s3.accessKeyId)) {
-    throw new Error('STORAGE_DRIVER=s3 needs S3_BUCKET, S3_ACCESS_KEY_ID and S3_SECRET_ACCESS_KEY')
+  if (cfg.storage.driver === 's3' && !cfg.storage.s3.bucket) {
+    throw new Error('STORAGE_DRIVER=s3 needs S3_BUCKET (and either an attached AWS EC2 IAM role, or S3_ACCESS_KEY_ID and S3_SECRET_ACCESS_KEY)')
   }
   return cfg
 }

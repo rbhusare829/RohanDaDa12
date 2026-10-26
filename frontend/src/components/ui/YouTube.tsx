@@ -3,8 +3,8 @@ import { Play } from 'lucide-react'
 import { youtubeId } from '@/lib/utils'
 import { Img } from './Img'
 
-/** Lite YouTube embed: shows the thumbnail until clicked (keeps pages fast) */
-export function YouTube({ url, title }: { url?: string | null; title?: string | null }) {
+/** Lite YouTube embed: shows the thumbnail until clicked (keeps pages fast). `playClassName` recolours the play button (the homepage uses its red). */
+export function YouTube({ url, title, playClassName }: { url?: string | null; title?: string | null; playClassName?: string }) {
   const id = youtubeId(url)
   const [play, setPlay] = useState(false)
   if (!id) return null
@@ -16,7 +16,7 @@ export function YouTube({ url, title }: { url?: string | null; title?: string | 
         <button type="button" onClick={() => setPlay(true)} className="group absolute inset-0" aria-label={`Play: ${title ?? 'video'}`}>
           <Img src={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} alt="" fill className="object-cover opacity-90 transition group-hover:opacity-100" />
           <span className="absolute inset-0 bg-gradient-to-t from-charcoal-950/55 to-transparent" />
-          <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-btn text-white shadow-xl transition group-hover:scale-110">
+          <span className={`absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-white shadow-xl transition group-hover:scale-110 ${playClassName ?? 'bg-btn'}`}>
             <Play className="ml-1 size-7 fill-current" />
           </span>
           {title && <span className="absolute inset-x-0 bottom-0 p-4 text-left font-semibold text-white">{title}</span>}

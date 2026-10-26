@@ -87,9 +87,9 @@ export function SupriyaAboutSection({
               <button
                 type="button"
                 onClick={() => setShowVideo(true)}
-                className="inline-flex items-center gap-2 rounded-md bg-[#000d3d] px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-md bg-red-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#000d3d] hover:shadow-md active:scale-95 cursor-pointer"
               >
-                <PlayCircle className="size-4.5 text-red-400" />
+                <PlayCircle className="size-4.5 text-white" />
                 <span>{isMr ? 'दृष्टिकोन' : 'Vision'}</span>
               </button>
 
@@ -107,7 +107,7 @@ export function SupriyaAboutSection({
                   <button
                     type="button"
                     onClick={() => setShowVideo(false)}
-                    className="grid size-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-black transition-colors"
+                    className="grid size-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-red-600 hover:text-white transition-colors"
                   >
                     &times;
                   </button>

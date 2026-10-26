@@ -118,7 +118,7 @@ export function SupriyaAwardsSection({
 
                     <Link
                       to={member.link}
-                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-semibold text-slate-500 hover:text-charcoal-900 transition-colors"
+                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-bold text-red-600 hover:text-[#000d3d] transition-colors"
                     >
                       <span>{isMr ? 'अधिक वाचा' : 'Read more'}</span>
                       <ArrowRight className="size-3 transition-transform group-hover/btn:translate-x-0.5" />

@@ -12,7 +12,6 @@ import {
   Users,
 } from 'lucide-react'
 import type { Page } from '@/types/cms'
-import { cn } from '@/lib/utils'
 import { Img } from '@/components/ui/Img'
 import { Reveal } from '@/components/ui/Motion'
 
@@ -45,10 +44,7 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
       {/* 3. Signature Dual Navy Blue Section: Performance & Profile Card */}
       <DualPerformanceProfileSection isMr={isMr} />
 
-      {/* 4. Political & Social Journey Timeline: "Leadership. Experience. Values." */}
-      <JourneyTimelineSection isMr={isMr} />
-
-      {/* 5. Positions Held (भूषविलेली पदे व जबाबदाऱ्या) */}
+      {/* 4. Positions Held (भूषविलेली पदे व जबाबदाऱ्या) */}
       <PositionsHeldSection isMr={isMr} />
     </div>
   )
@@ -384,167 +380,6 @@ function DualPerformanceProfileSection({ isMr }: { isMr: boolean }) {
   )
 }
 
-/* ==========================================================================
-   Section 4: Political & Social Journey Timeline: "Leadership. Experience. Values."
-   (100% Supriya Sule Journey Timeline layout)
-   ========================================================================== */
-function JourneyTimelineSection({ isMr }: { isMr: boolean }) {
-  const milestones = [
-    {
-      year: '2012 - 2014',
-      badge: isMr ? 'सामाजिक कार्याची मुहूर्तमेढ' : 'Inception of Public Service',
-      title: isMr
-        ? 'युवा मंच व सामाजिक उपक्रमांची सुरुवात'
-        : 'Launch of Youth Forum & Community Welfare',
-      desc: isMr
-        ? 'लोकमंगल परिवाराच्या माध्यमातून आरोग्य शिबिरे, रक्तदान मोहिमा आणि ग्रामीण भागात तरुणांचे संघटन.'
-        : 'Initiated health camps, blood donation drives, and grassroots youth mobilization through Lokmangal.',
-      image: '/images/gallery/political/rd-political-08.webp',
-    },
-    {
-      year: '2014 - 2016',
-      badge: isMr ? 'भाजप युवा मोर्चा' : 'BJYM District President',
-      title: isMr
-        ? 'सोलापूर जिल्हाध्यक्ष - भारतीय जनता युवा मोर्चा'
-        : 'District President - Bharatiya Janata Yuva Morcha',
-      desc: isMr
-        ? 'जिल्हाभरातील हजारो तरुणांना संघटित केले. भव्य युवक संमेलने, रोजगार मार्गदर्शन मेळावे आणि स्वामी विवेकानंद विचार यात्रांचे यशस्वी आयोजन.'
-        : 'Mobilized thousands of youth across Solapur. Organized mega youth conventions, job fairs, and Swami Vivekananda awareness rallies.',
-      image: '/images/gallery/political/rd-political-12.webp',
-    },
-    {
-      year: '2016 - 2019',
-      badge: isMr ? 'सहकार बँकिंग क्षेत्र' : 'Cooperative Banking',
-      title: isMr
-        ? 'संचालक - सोलापूर जिल्हा मध्यवर्ती सहकारी बँक'
-        : 'Director - Solapur District Central Co-op Bank (DCCB)',
-      desc: isMr
-        ? 'शेतकऱ्यांना वेळेवर पतपुरवठा, ऊस उत्पादक शेतकऱ्यांच्या हक्कांचे रक्षण आणि सहकार बँकिंग क्षेत्रात पारदर्शक आर्थिक सुधारणा.'
-        : 'Championed credit accessibility for farmers, safeguarded sugarcane growers’ financial interests, and promoted cooperative transparency.',
-      image: '/images/gallery/political/rd-political-20.webp',
-    },
-    {
-      year: '2019 - 2022',
-      badge: isMr ? 'संस्थात्मक विकास' : 'Institutional Growth',
-      title: isMr
-        ? 'लोकमंगल शिक्षण, उद्योग व सहकार समूहाचे नेतृत्व'
-        : 'Leadership of Lokmangal Institutions & Industry',
-      desc: isMr
-        ? 'ग्रामीण भागात आधुनिक शिक्षण सुविधा, शाळा-कॉलेजांमध्ये डिजिटल वर्ग, महिला बचतगट सक्षमीकरण आणि कृषी-उद्योग आधुनिकीकरण.'
-        : 'Modernized rural educational facilities, introduced digital classrooms, empowered women SHGs, and upgraded agri-industrial cooperatives.',
-      image: '/images/gallery/political/rd-political-16.webp',
-    },
-    {
-      year: '2022 - ' + (isMr ? 'चालू' : 'Present'),
-      badge: isMr ? 'सामाजिक उद्योजकता मिशन' : 'Social Enterprise Mission',
-      title: isMr
-        ? 'चेअरमन - लोकमंगल फाऊंडेशन व न्यू इंडिया मॅनिफेस्टो'
-        : 'Chairman - Lokmangal Foundation & New India Manifesto',
-      desc: isMr
-        ? 'सोलापूर व ग्रामीण महाराष्ट्रातील १,००,००० नवउद्योजकांसाठी मेंटॉरशिप नेटवर्क, दुष्काळ निवारण आणि सर्वांगीण विकास संकल्प.'
-        : 'Dedicated mission to mentor 1,00,000 rural entrepreneurs, sustained drought relief, and comprehensive regional development.',
-      image: '/images/gallery/political/rd-political-26.webp',
-    },
-  ]
-
-  return (
-    <section className="space-y-10">
-      {/* Centered Heading with Emblem Icon */}
-      <div className="mx-auto max-w-3xl text-center">
-        {/* Emblem / Monument Icon */}
-        <div className="mx-auto mb-3 flex size-14 items-center justify-center rounded-2xl bg-[#000d3d] text-white shadow-lg">
-          <Landmark className="size-7 text-saffron-400" />
-        </div>
-
-        <p className="text-xs font-bold uppercase tracking-widest text-saffron-600 sm:text-sm">
-          {isMr ? 'राजकीय व सामाजिक प्रवास' : 'Political & Social Journey'}
-        </p>
-
-        <h2 className="mt-1 font-display text-3xl font-extrabold tracking-tight text-charcoal-950 sm:text-4xl lg:text-5xl">
-          Leadership. Experience. Values.
-        </h2>
-
-        {/* Signature red and saffron line */}
-        <div className="mx-auto mt-3.5 mb-3 flex items-center justify-center gap-1.5">
-          <span className="h-1.5 w-16 rounded-full bg-red-600" />
-          <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
-        </div>
-
-        <p className="text-base text-stone-600 sm:text-lg">
-          {isMr
-            ? 'सोलापूरच्या विकासासाठी आणि जनतेच्या सेवेसाठी अविरत समर्पित वाटचाल.'
-            : 'A dedicated journey committed to Solapur’s holistic progress and the welfare of its people.'}
-        </p>
-      </div>
-
-      {/* Horizontal / Alternating Timeline Cards */}
-      <div className="relative pt-4">
-        {/* Central Connecting Vertical Line (on desktop) */}
-        <div
-          aria-hidden="true"
-          className="absolute bottom-8 left-4 top-8 w-1 bg-gradient-to-b from-red-600 via-saffron-500 to-[#000d3d] sm:left-1/2 sm:-ml-0.5"
-        />
-
-        <div className="space-y-8 sm:space-y-12">
-          {milestones.map((item, idx) => {
-            const isEven = idx % 2 === 0
-            return (
-              <div
-                key={idx}
-                className={cn(
-                  'relative flex flex-col items-start gap-4 sm:flex-row sm:items-center',
-                  isEven ? 'sm:flex-row-reverse' : '',
-                )}
-              >
-                {/* Timeline Card */}
-                <div className="ml-10 w-[calc(100%-2.5rem)] sm:ml-0 sm:w-[calc(50%-2rem)]">
-                  <div className="group overflow-hidden rounded-2xl border border-stone-200/90 bg-white p-5 shadow-sm transition-all duration-300 hover:border-saffron-300 hover:shadow-lg hover:-translate-y-1 sm:p-6">
-                    {/* Year & Badge Header */}
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-stone-100 pb-3">
-                      <span className="rounded-full bg-[#000d3d] px-3 py-1 font-display text-xs font-bold text-white">
-                        {item.year}
-                      </span>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-saffron-600">
-                        {item.badge}
-                      </span>
-                    </div>
-
-                    {/* Milestone Image Thumbnail */}
-                    <div className="relative my-3 aspect-[16/9] w-full overflow-hidden rounded-xl bg-stone-100">
-                      <Img
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-103"
-                        sizes="(max-width:768px) 90vw, 400px"
-                      />
-                    </div>
-
-                    {/* Title & Description */}
-                    <h3 className="font-display text-base font-bold text-charcoal-950 sm:text-lg">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1.5 text-xs leading-relaxed text-stone-600 sm:text-sm">
-                      {item.desc}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Timeline Center Node Badge */}
-                <div className="absolute left-1.5 top-5 z-10 flex size-6 -translate-x-1/2 items-center justify-center rounded-full border-4 border-white bg-red-600 shadow-md sm:left-1/2">
-                  <span className="size-2 rounded-full bg-white" />
-                </div>
-
-                {/* Empty opposite spacer on desktop */}
-                <div className="hidden sm:block sm:w-[calc(50%-2rem)]" />
-              </div>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 /* ==========================================================================
    Section 5: Positions Held (भूषविलेली पदे व जबाबदाऱ्या)

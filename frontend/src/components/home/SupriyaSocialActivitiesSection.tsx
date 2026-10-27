@@ -17,9 +17,9 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
   const mosaic = ['lg:col-span-2 lg:row-span-2', '', '', 'lg:col-span-2']
 
   return (
-    <section className="bg-white border-t border-stone-200 py-16 sm:py-24" aria-labelledby="social-activities-title">
+    <section className="bg-white border-t border-stone-200 py-6 sm:py-10 lg:py-12" aria-labelledby="social-activities-title">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'सामाजिक उपक्रम' : 'Social Activities'}
           </span>

@@ -34,7 +34,7 @@ export function SupriyaAboutSection({
   const bioRest = sentences.slice(2).join(' ')
 
   return (
-    <section className="bg-white py-16 sm:py-20 lg:py-28 overflow-hidden">
+    <section className="bg-white py-8 sm:py-12 lg:py-14 overflow-hidden">
       <div className="container-x">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Content */}

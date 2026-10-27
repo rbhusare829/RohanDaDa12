@@ -20,7 +20,7 @@ function YearTabs({ tabs }: { tabs: { key: string; label: string; content: React
   if (!tabs.length) return null
   return (
     <div>
-      <ScrollRow role="tablist" className="-mx-4 mb-10 flex gap-7 border-b border-line px-4 md:mx-0 md:px-0">
+      <ScrollRow role="tablist" className="-mx-4 mb-6 sm:mb-10 flex gap-7 border-b border-line px-4 md:mx-0 md:px-0">
         {tabs.map((t) => (
           <button key={t.key} role="tab" aria-selected={active === t.key} onClick={() => setActive(t.key)}
             className={cn('relative min-w-11 shrink-0 px-1 py-3.5 text-center font-display text-lg font-semibold transition focus-visible:outline-offset-[-3px] after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:rounded-full', active === t.key ? 'text-charcoal-900 after:bg-saffron-500' : 'text-muted hover:text-charcoal-900')}>
@@ -56,7 +56,7 @@ export default function EventPage() {
         variant="navy"
       >
         {(d.body || d.facts?.length) && (
-          <div className="mb-16 grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-20">
+          <div className="mb-10 sm:mb-16 grid gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-20">
             {d.body && <div className="prose-rd max-w-3xl">{d.body.split(/\n\s*\n/).map((para, i) => <p key={i}>{para}</p>)}</div>}
             {!!d.facts?.length && (
               <dl className="self-start border-t-2 border-charcoal-900">

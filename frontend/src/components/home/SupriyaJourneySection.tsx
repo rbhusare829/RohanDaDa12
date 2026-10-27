@@ -105,9 +105,9 @@ export function SupriyaJourneySection({
   const cols = Math.min(milestones.length, 5)
 
   return (
-    <section className="bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f6fc] border-b border-stone-200 py-16 sm:py-24 overflow-hidden">
+    <section className="bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f6fc] border-b border-stone-200 py-6 sm:py-10 lg:py-12 overflow-hidden">
       {/* Political Journey Heading, Parliament Emblem & Slogan */}
-      <div className="container-x text-center mb-12 sm:mb-16">
+      <div className="container-x text-center mb-6 sm:mb-8">
         <Reveal>
           {/* <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'कारकीर्द' : 'Political Journey'}
@@ -117,7 +117,7 @@ export function SupriyaJourneySection({
             {isMr ? 'प्रवास' : 'Journey'}
           </h2>
 
-          <div className="mt-2.5 mb-6 flex justify-center items-center gap-1.5">
+          <div className="mt-2.5 flex justify-center items-center gap-1.5">
             <span className="h-1 w-14 rounded-full bg-red-600" />
             <span className="h-1 w-3 rounded-full bg-saffron-500" />
           </div>

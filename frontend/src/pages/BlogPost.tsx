@@ -94,8 +94,8 @@ export default function PostPage() {
         </div>
       </PageBanner>
 
-      <div className="container-x pb-20 pt-10 md:pb-24 md:pt-12">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:gap-20">
+      <div className="container-x pb-10 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12">
+        <div className="grid gap-8 sm:gap-14 lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:gap-20">
           <article className="min-w-0 max-w-3xl">
             <Link to="/blog" className="no-print tap-pad inline-flex items-center gap-2 text-sm font-semibold text-muted transition hover:gap-3 hover:text-charcoal-900">
               <ArrowLeft className="size-4" /> {tb('back')}
@@ -112,26 +112,26 @@ export default function PostPage() {
 
             {/* summary */}
             {post.excerpt && (
-              <p className="mt-10 border-l-4 border-saffron-500 pl-5 font-display text-[1.2rem] leading-relaxed text-charcoal-900 md:pl-7 md:text-[1.35rem]">
+              <p className="mt-6 sm:mt-10 border-l-4 border-saffron-500 pl-5 font-display text-[1.2rem] leading-relaxed text-charcoal-900 md:pl-7 md:text-[1.35rem]">
                 {post.excerpt}
               </p>
             )}
 
             {/* key points on phones and tablets (desktop: in the side column) */}
             {headings.length >= 2 && (
-              <nav aria-label={tb('keyPoints')} className="mt-10 lg:hidden">
+              <nav aria-label={tb('keyPoints')} className="mt-6 sm:mt-10 lg:hidden">
                 <KeyPoints headings={headings} title={tb('keyPoints')} num={num} />
               </nav>
             )}
 
             {/* full story */}
-            <SectionTitle className="mt-12">{tb('fullStory')}</SectionTitle>
+            <SectionTitle className="mt-8 sm:mt-12">{tb('fullStory')}</SectionTitle>
             <div id="article-body" className="article-body mt-7">
               <RichText html={post.content} anchors />
             </div>
 
             {(!!tags.length || !!post.categories?.length) && (
-              <div className="no-print mt-12 flex flex-wrap gap-2 border-t border-line pt-7">
+              <div className="no-print mt-8 sm:mt-12 flex flex-wrap gap-2 border-t border-line pt-7">
                 {post.categories?.map((c) => typeof c === 'object' && <Link key={c.id} to={`/blog?category=${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-charcoal-900 px-4 py-1 text-sm text-white">{c.title}</Link>)}
                 {tags.map((tag) => <Link key={tag} to={`/blog?tag=${encodeURIComponent(tag)}`} className="inline-flex min-h-11 items-center rounded-full bg-white px-4 py-1 text-sm text-saffron-700 ring-1 ring-field transition hover:ring-field-hover">#{tag}</Link>)}
               </div>
@@ -149,11 +149,11 @@ export default function PostPage() {
         </div>
 
         {related.length > 0 && (
-          <section className="no-print mt-24 md:mt-28">
+          <section className="no-print mt-12 sm:mt-24 md:mt-28">
             <SectionTitle aside={<Link to="/blog" className="more-link text-sm">{tb('seeAll')} <ArrowRight className="size-4" /></Link>}>
               {tb('more')}
             </SectionTitle>
-            <div className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-3">{related.map((r) => <NewsCard key={r.id} post={r} locale={locale} />)}</div>
+            <div className="mt-9 grid gap-x-7 gap-y-8 sm:gap-y-12 md:grid-cols-3">{related.map((r) => <NewsCard key={r.id} post={r} locale={locale} />)}</div>
           </section>
         )}
       </div>

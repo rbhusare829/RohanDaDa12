@@ -77,9 +77,9 @@ export function SupriyaInitiativesSection({
   const isMr = locale !== 'en'
 
   return (
-    <section className="bg-[#f0f6fc] border-t border-stone-200 py-16 sm:py-24">
+    <section className="bg-[#f0f6fc] border-t border-stone-200 py-6 sm:py-10 lg:py-12">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'विकासाची ध्येये' : 'Key Focus Areas'}
           </span>
@@ -98,14 +98,15 @@ export function SupriyaInitiativesSection({
         </div>
 
         <Reveal delay={0.08}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* phones: one swipeable row (the next card peeks in); tablets: two columns; desktop: three */}
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
             {INITIATIVES.map((it, i) => {
               const Icon = it.icon
               return (
                 <Link
                   key={i}
                   to={it.link}
-                  className="group flex flex-col justify-between h-full rounded-2xl bg-white border border-stone-200/90 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400"
+                  className="group flex w-[80vw] max-w-[320px] shrink-0 snap-center flex-col justify-between h-auto rounded-2xl bg-white border border-stone-200/90 p-5 shadow-sm sm:h-full sm:w-auto sm:max-w-none sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">

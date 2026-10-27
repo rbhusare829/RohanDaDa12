@@ -243,7 +243,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
   ]
 
   return (
-    <div className="relative isolate space-y-12 sm:space-y-16 md:space-y-20">
+    <div className="relative isolate space-y-8 sm:space-y-16 md:space-y-20">
       {/* Ambient Atmospheric Lighting */}
       <div aria-hidden className="pointer-events-none absolute -top-24 right-0 -z-10 size-96 rounded-full bg-saffron-500/10 blur-[130px]" />
       <div aria-hidden className="pointer-events-none absolute top-[600px] left-0 -z-10 size-96 rounded-full bg-emerald-500/10 blur-[140px]" />
@@ -536,7 +536,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
           <div ref={sectorContentRef} className="scroll-mt-24 space-y-8 pt-2">
             {activeView === 'all' ? (
               /* Display ALL 5 Sectors in a Comprehensive Sequence */
-              <div className="space-y-12">
+              <div className="space-y-8 sm:space-y-12">
                 {sectors.map((sec, secIdx) => {
                   const secTheme = SECTOR_THEMES[secIdx % SECTOR_THEMES.length]
                   const secItems = sec.items ?? []
@@ -636,7 +636,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
 
       {/* Optional extra blocks */}
       {rest.length > 0 && (
-        <div className="mt-12 md:mt-16">
+        <div className="mt-8 sm:mt-12 md:mt-16">
           <PageBlocks blocks={rest} design="stitch" />
         </div>
       )}
@@ -668,7 +668,7 @@ function InstitutionCard({
     <CardBox
       url={item.url}
       className={cn(
-        'group relative flex h-full min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl border border-stone-200/90 p-5 sm:p-6',
+        'group relative flex h-full flex-col justify-between gap-3 overflow-hidden rounded-2xl border border-stone-200/90 p-5 sm:min-h-[220px] sm:gap-0 sm:p-6', // phones: only as tall as the content
         'bg-white/95',
         'shadow-[0_4px_16px_-4px_rgba(14,30,52,0.06),inset_0_1px_1px_rgba(255,255,255,1)]',
         'transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_35px_-10px_rgba(14,30,52,0.12)]',

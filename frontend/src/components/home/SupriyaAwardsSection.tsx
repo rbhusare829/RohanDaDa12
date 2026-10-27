@@ -66,10 +66,10 @@ export function SupriyaAwardsSection({
   const isMr = locale !== 'en'
 
   return (
-    <section className="bg-[#000d3d] py-14 sm:py-20 text-white overflow-hidden border-b border-white/10">
+    <section className="bg-[#000d3d] py-6 sm:py-10 lg:py-12 text-white overflow-hidden border-b border-white/10">
       <div className="container-x">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6 sm:mb-8">
           <div>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
               {isMr ? 'कौटुंबिक पार्श्वभूमी' : 'Family Background'}

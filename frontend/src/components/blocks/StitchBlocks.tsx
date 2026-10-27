@@ -41,7 +41,7 @@ const getCardIcon = (title?: string | null, url?: string | null) => {
 export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }: { eyebrow?: string | null; heading?: string | null; intro?: string | null; as?: 'h2' | 'h3'; className?: string }) {
   if (!eyebrow && !heading && !intro) return null
   return (
-    <Reveal className={cn('mb-10 max-w-3xl space-y-2', className)}>
+    <Reveal className={cn('mb-6 sm:mb-10 max-w-3xl space-y-2', className)}>
       {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{eyebrow}</p>}
       {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{heading}</H>}
       {intro && <p className="pt-1 text-base leading-relaxed text-gray-600">{intro}</p>}

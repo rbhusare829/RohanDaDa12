@@ -215,57 +215,6 @@
     {
      "after": "6ad5ec5e15929451e812665f",
      "block": {
-      "id": "6b1d0c5e15929451e8126701",
-      "blockType": "stats",
-      "hidden": false,
-      "eyebrow": {
-       "mr": null,
-       "en": null
-      },
-      "heading": {
-       "mr": "आजवरचा कार्यविस्तार",
-       "en": "Impact So Far"
-      },
-      "items": [
-       {
-        "id": "6b1d0c5e15929451e8126702",
-        "value": {
-         "mr": "२३",
-         "en": "23"
-        },
-        "label": {
-         "mr": "सामाजिक उपक्रम",
-         "en": "Initiatives launched"
-        }
-       },
-       {
-        "id": "6b1d0c5e15929451e8126703",
-        "value": {
-         "mr": "हजारो",
-         "en": "Thousands"
-        },
-        "label": {
-         "mr": "लाभार्थी कुटुंबे",
-         "en": "Of families reached"
-        }
-       },
-       {
-        "id": "6b1d0c5e15929451e8126704",
-        "value": {
-         "mr": "२ जिल्हे",
-         "en": "2 districts"
-        },
-        "label": {
-         "mr": "सोलापूर आणि धाराशिव",
-         "en": "Active across rural Solapur and Dharashiv"
-        }
-       }
-      ]
-     }
-    },
-    {
-     "after": "6b1d0c5e15929451e8126701",
-     "block": {
       "id": "6b1d0c5e15929451e8126705",
       "blockType": "content",
       "hidden": false,
@@ -283,6 +232,9 @@
       }
      }
     }
+   ],
+   "remove": [
+    "6b1d0c5e15929451e8126701"
    ]
   },
   "/vision": {

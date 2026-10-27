@@ -71,9 +71,9 @@ export function SupriyaVideoReelsSection({
   if (!v && !r?.items.length) return null
 
   return (
-    <section className="bg-white border-t border-stone-200 py-16 sm:py-24" aria-labelledby="video-reels-title">
+    <section className="bg-white border-t border-stone-200 py-6 sm:py-10 lg:py-12" aria-labelledby="video-reels-title">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'व्हिडिओ' : 'Video'}</span>
           <h2 id="video-reels-title" className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'भारतातील दुधात भेसळ' : 'Milk Adulteration in India'}
@@ -125,9 +125,9 @@ export function SupriyaVideoReelsSection({
 
         {/* the reels */}
         {r && r.items.length > 0 && (
-          <div className={v ? 'mt-14 sm:mt-16' : ''}>
+          <div className={v ? 'mt-8 sm:mt-10' : ''}>
             {/* centred, with the same red and saffron line under "Reels" as under the section title */}
-            <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
+            <div className="mb-6 flex flex-col items-center text-center sm:mb-8">
               <p className="flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-widest text-red-600">
                 <SocialIcon name="instagram" className="size-4" /> {r.eyebrow || 'Instagram'}
               </p>

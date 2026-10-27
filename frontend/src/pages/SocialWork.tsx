@@ -31,7 +31,7 @@ export default function SocialWorkPage() {
       <Seo title={t('socialWork')} />
       <InnerPage path="/social-work" title={t('socialWork')} subtitle={subtitle} variant="navy">
         <FilterChips base="/social-work" active={category} items={[{ label: tc('all'), value: '' }, ...used.map((c) => ({ label: categoryLabel(c.value, locale), value: c.value }))]} />
-        <div className="space-y-20">
+        <div className="space-y-10 sm:space-y-20">
           {groups.map((g) => (
             <section key={g.value} aria-labelledby={`cat-${g.value}`}>
               <div className="mb-8 flex items-center gap-4">
@@ -39,7 +39,7 @@ export default function SocialWorkPage() {
                 <span className="h-px flex-1 bg-line" />
                 <span className="text-sm text-muted">{g.items.length}</span>
               </div>
-              <div className="grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-x-7 gap-y-8 sm:gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                 {g.items.map((it) => (
                   <Link key={it.id} to={`/social-work/${it.slug}`} className="tile group">
                     <div className="tile-media aspect-[16/10]">

@@ -49,9 +49,9 @@ export function SupriyaVisionSection({
   const bookTitle = isMr ? 'न्यू इंडिया मॅनिफेस्टो: गोइंग बियॉन्ड पॉसिबल' : 'The New India Manifesto: Going Beyond Possible'
 
   return (
-    <section className="bg-[#f0f6fc] border-t border-stone-200 py-16 sm:py-24" aria-labelledby="home-vision-title">
+    <section className="bg-[#f0f6fc] border-t border-stone-200 py-6 sm:py-10 lg:py-12" aria-labelledby="home-vision-title">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">{eyebrow}</span>
           {heading && (
             <h2 id="home-vision-title" className="mx-auto mt-1 max-w-4xl font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">

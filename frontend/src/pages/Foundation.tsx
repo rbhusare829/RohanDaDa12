@@ -84,9 +84,9 @@ export default function FoundationPage() {
           <PageBlocks blocks={about} design="stitch" />
         </section>
 
-        <section id="events" className="mt-20 scroll-mt-36 md:mt-28">
+        <section id="events" className="mt-10 sm:mt-20 scroll-mt-36 md:mt-28">
           {/* Stitch section header: heading + intro on the left, "all events" on the right */}
-          <Reveal className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <Reveal className="mb-6 sm:mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="flex max-w-2xl flex-col gap-2">
               <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{x.events}</h2>
               <p className="text-base leading-relaxed text-gray-600 md:text-lg">{x.eventsIntro}</p>
@@ -94,7 +94,7 @@ export default function FoundationPage() {
             <div className="shrink-0">{viewAll('/events', x.allEvents)}</div>
           </Reveal>
           {eventGroups.length ? (
-            <div className="space-y-14">
+            <div className="space-y-8 sm:space-y-14">
               {eventGroups.map((g) => (
                 <div key={g.label}>
                   {eventGroups.length > 1 && (
@@ -112,7 +112,7 @@ export default function FoundationPage() {
           )}
         </section>
 
-        <section id="projects" className="mt-20 scroll-mt-36 md:mt-28">
+        <section id="projects" className="mt-10 sm:mt-20 scroll-mt-36 md:mt-28">
           {/* same layout as lokmangalfoundation.com/projects → "Explore all social initiatives" */}
           <div className="section relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-stone-200/70 bg-ivory">
             <div aria-hidden className="pointer-events-none absolute -top-24 right-0 size-96 rounded-full bg-saffron-500/5 blur-3xl" />
@@ -133,7 +133,7 @@ export default function FoundationPage() {
         </section>
 
         {closing.length > 0 && (
-          <div className="mt-20 md:mt-28">
+          <div className="mt-10 sm:mt-20 md:mt-28">
             <PageBlocks blocks={closing} design="stitch" />
           </div>
         )}

@@ -146,7 +146,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
   }
 
   return (
-    <div className="space-y-16 md:space-y-24">
+    <div className="space-y-10 sm:space-y-16 md:space-y-24">
       {before.length > 0 && <PageBlocks blocks={before} design="stitch" />}
 
       <section className="flex flex-col gap-10 md:gap-12">
@@ -305,7 +305,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
         </div>
 
         {/* Family Spotlight & Moments Gallery (Supriya Sule style) */}
-        <div className="mt-14 pt-10 border-t border-stone-200/80 md:mt-20">
+        <div className="mt-8 sm:mt-14 pt-6 sm:pt-10 border-t border-stone-200/80 md:mt-20">
           <Reveal className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">

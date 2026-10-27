@@ -43,7 +43,7 @@ function StitchList({ blocks }: { blocks: PageBlock[] }) {
     } else groups.push({ key, node: <StitchBlock b={b} />, anchor: 'heading' in b && b.heading ? `s-${i}` : undefined })
   }
   return (
-    <div className="space-y-16 md:space-y-24">
+    <div className="space-y-10 sm:space-y-16 md:space-y-24">
       {groups.map((g) => (
         <div key={g.key} id={g.anchor} className="scroll-mt-28">
           {g.node}
@@ -58,7 +58,7 @@ export function PageBlocks({ blocks, design }: { blocks?: PageBlock[] | null; de
   if (!blocks?.length) return null
   if (design === 'stitch') return <StitchList blocks={blocks} />
   return (
-    <div className="space-y-16 md:space-y-24">
+    <div className="space-y-10 sm:space-y-16 md:space-y-24">
       {blocks.filter((b) => !('hidden' in b && b.hidden)).map((b, i) => (
         <div key={b.id ?? i} id={'heading' in b && b.heading ? `s-${i}` : undefined} className="scroll-mt-28">
           {render(b)}
@@ -133,7 +133,7 @@ function render(b: PageBlock): ReactNode {
           <Heading eyebrow={b.eyebrow} heading={b.heading} />
           {b.intro && <p className="lead -mt-3 mb-10 max-w-3xl">{b.intro}</p>}
           {/* photo cards = open tiles; text-only cards = columns under one shared rule (no boxes) */}
-          <div className={cn('grid', cols, withImages ? 'gap-x-7 gap-y-12' : 'gap-x-10 gap-y-10 border-t border-charcoal-900/12')}>
+          <div className={cn('grid', cols, withImages ? 'gap-x-7 gap-y-8 sm:gap-y-12' : 'gap-x-10 gap-y-6 sm:gap-y-10 border-t border-charcoal-900/12')}>
             {b.items?.map((c) => {
               const inner = (
                 <>

@@ -51,7 +51,7 @@ export default function EventsPage() {
         </section>
 
         {featured.length > 0 && (
-          <section className="mt-20 md:mt-24">
+          <section className="mt-10 sm:mt-20 md:mt-24">
             <SectionTitle>{t('featured')}</SectionTitle>
             <div className="mt-9">
               <CardSlider cards={featured} readMore={t('readMore')} prevLabel={t('prev')} nextLabel={t('next')} />
@@ -60,11 +60,11 @@ export default function EventsPage() {
         )}
 
         {posts.length > 0 && (
-          <section className="mt-20 md:mt-24">
+          <section className="mt-10 sm:mt-20 md:mt-24">
             <SectionTitle aside={<Link to="/blog" className="tap-pad inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-saffron-700 hover:text-btn-hover">{tc('viewAll')} <ArrowRight className="size-4" /></Link>}>
               {t('blog')}
             </SectionTitle>
-            <div className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <NewsCard key={post.id} post={post} locale={locale} />)}</div>
+            <div className="mt-9 grid gap-x-7 gap-y-8 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <NewsCard key={post.id} post={post} locale={locale} />)}</div>
           </section>
         )}
       </InnerPage>

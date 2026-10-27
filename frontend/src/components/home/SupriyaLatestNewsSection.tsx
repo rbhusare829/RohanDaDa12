@@ -73,10 +73,10 @@ export function SupriyaLatestNewsSection({
   if (!displayItems.length) return null
 
   return (
-    <section className="bg-white py-14 sm:py-20 border-b border-stone-200 overflow-hidden">
+    <section className="bg-white py-6 sm:py-10 lg:py-12 border-b border-stone-200 overflow-hidden">
       <div className="container-x">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-red-600">
               {isMr ? 'माध्यम वार्तांकन' : 'Media Coverage'}

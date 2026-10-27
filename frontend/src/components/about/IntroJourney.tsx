@@ -53,32 +53,38 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
 /* ==========================================================================
    Section 1: Philosophy, Ideals & Early Life (विचारसरणी आणि समाजकारण)
    ========================================================================== */
+function LeaderPortraitCard({ isMr }: { isMr: boolean }) {
+  return (
+    <div className="group relative overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 shadow-[0_20px_50px_-12px_rgba(9,20,34,0.18)] transition-all duration-500 hover:shadow-[0_28px_65px_-16px_rgba(9,20,34,0.28)]">
+      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#000d3d]">
+        <Img
+          src="/images/portraits/rohan-blue-jacket-book.webp"
+          alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
+          fill
+          priority
+          className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-103"
+          sizes="(max-width:1024px) 92vw, 460px"
+        />
+        {/* Subtle bottom badge */}
+        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#000d3d] via-[#000d3d]/60 to-transparent p-5 text-white">
+          <p className="font-display text-xl font-bold">
+            {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
+          </p>
+          <p className="text-xs font-semibold text-saffron-300">
+            {isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'President, Lokmangal Foundation'}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function PhilosophySection({ isMr }: { isMr: boolean }) {
   return (
     <section className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
-      {/* Left Column: Portrait Card */}
-      <Reveal className="flex flex-col lg:col-span-5">
-        <div className="group relative overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 shadow-[0_20px_50px_-12px_rgba(9,20,34,0.18)] transition-all duration-500 hover:shadow-[0_28px_65px_-16px_rgba(9,20,34,0.28)]">
-          <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#000d3d]">
-            <Img
-              src="/images/portraits/rohan-blue-jacket-book.webp"
-              alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-              fill
-              priority
-              className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-103"
-              sizes="(max-width:1024px) 92vw, 460px"
-            />
-            {/* Subtle bottom badge */}
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#000d3d] via-[#000d3d]/60 to-transparent p-5 text-white">
-              <p className="font-display text-xl font-bold">
-                {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-              </p>
-              <p className="text-xs font-semibold text-saffron-300">
-                {isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'President, Lokmangal Foundation'}
-              </p>
-            </div>
-          </div>
-        </div>
+      {/* Left Column: Portrait Card (Desktop only: hidden on mobile) */}
+      <Reveal className="hidden lg:flex lg:flex-col lg:col-span-5">
+        <LeaderPortraitCard isMr={isMr} />
       </Reveal>
 
       {/* Right Column: Narrative & Ideals */}
@@ -110,6 +116,12 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           <p>
             {isMr ? 'आमदार श्री. सुभाष बापू देशमुख यांचे पुत्र म्हणून वाढताना त्यांना वडिलांच्या कामाचा, विचारांचा आणि समाजाशी असलेल्या नात्याचा जवळून अनुभव घेता आला. त्यांच्या वाटचालीतून कष्ट, सातत्य, धाडस आणि समाजाप्रती बांधिलकी या मूल्यांचे संस्कार रोहन यांच्यावर झाले. मात्र वडिलांकडून मिळालेले संस्कार ही त्यांच्या प्रवासाची केवळ सुरुवात आहे. समाजकार्याकडे ते केवळ तात्कालिक मदत म्हणून पाहत नाहीत. लोकांशी प्रत्यक्ष संवाद साधणे, त्यांच्या अडचणी समजून घेणे आणि समस्यांच्या मूळ कारणांचा शोध घेऊन शाश्वत उपाययोजना करणे, ही त्यांची कार्यपद्धती आहे.' : 'As the son of MLA Shri Subhash Bapu Deshmukh, Rohan grew up watching his father’s work, his thinking and his bond with the people up close. That journey taught him the value of hard work, consistency, courage and commitment to society. But this legacy is only the beginning of his own path. For Rohan, social work is not about temporary relief. He speaks to people directly, listens to their problems and looks for the root cause, so that the solutions last.'}
           </p>
+
+          {/* Mobile Only: Portrait Card positioned after Paragraph 2 */}
+          <div className="my-5 block lg:hidden">
+            <LeaderPortraitCard isMr={isMr} />
+          </div>
+
           <p>
             {isMr ? 'त्यांनी लिहिलेल्या "न्यू इंडिया मॅनिफेस्टो" या पुस्तकातून मिळालेल्या प्रेरणेतून संपूर्ण महाराष्ट्रात स्टार्टअप परिसंस्था (इकोसिस्टम) उभारण्याचा त्यांचा संकल्प आहे. उद्योजकता, लेखन आणि समाजकार्य या तिन्ही माध्यमांतून ते तरुणांसाठी नव्या संधी निर्माण करण्यासाठी आणि समाजाच्या सर्वांगीण विकासासाठी कार्यरत आहेत.' : 'Inspired by his book New India Manifesto, he is working to build a startup ecosystem across Maharashtra. Through enterprise, writing and social work, Rohan is creating new opportunities for young people and working for the all-round development of society.'}
           </p>

@@ -173,7 +173,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                 />
               </figure>
             </Reveal>
-            <Reveal delay={0.1} className="relative overflow-hidden rounded-2xl border-l-4 border-saffron-500 bg-gradient-to-br from-cream via-cream/95 to-saffron-50/20 p-6 shadow-sm md:p-8 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:self-start">
+            <Reveal delay={0.1} className="lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:self-start">
               <RichText html={intro.body} readMore />
             </Reveal>
           </div>

@@ -25,6 +25,7 @@
     "content:project-photos": "npm run content:project-photos -w backend",
     "content:home-text": "npm run content:home-text -w backend",
     "content:intro-know-more": "npm run content:intro-know-more -w backend",
+    "content:rd-content": "npm run content:rd-content -w backend",
     "content:update": "npm run content:update -w backend",
     "test": "npm run test -w backend",
     "lint": "npm run lint -w backend && npm run lint -w frontend",

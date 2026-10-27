@@ -8,6 +8,7 @@ import PostPage, { loader as postLoader } from '@/pages/BlogPost'
 import EventsPage, { loader as eventsLoader } from '@/pages/Events'
 import EventPage, { loader as eventLoader } from '@/pages/EventPage'
 import SocialWorkPage, { loader as socialWorkLoader } from '@/pages/SocialWork'
+import SocialActivitiesPage from '@/pages/SocialActivities'
 import InitiativePage, { loader as initiativeLoader } from '@/pages/Initiative'
 import FoundationPage, { loader as foundationLoader } from '@/pages/Foundation'
 import FamilyPage, { loader as familyLoader } from '@/pages/Family'
@@ -28,6 +29,8 @@ const pages: RouteObject[] = [
   { path: 'media/photos/:slug', loader: albumLoader, Component: AlbumPage },
   { path: 'media/videos', loader: videosLoader, Component: VideosPage },
   { path: 'social-work', loader: socialWorkLoader, Component: SocialWorkPage },
+  // the four social activities moved into a tab of /political-career (Oct 2026): this older address forwards there
+  { path: 'social-activities', Component: SocialActivitiesPage },
   { path: 'social-work/:slug', loader: initiativeLoader, Component: InitiativePage },
   // the old bilingual addresses: /en/about → /about
   { path: 'en', loader: () => redirect('/') },

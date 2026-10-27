@@ -67,7 +67,7 @@ export function PhotosPage() {
                     </div>
 
                     <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-bold text-saffron-600">
-                      <span>अल्बम पहा</span>
+                      <span>{LOCALE === 'mr' ? 'अल्बम पहा' : 'View album'}</span>
                       <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>

@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import type { CSSProperties } from 'react'
 import { Reveal } from '../ui/Motion'
 import { cn } from '@/lib/utils'
 
@@ -63,7 +62,7 @@ type JourneyBlock = Extract<NonNullable<Home['sections']>[number], { blockType: 
  * Political Journey & Awards Section (100% Supriya Sule Layout):
  * Connected directly to real CMS journey milestones of Rohan Deshmukh!
  * - Political Journey title, Parliament/Emblem icon, "Leadership. Experience. Values."
- * - Horizontal interactive milestone timeline with red connecting line and node points
+ * - Milestone timeline with red connecting line and node points: all milestones side by side on desktop, swipe on phones/tablets
  */
 export function SupriyaJourneySection({
   b,
@@ -73,8 +72,6 @@ export function SupriyaJourneySection({
   locale?: 'mr' | 'en'
 }) {
   const isMr = locale !== 'en'
-  const timelineRef = useRef<HTMLDivElement>(null)
-  const [activeIdx, setActiveIdx] = useState(0)
 
   // Map verified photos matching the specific milestone topic
   const milestonePhotos = [
@@ -104,26 +101,20 @@ export function SupriyaJourneySection({
       })
     : MILESTONES
 
-  const scrollTimeline = (direction: 'prev' | 'next') => {
-    const el = timelineRef.current
-    if (!el || !el.children.length) return
-    const cardWidth = (el.children[0] as HTMLElement).offsetWidth + 24
-    const next = direction === 'next' ? Math.min(activeIdx + 1, milestones.length - 1) : Math.max(activeIdx - 1, 0)
-    el.scrollTo({ left: next * cardWidth, behavior: 'smooth' })
-    setActiveIdx(next)
-  }
+  // desktop: every milestone in full, side by side in equal columns (up to five in a row); phones and tablets swipe through them
+  const cols = Math.min(milestones.length, 5)
 
   return (
     <section className="bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f6fc] border-b border-stone-200 py-16 sm:py-24 overflow-hidden">
       {/* Political Journey Heading, Parliament Emblem & Slogan */}
       <div className="container-x text-center mb-12 sm:mb-16">
         <Reveal>
-          <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
+          {/* <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'कारकीर्द' : 'Political Journey'}
-          </span>
+          </span> */}
 
           <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
-            {isMr ? 'राजकीय व सामाजिक प्रवास' : 'Political Journey'}
+            {isMr ? 'प्रवास' : 'Journey'}
           </h2>
 
           <div className="mt-2.5 mb-6 flex justify-center items-center gap-1.5">
@@ -131,59 +122,11 @@ export function SupriyaJourneySection({
             <span className="h-1 w-3 rounded-full bg-saffron-500" />
           </div>
 
-          {/* Parliament / Constitution Emblem Icon (Supriya Sule style) */}
-          <div className="mx-auto my-4 grid size-16 place-items-center text-[#000d3d]">
-            <svg viewBox="0 0 100 60" fill="currentColor" className="w-16 h-10 opacity-90">
-              <path d="M 50 2 L 10 16 L 90 16 Z M 14 18 L 14 45 L 86 45 L 86 18 Z M 18 45 L 18 52 L 82 52 L 82 45 Z" />
-              <rect x="22" y="22" width="6" height="20" rx="1" fill="#fff" />
-              <rect x="34" y="22" width="6" height="20" rx="1" fill="#fff" />
-              <rect x="47" y="22" width="6" height="20" rx="1" fill="#fff" />
-              <rect x="60" y="22" width="6" height="20" rx="1" fill="#fff" />
-              <rect x="72" y="22" width="6" height="20" rx="1" fill="#fff" />
-            </svg>
-          </div>
-
-          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-[#000d3d]">
-            {isMr ? 'नेतृत्व. अनुभव. निष्ठा.' : 'Leadership. Experience. Values.'}
-          </h3>
-
-          <p className="mx-auto mt-3 max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600">
-            {isMr
-              ? 'सोलापूर आणि महाराष्ट्राच्या सर्वांगीण विकासासाठी सहकार, शिक्षण, उद्योग आणि समाजसेवेच्या माध्यमातून घेतलेली भरारी.'
-              : 'Dedicated to grassroots public service, youth leadership, enterprise and rural empowerment across Maharashtra.'}
-          </p>
         </Reveal>
       </div>
 
       {/* 3. Horizontal Interactive Milestone Timeline with Red Connecting Line */}
       <div className="container-x relative">
-        {/* Timeline Navigation Controls */}
-        <div className="flex items-center justify-between mb-6">
-          <div className="text-xs font-bold uppercase tracking-wider text-slate-500">
-            {isMr ? 'महत्त्वाचे टप्पे' : 'Key Milestones'} ({activeIdx + 1} / {milestones.length})
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => scrollTimeline('prev')}
-              disabled={activeIdx === 0}
-              aria-label="Previous milestone"
-              className="grid size-9 place-items-center rounded-full bg-red-600 text-white shadow-sm transition-all hover:bg-[#000d3d] disabled:opacity-30 disabled:pointer-events-none active:scale-95"
-            >
-              <ChevronLeft className="size-5" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollTimeline('next')}
-              disabled={activeIdx === milestones.length - 1}
-              aria-label="Next milestone"
-              className="grid size-9 place-items-center rounded-full bg-red-600 text-white shadow-sm transition-all hover:bg-[#000d3d] disabled:opacity-30 disabled:pointer-events-none active:scale-95"
-            >
-              <ChevronRight className="size-5" />
-            </button>
-          </div>
-        </div>
-
         {/* Timeline Track with Red Line and Node Points */}
         <div className="relative">
           {/* Continuous Red Connecting Line (Desktop) */}
@@ -193,18 +136,18 @@ export function SupriyaJourneySection({
           />
 
           <div
-            ref={timelineRef}
-            className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 py-4 sm:mx-0 sm:px-0"
+            className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 lg:grid lg:overflow-visible lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
+            style={{ '--cols': cols } as CSSProperties}
           >
             {milestones.map((m, i) => (
               <div
                 key={i}
-                className="w-[84vw] max-w-[340px] shrink-0 snap-center sm:w-[320px] relative z-10"
+                className="w-[84vw] max-w-[340px] shrink-0 snap-center sm:w-[320px] lg:w-auto lg:max-w-none relative z-10"
               >
                 <div
                   className={cn(
                     'flex flex-col justify-between h-full rounded-2xl bg-white border p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl',
-                    i === activeIdx ? 'border-red-500 ring-2 ring-red-500/20 shadow-md' : 'border-stone-200/90',
+                    i === 0 ? 'border-red-500 ring-2 ring-red-500/20 shadow-md' : 'border-stone-200/90',
                   )}
                 >
                   {/* Milestone Photo Header */}

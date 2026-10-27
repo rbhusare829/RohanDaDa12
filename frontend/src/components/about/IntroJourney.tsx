@@ -55,25 +55,23 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
    ========================================================================== */
 function LeaderPortraitCard({ isMr }: { isMr: boolean }) {
   return (
-    <div className="group relative overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 shadow-[0_20px_50px_-12px_rgba(9,20,34,0.18)] transition-all duration-500 hover:shadow-[0_28px_65px_-16px_rgba(9,20,34,0.28)]">
-      <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#000d3d]">
-        <Img
-          src="/images/portraits/rohan-blue-jacket-book.webp"
-          alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-          fill
-          priority
-          className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-103"
-          sizes="(max-width:1024px) 92vw, 460px"
-        />
-        {/* Subtle bottom badge */}
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#000d3d] via-[#000d3d]/60 to-transparent p-5 text-white">
-          <p className="font-display text-xl font-bold">
-            {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-          </p>
-          <p className="text-xs font-semibold text-saffron-300">
-            {isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'President, Lokmangal Foundation'}
-          </p>
-        </div>
+    <div className="group relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#000d3d] shadow-[0_20px_50px_-12px_rgba(9,20,34,0.22)] transition-all duration-500 hover:shadow-[0_28px_65px_-16px_rgba(9,20,34,0.32)]">
+      <Img
+        src="/images/portraits/rohan-blue-jacket-book.webp"
+        alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
+        fill
+        priority
+        className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-103"
+        sizes="(max-width:1024px) 92vw, 460px"
+      />
+      {/* Subtle bottom badge */}
+      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#000d3d] via-[#000d3d]/60 to-transparent p-5 text-white">
+        <p className="font-display text-xl font-bold">
+          {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
+        </p>
+        <p className="text-xs font-semibold text-saffron-300">
+          {isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'President, Lokmangal Foundation'}
+        </p>
       </div>
     </div>
   )

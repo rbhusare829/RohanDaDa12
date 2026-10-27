@@ -57,14 +57,9 @@ const FAMILY_MOMENTS = [
     en: { badge: 'Joint family', title: 'The whole family together', desc: 'At festivals, celebrations and family occasions, every generation comes together to keep its culture and traditions alive.' },
   },
   {
-    src: '/images/gallery/family/rd-family-05.webp',
-    badge: 'बंधुप्रेम',
-    title: 'मनीष देशमुख यांच्यासोबत',
-    desc: 'बंधू मनीष यांच्यासोबत सहकार, उद्योग आणि लोकमंगल परिवाराच्या विविध सामाजिक उपक्रमांचे यशस्वी नियोजन.',
-    en: { badge: 'Brothers', title: 'With Manish Deshmukh', desc: 'Planning the cooperatives, industries and many social initiatives of the Lokmangal Parivar together with his brother Manish.' },
-  },
-  {
     src: '/images/gallery/family/rd-family-03.webp',
+    /** a tall photo: show the middle, so both Rohan's face and the baby's are in the card */
+    position: 'center 36%',
     badge: 'पुढची पिढी',
     title: 'चिमुकल्यांसोबत संस्कारांची शिदोरी',
     desc: 'पुढच्या पिढीमध्ये लहानपणापासूनच समाजभान, नम्रता आणि संस्कृतीचे बीजारोपण करणे ही कुटुंबाची जबाबदारी आहे.',
@@ -335,7 +330,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
             </Link>
           </Reveal>
 
-          {/* 6 Curated Family Moments Cards */}
+          {/* Curated Family Moments Cards (Oct 2026: the "With Manish Deshmukh" card removed) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {FAMILY_MOMENTS.map((item, idx) => (
               <div
@@ -350,6 +345,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    style={'position' in item ? { objectPosition: item.position } : undefined}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="absolute top-2.5 left-2.5 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-bold uppercase text-charcoal-800 shadow-xs">

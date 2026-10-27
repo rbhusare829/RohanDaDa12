@@ -104,27 +104,38 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const textOnly = b.heroStyle === 'text'
   const isMr = locale !== 'en'
 
-  // Construct slides matching Image 3 with both user-uploaded hero images:
-  // Slide 1: Speaking at podium as in Image 3
-  // Slide 2: Speaking to crowd in white kurta with BJP scarf
+  // The three hero slides (Oct 2026), each with a photo that fits its words:
+  // 1. grassroots → Rohan in a white kurta (a wide version of the portrait; no political photos)
+  // 2. the book → Rohan holding it (a wide version of the portrait, him on the right and space for the words on the left)
+  // 3. small steps → Rohan in a peach kurta (a wide version of the portrait; no political photos)
   const slides: Slide[] = [
     {
-      image: '/images/hero/rohan-hero-podium.webp',
-      alt: isMr ? 'रोहन सुभाष देशमुख - अध्यक्ष, लोकमंगल फाऊंडेशन' : 'Rohan Subhash Deshmukh - Chairman, Lokmangal Foundation',
+      image: '/images/hero/rohan-hero-white-kurta.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
       kicker: isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'PRESIDENT, LOKMANGAL FOUNDATION',
       heading: isMr
-        ? 'चांगल्या नेतृत्वाची सुरुवात तळागाळातील लोकांचे प्रश्न समजून घेण्यापासून होते'
+        ? 'मोठ्या बदलांची सुरुवात मोठ्या व्यासपीठावरून नव्हे, तर सामान्य माणसाच्या प्रश्नांना समजून घेण्यापासून होते.'
         : 'Good leadership begins with understanding the problems of people at the grassroots',
-      position: 'center 15%',
+      position: '77% 20%',
     },
     {
-      image: '/images/hero/rohan-hero-crowd.webp',
-      alt: isMr ? 'रोहन सुभाष देशमुख - जनसंवाद' : 'Rohan Subhash Deshmukh - Public Meeting',
-      kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
+      image: '/images/hero/rohan-hero-book.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख ‘The New India Manifesto’ पुस्तकासह' : 'Rohan Subhash Deshmukh with The New India Manifesto',
+      kicker: isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'NEW INDIA MANIFESTO',
       heading: isMr
-        ? '‘न्यू इंडिया मॅनिफेस्टो: गोइंग बियॉन्ड पॉसिबल’ या पुस्तकाचे लेखक'
+        ? 'शक्यतांच्या पलीकडे पाहण्याची दृष्टी आणि नवभारताच्या भविष्याचा विचार—यातून साकारले ‘The New India Manifesto: Going Beyond Possible’.'
         : 'Author of The New India Manifesto: Going Beyond Possible',
-      position: 'center 25%',
+      subheading: isMr ? 'लेखक — रोहन देशमुख' : null,
+      position: '77% 20%',
+    },
+    {
+      image: '/images/hero/rohan-hero-namaskar.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
+      kicker: isMr ? 'लोकमंगल फाउंडेशन' : 'LOKMANGAL FOUNDATION',
+      heading: isMr
+        ? 'समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही मोठा बदल घडवू शकतो.'
+        : 'Small steps toward change can lead to a big difference',
+      position: '77% 20%',
     },
   ]
 

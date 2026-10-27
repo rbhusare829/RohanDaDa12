@@ -1,7 +1,6 @@
 import {
   Building,
   Calendar,
-  CheckCircle2,
   GraduationCap,
   Heart,
   Landmark,
@@ -11,6 +10,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { Page } from '@/types/cms'
+import { cn } from '@/lib/utils'
 import { Img } from '@/components/ui/Img'
 import { Reveal } from '@/components/ui/Motion'
 
@@ -25,10 +25,9 @@ interface IntroJourneyProps {
  * स्वपरिचय (About / Introduction) Page — 100% modeled on Supriya Sule's official layout. Its words come from the client's
  * "RD Content" document (Oct 2026), in Marathi and English as written there:
  * 1. Early Life, Ideals & Core Philosophy (Left portrait, right narrative with philosophy quote)
- * 2. Family Upbringing, Mass Connect & Featured Milestone Photo (With signature blue caption box)
- * 3. Signature Dark Blue Section: "कार्यगौरव व उपक्रम" (Performance & Key Initiatives) + "Profile" Card
- * 4. Political & Social Journey Timeline: "Leadership. Experience. Values."
- * 5. Positions Held ("महत्त्वाच्या जबाबदाऱ्या व पदे")
+ * 2. Social work (text beside a three-photo grid) and vision (with a highlighted key line)
+ * 3. Positions Held ("महत्त्वाच्या जबाबदाऱ्या व पदे")
+ * (Oct 2026: the dark-blue "जीवनचरित्र / Biography" + "Profile" section was removed)
  */
 export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
   const isMr = locale === 'mr'
@@ -41,10 +40,7 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
       {/* 2. Family Upbringing, Mass Connect & Milestone Photo Banner */}
       <MilestoneSection isMr={isMr} />
 
-      {/* 3. Signature Dual Navy Blue Section: Performance & Profile Card */}
-      <DualPerformanceProfileSection isMr={isMr} />
-
-      {/* 4. Positions Held (भूषविलेली पदे व जबाबदाऱ्या) */}
+      {/* 3. Positions Held (भूषविलेली पदे व जबाबदाऱ्या) */}
       <PositionsHeldSection isMr={isMr} />
     </div>
   )
@@ -174,196 +170,76 @@ function QuickFactCard({
 }
 
 /* ==========================================================================
-   Section 2: Family Upbringing, Mass Connect & Milestone Photo Banner
+   Section 2: Social Work (समाजकार्य) and Vision (दृष्टिकोन) — Oct 2026 layout:
+   the heading and text beside a captioned grid of three photos of the Lokmangal Foundation's work (community weddings, the
+   Annapurna free-meal scheme, water conservation), then the vision text with its key line in a highlighted card.
    ========================================================================== */
+const SOCIAL_PHOTOS = [
+  { src: '/images/social-work/community-weddings.webp', mr: 'सर्वधर्मीय सामुदायिक विवाह सोहळा', en: 'Inter-faith community weddings' },
+  { src: '/images/social-work/annapurna-meals.webp', mr: 'अन्नपूर्णा मोफत भोजन योजना', en: 'Annapurna free meal scheme' },
+  { src: '/images/social-work/water-conservation.webp', mr: 'लोकमंगल जलसंधारण कार्यक्रम', en: 'Lokmangal water conservation' },
+]
+
 function MilestoneSection({ isMr }: { isMr: boolean }) {
   return (
-    <section className="space-y-6">
-      <Reveal className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
-        <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'समाजकार्य' : 'Social Work'}</p>
-        <p>
-          {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून रोहन सुभाष देशमुख समाजाच्या गरजांनुसार विविध उपक्रम राबवतात. सोलापूर आणि धाराशिव जिल्ह्यांमध्ये कार्यरत असलेल्या या फाउंडेशनचा मुख्य उद्देश गरजू व्यक्तींना योग्य वेळी मदत करणे, त्यांच्या अडचणी दूर करण्यासाठी प्रयत्न करणे आणि त्यांना प्रगतीच्या संधी उपलब्ध करून देणे हा आहे. समाजातील विविध घटकांचे जीवनमान उंचावावे आणि त्यांना स्वावलंबी होण्यासाठी बळ मिळावे, यासाठी फाउंडेशन सातत्याने प्रयत्नशील आहे.' : 'Through Lokmangal Foundation, Rohan turns his ideas into action on the ground. The Foundation runs a range of social initiatives across Solapur and Dharashiv districts with one simple aim: to stand with people when they need it most and help them move forward.'}
-        </p>
-      </Reveal>
-
-      {/* Featured Milestone Photo Banner (100% Supriya Sule style with blue caption pill bar) */}
-      <Reveal delay={0.1}>
-        <div className="group overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(9,20,34,0.14)]">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-charcoal-950 sm:aspect-[21/9] lg:aspect-[2.4/1]">
-            <Img
-              src="/images/gallery/political/rd-political-26.webp"
-              alt={isMr ? 'जनसंवाद व युवा नेतृत्व' : 'Public address and youth leadership'}
-              fill
-              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-102"
-              sizes="100vw"
-            />
+    <section className="space-y-14 sm:space-y-16">
+      {/* समाजकार्य: text on the left, the photos on the right */}
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+        <Reveal className="lg:col-span-5">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'समाजकार्य' : 'Social Work'}</p>
+          <h2 className="mt-1.5 font-display text-2xl font-bold leading-snug tracking-tight text-[#000d3d] sm:text-3xl">
+            {isMr ? 'लोकमंगल फाउंडेशन — सोलापूर आणि धाराशिव' : 'Lokmangal Foundation — Solapur and Dharashiv'}
+          </h2>
+          <div aria-hidden className="mt-3 mb-5 flex items-center gap-1.5">
+            <span className="h-1 w-12 rounded-full bg-red-600" />
+            <span className="h-1 w-3 rounded-full bg-saffron-500" />
           </div>
+          <p className="text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
+            {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून रोहन सुभाष देशमुख समाजाच्या गरजांनुसार विविध उपक्रम राबवतात. सोलापूर आणि धाराशिव जिल्ह्यांमध्ये कार्यरत असलेल्या या फाउंडेशनचा मुख्य उद्देश गरजू व्यक्तींना योग्य वेळी मदत करणे, त्यांच्या अडचणी दूर करण्यासाठी प्रयत्न करणे आणि त्यांना प्रगतीच्या संधी उपलब्ध करून देणे हा आहे. समाजातील विविध घटकांचे जीवनमान उंचावावे आणि त्यांना स्वावलंबी होण्यासाठी बळ मिळावे, यासाठी फाउंडेशन सातत्याने प्रयत्नशील आहे.' : 'Through Lokmangal Foundation, Rohan turns his ideas into action on the ground. The Foundation runs a range of social initiatives across Solapur and Dharashiv districts with one simple aim: to stand with people when they need it most and help them move forward.'}
+          </p>
+        </Reveal>
 
-          {/* Signature Light Blue Caption Bar (Exact replica of Supriya Sule milestone caption) */}
-          <div className="border-t border-sky-100 bg-[#e8f1fc] px-6 py-3.5 text-center">
-            <p className="font-display text-base font-bold text-[#0c4a8a] sm:text-lg">
-              {isMr ? 'लोकमंगल फाउंडेशन — सोलापूर आणि धाराशिव' : 'Lokmangal Foundation — Solapur and Dharashiv'}
-            </p>
+        <Reveal delay={0.1} className="lg:col-span-7">
+          {/* phones/tablets: the large photo on top, two below; desktop: the large photo on the left, two stacked on the right —
+              a compact block about as tall as the text beside it */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:aspect-[16/10] lg:grid-cols-3 lg:grid-rows-2">
+            {SOCIAL_PHOTOS.map((ph, i) => (
+              <figure
+                key={ph.src}
+                className={cn('group relative overflow-hidden rounded-2xl bg-charcoal-950 shadow-sm ring-1 ring-stone-200/80', i === 0 ? 'col-span-2 aspect-[16/9] lg:row-span-2 lg:aspect-auto' : 'aspect-[4/3] lg:aspect-auto')}
+              >
+                <img
+                  src={ph.src}
+                  alt={isMr ? ph.mr : ph.en}
+                  width={700}
+                  height={549}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                />
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-2.5 pt-8 text-xs font-bold text-white sm:px-4 sm:pb-3 sm:text-sm">
+                  {isMr ? ph.mr : ph.en}
+                </figcaption>
+              </figure>
+            ))}
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      </div>
 
-      <Reveal delay={0.15} className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
+      {/* दृष्टिकोन: the text, then its key line in a highlighted card */}
+      <Reveal delay={0.1} className="mx-auto max-w-4xl text-center">
         <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'दृष्टिकोन' : 'Vision'}</p>
-        <p>
+        <div aria-hidden className="mt-2.5 mb-5 flex items-center justify-center gap-1.5">
+          <span className="h-1 w-12 rounded-full bg-red-600" />
+          <span className="h-1 w-3 rounded-full bg-saffron-500" />
+        </div>
+        <p className="text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
           {isMr ? '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.' : 'Rohan is the author of New India Manifesto, a book that sets out his ideas for a new India. Inspired by it, he has set out to build a strong startup ecosystem across Maharashtra, where young people with ideas get the right guidance, support and opportunity to grow, whether they come from a big city or a small town.'}
         </p>
-        <p className="font-display text-lg font-bold text-charcoal-950">
+        <p className="mt-6 rounded-2xl border-l-4 border-red-600 bg-[#f0f6fc] px-6 py-5 text-left font-display text-lg font-bold leading-snug text-[#000d3d] shadow-sm sm:px-8 sm:text-xl">
           {isMr ? 'तरुणांनी स्वतःच्या क्षमतेवर विश्वास ठेवून स्वावलंबी व्हावे आणि रोजगार शोधण्याऐवजी रोजगारनिर्मिती करावी, हा त्यांच्या दृष्टिकोनाचा केंद्रबिंदू आहे.' : 'Rooted in Solapur and focused on the future, Rohan’s journey has one clear goal: to give the next generation the confidence and the chance to build something of their own.'}
         </p>
       </Reveal>
-    </section>
-  )
-}
-
-/* ==========================================================================
-   Section 3: Signature Dual Navy Blue Section ("कार्यगौरव व उपक्रम" + "Profile")
-   (Exact replica of Supriya Sule's 'Performance In Lok Sabha' and 'Profile' layout)
-   ========================================================================== */
-function DualPerformanceProfileSection({ isMr }: { isMr: boolean }) {
-  const initiatives = [
-    {
-      icon: Heart,
-      title: isMr ? 'वैयक्तिक माहिती' : 'Personal Details',
-      desc: isMr ? 'जन्म: १२ डिसेंबर १९८७ · जन्मस्थळ: सोलापूर, देशमुख कुटुंब' : 'Born: 12 December 1987 · Birthplace: Solapur, into the Deshmukh family',
-    },
-    {
-      icon: GraduationCap,
-      title: isMr ? 'शालेय शिक्षण' : 'School Education',
-      desc: isMr ? 'लिटल फ्लॉवर कॉन्व्हेंट स्कूल, सोलापूर · राष्ट्रीय छात्र सेना (NCC): इयत्ता नववीपासून सक्रिय सहभाग' : 'Little Flower Convent School, Solapur · National Cadet Corps (NCC): Active cadet from Class 9',
-    },
-    {
-      icon: Landmark,
-      title: isMr ? 'महाविद्यालयीन शिक्षण' : 'College Education',
-      desc: isMr ? 'संगमेश्वर महाविद्यालय, सोलापूर' : 'Sangameshwar College, Solapur',
-    },
-    {
-      icon: Trophy,
-      title: isMr ? 'उच्च शिक्षण' : 'Higher Education',
-      desc: isMr ? 'अमेरिकेतील उच्च शिक्षणासाठी प्रयाण: बारावी उत्तीर्ण झाल्यानंतर · रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी (RIT): जैवतंत्रज्ञान व उद्योजकता विकास (Biotechnology & Entrepreneurship Development) या विषयात पदवी' : 'Move to the USA: Went abroad for higher studies after Class 12 · Rochester Institute of Technology (RIT): Earned a degree in Biotechnology and Entrepreneurship Development',
-    },
-  ]
-
-  return (
-    <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-b from-[#000d3d] via-[#05164d] to-[#000d3d] py-16 text-white sm:py-20 lg:py-24">
-      {/* Subtle dotted background grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] opacity-[0.06] [background-size:24px_24px]"
-      />
-      
-      {/* Top & Bottom Accent Lines */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-saffron-500 to-transparent" />
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
-
-      <div className="container-x relative">
-        <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column: Performance In Social Work / Key Initiatives */}
-          <div className="flex flex-col lg:col-span-7">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {isMr ? 'जीवनचरित्र' : 'Biography'}
-              </h2>
-              {/* Signature red line with white dot */}
-              <div className="mt-2.5 mb-6 flex items-center gap-1.5">
-                <span className="h-1 w-14 rounded-full bg-red-600" />
-                <span className="h-1 w-2 rounded-full bg-white" />
-              </div>
-            </div>
-
-            {/* Initiatives 2x2 Grid */}
-            <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
-              {initiatives.map((item, idx) => {
-                const Icon = item.icon
-                return (
-                  <div
-                    key={idx}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.06] p-5.5 backdrop-blur-md transition-all duration-300 hover:border-saffron-400/50 hover:bg-white/[0.1] hover:-translate-y-1"
-                  >
-                    <div>
-                      <div className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-saffron-600 to-red-600 text-white shadow-md">
-                        <Icon className="size-5.5" />
-                      </div>
-                      <h3 className="mt-3.5 font-display text-lg font-bold text-white transition-colors group-hover:text-saffron-300">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Right Column: Profile Card (Replica of Supriya Sule Namaskar Card) */}
-          <div className="flex flex-col lg:col-span-5">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {isMr ? 'Profile' : 'Profile'}
-              </h2>
-              {/* Signature red line with white dot */}
-              <div className="mt-2.5 mb-6 flex items-center gap-1.5">
-                <span className="h-1 w-14 rounded-full bg-red-600" />
-                <span className="h-1 w-2 rounded-full bg-white" />
-              </div>
-            </div>
-
-            {/* White Framed Profile Card */}
-            <div className="relative flex flex-1 flex-col overflow-hidden rounded-2xl border-4 border-white/20 bg-white p-5 text-charcoal-950 shadow-2xl transition-transform duration-300 hover:scale-[1.01] sm:p-7">
-              {/* Top Watermark / Emblem */}
-              <div className="flex items-center justify-between border-b border-stone-100 pb-3">
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-saffron-600">
-                  {isMr ? 'अधिकृत परिचय' : 'Official Profile'}
-                </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-[#000d3d]">
-                  <CheckCircle2 className="size-3.5 text-emerald-600" />
-                  {isMr ? 'लोकमंगल परिवार' : 'Lokmangal Parivar'}
-                </span>
-              </div>
-
-              {/* Leader Photo */}
-              <div className="relative my-4 aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100 sm:aspect-[16/10]">
-                <Img
-                  src="/images/portraits/rohan-peach-kurta-namaskar.webp"
-                  alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width:1024px) 92vw, 420px"
-                />
-              </div>
-
-              {/* Authentic Greeting Signature Typography */}
-              <div className="mt-auto space-y-2 text-center">
-                <p className="font-display text-2xl font-bold text-red-600 sm:text-3xl">
-                  {isMr ? 'नमस्कार...' : 'Greetings...'}
-                </p>
-                <h3 className="font-display text-xl font-extrabold tracking-tight text-[#000d3d] sm:text-2xl">
-                  {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-                </h3>
-                <p className="text-xs font-semibold text-stone-600 sm:text-sm">
-                  {isMr
-                    ? 'अध्यक्ष — लोकमंगल फाउंडेशन | संचालक — लोकमंगल मल्टिस्टेट'
-                    : 'President — Lokmangal Foundation | Director — Lokmangal Multistate'}
-                </p>
-
-                {/* Signature Tagline Pill */}
-                <div className="pt-2">
-                  <span className="inline-block rounded-full bg-[#000d3d] px-4 py-1.5 text-xs font-bold text-white shadow-xs">
-                    {isMr ? 'आपला नम्र, जनसेवेसाठी सदैव कटिबद्ध!' : 'Always at your service with humility!'}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   )
 }

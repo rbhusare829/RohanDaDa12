@@ -10,7 +10,7 @@ import { RichText } from '@/components/ui/RichText'
 import { CMSLink } from '@/components/ui/CMSLink'
 import { CountUp } from '@/components/ui/CountUp'
 import { Img } from '@/components/ui/Img'
-import { AccentBar, Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
+import { Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 
 type Block = NonNullable<Page['layout']>[number]
 type Cards = Extract<Block, { blockType: 'cards' }>
@@ -24,7 +24,7 @@ const pad = (n: number) => (LOCALE === 'mr' ? toMarathiDigits(String(n).padStart
 const bleed = 'relative left-1/2 w-screen -translate-x-1/2'
 const NAVY = 'text-[#000d3d]'
 /** the step numbers: red, navy, saffron (as on the homepage) */
-const stepBg = (i: number) => (i % 3 === 1 ? 'bg-[#000d3d]' : i % 3 === 2 ? 'bg-saffron-700' : 'bg-red-600')
+const stepBg = (i: number) => (i % 3 === 1 ? 'bg-[#000d3d]' : i % 3 === 2 ? 'bg-saffron-500' : 'bg-red-600')
 /** the homepage buttons: red, navy on hover; the second one outlined in navy */
 const btn = (i: number) =>
   cn(
@@ -34,7 +34,12 @@ const btn = (i: number) =>
 
 /** the red-and-saffron bar under every homepage heading */
 function Bar({ center }: { center?: boolean }) {
-  return <AccentBar center={center} />
+  return (
+    <span aria-hidden className={cn('flex items-center gap-1.5', center && 'justify-center')}>
+      <span className="h-1 w-14 rounded-full bg-red-600" />
+      <span className="h-1 w-3 rounded-full bg-saffron-500" />
+    </span>
+  )
 }
 
 /**
@@ -53,7 +58,7 @@ export function Manifesto({ blocks }: { blocks?: Block[] | null }) {
   const firstCta = list.find((b) => b.blockType === 'cta')
   if (!list.length) return null
   return (
-    <div className="relative isolate space-y-16 md:space-y-24">
+    <div className="relative isolate space-y-10 sm:space-y-16 md:space-y-24">
       {/* white behind the whole page (the homepage's white, not the cream of the other inner pages), up to the header and footer */}
       <div aria-hidden className="absolute -bottom-40 -top-12 left-1/2 -z-10 !mt-0 w-screen -translate-x-1/2 bg-white md:-bottom-48 md:-top-16" />
       {list.map((b, i) => {
@@ -115,7 +120,7 @@ function Book({ block }: { block: MediaText }) {
   const right = block.imagePosition === 'right'
   return (
     <section className={cn(bleed, 'overflow-hidden border-y border-stone-200 bg-[#f0f6fc]')}>
-      <div className={cn('container-x relative grid grid-cols-1 items-center gap-12 py-16 lg:gap-16 lg:py-24', hasImg && 'lg:grid-cols-12')}>
+      <div className={cn('container-x relative grid grid-cols-1 items-center gap-8 sm:gap-12 py-10 sm:py-16 lg:gap-16 lg:py-24', hasImg && 'lg:grid-cols-12')}>
         {hasImg && (
           <Reveal className={cn('flex justify-center lg:col-span-5', right && 'lg:order-2')}>
             <div className="relative [perspective:1400px]">
@@ -165,7 +170,7 @@ function StatsBand({ block }: { block: Stats }) {
   return (
     <section className={cn(bleed, 'on-dark overflow-hidden border-t-4 border-t-red-600 bg-[#000d3d] text-white')}>
       <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] opacity-[0.04] [background-size:24px_24px]" />
-      <div className="container-x relative grid grid-cols-1 items-center gap-10 py-14 lg:grid-cols-12 lg:py-20">
+      <div className="container-x relative grid grid-cols-1 items-center gap-6 sm:gap-10 py-8 sm:py-14 lg:grid-cols-12 lg:py-20">
         <Reveal className="space-y-2 lg:col-span-4">
           {block.eyebrow && <p className="text-xs font-extrabold uppercase tracking-widest text-saffron-400">{block.eyebrow}</p>}
           {block.heading && <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">{block.heading}</h2>}

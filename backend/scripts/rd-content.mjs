@@ -2,7 +2,7 @@
  * Puts the client's content document ("RD Content", Google Docs, Oct 2026) into a database that already has content, in both
  * languages, exactly as written in the document (backend/src/seed/data/rd-content.json):
  *   - Pages: Introduction (admin copy), Family Background, Lokmangal Parivar (intro), Political Career, Lokmangal Foundation (text,
- *     key areas, and the "Impact So Far" figures and closing line, added once), Vision (The New India Manifesto; its closing
+ *     key areas and closing line, added once; the "Impact So Far" figures are removed), Vision (The New India Manifesto; its closing
  *     "प्रगतीसाठी आजच चळवळीत सामील व्हा / Join the movement" banner and the "प्रत्यक्ष कामाचे परिणाम / Results on the ground"
  *     numbers are hidden — they can be switched back on in the admin)
  *   - Events: Solapur University Youth Festival, Yuva Sahitya Sammelan, International Women's Lawn Tennis Tournament, Rural Sports
@@ -59,6 +59,11 @@ try {
       const block = layout.find((b) => b.id === blockId) ?? (type ? layout.find((b) => b.blockType === type) : undefined)
       if (block) applyBlock(block, blockChange)
       else missing++
+    }
+    // blocks taken out of the page (Oct 2026: the Foundation's "आजवरचा कार्यविस्तार / Impact So Far" figures)
+    for (const removeId of change.remove ?? []) {
+      const at = layout.findIndex((b) => b.id === removeId)
+      if (at >= 0) layout.splice(at, 1)
     }
     // blocks the document adds (once): placed after the block they follow, or at the end
     for (const { after, block } of change.add ?? []) {

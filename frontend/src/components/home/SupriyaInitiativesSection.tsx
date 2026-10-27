@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { Landmark, Briefcase, GraduationCap, HeartPulse, Users, Sprout, ArrowRight } from 'lucide-react'
-import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
+import { Reveal } from '../ui/Motion'
 
 const INITIATIVES = [
   {
@@ -77,35 +77,40 @@ export function SupriyaInitiativesSection({
   const isMr = locale !== 'en'
 
   return (
-    <section className="bg-[#f0f6fc] border-t border-stone-200 py-16 sm:py-24">
+    <section className="bg-[#f0f6fc] border-t border-stone-200 py-6 sm:py-10 lg:py-12">
       <div className="container-x">
-        <Reveal className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'विकासाची ध्येये' : 'Key Focus Areas'}
           </span>
           <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'प्रमुख कार्यक्षेत्रे आणि उपक्रम' : 'Key Initiatives & Social Work'}
           </h2>
-          <AccentBar center className="mt-2.5 mb-4" />
+          <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
+            <span className="h-1 w-14 rounded-full bg-red-600" />
+            <span className="h-1 w-3 rounded-full bg-saffron-500" />
+          </div>
           <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600">
             {isMr
               ? 'सहकार, उद्योग, शिक्षण, आरोग्य आणि समाजसेवेच्या माध्यमातून सोलापूर व महाराष्ट्राच्या प्रगतीसाठी अविरत कार्य.'
               : 'Working dedicatedly across banking, industries, education, healthcare and community service.'}
           </p>
-        </Reveal>
+        </div>
 
-        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <Reveal delay={0.08}>
+          {/* phones: one swipeable row (the next card peeks in); tablets: two columns; desktop: three */}
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
             {INITIATIVES.map((it, i) => {
               const Icon = it.icon
               return (
-                <StaggerItem key={i} className="h-full">
                 <Link
+                  key={i}
                   to={it.link}
-                  className="group flex flex-col justify-between h-full rounded-2xl bg-white border border-stone-200/90 p-5 sm:p-6 shadow-sm transition-[translate,box-shadow,border-color] duration-300 ease-soft motion-safe:hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400 active:scale-[0.99]"
+                  className="group flex w-[80vw] max-w-[320px] shrink-0 snap-center flex-col justify-between h-auto rounded-2xl bg-white border border-stone-200/90 p-5 shadow-sm sm:h-full sm:w-auto sm:max-w-none sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-3 sm:mb-4">
-                      <div className="grid size-11 sm:size-12 place-items-center rounded-xl bg-red-50 text-red-600 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white">
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="grid size-12 place-items-center rounded-xl bg-red-50 text-red-600 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white">
                         <Icon className="size-6" />
                       </div>
                       <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
@@ -117,20 +122,20 @@ export function SupriyaInitiativesSection({
                       {isMr ? it.title : it.enTitle}
                     </h3>
 
-                    <p className="mt-1.5 sm:mt-2.5 text-sm leading-relaxed text-slate-600">
+                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-600">
                       {isMr ? it.description : it.enDescription}
                     </p>
                   </div>
 
-                  <div className="mt-4 pt-3 sm:mt-6 sm:pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-red-600">
+                  <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-red-600">
                     <span>{isMr ? 'अधिक माहिती पहा' : 'Learn more'}</span>
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
-                </StaggerItem>
               )
             })}
-        </Stagger>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

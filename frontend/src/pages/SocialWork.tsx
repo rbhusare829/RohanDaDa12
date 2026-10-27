@@ -32,7 +32,7 @@ export default function SocialWorkPage() {
       <Seo title={t('socialWork')} />
       <InnerPage path="/social-work" title={t('socialWork')} subtitle={subtitle} variant="navy">
         <FilterChips base="/social-work" active={category} items={[{ label: tc('all'), value: '' }, ...used.map((c) => ({ label: categoryLabel(c.value, locale), value: c.value }))]} />
-        <div className="space-y-20">
+        <div className="space-y-10 sm:space-y-20">
           {groups.map((g) => (
             <section key={g.value} aria-labelledby={`cat-${g.value}`}>
               <Reveal className="mb-8 flex items-center gap-4">

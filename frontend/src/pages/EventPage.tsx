@@ -21,7 +21,7 @@ function YearTabs({ tabs }: { tabs: { key: string; label: string; content: React
   if (!tabs.length) return null
   return (
     <div>
-      <ScrollRow role="tablist" className="-mx-4 mb-10 flex gap-7 border-b border-line px-4 md:mx-0 md:px-0">
+      <ScrollRow role="tablist" className="-mx-4 mb-6 sm:mb-10 flex gap-7 border-b border-line px-4 md:mx-0 md:px-0">
         {tabs.map((t) => (
           // the bar under the open year grows out from its middle (a closed one is the same bar, flat), so a click is answered at once
           <button key={t.key} role="tab" aria-selected={active === t.key} onClick={() => setActive(t.key)}
@@ -59,7 +59,7 @@ export default function EventPage() {
         variant="navy"
       >
         {(d.body || d.facts?.length) && (
-          <div className="mb-16 grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-20">
+          <div className="mb-10 sm:mb-16 grid gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-20">
             {d.body && <Reveal className="prose-rd max-w-3xl">{d.body.split(/\n\s*\n/).map((para, i) => <p key={i}>{para}</p>)}</Reveal>}
             {!!d.facts?.length && (
               <Stagger as="dl" className="self-start border-t-2 border-charcoal-900" delay={0.12}>

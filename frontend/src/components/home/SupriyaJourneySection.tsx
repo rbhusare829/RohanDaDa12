@@ -1,7 +1,5 @@
 import type { CSSProperties } from 'react'
-import { m as motion, useReducedMotion } from 'motion/react'
-import { EASE_OUT } from '@/lib/motion'
-import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
+import { Reveal } from '../ui/Motion'
 import { cn } from '@/lib/utils'
 
 interface Milestone {
@@ -105,12 +103,11 @@ export function SupriyaJourneySection({
 
   // desktop: every milestone in full, side by side in equal columns (up to five in a row); phones and tablets swipe through them
   const cols = Math.min(milestones.length, 5)
-  const calm = useReducedMotion()
 
   return (
-    <section className="bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f6fc] border-b border-stone-200 py-16 sm:py-24 overflow-hidden">
+    <section className="bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f6fc] border-b border-stone-200 py-6 sm:py-10 lg:py-12 overflow-hidden">
       {/* Political Journey Heading, Parliament Emblem & Slogan */}
-      <div className="container-x text-center mb-12 sm:mb-16">
+      <div className="container-x text-center mb-6 sm:mb-8">
         <Reveal>
           {/* <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'कारकीर्द' : 'Political Journey'}
@@ -120,7 +117,10 @@ export function SupriyaJourneySection({
             {isMr ? 'प्रवास' : 'Journey'}
           </h2>
 
-          <AccentBar center className="mt-2.5 mb-6" />
+          <div className="mt-2.5 flex justify-center items-center gap-1.5">
+            <span className="h-1 w-14 rounded-full bg-red-600" />
+            <span className="h-1 w-3 rounded-full bg-saffron-500" />
+          </div>
 
         </Reveal>
       </div>
@@ -129,29 +129,24 @@ export function SupriyaJourneySection({
       <div className="container-x relative">
         {/* Timeline Track with Red Line and Node Points */}
         <div className="relative">
-          {/* Continuous Red Connecting Line (Desktop): it is drawn from the first milestone to the last as the row comes into view */}
-          <div className="hidden lg:block absolute left-8 right-8 top-1/2 -translate-y-1/2 h-1 z-0" aria-hidden>
-            <motion.div
-              className="size-full origin-left rounded-full bg-red-600"
-              initial={calm ? false : { scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              viewport={{ once: true, margin: '0px 0px -15% 0px' }}
-              transition={{ duration: 1.1, ease: EASE_OUT, delay: 0.1 }}
-            />
-          </div>
+          {/* Continuous Red Connecting Line (Desktop) */}
+          <div
+            aria-hidden
+            className="hidden lg:block absolute left-8 right-8 top-1/2 -translate-y-1/2 h-1 bg-red-600 z-0"
+          />
 
-          <Stagger
+          <div
             className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 lg:grid lg:overflow-visible lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
             style={{ '--cols': cols } as CSSProperties}
           >
             {milestones.map((m, i) => (
-              <StaggerItem
+              <div
                 key={i}
                 className="w-[84vw] max-w-[340px] shrink-0 snap-center sm:w-[320px] lg:w-auto lg:max-w-none relative z-10"
               >
                 <div
                   className={cn(
-                    'flex flex-col justify-between h-full rounded-2xl bg-white border p-5 shadow-sm transition-[translate,box-shadow] duration-300 ease-soft motion-safe:hover:-translate-y-1.5 hover:shadow-xl',
+                    'flex flex-col justify-between h-full rounded-2xl bg-white border p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl',
                     i === 0 ? 'border-red-500 ring-2 ring-red-500/20 shadow-md' : 'border-stone-200/90',
                   )}
                 >
@@ -174,9 +169,9 @@ export function SupriyaJourneySection({
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                       {m.category}
                     </span>
-                    <h3 className="mt-1 font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
+                    <h4 className="mt-1 font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
                       {m.title}
-                    </h3>
+                    </h4>
                     <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
                       {m.description}
                     </p>
@@ -185,7 +180,7 @@ export function SupriyaJourneySection({
                   {/* Red node indicator */}
                   <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-red-600">
                     <span className="flex items-center gap-1.5">
-                      <span className="size-2.5 rounded-full bg-red-600" />
+                      <span className="size-2.5 rounded-full bg-red-600 animate-pulse" />
                       <span>{m.year}</span>
                     </span>
                     <span className="text-slate-400 font-normal">
@@ -193,9 +188,9 @@ export function SupriyaJourneySection({
                     </span>
                   </div>
                 </div>
-              </StaggerItem>
+              </div>
             ))}
-          </Stagger>
+          </div>
         </div>
       </div>
     </section>

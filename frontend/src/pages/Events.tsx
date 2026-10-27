@@ -56,7 +56,7 @@ export default function EventsPage() {
         </section>
 
         {featured.length > 0 && (
-          <section className="mt-20 md:mt-24">
+          <section className="mt-10 sm:mt-20 md:mt-24">
             <Reveal>
               <SectionTitle>{t('featured')}</SectionTitle>
             </Reveal>
@@ -67,13 +67,13 @@ export default function EventsPage() {
         )}
 
         {posts.length > 0 && (
-          <section className="mt-20 md:mt-24">
+          <section className="mt-10 sm:mt-20 md:mt-24">
             <Reveal>
               <SectionTitle aside={<Link to="/blog" className="tap-pad inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-saffron-700 hover:text-btn-hover">{tc('viewAll')} <ArrowRight className="size-4" /></Link>}>
                 {t('blog')}
               </SectionTitle>
             </Reveal>
-            <Stagger className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <StaggerItem key={post.id}><NewsCard post={post} locale={locale} /></StaggerItem>)}</Stagger>
+            <Stagger className="mt-9 grid gap-x-7 gap-y-8 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <StaggerItem key={post.id}><NewsCard post={post} locale={locale} /></StaggerItem>)}</Stagger>
           </section>
         )}
       </InnerPage>

@@ -35,7 +35,7 @@ export function InnerPage({ path, title, subtitle, image, imagePosition, crumbs,
   return (
     <>
       <PageBanner title={title} subtitle={subtitle} crumbs={autoCrumbs} image={image} imagePosition={imagePosition} tabs={tabs} tabsLabel={menu.title ?? undefined} path={path} variant={variant} eyebrow={eyebrow} />
-      <div className={variant ? 'container-x pb-20 pt-12 md:pb-28 md:pt-16' : 'container-x pb-20 pt-10 md:pb-24 md:pt-12'}>
+      <div className={variant ? 'container-x pb-10 sm:pb-20 pt-8 sm:pt-12 md:pb-28 md:pt-16' : 'container-x pb-10 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12'}>
         <div className="min-w-0">{children}</div>
       </div>
     </>

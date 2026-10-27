@@ -33,7 +33,7 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
   const isMr = locale === 'mr'
 
   return (
-    <div className="space-y-16 sm:space-y-20 lg:space-y-24">
+    <div className="space-y-10 sm:space-y-20 lg:space-y-24">
       {/* 1. Early Life, Ideals & Core Philosophy */}
       <PhilosophySection isMr={isMr} />
 
@@ -179,7 +179,7 @@ const SOCIAL_PHOTOS = [
 
 function MilestoneSection({ isMr }: { isMr: boolean }) {
   return (
-    <section className="space-y-14 sm:space-y-16">
+    <section className="space-y-8 sm:space-y-16">
       {/* समाजकार्य: text on the left, the photos on the right */}
       <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
         <Reveal className="lg:col-span-5">

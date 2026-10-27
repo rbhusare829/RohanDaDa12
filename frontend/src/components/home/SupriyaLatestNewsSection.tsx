@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { ArrowUpRight } from 'lucide-react'
 import type { Post } from '@/types/cms'
 import { mediaUrl } from '@/lib/media'
-import { AccentBar, Reveal } from '../ui/Motion'
+import { Reveal } from '../ui/Motion'
 
 const MONTHS_MR = [
   'जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून',
@@ -73,10 +73,10 @@ export function SupriyaLatestNewsSection({
   if (!displayItems.length) return null
 
   return (
-    <section className="bg-white py-14 sm:py-20 border-b border-stone-200 overflow-hidden">
+    <section className="bg-white py-6 sm:py-10 lg:py-12 border-b border-stone-200 overflow-hidden">
       <div className="container-x">
         {/* Header */}
-        <Reveal className="mb-8">
+        <div className="mb-6">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-red-600">
               {isMr ? 'माध्यम वार्तांकन' : 'Media Coverage'}
@@ -84,9 +84,12 @@ export function SupriyaLatestNewsSection({
             <h2 className="mt-1 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
               {isMr ? 'ब्लॉग' : 'Blogs'}
             </h2>
-            <AccentBar className="mt-2.5" />
+            <div className="mt-2.5 flex items-center gap-1.5">
+              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-3 rounded-full bg-saffron-500" />
+            </div>
           </div>
-        </Reveal>
+        </div>
 
         {/* the endless row: two copies side by side, moved left by one copy's width (-50%) and back to the start, over and over */}
         <Reveal delay={0.08}>

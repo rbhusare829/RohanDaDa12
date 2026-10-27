@@ -51,7 +51,7 @@ export default function ContactPage() {
       <Seo title={t('contact')} />
       <InnerPage path="/contact" title={t('contact')} subtitle={settings.tagline} variant="navy">
         {/* quick contact */}
-        <Stagger className="mb-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-16 lg:grid-cols-[1fr_1.4fr_1fr_1.3fr]">
+        <Stagger className="mb-8 sm:mb-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:mb-16 lg:grid-cols-[1fr_1.4fr_1fr_1.3fr]">
           {settings.phone && (
             <StaggerItem>
               <QuickCard icon={Phone} label={tc('phone')} href={`tel:${settings.phone.replace(/\s/g, '')}`} accent="bg-gradient-to-br from-saffron-600 via-saffron-500 to-[#f97316]">{settings.phone}</QuickCard>
@@ -90,7 +90,7 @@ export default function ContactPage() {
           )}
         </Stagger>
 
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className="grid grid-cols-1 items-start gap-5 sm:gap-8 lg:grid-cols-12 lg:gap-10">
           {/* the form */}
           <Reveal className="relative overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-6 shadow-[0_24px_60px_-24px_rgba(9,20,34,0.22)] md:p-10 lg:col-span-7">
             <span aria-hidden className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-saffron-600 via-saffron-500 to-leaf-600" />

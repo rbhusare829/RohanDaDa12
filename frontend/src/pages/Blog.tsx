@@ -55,10 +55,10 @@ export default function BlogPage() {
       <Seo title={t('title')} description={t('intro')} />
       <PageBanner title={t('title')} subtitle={t('intro')} crumbs={[{ label: t('title') }]} path="/blog" variant="navy" />
 
-      <div className="container-x pb-20 pt-12 md:pb-28 md:pt-16">
+      <div className="container-x pb-10 sm:pb-20 pt-8 sm:pt-12 md:pb-28 md:pt-16">
         {/* top stories */}
         {isFront && lead && (
-          <section className="pb-16 md:pb-20">
+          <section className="pb-10 sm:pb-16 md:pb-20">
             <FrontHeading label={<><Sparkles className="size-3.5" />{t('topBadge')}</>}>{t('topStories')}</FrontHeading>
             <div className="grid gap-6 lg:grid-cols-12 lg:gap-8">
               <div className={rest.length > 0 ? 'lg:col-span-7' : 'lg:col-span-12'}>
@@ -74,7 +74,7 @@ export default function BlogPage() {
         )}
 
         {/* sections + search — stays at the top while scrolling */}
-        <div className="relative z-30 mb-12 md:sticky md:top-[4.5rem] lg:top-20">
+        <div className="relative z-30 mb-8 sm:mb-12 md:sticky md:top-[4.5rem] lg:top-20">
           <div className="flex flex-col gap-3 rounded-2xl border border-stone-200/90 bg-white/95 p-3 shadow-[0_12px_30px_-12px_rgba(9,20,34,0.18)] backdrop-blur md:flex-row md:items-center md:gap-6 md:px-4">
             <div className="flex min-w-0 flex-1 items-center gap-3">
               <span className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-charcoal-900 sm:inline-flex"><span className="grid size-8 place-items-center rounded-lg bg-saffron-500/10 text-saffron-700"><SlidersHorizontal className="size-4" /></span> {t('sections')}</span>
@@ -99,7 +99,7 @@ export default function BlogPage() {
         </div>
 
         {/* article list + sidebar */}
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-10">
           <section className="min-w-0 lg:col-span-8">
             <FrontHeading aside={<span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold text-gray-500 ring-1 ring-stone-200">{t('showing', { count: num(posts.length) })}</span>}>
               {listTitle}
@@ -111,7 +111,7 @@ export default function BlogPage() {
                 </StaggerItem>
               ))}
             </Stagger>
-            {!posts.length && <p className="rounded-2xl bg-white py-14 text-center text-muted ring-1 ring-stone-200">{tc('noResults')}</p>}
+            {!posts.length && <p className="rounded-2xl bg-white py-8 sm:py-14 text-center text-muted ring-1 ring-stone-200">{tc('noResults')}</p>}
             <Pagination page={res.page ?? 1} totalPages={res.totalPages} base="/blog" query={{ category, tag, q }} />
           </section>
 

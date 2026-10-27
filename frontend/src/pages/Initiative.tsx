@@ -68,12 +68,12 @@ export default function InitiativePage() {
         )}
       </PageBanner>
 
-      <div className="container-x pb-20 pt-10 md:pb-24 md:pt-12">
+      <div className="container-x pb-10 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12">
         <Link to="/lokmangal/foundation#projects" className="tap-pad inline-flex items-center gap-2 text-sm font-semibold text-muted transition hover:gap-3 hover:text-charcoal-900">
           <ArrowLeft aria-hidden className="size-4" /> {x.back}
         </Link>
 
-        <article className="mt-8 grid gap-14 lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:gap-20">
+        <article className="mt-8 grid gap-8 sm:gap-14 lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:gap-20">
           <div className="min-w-0">
             {hasCover && (
               /* the cover is the first thing seen: a CSS entrance (it starts with the first paint, it does not wait for the animation code to load) */
@@ -84,16 +84,16 @@ export default function InitiativePage() {
 
             {d.objective && (
               /* the objective in a soft cream note — the one highlighted block on the page */
-              <Reveal as="section" className="mt-10 rounded-[1.5rem] bg-cream p-6 md:p-8">
+              <Reveal as="section" className="mt-6 sm:mt-10 rounded-[1.5rem] bg-cream p-6 md:p-8">
                 <h2 className="flex items-center gap-2.5 text-lg font-semibold text-charcoal-900"><Target aria-hidden className="size-5 text-saffron-600" /> {x.objective}</h2>
                 <p className="mt-3 text-[1.08rem] leading-relaxed text-ink">{d.objective}</p>
               </Reveal>
             )}
 
-            <Reveal className="mt-10 max-w-3xl"><RichText html={d.body} /></Reveal>
+            <Reveal className="mt-6 sm:mt-10 max-w-3xl"><RichText html={d.body} /></Reveal>
 
             {hasVideo && (
-              <Reveal as="section" className="mt-16 md:mt-20">
+              <Reveal as="section" className="mt-10 sm:mt-16 md:mt-20">
                 <h2 className="mb-6 flex items-center gap-2.5 text-[1.5rem] leading-tight text-charcoal-900 md:text-[1.8rem]"><Clapperboard aria-hidden className="size-6 text-saffron-600" /> {x.videos}</h2>
                 <div className="space-y-6">
                   {d.youtubeUrl && <YouTube url={d.youtubeUrl} title={d.title} />}
@@ -103,7 +103,7 @@ export default function InitiativePage() {
             )}
 
             {photos.length > 0 && (
-              <section className="mt-16 md:mt-20">
+              <section className="mt-10 sm:mt-16 md:mt-20">
                 <Reveal as="div">
                   <h2 className="mb-6 flex items-center gap-2.5 text-[1.5rem] leading-tight text-charcoal-900 md:text-[1.8rem]">
                     <Images aria-hidden className="size-6 text-saffron-600" /> {x.photos}
@@ -116,7 +116,7 @@ export default function InitiativePage() {
           </div>
 
           {/* side column: what to do next, events and sharing — sticks while reading */}
-          <aside className="space-y-10 lg:sticky lg:top-28 lg:self-start">
+          <aside className="space-y-6 sm:space-y-10 lg:sticky lg:top-28 lg:self-start">
             <div className="flex flex-col gap-3">
               <Link to="/contact" className="btn btn-primary"><HeartHandshake aria-hidden className="size-4" /> {x.support}</Link>
               <Link to="/lokmangal/foundation#projects" className="btn btn-ghost">{x.all}</Link>
@@ -136,9 +136,9 @@ export default function InitiativePage() {
         </article>
 
         {related.length > 0 && (
-          <section className="mt-24 md:mt-28">
+          <section className="mt-12 sm:mt-24 md:mt-28">
             <Reveal><h2 className="mb-9 text-[1.7rem] leading-tight text-charcoal-900 md:text-[2.2rem]">{tc('relatedPosts')}</h2></Reveal>
-            <Stagger className="grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">{related.map((r) => <StaggerItem key={r.id}><NewsCard post={r} locale={locale} /></StaggerItem>)}</Stagger>
+            <Stagger className="grid gap-x-7 gap-y-8 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3">{related.map((r) => <StaggerItem key={r.id}><NewsCard post={r} locale={locale} /></StaggerItem>)}</Stagger>
           </section>
         )}
       </div>

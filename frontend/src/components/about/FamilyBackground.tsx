@@ -96,7 +96,6 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
   const start = list.findIndex((b) => b.blockType === 'mediaText')
   let end = start
   while (end >= 0 && list[end]?.blockType === 'mediaText') end++
-  if (start < 0) return <PageBlocks blocks={list} design="stitch" />
 
   const members = list.slice(start, end) as MediaText[]
   const introIdx = start > 0 && list[start - 1].blockType === 'content' ? start - 1 : -1
@@ -133,6 +132,9 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
     container.addEventListener('scroll', handleScroll, { passive: true })
     return () => container.removeEventListener('scroll', handleScroll)
   }, [count])
+
+  // no family members on the page: show its blocks as they are (after the hooks, which must run on every render)
+  if (start < 0) return <PageBlocks blocks={list} design="stitch" />
 
   const scrollToIndex = (idx: number) => {
     const container = scrollRef.current
@@ -171,7 +173,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                 />
               </figure>
             </Reveal>
-            <Reveal delay={0.1} className="relative overflow-hidden rounded-2xl border-l-4 border-saffron-500 bg-gradient-to-br from-cream via-cream/95 to-saffron-50/20 p-6 shadow-sm md:p-8 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:self-start">
+            <Reveal delay={0.1} className="lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:self-start">
               <RichText html={intro.body} readMore />
             </Reveal>
           </div>

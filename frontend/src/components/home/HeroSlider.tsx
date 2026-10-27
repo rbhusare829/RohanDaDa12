@@ -148,7 +148,9 @@ export function HeroSlider({
     >
       {/* 1. Full-Bleed Background Images with Smooth Cross-Fade & Ken-Burns Motion */}
       {!textOnly && (
-        <div className="absolute inset-0 size-full overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-[58%] overflow-hidden md:inset-0 md:h-full">
+          {/* phones: the photo fills the top part, clear (no shading over the face); the words sit below it on navy.
+              Tablets and desktops: the photo fills the whole band behind the words. */}
           {slides.map((s, i) => {
             const active = i === index
             return (
@@ -183,25 +185,30 @@ export function HeroSlider({
           {/* Left-to-right gradient: dark navy/black on the left, translucent on the right */}
           <div
             aria-hidden
-            className="absolute inset-0 bg-gradient-to-r from-[#00081c]/95 via-[#00081c]/80 via-40% md:via-[#00081c]/65 md:via-50% to-[#00081c]/30 pointer-events-none"
+            className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#00081c]/95 via-[#00081c]/65 via-50% to-[#00081c]/30 pointer-events-none"
+          />
+          {/* phones: only a short fade at the photo's lower edge into the navy below (Oct 2026) */}
+          <div
+            aria-hidden
+            className="absolute inset-x-0 bottom-0 h-1/4 md:hidden bg-gradient-to-t from-[#00081c] to-transparent pointer-events-none"
           />
 
           {/* Top subtle vignette for seamless header blend */}
           <div
             aria-hidden
-            className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#00081c]/80 to-transparent pointer-events-none"
+            className="absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-[#00081c]/80 to-transparent pointer-events-none md:block"
           />
 
           {/* Bottom vignette for overlapping card integration */}
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-80 md:h-44 bg-gradient-to-t from-[#00081c]/95 via-[#00081c]/60 to-transparent pointer-events-none"
+            className="absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-[#00081c]/95 via-[#00081c]/60 to-transparent pointer-events-none md:block"
           />
         </div>
       )}
 
       {/* 2. Hero Content Container */}
-      <div className="container-x relative z-20 min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-30">
+      <div className="container-x relative z-20 min-h-[620px] sm:min-h-[660px] md:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-30">
         <div className="w-full flex items-end md:items-center justify-between gap-8">
           {/* Words on the Left (Matching Image 3); on mobile they sit at the bottom, below the face */}
           <div className="max-w-3xl lg:max-w-4xl py-6">

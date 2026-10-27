@@ -119,24 +119,11 @@ export function SupriyaLatestNewsSection({
                           className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                         />
 
-                        {/* LIVE Badge on First News Item */}
-                        {item.isLive && (
-                          <div className="absolute top-2 left-2 flex items-center gap-1 rounded bg-red-600 px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
-                            <span className="size-1.5 rounded-full bg-white animate-ping" />
-                            <span>LIVE</span>
-                          </div>
-                        )}
-
                         {/* Hover Arrow Overlay */}
                         <div className="absolute inset-0 grid place-items-center bg-black/25 opacity-0 transition-opacity group-hover:opacity-100">
                           <span className="grid size-10 place-items-center rounded-full bg-red-600 text-white shadow-md">
                             <ArrowUpRight className="size-5" />
                           </span>
-                        </div>
-
-                        {/* Date Badge */}
-                        <div className="absolute bottom-2 right-2 rounded bg-[#000d3d]/90 px-2 py-0.5 text-[10px] font-semibold text-white shadow-xs">
-                          {item.date}
                         </div>
                       </div>
 

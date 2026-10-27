@@ -159,9 +159,6 @@ export function SupriyaJourneySection({
                         loading="lazy"
                         className={cn('size-full object-cover', m.imgPos || 'object-top')}
                       />
-                      <div className="absolute top-2 left-2 rounded bg-red-600 px-2.5 py-0.5 text-xs font-bold text-white shadow-xs">
-                        {m.year}
-                      </div>
                     </div>
                   )}
 
@@ -178,13 +175,10 @@ export function SupriyaJourneySection({
                   </div>
 
                   {/* Red node indicator */}
-                  <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between text-xs font-semibold text-red-600">
+                  <div className="mt-4 pt-3 border-t border-stone-100 flex items-center text-xs font-semibold text-red-600">
                     <span className="flex items-center gap-1.5">
                       <span className="size-2.5 rounded-full bg-red-600 animate-pulse" />
                       <span>{m.year}</span>
-                    </span>
-                    <span className="text-slate-400 font-normal">
-                      {isMr ? 'टप्पा' : 'Milestone'} #{i + 1}
                     </span>
                   </div>
                 </div>

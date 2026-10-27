@@ -391,7 +391,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
           <div className="flex flex-col gap-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <span className="text-xs font-bold uppercase tracking-widest text-saffron-600">
+                <span className="text-xs font-bold uppercase tracking-widest text-saffron-700">
                   {isMr ? 'लोकमंगल परिवार कार्यक्षेत्रे' : 'Conglomerate Sectors'}
                 </span>
                 <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal-950 mt-1">
@@ -513,18 +513,19 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
             </ul>
 
             {/* Mobile swipe hint dots */}
-            <div className="flex sm:hidden items-center justify-center gap-1.5 mt-2">
+            <div className="flex sm:hidden items-center justify-center mt-1">
               {sectors.map((_, dotIdx) => (
                 <button
                   key={dotIdx}
                   type="button"
                   aria-label={`Go to sector ${dotIdx + 1}`}
+                  aria-current={activeView === dotIdx ? 'true' : undefined}
                   onClick={() => handleSelectSector(dotIdx, true)}
-                  className={cn(
-                    'h-1.5 rounded-full transition-all duration-300 cursor-pointer',
-                    activeView === dotIdx ? 'w-6 bg-saffron-600' : 'w-1.5 bg-stone-300',
-                  )}
-                />
+                  className="grid h-11 min-w-6 cursor-pointer place-items-center"
+                >
+                  {/* the dot stays small; the button around it is a 44 px tap area */}
+                  <span className={cn('block h-1.5 rounded-full transition-all duration-300', activeView === dotIdx ? 'w-6 bg-saffron-600' : 'w-1.5 bg-stone-300')} />
+                </button>
               ))}
             </div>
           </div>
@@ -532,7 +533,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
           {/* =========================================================================
               3. Institutions Showcase
               ========================================================================= */}
-          <div ref={sectorContentRef} className="scroll-mt-24 space-y-8 pt-2">
+          <div ref={sectorContentRef} className="scroll-mt-4 space-y-8 pt-2">
             {activeView === 'all' ? (
               /* Display ALL 5 Sectors in a Comprehensive Sequence */
               <div className="space-y-12">
@@ -738,7 +739,7 @@ function InstitutionCard({
         </span>
 
         {item.url && (
-          <span className="flex items-center gap-1 text-saffron-600 group-hover:text-saffron-700 group-hover:underline">
+          <span className="flex items-center gap-1 text-saffron-700 group-hover:text-saffron-800 group-hover:underline">
             <span>{isMr ? 'संकेतस्थळ पहा' : 'Visit Website'}</span>
             <ArrowUpRight className="size-3.5" />
           </span>

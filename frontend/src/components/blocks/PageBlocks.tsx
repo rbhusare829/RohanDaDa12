@@ -45,7 +45,7 @@ function StitchList({ blocks }: { blocks: PageBlock[] }) {
   return (
     <div className="space-y-16 md:space-y-24">
       {groups.map((g) => (
-        <div key={g.key} id={g.anchor} className="scroll-mt-28">
+        <div key={g.key} id={g.anchor} className="scroll-mt-8">
           {g.node}
         </div>
       ))}
@@ -60,7 +60,7 @@ export function PageBlocks({ blocks, design }: { blocks?: PageBlock[] | null; de
   return (
     <div className="space-y-16 md:space-y-24">
       {blocks.filter((b) => !('hidden' in b && b.hidden)).map((b, i) => (
-        <div key={b.id ?? i} id={'heading' in b && b.heading ? `s-${i}` : undefined} className="scroll-mt-28">
+        <div key={b.id ?? i} id={'heading' in b && b.heading ? `s-${i}` : undefined} className="scroll-mt-8">
           {render(b)}
         </div>
       ))}

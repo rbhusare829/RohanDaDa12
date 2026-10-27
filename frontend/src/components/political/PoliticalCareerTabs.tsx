@@ -90,7 +90,7 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
                 className={cn(
                   'relative z-10 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3 py-3 text-[13px] font-bold transition-[color,background-color] duration-300 sm:gap-2 sm:px-7 sm:text-base',
                   selected
-                    ? 'text-white'
+                    ? cn('text-white', !pill && 'bg-red-600') // until the sliding pill has measured itself, the tab carries its own red
                     : 'text-[#000d3d] hover:bg-white hover:text-red-600',
                 )}
               >
@@ -102,7 +102,7 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
         </div>
       </div>
 
-      <div key={active} role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`} tabIndex={0} className="animate-tab-in focus:outline-none">
+      <div key={active} role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`} tabIndex={0} className="animate-tab-in rounded-2xl">
         {active === 'career' ? career : <SocialActivitiesList locale={locale} />}
       </div>
     </>

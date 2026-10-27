@@ -94,18 +94,18 @@ export function SupriyaInitiativesSection({
           </p>
         </Reveal>
 
-        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {INITIATIVES.map((it, i) => {
               const Icon = it.icon
               return (
                 <StaggerItem key={i} className="h-full">
                 <Link
                   to={it.link}
-                  className="group flex flex-col justify-between h-full rounded-2xl bg-white border border-stone-200/90 p-6 shadow-sm transition-[translate,box-shadow,border-color] duration-300 ease-soft motion-safe:hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400 active:scale-[0.99]"
+                  className="group flex flex-col justify-between h-full rounded-2xl bg-white border border-stone-200/90 p-5 sm:p-6 shadow-sm transition-[translate,box-shadow,border-color] duration-300 ease-soft motion-safe:hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400 active:scale-[0.99]"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="grid size-12 place-items-center rounded-xl bg-red-50 text-red-600 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white">
+                    <div className="flex items-center justify-between mb-3 sm:mb-4">
+                      <div className="grid size-11 sm:size-12 place-items-center rounded-xl bg-red-50 text-red-600 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white">
                         <Icon className="size-6" />
                       </div>
                       <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
@@ -117,12 +117,12 @@ export function SupriyaInitiativesSection({
                       {isMr ? it.title : it.enTitle}
                     </h3>
 
-                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-600">
+                    <p className="mt-1.5 sm:mt-2.5 text-sm leading-relaxed text-slate-600">
                       {isMr ? it.description : it.enDescription}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-red-600">
+                  <div className="mt-4 pt-3 sm:mt-6 sm:pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-red-600">
                     <span>{isMr ? 'अधिक माहिती पहा' : 'Learn more'}</span>
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>

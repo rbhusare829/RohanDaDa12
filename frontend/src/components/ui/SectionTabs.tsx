@@ -34,7 +34,7 @@ export function SectionTabs({ tabs, label }: { tabs: { id: string; label: string
   }, [tabs])
 
   return (
-    <nav aria-label={label} className="sticky top-[4.5rem] lg:top-20 z-30 -mx-4 mb-14 border-b border-line bg-paper/95 px-4 backdrop-blur md:mx-0 md:px-0">
+    <nav aria-label={label} className="sticky top-16 sm:top-[4.5rem] lg:top-20 z-30 -mx-4 mb-14 border-b border-line bg-paper/95 px-4 backdrop-blur md:mx-0 md:px-0">
       <ScrollRow as="ul" className="flex gap-6 md:gap-9">
         {tabs.map((t) => (
           <li key={t.id} className="shrink-0">

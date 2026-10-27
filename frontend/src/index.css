@@ -102,9 +102,10 @@
   --color-frame: #fed7aa;
   --color-highlight: #fdba74;
   --color-overlay: rgb(9 20 34 / .55);
-  --color-btn: #e65100;
-  --color-btn-hover: #c2410c;
-  --color-btn-active: #9a3412;    /* while pressed */
+  /* solid buttons, chips, the current page number: white text on them must be 4.5:1 (WCAG AA) — #c2410c is 5.2:1 (#e65100 was 3.8:1) */
+  --color-btn: #c2410c;
+  --color-btn-hover: #9a3412;
+  --color-btn-active: #7c2d12;    /* while pressed */
   /* form controls (from the UX pass): field edges 3.1:1 on white — the pale --color-line stays for dividers only */
   --color-field: #8b93a1;
   --color-field-hover: #5c6779;
@@ -195,6 +196,36 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* a jump to #part of a page, or keyboard focus, never ends under the sticky header (64 / 72 / 80 px, see Header.tsx);
+       sections add their own scroll-mt-* for the breathing room or a sticky tab bar */
+    scroll-padding-top: 4rem;
+    /* a tap is answered at once with a faint kesariya flash instead of the browser's grey box */
+    -webkit-tap-highlight-color: rgb(230 81 0 / .14);
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: 4.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 5rem;
+    }
+  }
+
+  /* no double-tap-to-zoom wait on controls (the page itself can still be pinch-zoomed) */
+  a,
+  button,
+  [role='button'],
+  [role='tab'],
+  label,
+  summary,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
   }
 
   body {
@@ -408,7 +439,8 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .1em;
-    color: var(--color-saffron-600);
+    /* small orange words use the deeper kesariya: #e65100 is only 3.5:1 on the page background, #c2410c is 4.9:1 (WCAG AA) */
+    color: var(--color-saffron-700);
   }
 
   .eyebrow::before {
@@ -744,7 +776,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .06em;
-    color: var(--color-saffron-600);
+    color: var(--color-saffron-700);
   }
 
   .tile-title {
@@ -787,21 +819,21 @@
     font-family: var(--font-display);
     font-size: .875rem;
     font-weight: 700;
-    color: var(--color-saffron-600);
+    color: var(--color-saffron-700);
     transition: color .2s, gap .2s;
   }
 
   .more-link:hover,
   .tile:hover .more-link {
     gap: .55rem;
-    color: var(--color-saffron-700);
+    color: var(--color-saffron-800);
   }
 
-  /* phones: a taller tap area for text links, without changing the layout */
+  /* phones: a 44 px-high tap area for text links, without changing the layout */
   @media (max-width: 1023px) {
     .more-link {
-      padding-block: .6rem;
-      margin-block: -.6rem;
+      padding-block: .75rem;
+      margin-block: -.75rem;
     }
   }
 
@@ -1252,9 +1284,14 @@ img[data-rd-img][data-ready='fade'] {
 /* Phones (most visitors): small print never goes below 13px */
 @media (max-width: 639px) {
 
+  /* (also the 10–12 px labels written as arbitrary values: Devanagari at 11 px is hard to read on a phone) */
   .text-xs,
   .text-\[0\.75rem\],
-  .text-\[0\.78rem\] {
+  .text-\[0\.78rem\],
+  .text-\[10px\],
+  .text-\[11px\],
+  .text-\[12px\],
+  .tile-kicker {
     font-size: .8125rem !important;
   }
 }

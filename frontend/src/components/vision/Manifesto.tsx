@@ -24,7 +24,7 @@ const pad = (n: number) => (LOCALE === 'mr' ? toMarathiDigits(String(n).padStart
 const bleed = 'relative left-1/2 w-screen -translate-x-1/2'
 const NAVY = 'text-[#000d3d]'
 /** the step numbers: red, navy, saffron (as on the homepage) */
-const stepBg = (i: number) => (i % 3 === 1 ? 'bg-[#000d3d]' : i % 3 === 2 ? 'bg-saffron-500' : 'bg-red-600')
+const stepBg = (i: number) => (i % 3 === 1 ? 'bg-[#000d3d]' : i % 3 === 2 ? 'bg-saffron-700' : 'bg-red-600')
 /** the homepage buttons: red, navy on hover; the second one outlined in navy */
 const btn = (i: number) =>
   cn(

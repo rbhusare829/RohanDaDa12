@@ -8,13 +8,19 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon.png" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
     <title>Rohan Subhash Deshmukh</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Marathi:ital@0;1&display=swap" rel="stylesheet" />
+    <!-- Tiro Devanagari Marathi is self-hosted (index.css, @fontsource): no Google Fonts request (the site's CSP blocks it anyway) -->
+    <style>
+      /* shown until the app has started (a slow phone or network): the page colour, the name and a thin moving bar instead of a blank white screen */
+      .boot { position: fixed; inset: 0; display: grid; place-items: center; background: #faf6f0; color: #0e1e34; font: 700 1.35rem/1.3 system-ui, 'Noto Sans Devanagari', sans-serif; letter-spacing: .01em }
+      .boot span { display: block; margin: .6rem auto 0; width: 4.4rem; height: 4px; border-radius: 9999px; background: linear-gradient(90deg, #dc2626 0 76%, transparent 76% 84%, #ff7a00 84%) }
+      .boot::before { content: ''; position: fixed; top: 0; left: 0; height: 3px; width: 40%; background: linear-gradient(90deg, #dc2626, #ff7a00); animation: boot 1.2s ease-in-out infinite }
+      @keyframes boot { from { transform: translateX(-100%) } to { transform: translateX(260%) } }
+      @media (prefers-reduced-motion: reduce) { .boot::before { animation: none; width: 100%; opacity: .5 } }
+    </style>
     <!--app-head-->
   </head>
   <body class="min-h-dvh antialiased">
-    <div id="root"></div>
+    <div id="root"><div class="boot" aria-hidden="true"><div>रोहन सुभाष देशमुख<span></span></div></div></div>
     <noscript>This website needs JavaScript. Please turn it on in your browser.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>

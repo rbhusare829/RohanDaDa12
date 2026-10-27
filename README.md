@@ -432,7 +432,19 @@ A second pass looked at touch, edges, colour and motion (all tokens live in `@th
   the pale `--color-line` is for dividers only. Fields get a 2 px dark-orange ring while typing; errors use `--color-danger` and are tied to their field with `aria-describedby`.
 * **Touch targets** — on phones links, chips, tabs, share and pagination buttons and the footer links are at least 44 px high (`min-h-11`; the `.tap-pad`
   class gives a small text link a 44 px touch area without moving anything). The consent checkbox is a 24 px custom box (`.check`) inside a 44 px-high label.
+  Small controls keep their looks and get a 44 px hit area around them: the header's language switch (an invisible band above and below), slider dots
+  (a small dot inside a 44 px button), the hero's slide numbers, breadcrumbs and the ticker's links. The phone menu button is 44 px.
+* **Phones first** (Oct 2026, ui-ux-pro-max checklist, checked at 360 and 390 px on every page) — small print never goes below 13 px (also the
+  `text-[10px]`/`[11px]`/`[12px]` labels), search boxes are 16 px so iOS does not zoom the page, long lists turn into compact rows on a phone (Social work:
+  a square photo beside the words; the homepage focus areas are tighter), the footer's link lists sit two side by side, the banner keeps Rohan's
+  portrait on a phone whatever the length of the title, the blog's sections bar is sticky only from tablets up, sticky tab bars
+  sit right under the header at every width, and `scroll-padding-top` (= the header height) keeps a `#part` jump or keyboard focus from ending under the
+  sticky header. Taps flash a faint kesariya (`-webkit-tap-highlight-color`) and controls have `touch-action: manipulation`. While the app starts on a slow
+  network the page shows its colour, the name and a thin moving bar (`.boot` in `index.html`) instead of a blank white screen. Tiro Devanagari Marathi is
+  only self-hosted (no Google Fonts request — the CSP would block it).
 * **Colour with a job** — the bright `#f26b1d` is only for lines, dots and glows, never behind text or a button; buttons are `#c9500b` (hover `#a8430a`, pressed `#8f3a08`).
+  Small orange words on light backgrounds use `saffron-700` `#c2410c` (4.9:1 on the page background; `.eyebrow`, `.tile-kicker`, `.more-link` too), and the solid
+  button / chip colour `--color-btn` is `#c2410c` (white on it 5.2:1). The kesariya gradient of the big `.btn` buttons is unchanged (a brand choice; white on it is below 4.5:1).
   Meaning colours: `--color-success #1f7a3a`, `--color-warning #a84a06`, `--color-danger #b42318`, `--color-info #1d4ed8`, each with a `-soft` background
   (4.5:1 or better on white and on its own soft background; `warning` is a little darker than the usual amber `#b45309`, which is 4.46:1 on the admin page background).
   Impact numbers are green. The cream sections use `#fff8f0`. The admin uses the same tokens for status pills, toasts and errors.

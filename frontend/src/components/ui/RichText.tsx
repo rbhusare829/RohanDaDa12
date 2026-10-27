@@ -14,7 +14,7 @@ export function RichText({ html, className, anchors, readMore }: { html?: string
     if (!html || !html.trim()) return ''
     if (!anchors) return html
     let n = 0
-    return html.replace(/<(h[23])>/g, (_, tag: string) => `<${tag} id="sec-${++n}" class="scroll-mt-28">`)
+    return html.replace(/<(h[23])>/g, (_, tag: string) => `<${tag} id="sec-${++n}" class="scroll-mt-8">`)
   }, [html, anchors])
   if (!content) return null
   const body = <div className={cn('prose-rd', className)} dangerouslySetInnerHTML={{ __html: content }} />

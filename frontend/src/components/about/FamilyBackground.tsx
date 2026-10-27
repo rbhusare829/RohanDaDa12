@@ -263,32 +263,37 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                 <span className="inline-block animate-pulse text-saffron-600">→</span>
               </div>
 
-              {/* Dot Indicators */}
-              <div className="flex items-center gap-1.5">
+              {/* Dot Indicators: the dot stays small, the button around it is a full 44 px tap area */}
+              <div className="flex items-center">
                 {members.map((_, dotIdx) => (
                   <button
                     key={dotIdx}
                     type="button"
                     onClick={() => scrollToIndex(dotIdx)}
                     aria-label={isMr ? `कार्ड ${dotIdx + 1}` : `Card ${dotIdx + 1}`}
-                    className={cn(
-                      'h-2 rounded-full transition-all duration-300 focus:outline-none',
-                      activeIndex === dotIdx
-                        ? 'w-6 bg-gradient-to-r from-saffron-600 to-saffron-500 shadow-sm shadow-saffron-600/30'
-                        : 'w-2 bg-stone-300 hover:bg-stone-400',
-                    )}
-                  />
+                    aria-current={activeIndex === dotIdx ? 'true' : undefined}
+                    className="group grid h-11 min-w-7 place-items-center"
+                  >
+                    <span
+                      className={cn(
+                        'block h-2 rounded-full transition-all duration-300',
+                        activeIndex === dotIdx
+                          ? 'w-6 bg-gradient-to-r from-saffron-600 to-saffron-500 shadow-sm shadow-saffron-600/30'
+                          : 'w-2 bg-stone-300 group-hover:bg-stone-400',
+                      )}
+                    />
+                  </button>
                 ))}
               </div>
 
-              {/* Prev / Next touch buttons */}
-              <div className="flex items-center gap-1.5">
+              {/* Prev / Next touch buttons (44 px, the size a thumb needs) */}
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={() => scrollToIndex(Math.max(0, activeIndex - 1))}
                   disabled={activeIndex === 0}
                   aria-label={isMr ? 'मागील' : 'Previous'}
-                  className="grid size-8 place-items-center rounded-full border border-stone-200 bg-white text-charcoal-700 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
+                  className="grid size-11 place-items-center rounded-full border border-stone-200 bg-white text-charcoal-700 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
                 >
                   <ChevronLeft className="size-4" />
                 </button>
@@ -297,7 +302,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                   onClick={() => scrollToIndex(Math.min(count - 1, activeIndex + 1))}
                   disabled={activeIndex === count - 1}
                   aria-label={isMr ? 'पुढील' : 'Next'}
-                  className="grid size-8 place-items-center rounded-full border border-stone-200 bg-white text-charcoal-700 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
+                  className="grid size-11 place-items-center rounded-full border border-stone-200 bg-white text-charcoal-700 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
                 >
                   <ChevronRight className="size-4" />
                 </button>
@@ -325,7 +330,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
             </div>
             <Link
               to="/media/photos/family-moments"
-              className="group inline-flex shrink-0 items-center gap-2 rounded-full border border-saffron-300 bg-saffron-50/80 px-4 py-2 text-xs font-bold uppercase tracking-wider text-saffron-800 transition-all hover:bg-saffron-500 hover:text-white hover:border-saffron-500"
+              className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-saffron-300 bg-saffron-50/80 px-4 py-2 text-xs font-bold uppercase tracking-wider text-saffron-800 transition-all hover:bg-saffron-700 hover:text-white hover:border-saffron-700 active:scale-[0.98]"
             >
               <span>{isMr ? 'सर्व कौटुंबिक फोटो पहा' : 'View Full Family Album'}</span>
               <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />

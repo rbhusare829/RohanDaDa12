@@ -282,7 +282,7 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
   return (
     <section className="rounded-3xl border border-stone-200/90 bg-stone-50/50 p-6 sm:p-10 lg:p-12">
       <div className="mb-8">
-        <p className="text-xs font-bold uppercase tracking-wider text-saffron-600">
+        <p className="text-xs font-bold uppercase tracking-wider text-saffron-700">
           {isMr ? 'प्रशासकीय व संस्थात्मक अनुभव' : 'Governance & Institutional Experience'}
         </p>
         <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-charcoal-950 sm:text-3xl">
@@ -311,7 +311,7 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
                 </div>
 
                 <div className="mt-3.5">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-saffron-600">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">
                     {item.role}
                   </span>
                   <h3 className="font-display text-base font-bold text-charcoal-950 sm:text-lg">

@@ -198,7 +198,7 @@ export function AboutIntroSection({ b }: { b: Of<'aboutIntro'> }) {
             <Stagger as="dl" className="grid w-full grid-cols-2 gap-3 pt-2 sm:grid-cols-4">
               {b.stats.map((f) => (
                 <StaggerItem key={f.id} className="rounded-xl border border-saffron-100 bg-white p-3 shadow-sm">
-                  <dt className="text-xs font-bold uppercase tracking-wider text-saffron-600">{f.label}</dt>
+                  <dt className="text-xs font-bold uppercase tracking-wider text-saffron-700">{f.label}</dt>
                   <dd className="mt-1 font-display text-lg font-bold leading-snug text-charcoal-950">{f.value}</dd>
                 </StaggerItem>
               ))}
@@ -398,7 +398,7 @@ export function JourneySection({ b, locale }: { b: Of<'homeJourney'>; locale: Lo
                       <span className={cn('grid size-9 shrink-0 place-items-center rounded-full text-sm font-bold', last ? 'bg-gradient-to-r from-saffron-600 to-saffron-500 text-white shadow-sm' : 'border border-saffron-200 bg-saffron-50 text-saffron-600')}>
                         {digits(i + 1, locale).padStart(2, locale === 'mr' ? '०' : '0')}
                       </span>
-                      {place && <span className={cn('rounded-md px-2.5 py-1 text-xs font-bold uppercase', last ? 'border border-saffron-200 bg-saffron-50 text-saffron-600' : 'bg-paper text-gray-700')}>{place}</span>}
+                      {place && <span className={cn('rounded-md px-2.5 py-1 text-xs font-bold uppercase', last ? 'border border-saffron-200 bg-saffron-50 text-saffron-700' : 'bg-paper text-gray-700')}>{place}</span>}
                     </div>
                     {it.title && <h3 className="mb-2 text-lg text-charcoal-950">{it.title}</h3>}
                     {it.text && <p className="text-sm leading-relaxed text-gray-600">{it.text}</p>}

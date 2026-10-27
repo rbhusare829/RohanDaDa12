@@ -261,7 +261,7 @@ export function HeroSlider({
           {/* Right: Vertical Slide Indicators (— 01 / 02) exactly like Image 3 */}
           {count > 1 && (
             <div
-              className="shrink-0 flex flex-col items-start gap-4 select-none z-30"
+              className="shrink-0 flex flex-col items-start select-none z-30"
               aria-label="Carousel navigation"
             >
               {slides.map((_, idx) => {
@@ -274,7 +274,8 @@ export function HeroSlider({
                     aria-label={`Go to slide ${idx + 1}`}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'group flex items-center text-sm sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
+                      // each number is a 44 px tap target (the rows touch, so a thumb never lands between two)
+                      'group flex min-h-11 items-center text-sm sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
                       isActive
                         ? 'text-white font-bold'
                         : 'text-white/50 hover:text-white font-medium pl-8 sm:pl-10',
@@ -303,7 +304,7 @@ export function HeroSlider({
                 }}
                 aria-label={halted ? t('playSlides') : t('pauseSlides')}
                 title={halted ? t('playSlides') : t('pauseSlides')}
-                className="group -ml-2 -mt-1 grid size-11 cursor-pointer place-items-center rounded-full text-white/70 transition-colors hover:text-white"
+                className="group -ml-2 mt-1 grid size-11 cursor-pointer place-items-center rounded-full text-white/70 transition-colors hover:text-white"
               >
                 <span className="grid size-7 place-items-center rounded-full border border-white/40 transition-colors group-hover:border-white">
                   {halted ? <Play aria-hidden className="size-3 translate-x-px fill-current" /> : <Pause aria-hidden className="size-3 fill-current" />}

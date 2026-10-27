@@ -80,11 +80,11 @@ export default function FoundationPage() {
     <>
       <Seo title={page.meta?.title || page.title} description={page.meta?.description || page.subtitle} image={mediaUrl(page.meta?.image, 'card') || mediaUrl(page.bannerImage, 'card')} />
       <InnerPage path={PATH} title={page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant="navy">
-        <section id="about" className="scroll-mt-36">
+        <section id="about" className="scroll-mt-16">
           <PageBlocks blocks={about} design="stitch" />
         </section>
 
-        <section id="events" className="mt-20 scroll-mt-36 md:mt-28">
+        <section id="events" className="mt-20 scroll-mt-16 md:mt-28">
           {/* Stitch section header: heading + intro on the left, "all events" on the right */}
           <Reveal className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
             <div className="flex max-w-2xl flex-col gap-2">
@@ -112,7 +112,7 @@ export default function FoundationPage() {
           )}
         </section>
 
-        <section id="projects" className="mt-20 scroll-mt-36 md:mt-28">
+        <section id="projects" className="mt-20 scroll-mt-16 md:mt-28">
           {/* same layout as lokmangalfoundation.com/projects → "Explore all social initiatives" */}
           <div className="section relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-stone-200/70 bg-ivory">
             <div aria-hidden className="pointer-events-none absolute -top-24 right-0 size-96 rounded-full bg-saffron-500/5 blur-3xl" />

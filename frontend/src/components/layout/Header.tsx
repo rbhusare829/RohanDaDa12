@@ -62,7 +62,7 @@ const ORIGINAL_LOGO = 'logo-light.webp'
 /** the logo for light backgrounds (or the white one drawn in navy through a mask) */
 function Logo({ siteName, logoUrl, logoDarkUrl, small }: { siteName: string; logoUrl?: string | null; logoDarkUrl?: string | null; small?: boolean }) {
   if (logoDarkUrl) return <img src={logoDarkUrl} alt={siteName} width={190} height={48} fetchPriority="high" className={cn('w-auto shrink-0 object-contain object-left transition-opacity duration-200 hover:opacity-80', small ? 'h-8' : 'h-10')} />
-  if (logoUrl) return <span role="img" aria-label={siteName} className={cn('block shrink-0 bg-charcoal-950 transition-opacity duration-200 hover:opacity-80', small ? 'h-9 w-[134px]' : 'h-11 w-[164px] xl:h-10 xl:w-[148px]')} style={maskStyle(logoUrl)} />
+  if (logoUrl) return <span role="img" aria-label={siteName} className={cn('block shrink-0 bg-charcoal-950 transition-opacity duration-200 hover:opacity-80', small ? 'h-9 w-[134px]' : 'h-11 w-[164px] max-[379px]:h-10 max-[379px]:w-[146px] xl:h-10 xl:w-[148px]')} style={maskStyle(logoUrl)} />
   return <span className="font-display text-xl font-bold text-charcoal-950 transition-[color] hover:text-saffron-600">{siteName}</span>
 }
 
@@ -88,7 +88,8 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
         title={currentLocale === 'en' ? 'Read in Marathi' : 'मराठी मध्ये वाचा'}
         className={cn(
           'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
-          isMobile ? 'px-2 py-0.5' : 'px-2.5 py-1',
+          // phones: the pill stays small, an invisible band above and below makes each half a 44 px tap area
+          isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
           currentLocale === 'mr'
             ? 'bg-[#000d3d] text-white shadow-xs'
             : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-stone-200/60',
@@ -105,7 +106,8 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
         title={currentLocale === 'en' ? 'Read in English' : 'इंग्रजीमध्ये वाचा'}
         className={cn(
           'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
-          isMobile ? 'px-2 py-0.5' : 'px-2.5 py-1',
+          // phones: the pill stays small, an invisible band above and below makes each half a 44 px tap area
+          isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
           currentLocale === 'en'
             ? 'bg-[#000d3d] text-white shadow-xs'
             : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-stone-200/60',
@@ -586,7 +588,7 @@ export function Header() {
               aria-label={tn('menu')}
               aria-expanded={mobileOpen}
               aria-controls={mobileOpen ? drawerId : undefined}
-              className="grid size-10 place-items-center rounded-lg bg-[#000d3d] text-white shadow-xs transition-colors hover:bg-saffron-600 active:scale-95"
+              className="grid size-11 place-items-center rounded-lg bg-[#000d3d] text-white shadow-xs transition-colors hover:bg-saffron-700 active:scale-95"
             >
               <Menu aria-hidden="true" className="size-5.5 stroke-[2.2]" />
             </button>

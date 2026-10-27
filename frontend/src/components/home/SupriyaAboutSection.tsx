@@ -62,7 +62,7 @@ export function SupriyaAboutSection({
                 {' '}
                 <Link
                   to="/about/introduction"
-                  className="font-bold text-[#000d3d] hover:text-red-600 underline underline-offset-4 ml-1 inline-block"
+                  className="tap-pad font-bold text-[#000d3d] hover:text-red-600 underline underline-offset-4 ml-1 inline-block"
                 >
                   {isMr ? 'अधिक वाचा' : 'Read More'}
                 </Link>

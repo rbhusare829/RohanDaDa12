@@ -74,10 +74,10 @@ export default function BlogPage() {
         )}
 
         {/* sections + search — stays at the top while scrolling */}
-        <div className="sticky top-[4.5rem] z-30 mb-12 lg:top-20">
+        <div className="relative z-30 mb-12 md:sticky md:top-[4.5rem] lg:top-20">
           <div className="flex flex-col gap-3 rounded-2xl border border-stone-200/90 bg-white/95 p-3 shadow-[0_12px_30px_-12px_rgba(9,20,34,0.18)] backdrop-blur md:flex-row md:items-center md:gap-6 md:px-4">
             <div className="flex min-w-0 flex-1 items-center gap-3">
-              <span className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-charcoal-900 sm:inline-flex"><span className="grid size-8 place-items-center rounded-lg bg-saffron-500/10 text-saffron-600"><SlidersHorizontal className="size-4" /></span> {t('sections')}</span>
+              <span className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-charcoal-900 sm:inline-flex"><span className="grid size-8 place-items-center rounded-lg bg-saffron-500/10 text-saffron-700"><SlidersHorizontal className="size-4" /></span> {t('sections')}</span>
               {/* padding keeps the focus ring from being clipped by the scrolling row */}
               <ScrollRow className="-mx-1 -my-1.5 flex min-w-0 gap-2 px-1 py-1.5">
                 {[{ slug: '', title: tc('all') }, ...cats].map((c) => {
@@ -93,7 +93,7 @@ export default function BlogPage() {
             </div>
             <Form action="/blog" method="get" className="flex h-11 items-center gap-2 rounded-full bg-ivory px-4 ring-1 ring-field transition hover:ring-field-hover focus-within:bg-white focus-within:ring-2 focus-within:ring-saffron-700 md:w-80" role="search">
               <Search className="size-4 shrink-0 text-saffron-600" />
-              <input name="q" defaultValue={q ?? ''} key={q ?? ''} placeholder={t('searchPlaceholder')} className="h-full min-w-0 flex-1 bg-transparent text-sm outline-none" aria-label={t('searchPlaceholder')} />
+              <input name="q" defaultValue={q ?? ''} key={q ?? ''} placeholder={t('searchPlaceholder')} className="h-full min-w-0 flex-1 bg-transparent text-base outline-none sm:text-sm" aria-label={t('searchPlaceholder')} />
             </Form>
           </div>
         </div>

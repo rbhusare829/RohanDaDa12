@@ -23,9 +23,10 @@ const BANNER_PORTRAITS: { match: RegExp; src: string; position: string }[] = [
 function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
   if (!crumbs || crumbs.length === 0) return null
   return (
-    <div className="border-b border-stone-200 bg-[#f8fafc] py-2.5 text-xs text-slate-600">
-      <div className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap">
-        <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] hover:text-red-600 transition-colors">
+    // phones: no padding on the bar, each link is 44 px high instead (the bar stays about as tall, the links become easy to tap)
+    <div className="border-b border-stone-200 bg-[#f8fafc] text-xs text-slate-600 lg:py-2.5">
+      <div className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap no-scrollbar">
+        <Link to="/" className="inline-flex min-h-11 items-center gap-1.5 font-bold text-[#000d3d] hover:text-red-600 transition-colors lg:min-h-0">
           <Home className="size-3.5" />
           <span>मुख्यपृष्ठ</span>
         </Link>
@@ -37,7 +38,7 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
               {isLast || !crumb.href ? (
                 <span className="font-semibold text-slate-900 line-clamp-1">{crumb.label}</span>
               ) : (
-                <Link to={crumb.href} className="font-medium text-slate-600 hover:text-red-600 transition-colors">
+                <Link to={crumb.href} className="inline-flex min-h-11 items-center font-medium text-slate-600 hover:text-red-600 transition-colors lg:min-h-0">
                   {crumb.label}
                 </Link>
               )}

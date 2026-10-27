@@ -80,7 +80,7 @@ export function SupriyaVisionSection({
             <div className="mt-6 max-md:flex max-md:justify-center">
               <Link
                 to={url}
-                className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]"
+                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]"
               >
                 {label} <ArrowRight aria-hidden className="size-4" />
               </Link>

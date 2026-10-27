@@ -26,7 +26,7 @@ function QuickCard({ icon: Icon, label, href, accent, children }: { icon: Lucide
         <Icon className="size-5" />
       </span>
       <span className="min-w-0">
-        <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-saffron-600">{label}</span>
+        <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-saffron-700">{label}</span>
         <span className="mt-1 block break-words font-display text-base font-bold leading-snug text-charcoal-950">{children}</span>
       </span>
     </>
@@ -74,7 +74,7 @@ export default function ContactPage() {
                   <Share2 className="size-5" />
                 </span>
                 <div className="min-w-0">
-                  <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-saffron-600">{tc('followUs')}</span>
+                  <span className="block text-[11px] font-bold uppercase tracking-[0.18em] text-saffron-700">{tc('followUs')}</span>
                   <ul className="mt-2 flex flex-wrap gap-1">
                     {social.map(([k, v]) => (
                       <li key={k}>
@@ -96,7 +96,7 @@ export default function ContactPage() {
             <span aria-hidden className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-saffron-600 via-saffron-500 to-leaf-600" />
             <span aria-hidden className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-saffron-500/10 blur-3xl" />
             <div className="relative mb-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{tc('getInTouch')}</p>
+              <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{tc('getInTouch')}</p>
               <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{tc('contactUs')}</h2>
             </div>
             <Suspense fallback={<div aria-hidden className="min-h-[36rem] rounded-2xl bg-ivory" />}>

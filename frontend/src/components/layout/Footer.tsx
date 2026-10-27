@@ -25,9 +25,11 @@ export function Footer() {
   return (
     <footer className="on-dark relative z-10 border-t-4 border-saffron-500 bg-[#000d3d] pb-10 pt-16 text-white">
       <div className="container-x">
-        <Stagger className="grid grid-cols-1 gap-10 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <StaggerItem className="flex flex-col items-start gap-4 lg:col-span-4">
-            <h4 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{t('contactUs')}</h4>
+        {/* phones: the contact block across, then the link lists two side by side (one long column made the footer two screens tall) */}
+        <Stagger className="grid grid-cols-2 gap-x-6 gap-y-10 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <StaggerItem className="col-span-2 flex flex-col items-start gap-4 md:col-span-1 lg:col-span-4">
+            {/* h2: the footer's own headings come after any heading of the page, so no level is skipped */}
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{t('contactUs')}</h2>
             <img src="/brand/logo-name.svg" alt={settings.siteName} width={180} height={46} loading="lazy" className="h-11 w-auto brightness-0 invert" />
             <ul className="space-y-2.5 pt-2 text-sm text-slate-300">
               {settings.address && (
@@ -37,14 +39,14 @@ export function Footer() {
               )}
               {settings.email && (
                 <li>
-                  <a href={`mailto:${settings.email}`} className="flex items-center gap-2 transition-colors hover:text-white">
+                  <a href={`mailto:${settings.email}`} className="flex items-center gap-2 break-all transition-colors hover:text-white max-lg:min-h-11">
                     <Mail className="size-[18px] shrink-0 text-saffron-400" /> {settings.email}
                   </a>
                 </li>
               )}
               {settings.phone && (
                 <li>
-                  <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 transition-colors hover:text-white">
+                  <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 transition-colors hover:text-white max-lg:min-h-11">
                     <Phone className="size-[18px] shrink-0 text-saffron-400" /> {settings.phone}
                   </a>
                 </li>
@@ -54,7 +56,7 @@ export function Footer() {
               <ul className="mt-2 flex flex-wrap gap-2" aria-label={t('followUs')}>
                 {social.map(([k, v]) => (
                   <li key={k}>
-                    <a href={v as string} target="_blank" rel="noopener noreferrer" aria-label={socialLabels[k] ?? k} className="grid size-9.5 place-items-center rounded-full bg-white/10 text-white transition-all hover:bg-saffron-600 hover:scale-105">
+                    <a href={v as string} target="_blank" rel="noopener noreferrer" aria-label={socialLabels[k] ?? k} className="grid size-11 place-items-center rounded-full bg-white/10 text-white transition-all hover:bg-saffron-700 hover:scale-105 active:scale-95 lg:size-9.5">
                       <SocialIcon name={k === 'whatsappChannel' ? 'whatsapp' : k} className="size-4" />
                     </a>
                   </li>
@@ -64,12 +66,12 @@ export function Footer() {
           </StaggerItem>
 
           {cols.map((col, i) => (
-            <StaggerItem key={col.id} className={i === cols.length - 1 && cols.length < 4 ? 'flex flex-col gap-3 lg:col-span-3' : 'flex flex-col gap-3 lg:col-span-2.5 lg:col-span-2'}>
-              <h4 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{col.title}</h4>
-              <ul className="space-y-2 text-sm text-slate-300">
+            <StaggerItem key={col.id} className={i === cols.length - 1 && cols.length < 4 ? 'flex min-w-0 flex-col gap-3 lg:col-span-3' : 'flex min-w-0 flex-col gap-3 lg:col-span-2.5 lg:col-span-2'}>
+              <h2 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{col.title}</h2>
+              <ul className="space-y-2 text-sm text-slate-300 max-lg:space-y-0">
                 {col.links?.filter((l) => isLiveLink(l.url) && !HIDDEN_LINKS.includes(l.url ?? '')).map((l) => (
                   <li key={l.id}>
-                    <CMSLink url={l.url} newTab={l.newTab} className="group flex items-center gap-1.5 transition-colors hover:text-white">
+                    <CMSLink url={l.url} newTab={l.newTab} className="group flex items-center gap-1.5 transition-colors hover:text-white max-lg:min-h-11">
                       <span className="text-saffron-400 transition-transform group-hover:translate-x-0.5">&rsaquo;</span>
                       <span>{l.label}</span>
                     </CMSLink>

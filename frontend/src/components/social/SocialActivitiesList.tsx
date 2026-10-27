@@ -70,7 +70,7 @@ export function SocialActivitiesList({ locale = 'mr' }: { locale?: 'mr' | 'en' }
         {ACTIVITIES.map((a, i) => {
           const flip = i % 2 === 1
           return (
-            <article key={a.id} id={a.id} aria-labelledby={`${a.id}-title`} className="scroll-mt-28">
+            <article key={a.id} id={a.id} aria-labelledby={`${a.id}-title`} className="scroll-mt-8">
               <Reveal className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-12">
                 {/* the whole photo: shown in full, a soft blurred copy of it filling any space around it */}
                 <div className={cn('lg:sticky lg:top-28 lg:col-span-5', flip && 'lg:order-2')}>

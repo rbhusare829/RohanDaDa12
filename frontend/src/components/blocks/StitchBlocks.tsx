@@ -42,7 +42,7 @@ export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }:
   if (!eyebrow && !heading && !intro) return null
   return (
     <Reveal className={cn('mb-10 max-w-3xl space-y-2', className)}>
-      {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{eyebrow}</p>}
+      {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{eyebrow}</p>}
       {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{heading}</H>}
       {intro && <p className="pt-1 text-base leading-relaxed text-gray-600">{intro}</p>}
     </Reveal>
@@ -59,7 +59,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
       <Reveal className={cn(card, 'relative overflow-hidden border-l-4 border-l-saffron-500 p-8 md:p-10 lg:p-12')}>
         <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-32 rounded-bl-full bg-gradient-to-bl from-saffron-100/60 to-transparent" />
         <div className="relative max-w-4xl">
-          {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{b.eyebrow}</p>}
+          {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{b.eyebrow}</p>}
           {b.heading && <h2 className="mb-5 mt-1 font-display text-2xl font-bold leading-tight text-charcoal-950 md:text-3xl">{b.heading}</h2>}
           <RichText html={b.body} readMore />
         </div>
@@ -107,7 +107,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
                     <Icon className="size-6" />
                   </span>
                   <div className="min-w-0">
-                    {b.eyebrow && <p className={cn('text-[11px] font-bold uppercase tracking-[0.2em]', isSocial ? 'text-leaf-600' : 'text-saffron-600')}>{b.eyebrow}</p>}
+                    {b.eyebrow && <p className={cn('text-[11px] font-bold uppercase tracking-[0.2em]', isSocial ? 'text-leaf-600' : 'text-saffron-700')}>{b.eyebrow}</p>}
                     {b.heading && <h2 className="font-display text-xl font-bold leading-snug text-charcoal-950 md:text-2xl">{b.heading}</h2>}
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
             </div>
 
             <div className="relative mt-8 border-t border-stone-100 pt-5">
-              <CMSLink url={ctaUrl} className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-600 transition-colors hover:text-saffron-700">
+              <CMSLink url={ctaUrl} className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-700 transition-colors hover:text-saffron-800">
                 <span>{ctaLabel}</span>
                 <ArrowRight className="size-3.5 transition-transform group-hover/btn:translate-x-1" />
               </CMSLink>
@@ -141,7 +141,7 @@ export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
       <Reveal className="flex flex-col gap-3">
         {(b.eyebrow || n) && (
           <div className="flex flex-wrap items-center gap-3">
-            {n && <span aria-hidden className="font-display text-sm font-bold tracking-widest text-saffron-600">{pad(n)}</span>}
+            {n && <span aria-hidden className="font-display text-sm font-bold tracking-widest text-saffron-700">{pad(n)}</span>}
             {n && b.eyebrow && <span aria-hidden className="h-0.5 w-8 bg-saffron-500" />}
             {b.eyebrow && <span className="rounded bg-saffron-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-saffron-700">{b.eyebrow}</span>}
           </div>
@@ -197,7 +197,7 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
                   </div>
                 )}
                 <div className="flex flex-1 flex-col gap-2 p-6">
-                  {c.meta && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-600">{c.meta}</p>}
+                  {c.meta && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">{c.meta}</p>}
                   <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
                   {c.text && <p className="whitespace-pre-line text-sm leading-relaxed text-gray-600">{c.text}</p>}
                 </div>
@@ -236,7 +236,7 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
                     </ul>
                   )}
                 </div>
-                <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-saffron-600">
+                <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-saffron-700">
                   <span>{c.meta || (c.url ? (LOCALE === 'en' ? 'Learn more' : 'अधिक जाणून घ्या') : '')}</span>
                   <ArrowRight aria-hidden className={cn('size-4 transition-transform duration-300 group-hover:translate-x-1.5', green ? 'text-leaf-600' : 'text-saffron-600')} />
                 </div>

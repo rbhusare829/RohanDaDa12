@@ -22,7 +22,7 @@ export function CitizenEngagementBanner({
       <Reveal delay={0.45} y={36} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.18)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
           <div className="min-w-0 max-w-4xl flex-1 space-y-2.5">
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-[#e65100]">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-saffron-700">
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </p>
 

@@ -174,9 +174,9 @@ export function SupriyaJourneySection({
                     <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
                       {m.category}
                     </span>
-                    <h4 className="mt-1 font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
+                    <h3 className="mt-1 font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
                       {m.title}
-                    </h4>
+                    </h3>
                     <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">
                       {m.description}
                     </p>

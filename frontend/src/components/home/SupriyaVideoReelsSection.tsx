@@ -104,8 +104,8 @@ export function SupriyaVideoReelsSection({
                       rel="noopener noreferrer"
                       className={
                         i === 0
-                          ? 'inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]'
-                          : 'inline-flex items-center gap-2 rounded-full border border-stone-300 px-5 py-2.5 text-sm font-bold text-[#000d3d] transition-colors hover:border-red-500 hover:text-red-600'
+                          ? 'inline-flex min-h-11 items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]'
+                          : 'inline-flex min-h-11 items-center gap-2 rounded-full border border-stone-300 px-5 py-2.5 text-sm font-bold text-[#000d3d] transition-colors hover:border-red-500 hover:text-red-600'
                       }
                     >
                       {l.label} <ArrowUpRight aria-hidden className="size-4" />

@@ -80,7 +80,7 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
         <Reveal className="mt-10 flex justify-center sm:mt-12">
           <Link
             to={SOCIAL_ACTIVITIES_PATH}
-            className="group inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-[background-color,scale] duration-200 hover:bg-[#000d3d] active:scale-[0.97]"
+            className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-[background-color,scale] duration-200 hover:bg-[#000d3d] active:scale-[0.97]"
           >
             {isMr ? 'सर्व सामाजिक उपक्रम' : 'All social activities'} <ArrowRight aria-hidden className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>

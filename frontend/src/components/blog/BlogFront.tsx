@@ -20,7 +20,7 @@ export function FrontHeading({ children, label, aside }: { children: ReactNode; 
   return (
     <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div className="space-y-2">
-        {label && <p className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{label}</p>}
+        {label && <p className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{label}</p>}
         <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{children}</h2>
       </div>
       {aside}
@@ -50,7 +50,8 @@ function Chip({ cat, dark }: { cat: Category | null; dark?: boolean }) {
     <Link
       to={`/blog?category=${cat.slug}`}
       className={cn(
-        'relative z-10 inline-flex w-fit rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider transition',
+        // the pill stays small; on a phone an invisible band above and below makes it a 44 px tap area
+        'relative z-10 inline-flex w-fit rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider transition max-lg:after:absolute max-lg:after:inset-x-0 max-lg:after:-inset-y-2',
         dark ? 'border border-white/20 bg-white/10 text-white backdrop-blur-md hover:bg-saffron-500' : 'bg-saffron-500/10 text-saffron-700 hover:bg-saffron-500 hover:text-white',
       )}
     >
@@ -95,9 +96,9 @@ export function FrontLatest({ posts, locale, title, footer }: { posts: Post[]; l
       <Stagger as="ol" className="mt-4 flex flex-1 flex-col divide-y divide-stone-100">
         {posts.map((p, i) => (
           <StaggerItem as="li" key={p.id} className="group relative grid grid-cols-[auto_1fr_4.5rem] items-center gap-4 py-4">
-            <span className={cn('font-display text-2xl font-bold leading-none', i % 2 ? 'text-leaf-600' : 'text-saffron-500')}>{n(i + 1, locale)}</span>
+            <span className={cn('font-display text-2xl font-bold leading-none', i % 2 ? 'text-leaf-600' : 'text-saffron-700')}>{n(i + 1, locale)}</span>
             <div className="min-w-0">
-              {primaryCategory(p) && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-600">{primaryCategory(p)!.title}</p>}
+              {primaryCategory(p) && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">{primaryCategory(p)!.title}</p>}
               <h4 className="mt-0.5 line-clamp-2 text-[0.95rem] font-semibold leading-snug text-charcoal-950 transition group-hover:text-saffron-700">
                 <Link to={`/blog/${p.slug}`} className="after:absolute after:inset-0">{p.title}</Link>
               </h4>
@@ -156,7 +157,7 @@ export function FrontTopics({ cats, active, title, allLabel }: { cats: Category[
           const on = (active ?? '') === c.slug
           return (
             <Link key={c.slug || 'all'} to={c.slug ? `/blog?category=${c.slug}` : '/blog'} aria-current={on ? 'true' : undefined}
-              className={cn('inline-flex min-h-10 items-center rounded-full px-4 py-1.5 text-sm font-semibold transition', on ? 'bg-gradient-to-r from-saffron-600 to-saffron-500 text-white shadow-md shadow-saffron-500/25' : 'bg-ivory text-charcoal-900 ring-1 ring-stone-200 hover:bg-saffron-50 hover:text-saffron-700 hover:ring-saffron-300')}>
+              className={cn('inline-flex min-h-11 items-center rounded-full px-4 py-1.5 text-sm font-semibold transition', on ? 'bg-gradient-to-r from-saffron-600 to-saffron-500 text-white shadow-md shadow-saffron-500/25' : 'bg-ivory text-charcoal-900 ring-1 ring-stone-200 hover:bg-saffron-50 hover:text-saffron-700 hover:ring-saffron-300')}>
               {c.title}
             </Link>
           )

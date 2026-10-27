@@ -61,7 +61,7 @@ export function PhotosPage() {
                       )}
                     </div>
 
-                    <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-bold text-saffron-600">
+                    <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-bold text-saffron-700">
                       <span>{LOCALE === 'mr' ? 'अल्बम पहा' : 'View album'}</span>
                       <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
@@ -92,7 +92,7 @@ export function AlbumPage() {
       <Seo title={a.title} description={a.description} image={mediaUrl(a.cover, 'card')} />
       <InnerPage path={`/media/photos/${a.slug}`} title={a.title} subtitle={a.description || undefined} crumbs={[{ label: t('media') }, { label: t('photoGallery'), href: '/media/photos' }, { label: a.title }]} variant="navy">
         <Reveal className="mb-8">
-          <Link to="/media/photos" className="group inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-charcoal-950 shadow-sm ring-1 ring-stone-200/80 transition hover:ring-saffron-400">
+          <Link to="/media/photos" className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-charcoal-950 shadow-sm ring-1 ring-stone-200/80 transition hover:ring-saffron-400">
             <ArrowLeft className="size-4 text-saffron-600 transition-transform group-hover:-translate-x-0.5" />
             {t('photoGallery')}
           </Link>

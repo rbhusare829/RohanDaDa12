@@ -83,7 +83,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={labels.search}
-            className="min-h-11 w-full rounded-full border border-field bg-white py-2.5 pl-10 pr-4 text-sm text-charcoal-900 outline-none transition placeholder:text-muted hover:border-field-hover focus:border-saffron-700 focus:ring-2 focus:ring-saffron-700"
+            className="min-h-11 w-full rounded-full border border-field bg-white py-2.5 pl-10 pr-4 text-base text-charcoal-900 outline-none sm:text-sm transition placeholder:text-muted hover:border-field-hover focus:border-saffron-700 focus:ring-2 focus:ring-saffron-700"
           />
         </label>
       </div>

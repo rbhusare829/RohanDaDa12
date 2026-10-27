@@ -95,7 +95,7 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
       <Field id="message" label={t('message')} error={errors.message} full as="textarea" textareaProps={{ rows: 5, ...register('message', { maxLength: 5000 }) }} />
 
       <div className="md:col-span-2">
-        <label htmlFor="f-attachment" className="mb-1.5 flex items-center gap-2 text-sm font-semibold text-charcoal-900"><Paperclip className="size-4 text-saffron-600" /> {t('attachment')}</label>
+        <label htmlFor="f-attachment" className="mb-1.5 flex items-center gap-2 text-sm font-semibold text-charcoal-900"><Paperclip className="size-4 text-saffron-700" /> {t('attachment')}</label>
         <input
           id="f-attachment"
           type="file"

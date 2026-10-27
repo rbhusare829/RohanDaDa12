@@ -35,8 +35,9 @@ const pages: RouteObject[] = [
   // the old bilingual addresses: /en/about → /about
   { path: 'en', loader: () => redirect('/') },
   { path: 'en/*', loader: ({ params }) => redirect(`/${params['*'] ?? ''}`) },
-  // any page made in the admin under Pages (Biography, Vision, Appeal…), found by its address; nothing found = 404
-  { path: '*', loader: cmsLoader, Component: CmsPage },
+  // any page made in the admin under Pages (Biography, Vision, Appeal…), found by its address; nothing found = 404.
+  // Only the address picks the page: a change of the query alone (?tab=social on Political Career) switches at once, without fetching the page again
+  { path: '*', loader: cmsLoader, Component: CmsPage, shouldRevalidate: ({ currentUrl, nextUrl, defaultShouldRevalidate }) => (currentUrl.pathname === nextUrl.pathname ? false : defaultShouldRevalidate) },
 ]
 
 export const router = createBrowserRouter([

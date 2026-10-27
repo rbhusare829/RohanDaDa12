@@ -16,12 +16,12 @@ interface FamilyItem {
 
 const FAMILY_MEMBERS: FamilyItem[] = [
   {
-    nameMr: 'कै. सुरेश्चंद्र केशवराव देशमुख',
+    nameMr: 'कै. सुरेशचंद्र केशवराव देशमुख',
     nameEn: 'Late Sureshchandra Keshavrao Deshmukh',
     relationMr: 'आजोबा',
     relationEn: 'Grandfather',
-    descMr: 'व्यवसायाने शिक्षक आणि अत्यंत श्रद्धाळू असलेल्या आजोबांनी पंढरपूरची वारी, नामस्मरण आणि भक्तीतून आयुष्य व्यतीत केले. उच्च नैतिक संस्कार हाच त्यांचा वारसा.',
-    descEn: 'A devoted teacher whose spiritual life, dedication to Pandharpur wari, and strong moral values laid the guiding foundation for the family.',
+    descMr: 'कै. सुरेशचंद्र देशमुख हे व्यवसायाने शिक्षक होते. निवृत्तीनंतर त्यांनी आपले जीवन अध्यात्माला समर्पित केले.',
+    descEn: 'A teacher by profession and a man of deep faith, he spent his life in devotion through the Pandharpur Wari, prayer, bhajans and kirtans.',
     image: '/images/family/family-suresh-deshmukh.webp',
     link: '/about/biography',
   },
@@ -30,8 +30,8 @@ const FAMILY_MEMBERS: FamilyItem[] = [
     nameEn: 'Hon. Shri Subhash (Bapusaheb) Deshmukh',
     relationMr: 'वडील',
     relationEn: 'Father',
-    descMr: 'लोकमंगल समूहाचे संस्थापक अध्यक्ष व माजी कॅबिनेट मंत्री. सहकार, शिक्षण, कृषी आणि जलसंधारणाच्या माध्यमातून सोलापूर व महाराष्ट्रातील लाखो कुटुंबांचे जीवन समृद्ध केले.',
-    descEn: 'Founder Chairman of Lokmangal Group, former Cabinet Minister & MLA. A visionary leader transforming agriculture, cooperative banking, and rural Maharashtra.',
+    descMr: 'सुभाष देशमुख, ज्यांना सर्वजण बापूसाहेब म्हणून ओळखतात, हे लोकमंगल समूहाचे संस्थापक अध्यक्ष आणि दक्षिण सोलापूर मतदारसंघाचे आमदार आहेत.',
+    descEn: 'Popularly known as Bapusaheb, he is the Founder President of the Lokmangal Group. As an elected representative in the Legislative Assembly and the Lok Sabha, he has worked for farmers, labourers, farm workers, unemployed youth, women and other sections of society.',
     image: '/images/family/family-subhash-deshmukh.webp',
     link: '/about/biography',
   },
@@ -40,8 +40,8 @@ const FAMILY_MEMBERS: FamilyItem[] = [
     nameEn: 'Manish Deshmukh',
     relationMr: 'बंधू',
     relationEn: 'Brother',
-    descMr: 'लोकमंगल पतसंस्थेचे अध्यक्ष, लोकमंगल बायोटेकचे चेअरमन आणि सोलापूर कृषी उत्पन्न बाजार समितीचे (APMC) संचालक. सहकार, कृषी उद्योग व युवक सक्षमीकरणात आघाडीवर.',
-    descEn: 'Chairman of Lokmangal Patsanstha, Vice Chairman of Lokmangal Foundation, and Director of Solapur APMC leading cooperative and rural agri-business.',
+    descMr: 'रोहन देशमुख यांचे थोरले बंधू मनीष देशमुख हे लोकमंगल पतसंस्थेचे अध्यक्ष, लोकमंगल बायोटेकचे चेअरमन आणि लोकमंगल फाउंडेशनचे उपाध्यक्ष म्हणून कार्यरत आहेत.',
+    descEn: 'Manish is President of Lokmangal Patsanstha, Chairman of Lokmangal Biotech and Vice President of Lokmangal Foundation.',
     image: '/images/family/family-manish-deshmukh.webp',
     link: '/about/biography',
   },
@@ -118,7 +118,7 @@ export function SupriyaAwardsSection({
 
                     <Link
                       to={member.link}
-                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-semibold text-slate-500 hover:text-charcoal-900 transition-colors"
+                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-bold text-red-600 hover:text-[#000d3d] transition-colors"
                     >
                       <span>{isMr ? 'अधिक वाचा' : 'Read more'}</span>
                       <ArrowRight className="size-3 transition-transform group-hover/btn:translate-x-0.5" />

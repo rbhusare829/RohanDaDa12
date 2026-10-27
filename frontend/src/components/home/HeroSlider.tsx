@@ -195,15 +195,15 @@ export function HeroSlider({
           {/* Bottom vignette for overlapping card integration */}
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#00081c]/95 via-[#00081c]/60 to-transparent pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-80 md:h-44 bg-gradient-to-t from-[#00081c]/95 via-[#00081c]/60 to-transparent pointer-events-none"
           />
         </div>
       )}
 
       {/* 2. Hero Content Container */}
-      <div className="container-x relative z-20 min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-center justify-between pt-16 pb-28 sm:pt-20 sm:pb-36 lg:pt-24 lg:pb-40">
-        <div className="w-full flex items-center justify-between gap-8">
-          {/* Words on the Left (Matching Image 3) */}
+      <div className="container-x relative z-20 min-h-[520px] sm:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-20 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-30">
+        <div className="w-full flex items-end md:items-center justify-between gap-8">
+          {/* Words on the Left (Matching Image 3); on mobile they sit at the bottom, below the face */}
           <div className="max-w-3xl lg:max-w-4xl py-6">
             <AnimatePresence mode="wait">
               <m.div
@@ -221,7 +221,7 @@ export function HeroSlider({
                 )}
 
                 {/* Big White Bold Heading (2-Line Poster Layout) */}
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[4.2rem] xl:text-[4.85rem] font-bold leading-[1.08] tracking-tight text-white drop-shadow-md">
+                <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.9rem] font-bold leading-[1.18] tracking-tight text-white drop-shadow-md">
                   <FormattedHeading text={activeSlide.heading} />
                 </h1>
 

@@ -1,8 +1,6 @@
 import {
   Building,
   Calendar,
-  CheckCircle2,
-  ChevronRight,
   GraduationCap,
   Heart,
   Landmark,
@@ -12,6 +10,7 @@ import {
   Users,
 } from 'lucide-react'
 import type { Page } from '@/types/cms'
+import { cn } from '@/lib/utils'
 import { Img } from '@/components/ui/Img'
 import { Reveal } from '@/components/ui/Motion'
 
@@ -23,12 +22,12 @@ interface IntroJourneyProps {
 }
 
 /**
- * स्वपरिचय (About / Introduction) Page — 100% modeled on Supriya Sule's official layout:
+ * स्वपरिचय (About / Introduction) Page — 100% modeled on Supriya Sule's official layout. Its words come from the client's
+ * "RD Content" document (Oct 2026), in Marathi and English as written there:
  * 1. Early Life, Ideals & Core Philosophy (Left portrait, right narrative with philosophy quote)
- * 2. Family Upbringing, Mass Connect & Featured Milestone Photo (With signature blue caption box)
- * 3. Signature Dark Blue Section: "कार्यगौरव व उपक्रम" (Performance & Key Initiatives) + "Profile" Card
- * 4. Political & Social Journey Timeline: "Leadership. Experience. Values."
- * 5. Positions Held ("महत्त्वाच्या जबाबदाऱ्या व पदे")
+ * 2. Social work (text beside a three-photo grid) and vision (with a highlighted key line)
+ * 3. Positions Held ("महत्त्वाच्या जबाबदाऱ्या व पदे")
+ * (Oct 2026: the dark-blue "जीवनचरित्र / Biography" + "Profile" section was removed)
  */
 export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
   const isMr = locale === 'mr'
@@ -41,10 +40,7 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
       {/* 2. Family Upbringing, Mass Connect & Milestone Photo Banner */}
       <MilestoneSection isMr={isMr} />
 
-      {/* 3. Signature Dual Navy Blue Section: Performance & Profile Card */}
-      <DualPerformanceProfileSection isMr={isMr} />
-
-      {/* 4. Positions Held (भूषविलेली पदे व जबाबदाऱ्या) */}
+      {/* 3. Positions Held (भूषविलेली पदे व जबाबदाऱ्या) */}
       <PositionsHeldSection isMr={isMr} />
     </div>
   )
@@ -74,7 +70,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
                 {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
               </p>
               <p className="text-xs font-semibold text-saffron-300">
-                {isMr ? 'चेअरमन, लोकमंगल फाऊंडेशन' : 'Chairman, Lokmangal Foundation'}
+                {isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'President, Lokmangal Foundation'}
               </p>
             </div>
           </div>
@@ -92,9 +88,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
 
           {/* Heading / Core Tagline */}
           <h2 className="mt-4 font-display text-2xl font-bold leading-snug text-charcoal-950 sm:text-3xl lg:text-[2.1rem]">
-            {isMr
-              ? '“समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही खूप मोठा असतो.”'
-              : '“Even the smallest effort made to bring about positive change in society has immense significance.”'}
+            {isMr ? 'सोलापूरचा नवा स्वर, नव्या भारताचा नवा विश्वास.' : 'A new voice from Solapur. A new voice for a new India.'}
           </h2>
 
           {/* Signature red and saffron underline bar */}
@@ -107,19 +101,13 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
         {/* Structured biographical paragraphs */}
         <div className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
           <p>
-            {isMr
-              ? 'स्वामी विवेकानंद, छत्रपती शिवाजी महाराज आणि संतांच्या सर्वसमावेशक विचारांनी प्रेरित होऊन रोहन सुभाष देशमुख यांनी सार्वजनिक जीवनात आणि समाजकारणात स्वतःला वाहून घेतले आहे. राजकारणापेक्षा समाजकारणाला प्राधान्य देत, ‘८० टक्के समाजकारण आणि २० टक्के राजकारण’ या जीवनमूल्यावर त्यांचा दृढ विश्वास आहे.'
-              : 'Deeply inspired by the timeless ideals of Swami Vivekananda, Chhatrapati Shivaji Maharaj, and the visionary social reformers of Maharashtra, Rohan Subhash Deshmukh has dedicated himself to public service and social enterprise. Prioritizing constructive community action, he firmly adheres to the guiding principle of “80% social service and 20% politics”.'}
+            {isMr ? 'रोहन सुभाष देशमुख हे सोलापूर येथील उद्योजक, लेखक आणि समाजकार्यकर्ते आहेत. नव्या विचारांकडे सकारात्मक दृष्टिकोनातून पाहत, नावीन्यपूर्ण उपक्रम राबवण्याची आणि समाजाच्या प्रगतीत योगदान देण्याची जिद्द बाळगणारे ते एक तरुण नेतृत्व. स्वामी विवेकानंदांच्या विचारांपासून प्रेरणा घेत त्यांनी आपल्या कार्याची दिशा निश्चित केली. आत्मविश्वासू आणि स्वावलंबी तरुणाई हाच सक्षम राष्ट्राचा पाया, असा त्यांचा ठाम विश्वास आहे. युवाशक्ती, उद्योजकता आणि स्वावलंबन हे त्यांच्या कार्याचे तीन प्रमुख आधारस्तंभ असून, तरुणांनी केवळ रोजगाराच्या संधी शोधण्यापुरते मर्यादित न राहता रोजगारनिर्मिती करणारे व्हावे, हा त्यांच्या विचारांचा केंद्रबिंदू आहे.' : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. A young leader with a positive outlook, he is driven to do things differently, to turn fresh ideas into action and to contribute to society’s progress in his own way. Inspired by the thoughts of Swami Vivekananda, he has built his work around one belief: confident, self-reliant young people are the foundation of a strong nation. Youth power, enterprise and self-reliance are the three pillars of his work. His message to young people is clear: do not just look for jobs, become the ones who create them.'}
           </p>
           <p>
-            {isMr
-              ? 'लोकमंगल परिवाराच्या सेवाभावी संस्कारांमध्ये लहानाचे मोठे झालेल्या रोहनजींनी सोलापूर जिल्ह्यातील शेतकरी, कष्टकरी आणि ग्रामीण तरुणांच्या समस्या अगदी जवळून अनुभवल्या आहेत. केवळ समस्यांवर चर्चा करण्यापेक्षा त्यावर शाश्वत, ठोस आणि तंत्रज्ञानाधारित उपाय शोधणे हीच त्यांच्या कार्यपद्धतीची ओळख आहे.'
-              : 'Grounded in the values and service culture of the Lokmangal family, Rohan has closely observed the ground realities, challenges, and aspirations of farmers, working families, and youth across Solapur district. His leadership focuses on building sustainable, actionable, and technology-driven solutions.'}
+            {isMr ? 'आमदार श्री. सुभाष बापू देशमुख यांचे पुत्र म्हणून वाढताना त्यांना वडिलांच्या कामाचा, विचारांचा आणि समाजाशी असलेल्या नात्याचा जवळून अनुभव घेता आला. त्यांच्या वाटचालीतून कष्ट, सातत्य, धाडस आणि समाजाप्रती बांधिलकी या मूल्यांचे संस्कार रोहन यांच्यावर झाले. मात्र वडिलांकडून मिळालेले संस्कार ही त्यांच्या प्रवासाची केवळ सुरुवात आहे. समाजकार्याकडे ते केवळ तात्कालिक मदत म्हणून पाहत नाहीत. लोकांशी प्रत्यक्ष संवाद साधणे, त्यांच्या अडचणी समजून घेणे आणि समस्यांच्या मूळ कारणांचा शोध घेऊन शाश्वत उपाययोजना करणे, ही त्यांची कार्यपद्धती आहे.' : 'As the son of MLA Shri Subhash Bapu Deshmukh, Rohan grew up watching his father’s work, his thinking and his bond with the people up close. That journey taught him the value of hard work, consistency, courage and commitment to society. But this legacy is only the beginning of his own path. For Rohan, social work is not about temporary relief. He speaks to people directly, listens to their problems and looks for the root cause, so that the solutions last.'}
           </p>
           <p>
-            {isMr
-              ? 'शिक्षण, आरोग्य, जलसंधारण आणि सहकार या क्षेत्रांत त्यांनी आजवर अनेक नाविन्यपूर्ण उपक्रम यशस्वीरीत्या राबविले आहेत. पारदर्शक कार्यप्रणाली, उच्च व्यावसायिक शिस्त आणि तळागाळातील प्रत्येक कार्यकर्त्याशी असलेला थेट जिव्हाळ्याचा संवाद यामुळे ते सोलापूरच्या युवा पिढीचे एक विश्वासार्ह नेतृत्व म्हणून परिचित आहेत.'
-              : 'He has spearheaded numerous pioneering programs across education, accessible healthcare, water conservation, and the cooperative sector. Transparent governance, professional excellence, and genuine personal connect with grassroots citizens make him a trusted and respected voice in Solapur.'}
+            {isMr ? 'त्यांनी लिहिलेल्या "न्यू इंडिया मॅनिफेस्टो" या पुस्तकातून मिळालेल्या प्रेरणेतून संपूर्ण महाराष्ट्रात स्टार्टअप परिसंस्था (इकोसिस्टम) उभारण्याचा त्यांचा संकल्प आहे. उद्योजकता, लेखन आणि समाजकार्य या तिन्ही माध्यमांतून ते तरुणांसाठी नव्या संधी निर्माण करण्यासाठी आणि समाजाच्या सर्वांगीण विकासासाठी कार्यरत आहेत.' : 'Inspired by his book New India Manifesto, he is working to build a startup ecosystem across Maharashtra. Through enterprise, writing and social work, Rohan is creating new opportunities for young people and working for the all-round development of society.'}
           </p>
         </div>
 
@@ -128,22 +116,22 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           <QuickFactCard
             icon={Calendar}
             label={isMr ? 'जन्म' : 'Born'}
-            val={isMr ? '१७ एप्रिल १९८८' : '17 April 1988'}
+            val={isMr ? '१२ डिसेंबर १९८७' : '12 December 1987'}
           />
           <QuickFactCard
             icon={MapPin}
             label={isMr ? 'जन्मस्थान' : 'Birthplace'}
-            val={isMr ? 'सोलापूर, महाराष्ट्र' : 'Solapur, Maharashtra'}
+            val={isMr ? 'सोलापूर, देशमुख कुटुंब' : 'Solapur, into the Deshmukh family'}
           />
           <QuickFactCard
             icon={GraduationCap}
             label={isMr ? 'शिक्षण' : 'Education'}
-            val={isMr ? 'बी.बी.ए., पदव्युत्तर' : 'B.B.A., Post Graduate'}
+            val={isMr ? 'रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी (RIT)' : 'Rochester Institute of Technology (RIT)'}
           />
           <QuickFactCard
             icon={Heart}
             label={isMr ? 'प्रेरणा' : 'Inspiration'}
-            val={isMr ? 'लोकमंगल परिवार' : 'Lokmangal Parivar'}
+            val={isMr ? 'स्वामी विवेकानंद' : 'Swami Vivekananda'}
           />
         </div>
       </Reveal>
@@ -172,214 +160,79 @@ function QuickFactCard({
 }
 
 /* ==========================================================================
-   Section 2: Family Upbringing, Mass Connect & Milestone Photo Banner
+   Section 2: Social Work (समाजकार्य) and Vision (दृष्टिकोन) — Oct 2026 layout:
+   the heading and text beside a captioned grid of three photos of the Lokmangal Foundation's work (community weddings, the
+   Annapurna free-meal scheme, water conservation), then the vision text with its key line in a highlighted card.
    ========================================================================== */
+const SOCIAL_PHOTOS = [
+  { src: '/images/social-work/community-weddings.webp', mr: 'सर्वधर्मीय सामुदायिक विवाह सोहळा', en: 'Inter-faith community weddings' },
+  { src: '/images/social-work/annapurna-meals.webp', mr: 'अन्नपूर्णा मोफत भोजन योजना', en: 'Annapurna free meal scheme' },
+  { src: '/images/social-work/water-conservation.webp', mr: 'लोकमंगल जलसंधारण कार्यक्रम', en: 'Lokmangal water conservation' },
+]
+
 function MilestoneSection({ isMr }: { isMr: boolean }) {
   return (
-    <section className="space-y-6">
-      <Reveal className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
-        <p>
-          {isMr
-            ? 'लोकमंगल परिवारातील ज्येष्ठ नेते आणि माजी कॅबिनेट मंत्री श्री. सुभाष (बापू) देशमुख यांच्या मार्गदर्शनाखाली त्यांनी समाजकारणाचे प्राथमिक धडे गिरवले. सामान्य नागरिकांशी आपुलकीचे नाते जपत ते दर आठवड्याला थेट जनसंपर्क कार्यालयात नागरिकांच्या अडीअडचणी जाणून घेतात आणि प्रशासनाच्या मदतीने त्यावर तात्काळ तोडगा काढतात.'
-            : 'Raised under the mentorship of senior political leader and former Maharashtra Cabinet Minister Shri Subhash (Bapu) Deshmukh, he imbibed the core values of public service early in life. He maintains an active open-door policy, meeting citizens weekly to address their grievances and coordinate swift solutions.'}
-        </p>
-      </Reveal>
-
-      {/* Featured Milestone Photo Banner (100% Supriya Sule style with blue caption pill bar) */}
-      <Reveal delay={0.1}>
-        <div className="group overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(9,20,34,0.14)]">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-charcoal-950 sm:aspect-[21/9] lg:aspect-[2.4/1]">
-            <Img
-              src="/images/gallery/political/rd-political-26.webp"
-              alt={isMr ? 'जनसंवाद व युवा नेतृत्व' : 'Public address and youth leadership'}
-              fill
-              className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-102"
-              sizes="100vw"
-            />
+    <section className="space-y-14 sm:space-y-16">
+      {/* समाजकार्य: text on the left, the photos on the right */}
+      <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-12 lg:gap-12">
+        <Reveal className="lg:col-span-5">
+          <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'समाजकार्य' : 'Social Work'}</p>
+          <h2 className="mt-1.5 font-display text-2xl font-bold leading-snug tracking-tight text-[#000d3d] sm:text-3xl">
+            {isMr ? 'लोकमंगल फाउंडेशन — सोलापूर आणि धाराशिव' : 'Lokmangal Foundation — Solapur and Dharashiv'}
+          </h2>
+          <div aria-hidden className="mt-3 mb-5 flex items-center gap-1.5">
+            <span className="h-1 w-12 rounded-full bg-red-600" />
+            <span className="h-1 w-3 rounded-full bg-saffron-500" />
           </div>
+          <p className="text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
+            {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून रोहन सुभाष देशमुख समाजाच्या गरजांनुसार विविध उपक्रम राबवतात. सोलापूर आणि धाराशिव जिल्ह्यांमध्ये कार्यरत असलेल्या या फाउंडेशनचा मुख्य उद्देश गरजू व्यक्तींना योग्य वेळी मदत करणे, त्यांच्या अडचणी दूर करण्यासाठी प्रयत्न करणे आणि त्यांना प्रगतीच्या संधी उपलब्ध करून देणे हा आहे. समाजातील विविध घटकांचे जीवनमान उंचावावे आणि त्यांना स्वावलंबी होण्यासाठी बळ मिळावे, यासाठी फाउंडेशन सातत्याने प्रयत्नशील आहे.' : 'Through Lokmangal Foundation, Rohan turns his ideas into action on the ground. The Foundation runs a range of social initiatives across Solapur and Dharashiv districts with one simple aim: to stand with people when they need it most and help them move forward.'}
+          </p>
+        </Reveal>
 
-          {/* Signature Light Blue Caption Bar (Exact replica of Supriya Sule milestone caption) */}
-          <div className="border-t border-sky-100 bg-[#e8f1fc] px-6 py-3.5 text-center">
-            <p className="font-display text-base font-bold text-[#0c4a8a] sm:text-lg">
-              {isMr
-                ? 'भाजप युवा मोर्चा, सहकार आणि समाजकारणातील सक्रिय वाटचाल'
-                : 'Active Journey in Youth Leadership, Cooperative Movement, and Grassroots Service'}
-            </p>
-          </div>
-        </div>
-      </Reveal>
-
-      <Reveal delay={0.15} className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
-        <p>
-          {isMr
-            ? 'तळागाळातील प्रत्येक कार्यकर्त्याचा सन्मान राखणे आणि शिस्तबद्ध संघटनात्मक बांधणी करणे हे त्यांचे प्रमुख वैशिष्ट्य आहे. लोकमंगल फाऊंडेशनच्या माध्यमातून दुष्काळग्रस्तांना मदत, ५००० हून अधिक जोडप्यांचे मोफत सामूहिक विवाह सोहळे आणि दुष्काळी भागात जलसंधारणाचे व्यापक प्रकल्प राबवून त्यांनी हजारो कुटुंबांना आर्थिक व सामाजिक स्थैर्य मिळवून दिले आहे.'
-            : 'Valuing every grassroots worker with dignity and fostering disciplined organizational teamwork are his guiding virtues. Through Lokmangal Foundation, he has delivered tangible relief to thousands of rural families through drought relief, over 5,000 free community marriages, and extensive watershed management projects.'}
-        </p>
-      </Reveal>
-    </section>
-  )
-}
-
-/* ==========================================================================
-   Section 3: Signature Dual Navy Blue Section ("कार्यगौरव व उपक्रम" + "Profile")
-   (Exact replica of Supriya Sule's 'Performance In Lok Sabha' and 'Profile' layout)
-   ========================================================================== */
-function DualPerformanceProfileSection({ isMr }: { isMr: boolean }) {
-  const initiatives = [
-    {
-      icon: Heart,
-      title: isMr ? 'लोकमंगल फाऊंडेशन (ग्रामीण विकास)' : 'Lokmangal Foundation (Rural Welfare)',
-      desc: isMr
-        ? '५,०००+ मोफत सामूहिक विवाह सोहळे, दुष्काळ निवारण, शेतकरी सहाय्य निधी आणि जलसंधारण प्रकल्प.'
-        : '5,000+ free mass marriages, drought relief programs, farmer support funds, and watershed projects.',
-    },
-    {
-      icon: GraduationCap,
-      title: isMr ? 'युवा सक्षमीकरण व शिक्षण' : 'Youth Empowerment & Education',
-      desc: isMr
-        ? 'जिल्हाभरात स्पर्धा परीक्षा अभ्यासिका, मोफत ग्रंथालये आणि ५०,०००+ विद्यार्थ्यांना कौशल्य प्रशिक्षण.'
-        : 'Network of competitive exam study centers, free libraries, and skill training for 50,000+ students.',
-    },
-    {
-      icon: Landmark,
-      title: isMr ? 'सहकार व शेतकरी अर्थकारण' : 'Cooperatives & Agri-Finance',
-      desc: isMr
-        ? 'सोलापूर जिल्हा मध्यवर्ती बँकेत संचालक म्हणून काम; शेतकरी कर्जपुरवठा आणि पारदर्शक सहकार सुधारणा.'
-        : 'Director at Solapur DCC Bank; pioneering credit access for sugarcane farmers and transparent banking.',
-    },
-    {
-      icon: Trophy,
-      title: isMr ? 'न्यू इंडिया मॅनिफेस्टो (उद्योजकता)' : 'New India Manifesto (Enterprise)',
-      desc: isMr
-        ? 'सोलापूर व ग्रामीण महाराष्ट्रातील १,००,००० नवउद्योजकांना मार्गदर्शन, नेटवर्क आणि भांडवली सहाय्य मिशन.'
-        : 'Mission to mentor and network 1,00,000 rural entrepreneurs across Solapur and Maharashtra.',
-    },
-  ]
-
-  return (
-    <section className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden bg-gradient-to-b from-[#000d3d] via-[#05164d] to-[#000d3d] py-16 text-white sm:py-20 lg:py-24">
-      {/* Subtle dotted background grid */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] opacity-[0.06] [background-size:24px_24px]"
-      />
-      
-      {/* Top & Bottom Accent Lines */}
-      <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-saffron-500 to-transparent" />
-      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent" />
-
-      <div className="container-x relative">
-        <div className="grid grid-cols-1 items-stretch gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left Column: Performance In Social Work / Key Initiatives */}
-          <div className="flex flex-col lg:col-span-7">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {isMr ? 'कार्यगौरव व प्रमुख उपक्रम' : 'Key Initiatives & Social Impact'}
-              </h2>
-              {/* Signature red line with white dot */}
-              <div className="mt-2.5 mb-6 flex items-center gap-1.5">
-                <span className="h-1 w-14 rounded-full bg-red-600" />
-                <span className="h-1 w-2 rounded-full bg-white" />
-              </div>
-            </div>
-
-            {/* Initiatives 2x2 Grid */}
-            <div className="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
-              {initiatives.map((item, idx) => {
-                const Icon = item.icon
-                return (
-                  <div
-                    key={idx}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-white/[0.06] p-5.5 backdrop-blur-md transition-all duration-300 hover:border-saffron-400/50 hover:bg-white/[0.1] hover:-translate-y-1"
-                  >
-                    <div>
-                      <div className="flex size-11 items-center justify-center rounded-xl bg-gradient-to-br from-saffron-600 to-red-600 text-white shadow-md">
-                        <Icon className="size-5.5" />
-                      </div>
-                      <h3 className="mt-3.5 font-display text-lg font-bold text-white transition-colors group-hover:text-saffron-300">
-                        {item.title}
-                      </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-slate-300 sm:text-sm">
-                        {item.desc}
-                      </p>
-                    </div>
-
-                    <div className="mt-4 flex items-center gap-1 text-xs font-semibold text-saffron-400">
-                      <span>{isMr ? 'सविस्तर पहा' : 'Learn more'}</span>
-                      <ChevronRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Right Column: Profile Card (Replica of Supriya Sule Namaskar Card) */}
-          <div className="flex flex-col lg:col-span-5">
-            <div>
-              <h2 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl">
-                {isMr ? 'Profile' : 'Profile'}
-              </h2>
-              {/* Signature red line with white dot */}
-              <div className="mt-2.5 mb-6 flex items-center gap-1.5">
-                <span className="h-1 w-14 rounded-full bg-red-600" />
-                <span className="h-1 w-2 rounded-full bg-white" />
-              </div>
-            </div>
-
-            {/* White Framed Profile Card */}
-            <div className="relative flex flex-1 flex-col overflow-hidden rounded-2xl border-4 border-white/20 bg-white p-5 text-charcoal-950 shadow-2xl transition-transform duration-300 hover:scale-[1.01] sm:p-7">
-              {/* Top Watermark / Emblem */}
-              <div className="flex items-center justify-between border-b border-stone-100 pb-3">
-                <span className="font-display text-xs font-bold uppercase tracking-wider text-saffron-600">
-                  {isMr ? 'अधिकृत परिचय' : 'Official Profile'}
-                </span>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-[#000d3d]">
-                  <CheckCircle2 className="size-3.5 text-emerald-600" />
-                  {isMr ? 'लोकमंगल परिवार' : 'Lokmangal Parivar'}
-                </span>
-              </div>
-
-              {/* Leader Photo */}
-              <div className="relative my-4 aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100 sm:aspect-[16/10]">
-                <Img
-                  src="/images/portraits/rohan-peach-kurta-namaskar.webp"
-                  alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width:1024px) 92vw, 420px"
+        <Reveal delay={0.1} className="lg:col-span-7">
+          {/* phones/tablets: the large photo on top, two below; desktop: the large photo on the left, two stacked on the right —
+              a compact block about as tall as the text beside it */}
+          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:aspect-[16/10] lg:grid-cols-3 lg:grid-rows-2">
+            {SOCIAL_PHOTOS.map((ph, i) => (
+              <figure
+                key={ph.src}
+                className={cn('group relative overflow-hidden rounded-2xl bg-charcoal-950 shadow-sm ring-1 ring-stone-200/80', i === 0 ? 'col-span-2 aspect-[16/9] lg:row-span-2 lg:aspect-auto' : 'aspect-[4/3] lg:aspect-auto')}
+              >
+                <img
+                  src={ph.src}
+                  alt={isMr ? ph.mr : ph.en}
+                  width={700}
+                  height={549}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-              </div>
-
-              {/* Authentic Greeting Signature Typography */}
-              <div className="mt-auto space-y-2 text-center">
-                <p className="font-display text-2xl font-bold text-red-600 sm:text-3xl">
-                  {isMr ? 'नमस्कार...' : 'Greetings...'}
-                </p>
-                <h3 className="font-display text-xl font-extrabold tracking-tight text-[#000d3d] sm:text-2xl">
-                  {isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
-                </h3>
-                <p className="text-xs font-semibold text-stone-600 sm:text-sm">
-                  {isMr
-                    ? 'चेअरमन — लोकमंगल फाऊंडेशन | युवा नेते, सोलापूर'
-                    : 'Chairman — Lokmangal Foundation | Youth Leader, Solapur'}
-                </p>
-
-                {/* Signature Tagline Pill */}
-                <div className="pt-2">
-                  <span className="inline-block rounded-full bg-[#000d3d] px-4 py-1.5 text-xs font-bold text-white shadow-xs">
-                    {isMr ? 'आपला नम्र, जनसेवेसाठी सदैव कटिबद्ध!' : 'Always at your service with humility!'}
-                  </span>
-                </div>
-              </div>
-            </div>
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-3 pb-2.5 pt-8 text-xs font-bold text-white sm:px-4 sm:pb-3 sm:text-sm">
+                  {isMr ? ph.mr : ph.en}
+                </figcaption>
+              </figure>
+            ))}
           </div>
-        </div>
+        </Reveal>
       </div>
+
+      {/* दृष्टिकोन: the text, then its key line in a highlighted card */}
+      <Reveal delay={0.1} className="mx-auto max-w-4xl text-center">
+        <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'दृष्टिकोन' : 'Vision'}</p>
+        <div aria-hidden className="mt-2.5 mb-5 flex items-center justify-center gap-1.5">
+          <span className="h-1 w-12 rounded-full bg-red-600" />
+          <span className="h-1 w-3 rounded-full bg-saffron-500" />
+        </div>
+        <p className="text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
+          {isMr ? '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.' : 'Rohan is the author of New India Manifesto, a book that sets out his ideas for a new India. Inspired by it, he has set out to build a strong startup ecosystem across Maharashtra, where young people with ideas get the right guidance, support and opportunity to grow, whether they come from a big city or a small town.'}
+        </p>
+        <p className="mt-6 rounded-2xl border-l-4 border-red-600 bg-[#f0f6fc] px-6 py-5 text-left font-display text-lg font-bold leading-snug text-[#000d3d] shadow-sm sm:px-8 sm:text-xl">
+          {isMr ? 'तरुणांनी स्वतःच्या क्षमतेवर विश्वास ठेवून स्वावलंबी व्हावे आणि रोजगार शोधण्याऐवजी रोजगारनिर्मिती करावी, हा त्यांच्या दृष्टिकोनाचा केंद्रबिंदू आहे.' : 'Rooted in Solapur and focused on the future, Rohan’s journey has one clear goal: to give the next generation the confidence and the chance to build something of their own.'}
+        </p>
+      </Reveal>
     </section>
   )
 }
-
 
 /* ==========================================================================
    Section 5: Positions Held (भूषविलेली पदे व जबाबदाऱ्या)
@@ -388,53 +241,39 @@ function DualPerformanceProfileSection({ isMr }: { isMr: boolean }) {
 function PositionsHeldSection({ isMr }: { isMr: boolean }) {
   const positions = [
     {
-      role: isMr ? 'चेअरमन' : 'Chairman',
-      org: isMr ? 'लोकमंगल फाऊंडेशन, सोलापूर' : 'Lokmangal Foundation, Solapur',
-      period: isMr ? '२०२२ ते आजपर्यंत' : '2022 - Present',
-      desc: isMr
-        ? 'ग्रामीण भागातील जलसंधारण, सामूहिक विवाह सोहळे आणि दुष्काळ निवारण उपक्रमांचे प्रमुख नेतृत्व.'
-        : 'Leading regional water conservation, free mass marriages, and drought mitigation programs.',
+      role: isMr ? 'अध्यक्ष' : 'President',
+      org: isMr ? 'लोकमंगल फाउंडेशन' : 'Lokmangal Foundation',
+      period: isMr ? 'सध्या' : 'Today',
+      desc: isMr ? 'फाउंडेशनचे अध्यक्ष म्हणून रोहन देशमुख विविध उपक्रमांचे नियोजन, अंमलबजावणी आणि प्रत्यक्ष कार्याचा आढावा घेण्याची जबाबदारी सांभाळतात.' : 'As President of Lokmangal Foundation, Rohan Deshmukh leads the Foundation and oversees every initiative, from planning to work on the ground.',
       icon: Building,
     },
     {
       role: isMr ? 'संचालक' : 'Director',
-      org: isMr
-        ? 'सोलापूर जिल्हा मध्यवर्ती सहकारी बँक मर्यादित (DCC Bank)'
-        : 'Solapur District Central Co-op Bank Ltd. (DCCB)',
-      period: '2016 - 2021',
-      desc: isMr
-        ? 'शेतकरी कर्जपुरवठा सुलभ करणे आणि सहकार बँकिंग क्षेत्रात पारदर्शक आर्थिक शिस्त निर्माण करणे.'
-        : 'Pioneered farmer credit facilities and introduced transparent banking protocols.',
+      org: isMr ? 'लोकमंगल मल्टिस्टेट' : 'Lokmangal Multistate',
+      period: isMr ? 'सध्या' : 'Today',
+      desc: isMr ? 'माननीय श्री. सुभाष देशमुख यांनी स्थापन केलेला लोकमंगल समूह आज बँकिंग, उद्योग, शिक्षण, आरोग्यसेवा आणि समाजसेवा अशा विविध क्षेत्रांत कार्यरत आहे.' : 'Founded by Hon. Shri Subhash Deshmukh, the Lokmangal Group has grown over the years into a large family working in banking, industry, education, healthcare and social service.',
       icon: Landmark,
     },
     {
-      role: isMr ? 'जिल्हाध्यक्ष' : 'District President',
-      org: isMr
-        ? 'भारतीय जनता युवा मोर्चा (BJYM), सोलापूर'
-        : 'Bharatiya Janata Yuva Morcha (BJYM), Solapur',
-      period: '2014 - 2016',
-      desc: isMr
-        ? 'सोलापूर जिल्ह्यातील हजारो युवकांचे संघटन आणि भव्य युवक मेळाव्यांचे यशस्वी आयोजन.'
-        : 'Organized thousands of youth across Solapur through leadership conventions and service drives.',
+      role: isMr ? 'सरचिटणीस' : 'General Secretary',
+      org: isMr ? 'भारतीय जनता युवा मोर्चा' : 'Bharatiya Janata Yuva Morcha',
+      period: isMr ? 'महाराष्ट्र' : 'Maharashtra',
+      desc: isMr ? 'भारतीय जनता युवा मोर्चाचे सरचिटणीस म्हणून रोहन देशमुख यांनी महाराष्ट्रभर दौरे करून युवकांशी संवाद साधला.' : 'As General Secretary of the Bharatiya Janata Yuva Morcha, Rohan Deshmukh travelled across Maharashtra to connect with young people and raise their political awareness.',
       icon: Trophy,
     },
     {
-      role: isMr ? 'विश्वस्त' : 'Trustee',
-      org: isMr ? 'लोकमंगल शिक्षण प्रसारक मंडळ, सोलापूर' : 'Lokmangal Shikshan Prasarak Mandal',
-      period: isMr ? '२०१५ ते आजपर्यंत' : '2015 - Present',
-      desc: isMr
-        ? 'दर्जेदार ग्रामीण शिक्षण, मोफत ग्रंथालये आणि कौशल्य विकास केंद्रांचे व्यवस्थापन.'
-        : 'Overseeing quality education, competitive exam libraries, and rural vocational training.',
-      icon: GraduationCap,
+      role: isMr ? 'अपक्ष उमेदवार' : 'Independent Candidate',
+      org: isMr ? 'धाराशिव (उस्मानाबाद) लोकसभा निवडणूक' : 'Lok Sabha Election, Dharashiv (Osmanabad)',
+      period: isMr ? 'धाराशिव' : 'Dharashiv',
+      desc: isMr ? 'मतदारसंघातील विविध गावांना भेटी देत त्यांनी नागरिकांशी थेट संवाद साधला आणि आपले विचार त्यांच्यापर्यंत पोहोचवले.' : 'He took his ideas directly to voters, reaching every corner of the constituency.',
+      icon: Users,
     },
     {
-      role: isMr ? 'संस्थापक मार्गदर्शक' : 'Founder Mentor',
-      org: isMr ? 'न्यू इंडिया मॅनिफेस्टो (उद्योजकता मंच)' : 'New India Manifesto (Enterprise Forum)',
-      period: isMr ? '२०२२ ते आजपर्यंत' : '2022 - Present',
-      desc: isMr
-        ? 'ग्रामीण व निमशहरी भागातील १,००,००० तरुणांना उद्योजक बनविण्याचे ध्येय.'
-        : 'National initiative to mentor and fund 1,00,000 rural youth entrepreneurs.',
-      icon: Users,
+      role: isMr ? 'लेखक' : 'Author',
+      org: isMr ? 'द न्यू इंडिया मॅनिफेस्टो' : 'The New India Manifesto',
+      period: isMr ? 'पुस्तक' : 'Book',
+      desc: isMr ? '‘द न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी उद्योजकतेच्या माध्यमातून भारताच्या विकासाला नवी दिशा देण्याचा विचार मांडला आहे.' : 'In The New India Manifesto, Rohan Subhash Deshmukh sets out a simple idea: India’s growth can take a new direction through enterprise.',
+      icon: GraduationCap,
     },
   ]
 

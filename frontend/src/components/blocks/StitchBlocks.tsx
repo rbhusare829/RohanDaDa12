@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { ArrowRight, Award, BookOpen, Building2, Download, FileText, HeartHandshake, Quote, Sparkles, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { LOCALE } from '@/lib/i18n'
 import { mediaAlt, mediaPosition, mediaUrl, photoFit, toGallery } from '@/lib/media'
 import { RichText } from '../ui/RichText'
 import { CMSLink } from '../ui/CMSLink'
@@ -236,7 +237,7 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
                   )}
                 </div>
                 <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-saffron-600">
-                  <span>{c.meta || (c.url ? 'अधिक जाणून घ्या' : '')}</span>
+                  <span>{c.meta || (c.url ? (LOCALE === 'en' ? 'Learn more' : 'अधिक जाणून घ्या') : '')}</span>
                   <ArrowRight aria-hidden className={cn('size-4 transition-transform duration-300 group-hover:translate-x-1.5', green ? 'text-leaf-600' : 'text-saffron-600')} />
                 </div>
               </Box>

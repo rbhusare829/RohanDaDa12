@@ -1,5 +1,6 @@
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router'
-import { ChevronRight, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import type { Post } from '@/types/cms'
 import { mediaUrl } from '@/lib/media'
 import { Reveal } from '../ui/Motion'
@@ -29,8 +30,10 @@ const SOURCES = ['माध्यम वार्ता', 'सोलापूर
  * Latest News Section (100% Supriya Sule 5-Column Grid Layout):
  * Connected directly to REAL CMS POSTS & ARTICLES!
  * - Heading with signature red & saffron accent line
- * - View all button on right
- * - 5-column responsive card grid (horizontal scroll on mobile)
+ * - Every post the homepage loads (the latest 20), moving continuously from right to left in one endless row (Oct 2026: no
+ *   "View all" link). The row is drawn twice so the loop never shows a gap (the copy is hidden from screen readers and the keyboard);
+ *   it pauses while the pointer is over it or a card has keyboard focus, and for visitors who ask for less motion it stands still
+ *   and scrolls sideways by hand instead
  * - Each card: Media tag, real published date badge, LIVE indicator on first item, real cover image & headline
  */
 export function SupriyaLatestNewsSection({
@@ -42,11 +45,13 @@ export function SupriyaLatestNewsSection({
 }) {
   const isMr = locale !== 'en'
 
-  // Pick up to 5 real posts from the CMS
-  const displayItems = posts.slice(0, 5).map((p, i) => {
+  // every real post from the CMS (the homepage loads the latest 20)
+  const displayItems = posts.map((p, i) => {
     const rawCat = p.categories?.[0]
     const catName = typeof rawCat === 'object' && rawCat !== null ? (rawCat as { title?: string }).title : null
-    const tag = (p.tags?.[0] as string) || catName || (isMr ? SOURCES[i % SOURCES.length] : 'Media Update')
+    // the admin's tags are typed in Marathi: on the English site a Marathi tag gives way to the category or "Media Update"
+    const rawTag = (p.tags?.[0] as string) || catName
+    const tag = (isMr ? rawTag : rawTag && !/[\u0900-\u097F]/.test(rawTag) ? rawTag : null) || (isMr ? SOURCES[i % SOURCES.length] : 'Media Update')
     const img = mediaUrl(p.coverImage, 'card') || (
       i === 0 ? '/images/gallery/political/rd-political-06.webp' :
       i === 1 ? '/images/gallery/political/rd-political-02.webp' :
@@ -71,85 +76,86 @@ export function SupriyaLatestNewsSection({
     <section className="bg-white py-14 sm:py-20 border-b border-stone-200 overflow-hidden">
       <div className="container-x">
         {/* Header */}
-        <div className="flex items-end justify-between gap-4 mb-8">
+        <div className="mb-8">
           <div>
             <span className="text-xs font-extrabold uppercase tracking-widest text-red-600">
               {isMr ? 'माध्यम वार्तांकन' : 'Media Coverage'}
             </span>
             <h2 className="mt-1 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
-              {isMr ? 'ताज्या बातम्या' : 'Latest News'}
+              {isMr ? 'ब्लॉग' : 'Blogs'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
               <span className="h-1 w-14 rounded-full bg-red-600" />
               <span className="h-1 w-3 rounded-full bg-saffron-500" />
             </div>
           </div>
-
-          <Link
-            to="/blog"
-            className="group inline-flex items-center gap-1 text-sm sm:text-base font-bold text-[#000d3d] hover:text-red-600 transition-colors shrink-0"
-          >
-            <span>{isMr ? 'सर्व पहा' : 'View all'}</span>
-            <ChevronRight className="size-4.5 transition-transform group-hover:translate-x-1" />
-          </Link>
         </div>
 
-        {/* 5-Column Grid */}
+        {/* the endless row: two copies side by side, moved left by one copy's width (-50%) and back to the start, over and over */}
         <Reveal delay={0.08}>
-          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-2 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
-            {displayItems.map((item) => (
-              <div
-                key={item.id}
-                className="w-[70vw] max-w-[250px] shrink-0 snap-center sm:w-auto sm:shrink"
-              >
-                <Link
-                  to={`/blog/${item.slug}`}
-                  className="group flex flex-col h-full overflow-hidden rounded-xl bg-white border border-stone-200 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
-                >
-                  {/* Image & Badges */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
-                    <img
-                      src={item.image}
-                      alt={item.title}
-                      loading="lazy"
-                      className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    />
+          <div className="group/row relative -mx-4 overflow-hidden px-4 py-2 [mask-image:linear-gradient(to_right,transparent,#000_3%,#000_97%,transparent)] sm:mx-0 sm:px-0 motion-reduce:overflow-x-auto motion-reduce:[mask-image:none]">
+            <div
+              className="flex w-max animate-[marquee_var(--marquee-duration)_linear_infinite] group-hover/row:[animation-play-state:paused] group-focus-within/row:[animation-play-state:paused] motion-reduce:animate-none"
+              style={{ '--marquee-duration': `${Math.max(displayItems.length * 6, 24)}s` } as CSSProperties}
+            >
+              {[false, true].map((copy) =>
+                displayItems.map((item) => (
+                  <div
+                    key={`${copy ? 'b' : 'a'}-${item.id}`}
+                    aria-hidden={copy || undefined}
+                    className={`w-[240px] shrink-0 pr-4 sm:w-[256px] lg:w-[264px]${copy ? ' motion-reduce:hidden' : ''}`}
+                  >
+                    <Link
+                      to={`/blog/${item.slug}`}
+                      tabIndex={copy ? -1 : undefined}
+                      className="group flex flex-col h-full overflow-hidden rounded-xl bg-white border border-stone-200 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
+                    >
+                      {/* Image & Badges */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          loading="lazy"
+                          className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                        />
 
-                    {/* LIVE Badge on First News Item */}
-                    {item.isLive && (
-                      <div className="absolute top-2 left-2 flex items-center gap-1 rounded bg-red-600 px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
-                        <span className="size-1.5 rounded-full bg-white animate-ping" />
-                        <span>LIVE</span>
+                        {/* LIVE Badge on First News Item */}
+                        {item.isLive && (
+                          <div className="absolute top-2 left-2 flex items-center gap-1 rounded bg-red-600 px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
+                            <span className="size-1.5 rounded-full bg-white animate-ping" />
+                            <span>LIVE</span>
+                          </div>
+                        )}
+
+                        {/* Hover Arrow Overlay */}
+                        <div className="absolute inset-0 grid place-items-center bg-black/25 opacity-0 transition-opacity group-hover:opacity-100">
+                          <span className="grid size-10 place-items-center rounded-full bg-red-600 text-white shadow-md">
+                            <ArrowUpRight className="size-5" />
+                          </span>
+                        </div>
+
+                        {/* Date Badge */}
+                        <div className="absolute bottom-2 right-2 rounded bg-[#000d3d]/90 px-2 py-0.5 text-[10px] font-semibold text-white shadow-xs">
+                          {item.date}
+                        </div>
                       </div>
-                    )}
 
-                    {/* Hover Arrow Overlay */}
-                    <div className="absolute inset-0 grid place-items-center bg-black/25 opacity-0 transition-opacity group-hover:opacity-100">
-                      <span className="grid size-10 place-items-center rounded-full bg-red-600 text-white shadow-md">
-                        <ArrowUpRight className="size-5" />
-                      </span>
-                    </div>
-
-                    {/* Date Badge */}
-                    <div className="absolute bottom-2 right-2 rounded bg-[#000d3d]/90 px-2 py-0.5 text-[10px] font-semibold text-white shadow-xs">
-                      {item.date}
-                    </div>
+                      {/* Content */}
+                      <div className="p-3.5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <span className="text-[11px] font-extrabold uppercase tracking-wider text-red-600">
+                            [{item.source}]
+                          </span>
+                          <h3 className="mt-1 font-display text-xs sm:text-[13px] font-bold leading-snug text-[#000d3d] group-hover:text-red-600 transition-colors line-clamp-3">
+                            {item.title}
+                          </h3>
+                        </div>
+                      </div>
+                    </Link>
                   </div>
-
-                  {/* Content */}
-                  <div className="p-3.5 flex-1 flex flex-col justify-between">
-                    <div>
-                      <span className="text-[11px] font-extrabold uppercase tracking-wider text-red-600">
-                        [{item.source}]
-                      </span>
-                      <h3 className="mt-1 font-display text-xs sm:text-[13px] font-bold leading-snug text-[#000d3d] group-hover:text-red-600 transition-colors line-clamp-3">
-                        {item.title}
-                      </h3>
-                    </div>
-                  </div>
-                </Link>
-              </div>
-            ))}
+                )),
+              )}
+            </div>
           </div>
         </Reveal>
       </div>

@@ -26,8 +26,8 @@ export function SupriyaAboutSection({
   const bio =
     b.text ||
     (isMr
-      ? 'रोहन सुभाष देशमुख हे सोलापूरचे उद्योजक, लेखक आणि सामाजिक कार्यकर्ते आहेत. स्वामी विवेकानंदांच्या विचारांनी प्रेरित होऊन, आत्मविश्वासू आणि स्वावलंबी तरुणच सशक्त राष्ट्र घडवतात, असा त्यांचा विश्वास आहे. तरुणाई, उद्योजकता आणि स्वावलंबन हे त्यांच्या प्रत्येक कामाच्या केंद्रस्थानी आहेत.'
-      : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. Inspired by the thoughts of Swami Vivekananda, he believes a strong nation is built by confident, self-reliant young people.')
+      ? 'रोहन सुभाष देशमुख हे सोलापूर येथील उद्योजक, लेखक आणि समाजकार्यकर्ते आहेत. नव्या विचारांकडे सकारात्मक दृष्टिकोनातून पाहत, नावीन्यपूर्ण उपक्रम राबवण्याची आणि समाजाच्या प्रगतीत योगदान देण्याची जिद्द बाळगणारे ते एक तरुण नेतृत्व. स्वामी विवेकानंदांच्या विचारांपासून प्रेरणा घेत त्यांनी आपल्या कार्याची दिशा निश्चित केली. आत्मविश्वासू आणि स्वावलंबी तरुणाई हाच सक्षम राष्ट्राचा पाया, असा त्यांचा ठाम विश्वास आहे. युवाशक्ती, उद्योजकता आणि स्वावलंबन हे त्यांच्या कार्याचे तीन प्रमुख आधारस्तंभ असून, तरुणांनी केवळ रोजगाराच्या संधी शोधण्यापुरते मर्यादित न राहता रोजगारनिर्मिती करणारे व्हावे, हा त्यांच्या विचारांचा केंद्रबिंदू आहे.'
+      : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. A young leader with a positive outlook, he is driven to do things differently, to turn fresh ideas into action and to contribute to society’s progress in his own way. Inspired by the thoughts of Swami Vivekananda, he has built his work around one belief: confident, self-reliant young people are the foundation of a strong nation. Youth power, enterprise and self-reliance are the three pillars of his work. His message to young people is clear: do not just look for jobs, become the ones who create them.')
   // On mobile only the first two sentences are shown; the rest appears from the sm breakpoint up
   const sentences = bio.split(/(?<=[.।])\s+/)
   const bioShort = sentences.slice(0, 2).join(' ')
@@ -87,9 +87,9 @@ export function SupriyaAboutSection({
               <button
                 type="button"
                 onClick={() => setShowVideo(true)}
-                className="inline-flex items-center gap-2 rounded-md bg-[#000d3d] px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-red-700 hover:shadow-md active:scale-95 cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-md bg-red-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#000d3d] hover:shadow-md active:scale-95 cursor-pointer"
               >
-                <PlayCircle className="size-4.5 text-red-400" />
+                <PlayCircle className="size-4.5 text-white" />
                 <span>{isMr ? 'दृष्टिकोन' : 'Vision'}</span>
               </button>
 
@@ -107,7 +107,7 @@ export function SupriyaAboutSection({
                   <button
                     type="button"
                     onClick={() => setShowVideo(false)}
-                    className="grid size-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-stone-200 hover:text-black transition-colors"
+                    className="grid size-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-red-600 hover:text-white transition-colors"
                   >
                     &times;
                   </button>

@@ -15,15 +15,24 @@ type MediaText = Extract<Block, { blockType: 'mediaText' }>
 type Content = Extract<Block, { blockType: 'content' }>
 
 /**
- * One colour family per member (kesariya, green, navy — Stitch): the tint of the photo panel, the halo behind the person, the dot on the
- * relation label, the rule under the name and the ring when the card is hovered. The portraits are cut-outs on a transparent
- * background, so the panel colour is what they stand on — every panel ends in its own tint (not white), so each one reads as a tile.
+ * One colour family per member (kesariya, green, navy), the same as the homepage's कौटुंबिक पार्श्वभूमी cards: the tint of the
+ * photo panel, and the halo behind the father only. The portraits are cut-outs on a transparent background, so the panel colour is
+ * what they stand on.
  */
 const ACCENTS = [
-  { panel: 'from-saffron-100/90 via-saffron-50 to-orange-50/60', halo: 'bg-saffron-300/40', dot: 'bg-saffron-600', rule: 'bg-saffron-600', ring: 'group-hover:ring-saffron-300/80' },
-  { panel: 'from-emerald-100/80 via-leaf-50 to-emerald-50/50', halo: 'bg-leaf-300/35', dot: 'bg-leaf-600', rule: 'bg-leaf-600', ring: 'group-hover:ring-leaf-300/80' },
-  { panel: 'from-slate-200/90 via-slate-100 to-indigo-50/50', halo: 'bg-slate-300/50', dot: 'bg-charcoal-900', rule: 'bg-charcoal-900', ring: 'group-hover:ring-slate-300/80' },
+  { panel: 'from-saffron-100/90 via-saffron-50 to-orange-50/60', halo: '' },
+  { panel: 'from-emerald-100/80 via-leaf-50 to-emerald-50/50', halo: 'bg-leaf-300/35' },
+  { panel: 'from-slate-200/90 via-slate-100 to-indigo-50/50', halo: '' },
 ] as const
+
+/** the homepage's family photos (same order: grandfather, father, brother), used when a member has no photo in the admin */
+/** the relation only ("वडील · माननीय आमदार…" → "वडील"), as on the homepage cards */
+const relation = (label: string) => label.split(/\s+[·•|]\s+/)[0].trim()
+
+const HOME_PHOTOS = ['/images/family/family-suresh-deshmukh.webp', '/images/family/family-subhash-deshmukh.webp', '/images/family/family-manish-deshmukh.webp']
+
+/** the whole family together, beside the परिवार introduction (Oct 2026) */
+const FAMILY_PHOTO = { src: '/images/gallery/family/rd-family-together.webp', width: 710, height: 565 }
 
 const FAMILY_MOMENTS = [
   {
@@ -31,52 +40,52 @@ const FAMILY_MOMENTS = [
     badge: 'माझे कुटुंब',
     title: 'कुटुंबासोबतचे आनंदाचे क्षण',
     desc: 'सौ. व दोन्ही कन्यांसोबत घरगुती वातावरणात घालवलेले सुखद क्षण. कौटुंबिक आधार हीच जनसेवेची खरी प्रेरणा आहे.',
+    en: { badge: 'My family', title: 'Happy moments with family', desc: 'Warm moments at home with his wife and both daughters. The support of family is the true inspiration for public service.' },
   },
   {
     src: '/images/gallery/family/rd-family-06.webp',
     badge: 'वडिलांचे मार्गदर्शन',
     title: 'मा. बापूसाहेबांसोबत संवाद',
     desc: 'मा. आ. श्री. सुभाष (बापूसाहेब) देशमुख यांच्यासोबतचे जिव्हाळ्याचे क्षण आणि त्यांच्या समृद्ध राजकीय-सामाजिक अनुभवाचे मार्गदर्शन.',
+    en: { badge: 'Father’s guidance', title: 'In conversation with Bapusaheb', desc: 'Close moments with Hon. MLA Shri Subhash (Bapusaheb) Deshmukh, and the guidance of his rich political and social experience.' },
   },
   {
     src: '/images/gallery/family/rd-family-02.webp',
     badge: 'संयुक्त कुटुंब',
     title: 'एकत्र कुटुंबाचा स्नेहमेळावा',
     desc: 'सण, उत्सव आणि कौटुंबिक कार्यक्रमांच्या निमित्ताने सर्व पिढ्या एकत्र येऊन संस्कृती व परंपरेचे जतन करतात.',
-  },
-  {
-    src: '/images/gallery/family/rd-family-05.webp',
-    badge: 'बंधुप्रेम',
-    title: 'मनीष देशमुख यांच्यासोबत',
-    desc: 'बंधू मनीष यांच्यासोबत सहकार, उद्योग आणि लोकमंगल परिवाराच्या विविध सामाजिक उपक्रमांचे यशस्वी नियोजन.',
+    en: { badge: 'Joint family', title: 'The whole family together', desc: 'At festivals, celebrations and family occasions, every generation comes together to keep its culture and traditions alive.' },
   },
   {
     src: '/images/gallery/family/rd-family-03.webp',
+    /** a tall photo: show the middle, so both Rohan's face and the baby's are in the card */
+    position: 'center 36%',
     badge: 'पुढची पिढी',
     title: 'चिमुकल्यांसोबत संस्कारांची शिदोरी',
     desc: 'पुढच्या पिढीमध्ये लहानपणापासूनच समाजभान, नम्रता आणि संस्कृतीचे बीजारोपण करणे ही कुटुंबाची जबाबदारी आहे.',
+    en: { badge: 'The next generation', title: 'Passing on values to the little ones', desc: 'The family sees it as its duty to plant social awareness, humility and culture in the next generation from childhood.' },
   },
   {
     src: '/images/gallery/family/rd-family-15.webp',
     badge: 'कौटुंबिक परंपरा',
     title: 'संस्कार, श्रद्धा आणि सेवा',
     desc: 'कै. सुरेशचंद्रजी देशमुखांपासून सुरू झालेली अध्यात्म, श्रद्धा आणि लोककल्याणाची परंपरा अविरत पुढे चालू आहे.',
+    en: { badge: 'Family tradition', title: 'Values, faith and service', desc: 'The tradition of spirituality, faith and public welfare begun by the late Sureshchandra Deshmukh carries on to this day.' },
   },
 ]
 
-/* What happens inside a card when it scrolls into view: the halo blooms, the person rises into it and the rule under the
-   name is drawn. These variants have no `initial` of their own: they follow the card's own hidden → show (see StaggerItem), and `custom` (the
+/* What happens inside a card when it scrolls into view: the halo blooms and the person rises into it. These variants have no `initial` of their own: they follow the card's own hidden → show (see StaggerItem), and `custom` (the
    card's number) staggers them the same way the cards are staggered (a delay written in a variant replaces the one inherited from the card). */
 const EASE = [0.22, 1, 0.36, 1] as const
 const STEP = 0.08
 const bloom: Variants = { hidden: { opacity: 0, scale: 0.82 }, show: (i: number) => ({ opacity: 1, scale: 1, transition: { duration: 0.9, delay: 0.02 + i * STEP, ease: EASE } }) }
 const rise: Variants = { hidden: { opacity: 0, y: 22, scale: 0.97 }, show: (i: number) => ({ opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, delay: 0.12 + i * STEP, ease: EASE } }) }
-const draw: Variants = { hidden: { scaleX: 0 }, show: (i: number) => ({ scaleX: 1, transition: { duration: 0.7, delay: 0.35 + i * STEP, ease: EASE } }) }
 
 /**
- * कौटुंबिक पार्श्वभूमी page (Stitch design, Oct 2026): the family introduction beside its heading, then the family
- * members (the page's consecutive Media + text blocks, edited under Pages in the admin) as cards — a tinted photo panel with the
- * relation label, then the name and the story. On mobile, it seamlessly presents an interactive swipeable snap-carousel with
+ * कौटुंबिक पार्श्वभूमी page (Stitch design, Oct 2026): the family introduction (परिवार) — the whole family's photo on the left, the
+ * heading and the text beside it (on phones: heading, photo, text) — then the family
+ * members (the page's consecutive Media + text blocks, edited under Pages in the admin) as cards in the homepage's कौटुंबिक
+ * पार्श्वभूमी style — a tinted photo panel with the relation label in maroon, then the name and the whole story (on phones shortened behind "Read more"). On mobile, it seamlessly presents an interactive swipeable snap-carousel with
  * dot indicators and touch navigation; on wide screens, members sit side by side in a clean responsive grid.
  */
 export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; locale?: 'mr' | 'en' }) {
@@ -95,8 +104,8 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
   const before = list.slice(0, introIdx >= 0 ? introIdx : start)
   const after = list.slice(end)
   const count = members.length
-  const stacked = count >= 3 // side by side, photo on top, on wide screens
-  const cols = count >= 5 ? 'lg:grid-cols-3' : count === 4 ? 'lg:grid-cols-2 xl:grid-cols-4' : count === 3 ? 'lg:grid-cols-3' : count === 2 ? 'lg:grid-cols-2' : ''
+  // like the homepage: photo on top, two cards a row on tablets, three on wide screens
+  const cols = count >= 3 ? 'md:grid-cols-2 lg:grid-cols-3' : count === 2 ? 'md:grid-cols-2' : 'md:max-w-md'
   const isMr = locale !== 'en'
 
   useEffect(() => {
@@ -142,13 +151,27 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
 
       <section className="flex flex-col gap-10 md:gap-12">
         {intro && (
-          <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-12">
-            <Reveal className="lg:col-span-5">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6">
+            <Reveal className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
               {intro.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{intro.eyebrow}</p>}
               {intro.heading && <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{intro.heading}</h2>}
               <span aria-hidden className="mt-5 block h-1 w-16 rounded-full bg-gradient-to-r from-saffron-600 to-leaf-600" />
             </Reveal>
-            <Reveal delay={0.1} className="relative overflow-hidden rounded-2xl border-l-4 border-saffron-500 bg-gradient-to-br from-cream via-cream/95 to-saffron-50/20 p-6 shadow-sm md:p-8 lg:col-span-7">
+            {/* the whole family: a white frame like the cards below, the faces kept in view (object-top) */}
+            <Reveal delay={0.05} className="lg:col-span-5 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-center">
+              <figure className="overflow-hidden rounded-3xl bg-white p-2.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.35)] ring-1 ring-stone-200/85">
+                <img
+                  src={FAMILY_PHOTO.src}
+                  width={FAMILY_PHOTO.width}
+                  height={FAMILY_PHOTO.height}
+                  alt={isMr ? 'देशमुख परिवार एकत्र' : 'The Deshmukh family together'}
+                  loading="lazy"
+                  decoding="async"
+                  className="aspect-[5/4] h-auto w-full rounded-2xl object-cover object-top"
+                />
+              </figure>
+            </Reveal>
+            <Reveal delay={0.1} className="relative overflow-hidden rounded-2xl border-l-4 border-saffron-500 bg-gradient-to-br from-cream via-cream/95 to-saffron-50/20 p-6 shadow-sm md:p-8 lg:col-span-7 lg:col-start-6 lg:row-start-2 lg:self-start">
               <RichText html={intro.body} readMore />
             </Reveal>
           </div>
@@ -166,45 +189,45 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
           >
             {members.map((member, i) => {
               const a = ACCENTS[i % ACCENTS.length]
-              const hasPhoto = Boolean(mediaUrl(member.image, 'card'))
+              const photo = mediaUrl(member.image, 'card')
+              const fallback = HOME_PHOTOS[i]
               return (
                 <StaggerItem
                   as="article"
                   key={member.id ?? i}
                   data-member-card={i}
                   className={cn(
-                    'group relative flex flex-col gap-1 rounded-3xl bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.25)] ring-1 ring-stone-200/85',
+                    'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.25)] ring-1 ring-stone-200/85',
                     'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(14,30,52,0.35)] motion-safe:hover:-translate-y-1.5',
-                    'w-[82vw] max-w-[340px] shrink-0 snap-center md:w-auto md:shrink md:snap-align-none',
-                    stacked ? 'md:flex-row md:gap-4 lg:flex-col lg:gap-1' : 'md:flex-row md:gap-4',
-                    a.ring,
+                    'md:h-full md:w-auto md:max-w-none md:shrink md:snap-align-none',
                   )}
                 >
-                  {/* the photo panel: a soft tint, a halo behind the person, the relation label */}
-                  <div
-                    className={cn(
-                      'relative isolate aspect-[4/4.6] overflow-hidden rounded-2xl bg-gradient-to-b md:aspect-[4/4.8] md:w-[40%] md:shrink-0 md:self-start',
-                      stacked ? 'lg:aspect-[4/4.5] lg:w-auto lg:self-auto' : '',
-                      a.panel,
-                    )}
-                  >
-                    <m.span aria-hidden variants={bloom} custom={i} className={cn('absolute left-1/2 top-[56%] -z-10 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full', a.halo)} />
+                  {/* the photo panel: a soft tint, the halo (father only), the relation label in maroon */}
+                  <div className={cn('relative isolate aspect-[4/3.1] overflow-hidden rounded-2xl bg-gradient-to-b', a.panel)}>
+                    {a.halo && <m.span aria-hidden variants={bloom} custom={i} className={cn('absolute left-1/2 top-[56%] -z-10 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full', a.halo)} />}
                     {member.eyebrow && (
-                      <span className="absolute left-3 top-3 z-10 inline-flex items-center gap-2 rounded-full bg-white/95 px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-charcoal-900 shadow-sm ring-1 ring-black/5 backdrop-blur-sm">
-                        <span aria-hidden className={cn('size-2 rounded-full ring-2 ring-white', a.dot)} />
-                        {member.eyebrow}
-                      </span>
+                      <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-[#800020]">{relation(member.eyebrow)}</span>
                     )}
-                    {hasPhoto ? (
-                      <m.div variants={rise} custom={i} className="absolute inset-x-[4%] bottom-0 top-[6%]">
-                        <Img
-                          media={member.image}
-                          variant="card"
-                          alt={mediaAlt(member.image, member.heading ?? '')}
-                          fill
-                          sizes="(max-width:768px) 85vw, (max-width:1024px) 30vw, 340px"
-                          className="origin-bottom object-contain object-bottom transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
-                        />
+                    {photo || fallback ? (
+                      <m.div variants={rise} custom={i} className="absolute inset-x-[4%] bottom-0 top-[10%]">
+                        {photo ? (
+                          <Img
+                            media={member.image}
+                            variant="card"
+                            alt={mediaAlt(member.image, member.heading ?? '')}
+                            fill
+                            sizes="(max-width:768px) 85vw, (max-width:1024px) 45vw, 400px"
+                            className="origin-bottom object-contain object-bottom transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
+                          />
+                        ) : (
+                          <img
+                            src={fallback}
+                            alt={member.heading ?? ''}
+                            loading="lazy"
+                            decoding="async"
+                            className="absolute inset-0 h-full w-full origin-bottom object-contain object-bottom transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
+                          />
+                        )}
                       </m.div>
                     ) : (
                       <span aria-hidden className="absolute inset-0 grid place-items-center font-display text-7xl font-bold text-charcoal-900/10">
@@ -213,19 +236,16 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                     )}
                   </div>
 
-                  {/* the name and the story */}
-                  <div className="flex min-w-0 flex-1 flex-col px-3 pb-5 pt-4 md:justify-center md:px-4 md:py-4 lg:justify-start lg:px-3 lg:pb-6 lg:pt-5">
+                  {/* the name and the whole story */}
+                  <div className="flex flex-1 flex-col px-3 pb-4 pt-4 lg:pt-5">
                     {member.heading && (
-                      <h3 className="font-display text-[1.28rem] font-bold leading-snug tracking-tight text-charcoal-950 sm:text-[1.35rem] md:text-[1.45rem] lg:text-[1.3rem] xl:text-[1.4rem]">
+                      <h3 className="font-display text-[1.28rem] font-bold leading-snug tracking-tight text-charcoal-950 sm:text-[1.35rem] md:text-[1.4rem] lg:text-[1.3rem] xl:text-[1.4rem]">
                         {member.heading}
                       </h3>
                     )}
-                    <m.span aria-hidden variants={draw} custom={i} className={cn('mt-2.5 block h-1 w-12 origin-left rounded-full', a.rule)} />
-                    <RichText readMore html={member.body} className="mt-3.5 text-[0.95rem] leading-[1.75] text-slate-600" />
+                    {/* phones: the first lines and "अधिक वाचा / Read more"; tablets and desktops: the whole story */}
+                    <RichText readMore html={member.body} className="mt-3 text-[0.95rem] leading-[1.75] text-slate-600" />
                   </div>
-
-                  {/* a coloured foot, so a card with a shorter story still ends in line with its neighbours */}
-                  <m.span aria-hidden variants={draw} custom={i} className={cn('absolute inset-x-6 bottom-0 h-1 origin-left rounded-t-full', a.rule)} />
                 </StaggerItem>
               )
             })}
@@ -310,7 +330,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
             </Link>
           </Reveal>
 
-          {/* 6 Curated Family Moments Cards */}
+          {/* Curated Family Moments Cards (Oct 2026: the "With Manish Deshmukh" card removed) */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {FAMILY_MOMENTS.map((item, idx) => (
               <div
@@ -320,23 +340,24 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                 <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100">
                   <Img
                     src={item.src}
-                    alt={item.title}
+                    alt={isMr ? item.title : item.en.title}
                     fill
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    style={'position' in item ? { objectPosition: item.position } : undefined}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="absolute top-2.5 left-2.5 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-bold uppercase text-charcoal-800 shadow-xs">
-                    {item.badge}
+                    {isMr ? item.badge : item.en.badge}
                   </span>
                 </div>
                 <div className="p-3.5 flex flex-col flex-1">
                   <h4 className="font-display text-base font-bold text-charcoal-950 group-hover:text-saffron-700 transition-colors">
-                    {item.title}
+                    {isMr ? item.title : item.en.title}
                   </h4>
                   <p className="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed flex-1">
-                    {item.desc}
+                    {isMr ? item.desc : item.en.desc}
                   </p>
                 </div>
               </div>

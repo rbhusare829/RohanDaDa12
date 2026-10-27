@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react'
 import { cms } from '@/lib/api'
 import { LOCALE, useTranslations } from '@/lib/i18n'
 import { mediaAlt, mediaUrl, toGallery } from '@/lib/media'
-import { formatDate, pageNumber, toMarathiDigits } from '@/lib/utils'
+import { formatDate, pageNumber } from '@/lib/utils'
 import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { Gallery } from '@/components/ui/Gallery'
@@ -30,8 +30,6 @@ export function PhotosPage() {
         <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {albums.map((a) => {
             const cover = a.cover ?? (a.photos?.[0] as never)
-            const photoCount = a.photos?.length ?? 0
-            const countText = LOCALE === 'mr' ? `${toMarathiDigits(photoCount)} छायाचित्रे` : `${photoCount} Photos`
             return (
               <StaggerItem key={a.id}>
                 <Link
@@ -48,9 +46,6 @@ export function PhotosPage() {
                       className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                     <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-950/20 to-transparent" />
-                    <span className="absolute top-3 right-3 rounded-full bg-black/60 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md shadow-xs">
-                      {countText}
-                    </span>
                   </div>
 
                   <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
@@ -67,7 +62,7 @@ export function PhotosPage() {
                     </div>
 
                     <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-bold text-saffron-600">
-                      <span>अल्बम पहा</span>
+                      <span>{LOCALE === 'mr' ? 'अल्बम पहा' : 'View album'}</span>
                       <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                     </div>
                   </div>

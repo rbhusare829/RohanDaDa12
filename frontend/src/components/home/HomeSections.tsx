@@ -19,12 +19,14 @@ import { InstagramReels } from './InstagramReels'
 import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { CitizenEngagementBanner } from './CitizenEngagementBanner'
 import { SupriyaAboutSection } from './SupriyaAboutSection'
-import { SupriyaPressNoteSection } from './SupriyaPressNoteSection'
 import { SupriyaAwardsSection } from './SupriyaAwardsSection'
+import { UpdatesTicker } from './UpdatesTicker'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
 import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
-import { SupriyaStayConnectedSection } from './SupriyaStayConnectedSection'
+import { SupriyaSocialActivitiesSection } from './SupriyaSocialActivitiesSection'
+import { SupriyaVideoReelsSection } from './SupriyaVideoReelsSection'
+import { SupriyaVisionSection } from './SupriyaVisionSection'
 
 type Block = NonNullable<Home['sections']>[number]
 type Of<T extends Block['blockType']> = Extract<Block, { blockType: T }>
@@ -40,6 +42,13 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
   const heroBlock = visible.find((s): s is Of<'heroSlider'> => s.blockType === 'heroSlider') ?? (visible[0] as Of<'heroSlider'> | undefined)
   const aboutBlock = visible.find((s): s is Of<'aboutIntro'> => s.blockType === 'aboutIntro')
   const journeyBlock = visible.find((s): s is Of<'homeJourney'> => s.blockType === 'homeJourney')
+  // Video & Reels: from the homepage content; null = hidden in the admin, undefined = not in the content (the section shows its fallback)
+  const videoRaw = sections.find((s): s is Of<'featuredVideo'> => s.blockType === 'featuredVideo')
+  const reelsRaw = sections.find((s): s is Of<'socialFeeds'> => s.blockType === 'socialFeeds')
+  const videoBlock = videoRaw ? (videoRaw.hidden ? null : videoRaw) : undefined
+  const reelsBlock = reelsRaw ? (reelsRaw.hidden ? null : reelsRaw) : undefined
+  const visionRaw = sections.find((s): s is Of<'homeVision'> => s.blockType === 'homeVision')
+  const visionBlock = visionRaw ? (visionRaw.hidden ? null : visionRaw) : undefined
 
   return (
     <>
@@ -61,23 +70,26 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
         />
       )}
 
-      {/* 3. Press Note Section (5 Columns with Real CMS Posts) */}
-      <SupriyaPressNoteSection posts={extras.posts} locale={locale} />
+      {/* 3. Political Journey ("कारकीर्द") timeline — in place of the Press Notes, removed Oct 2026 */}
+      <SupriyaJourneySection b={journeyBlock} locale={locale} />
 
       {/* 4. Speasy Awards & Recognitions Gallery (6 Columns) */}
       <SupriyaAwardsSection locale={locale} />
 
-      {/* 5. Political Journey Timeline ("Leadership. Experience. Values.") */}
-      <SupriyaJourneySection b={journeyBlock} locale={locale} />
-
-      {/* 6. Latest News (5 Columns with Real CMS Articles & Media Badges) */}
+      {/* 5. Latest News (5 Columns with Real CMS Articles & Media Badges) */}
       <SupriyaLatestNewsSection posts={extras.posts} locale={locale} />
 
-      {/* 7. Key Focus Areas / Initiatives Showcase */}
+      {/* 6. Key Focus Areas / Initiatives Showcase */}
       <SupriyaInitiativesSection locale={locale} />
 
-      {/* 8. Stay Connected (the Facebook Page's latest posts) */}
-      <SupriyaStayConnectedSection locale={locale} />
+      {/* 7. Social Activities (4 photo cards in a mosaic; "Read more" opens each activity's full story) */}
+      <SupriyaSocialActivitiesSection locale={locale} />
+
+      {/* 8. Vision (New India Manifesto) */}
+      <SupriyaVisionSection b={visionBlock} locale={locale} />
+
+      {/* 9. Video & Reels (featured YouTube video, then the Instagram reels) */}
+      <SupriyaVideoReelsSection video={videoBlock} reels={reelsBlock} locale={locale} />
     </>
   )
 }
@@ -92,35 +104,45 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const textOnly = b.heroStyle === 'text'
   const isMr = locale !== 'en'
 
-  // Construct slides matching Image 3 with both user-uploaded hero images:
-  // Slide 1: Speaking at podium as in Image 3
-  // Slide 2: Speaking to crowd in white kurta with BJP scarf
+  // The three hero slides (Oct 2026), each with a photo that fits its words:
+  // 1. grassroots → Rohan in a white kurta (a wide version of the portrait; no political photos)
+  // 2. the book → Rohan holding it (a wide version of the portrait, him on the right and space for the words on the left)
+  // 3. small steps → Rohan in a peach kurta (a wide version of the portrait; no political photos)
   const slides: Slide[] = [
     {
-      image: '/images/hero/rohan-hero-podium.webp',
-      alt: isMr ? 'रोहन सुभाष देशमुख - अध्यक्ष, लोकमंगल फाऊंडेशन' : 'Rohan Subhash Deshmukh - Chairman, Lokmangal Foundation',
-      kicker: isMr ? 'अध्यक्ष, लोकमंगल फाऊंडेशन' : 'CHAIRMAN, LOKMANGAL FOUNDATION',
-      heading: isMr ? 'मी रोहन\nसुभाष देशमुख' : 'I Am Rohan\nSubhash Deshmukh',
-      subheading: isMr
-        ? 'सोलापूरच्या मातीने घडवलेलं व्यक्तिमत्त्व, संस्कारांनी दिलेली दिशा आणि समाजासाठीची बांधिलकी.'
-        : 'Inspired by Prime Minister Narendra Modi’s vision for a developed and self-reliant India, working towards grassroots empowerment.',
-      position: 'center 15%',
+      image: '/images/hero/rohan-hero-white-kurta.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
+      kicker: isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'PRESIDENT, LOKMANGAL FOUNDATION',
+      heading: isMr
+        ? 'मोठ्या बदलांची सुरुवात मोठ्या व्यासपीठावरून नव्हे, तर सामान्य माणसाच्या प्रश्नांना समजून घेण्यापासून होते.'
+        : 'Good leadership begins with understanding the problems of people at the grassroots',
+      position: '77% 20%',
     },
     {
-      image: '/images/hero/rohan-hero-crowd.webp',
-      alt: isMr ? 'रोहन सुभाष देशमुख - जनसंवाद' : 'Rohan Subhash Deshmukh - Public Meeting',
-      kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
-      heading: isMr ? 'तळागाळातील जनतेशी\nथेट संवाद आणि विकास' : 'Connecting Directly\nWith The People',
-      subheading: isMr
-        ? 'सर्वसामान्यांचे प्रश्न सोडवण्यासाठी, शेतकऱ्यांना व तरुणांना सक्षम करण्यासाठी आम्ही सातत्याने कटिबद्ध आहोत.'
-        : 'Understanding grassroots needs of farmers, youth, and citizens to drive lasting social and economic progress.',
-      position: 'center 25%',
+      image: '/images/hero/rohan-hero-book.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख ‘The New India Manifesto’ पुस्तकासह' : 'Rohan Subhash Deshmukh with The New India Manifesto',
+      kicker: isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'NEW INDIA MANIFESTO',
+      heading: isMr
+        ? 'शक्यतांच्या पलीकडे पाहण्याची दृष्टी आणि नवभारताच्या भविष्याचा विचार—यातून साकारले ‘The New India Manifesto: Going Beyond Possible’.'
+        : 'Author of The New India Manifesto: Going Beyond Possible',
+      subheading: isMr ? 'लेखक — रोहन देशमुख' : null,
+      position: '77% 20%',
+    },
+    {
+      image: '/images/hero/rohan-hero-namaskar.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
+      kicker: isMr ? 'लोकमंगल फाउंडेशन' : 'LOKMANGAL FOUNDATION',
+      heading: isMr
+        ? 'समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही मोठा बदल घडवू शकतो.'
+        : 'Small steps toward change can lead to a big difference',
+      position: '77% 20%',
     },
   ]
 
   const social = (Object.entries(settings.social ?? {}).filter(([k, v]) => v && k !== 'id') as [string, string][]).map(([key, url]) => ({ key, url, label: socialLabels[key] ?? key }))
   return (
     <>
+      <UpdatesTicker locale={locale} />
       <HeroSlider slides={slides} autoplay={b.autoplaySeconds ?? 6} social={social} textOnly={textOnly} labels={{ prev: t('prev'), next: t('next') }} />
       <CitizenEngagementBanner locale={locale} />
     </>

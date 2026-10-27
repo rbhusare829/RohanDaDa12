@@ -8,48 +8,60 @@ const INITIATIVES = [
     title: 'सहकारी बँकिंग व पतसंस्था',
     enTitle: 'Cooperative Banking',
     description: 'शेतकरी, छोटे व्यावसायिक व महिला बचत गटांना स्वावलंबी बनवण्यासाठी आधुनिक व विश्वासार्ह बँकिंग सेवा.',
+    enDescription: 'Modern, trustworthy banking that helps farmers, small businesses and women’s self-help groups stand on their own feet.',
     link: '/lokmangal/parivar',
     badge: '४ संस्था',
+    enBadge: '4 institutions',
   },
   {
     icon: Briefcase,
     title: 'उद्योग व शेतमाल मूल्यवर्धन',
     enTitle: 'Agro-Industries & Jobs',
     description: 'साखर, इथेनॉल व सहवीज निर्मितीच्या माध्यमातून ग्रामीण भागात रोजगार निर्मिती आणि शेतकऱ्यांच्या मालाला योग्य दर.',
+    enDescription: 'Sugar, ethanol and co-generation units that create rural jobs and get farmers a fair price for their produce.',
     link: '/lokmangal/parivar',
     badge: '४ उद्योग',
+    enBadge: '4 industries',
   },
   {
     icon: GraduationCap,
     title: 'दर्जेदार शिक्षण व प्रशिक्षण',
     enTitle: 'Education & Academics',
     description: 'प्राथमिक शाळेपासून व्यावसायिक महाविद्यालयांपर्यंत ग्रामीण विद्यार्थ्यांना गुणवत्तापूर्ण शिक्षण व करिअर मार्गदर्शन.',
+    enDescription: 'Quality education and career guidance for rural students, from primary school to professional colleges.',
     link: '/lokmangal/parivar',
     badge: '१० महाविद्यालये',
+    enBadge: '10 colleges',
   },
   {
     icon: HeartPulse,
     title: 'आरोग्य व सामाजिक कल्याण',
     enTitle: 'Healthcare & Welfare',
     description: 'मोफत सर्वोपचार आरोग्य शिबिरे, मोफत सामूहिक विवाह सोहळे आणि आपत्कालीन मदतीचे सामाजिक उपक्रम.',
+    enDescription: 'Free health camps, free community weddings and emergency relief for families in need.',
     link: '/social-work',
     badge: '५ उपक्रम',
+    enBadge: '5 initiatives',
   },
   {
     icon: Users,
     title: 'युवा नेतृत्व व नवनिर्मिती',
     enTitle: 'Youth & Enterprise',
     description: 'स्वामी विवेकानंद विचार यात्रा, सीएम चषक क्रीडा स्पर्धा आणि स्टार्टअप परिसंस्थेच्या माध्यमातून तरुणांना संधी.',
+    enDescription: 'Opportunities for young people through the Swami Vivekananda Vichar Yatra, the CM Cup sports tournament and the startup ecosystem.',
     link: '/political-career',
     badge: 'लाखो तरुण',
+    enBadge: 'Lakhs of youth',
   },
   {
     icon: Sprout,
     title: 'शेतकरी विकास व जलसंधारण',
     enTitle: 'Agriculture & Water',
     description: 'जलसंधारण प्रकल्प, आधुनिक शेती तंत्रज्ञान आणि शेतकरी कुटुंबांना शाश्वत उपजीविकेसाठी थेट सहकार्य.',
+    enDescription: 'Water conservation projects, modern farming techniques and direct support for sustainable livelihoods for farming families.',
     link: '/social-work',
     badge: 'ग्रामीण विकास',
+    enBadge: 'Rural development',
   },
 ]
 
@@ -101,7 +113,7 @@ export function SupriyaInitiativesSection({
                         <Icon className="size-6" />
                       </div>
                       <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
-                        {it.badge}
+                        {isMr ? it.badge : it.enBadge}
                       </span>
                     </div>
 
@@ -110,7 +122,7 @@ export function SupriyaInitiativesSection({
                     </h3>
 
                     <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-600">
-                      {it.description}
+                      {isMr ? it.description : it.enDescription}
                     </p>
                   </div>
 

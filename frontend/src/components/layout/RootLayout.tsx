@@ -70,7 +70,15 @@ export function RootLayout() {
   const tn = useTranslations('nav')
 
   useEffect(() => {
-    document.documentElement.lang = getLocale()
+    const loc = getLocale()
+    document.documentElement.lang = loc
+    if (loc === 'mr') {
+      document.documentElement.classList.add('lang-mr')
+      document.documentElement.classList.remove('lang-en')
+    } else {
+      document.documentElement.classList.add('lang-en')
+      document.documentElement.classList.remove('lang-mr')
+    }
   }, [])
 
   return (

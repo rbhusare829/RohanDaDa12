@@ -8,6 +8,8 @@ import { router } from './router'
 import '@fontsource-variable/space-grotesk/wght.css'
 import '@fontsource-variable/plus-jakarta-sans/wght.css'
 import '@fontsource-variable/literata/opsz-italic.css'
+import '@fontsource/tiro-devanagari-marathi/400.css'
+import '@fontsource/tiro-devanagari-marathi/400-italic.css'
 import './index.css'
 
 createRoot(document.getElementById('root')!).render(

@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { Stagger, StaggerItem } from '../ui/Motion'
+import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { cn } from '@/lib/utils'
 import { ACTIVITIES, SOCIAL_ACTIVITIES_PATH, num, type Text } from '@/lib/social-activities'
 
@@ -19,23 +19,20 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
   return (
     <section className="bg-white border-t border-stone-200 py-16 sm:py-24" aria-labelledby="social-activities-title">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <Reveal className="text-center mb-12 sm:mb-16">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'सामाजिक उपक्रम' : 'Social Activities'}
           </span>
           <h2 id="social-activities-title" className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'लोकांशी थेट नात्यावर उभे नेतृत्व' : 'Leadership built on a direct bond with people'}
           </h2>
-          <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
+          <AccentBar center className="mt-2.5 mb-4" />
           <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600">
             {isMr
               ? 'तरुणांच्या कल्पना, गावातील उद्योजक, विद्यार्थ्यांची प्रतिभा आणि नवे लेखक — समाजातील प्रत्येक घटकाला संधी देणारे उपक्रम.'
               : 'Young ideas, village entrepreneurs, student talent and new writers — activities that open doors for every part of society.'}
           </p>
-        </div>
+        </Reveal>
 
         <Stagger
           as="ol"
@@ -80,14 +77,14 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
           })}
         </Stagger>
 
-        <div className="mt-10 flex justify-center sm:mt-12">
+        <Reveal className="mt-10 flex justify-center sm:mt-12">
           <Link
             to={SOCIAL_ACTIVITIES_PATH}
-            className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]"
+            className="group inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-[background-color,scale] duration-200 hover:bg-[#000d3d] active:scale-[0.97]"
           >
-            {isMr ? 'सर्व सामाजिक उपक्रम' : 'All social activities'} <ArrowRight aria-hidden className="size-4" />
+            {isMr ? 'सर्व सामाजिक उपक्रम' : 'All social activities'} <ArrowRight aria-hidden className="size-4 transition-transform duration-200 group-hover:translate-x-0.5" />
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

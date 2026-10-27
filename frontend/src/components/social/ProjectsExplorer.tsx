@@ -6,6 +6,7 @@ import { useTranslations } from '@/lib/i18n'
 import { usePrefersReducedMotion } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import { Img } from '../ui/Img'
+import { Stagger, StaggerItem } from '../ui/Motion'
 
 export type ProjectCard = {
   id: string | number
@@ -63,7 +64,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
                 aria-pressed={on}
                 onClick={() => setCat(c.value)}
                 className={cn(
-                  'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-sm font-semibold transition',
+                  'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-sm font-semibold transition-[color,background-color,border-color,scale] duration-200 active:scale-[0.97]',
                   on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-charcoal-900 hover:border-field-hover hover:bg-cream',
                 )}
               >
@@ -91,9 +92,9 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
         <>
           {featured.length > 0 && <FeaturedSlider key={`${cat}|${q}`} items={featured} labels={labels} n={n} />}
           {grid.length > 0 && (
-            <ul className="mt-12 grid grid-cols-1 gap-x-7 gap-y-8 md:mt-14 md:grid-cols-2 md:gap-y-12 lg:grid-cols-3">
+            <Stagger as="ul" className="mt-12 grid grid-cols-1 gap-x-7 gap-y-8 md:mt-14 md:grid-cols-2 md:gap-y-12 lg:grid-cols-3">
               {grid.map((p) => <GridCard key={p.id} p={p} labels={labels} />)}
-            </ul>
+            </Stagger>
           )}
         </>
       ) : (
@@ -175,7 +176,7 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
                   </button>
                   <button
                     type="button"
-                    onClick={() => setChoice(!paused)}
+                    onClick={() => { setChoice(!paused); setHold(false) }}
                     aria-label={paused ? tc('playSlides') : tc('pauseSlides')}
                     title={paused ? tc('playSlides') : tc('pauseSlides')}
                     className="btn-icon size-11"
@@ -216,7 +217,7 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
 /** Grid card: photo on top (thumbnail beside the text on phones), key impact + category, title, text, Read more */
 function GridCard({ p, labels }: { p: ProjectCard; labels: Labels }) {
   return (
-    <li className="tile group flex-row gap-4 md:flex-col md:gap-0">
+    <StaggerItem as="li" className="tile group flex-row gap-4 md:flex-col md:gap-0">
       <div className="tile-media w-28 shrink-0 self-start aspect-square sm:w-36 md:aspect-[16/10] md:w-full">
         <Photo p={p} sizes="(max-width:768px) 144px, (max-width:1024px) 50vw, 400px" />
       </div>
@@ -238,6 +239,6 @@ function GridCard({ p, labels }: { p: ProjectCard; labels: Labels }) {
           {labels.readMore} <ArrowRight aria-hidden className="size-4" />
         </span>
       </div>
-    </li>
+    </StaggerItem>
   )
 }

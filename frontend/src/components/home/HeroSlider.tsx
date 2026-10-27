@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { AnimatePresence, m } from 'motion/react'
-import { usePrefersReducedMotion } from '@/lib/motion'
+import { AnimatePresence, m, type Variants } from 'motion/react'
+import { Pause, Play } from 'lucide-react'
+import { useTranslations } from '@/lib/i18n'
+import { EASE_OUT, usePrefersReducedMotion } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 
 export type Slide = {
@@ -18,6 +20,17 @@ export type Slide = {
 export type HeroSocial = { key: string; url: string; label: string }
 
 const pad = (n: number) => String(n).padStart(2, '0')
+
+/** The words of a slide arrive one after another (kicker, heading, line); when the slide changes they leave together, quicker than they came */
+const words: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09, delayChildren: 0.04 } },
+  exit: { opacity: 0, y: -10, transition: { duration: 0.24, ease: [0.4, 0, 1, 1] } },
+}
+const word: Variants = {
+  hidden: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
+}
 
 /**
  * Formats multi-word or newline-separated headings to match the iconic 2-line layout in Image 3:
@@ -91,9 +104,16 @@ export function HeroSlider({
   labels?: { prev: string; next: string }
 }) {
   const count = slides.length
+  const t = useTranslations('common')
   const [index, setIndex] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const stopped = usePrefersReducedMotion()
+  const [hover, setHover] = useState(false) // a mouse pointer or keyboard focus is on the slideshow
+  const [hidden, setHidden] = useState(false) // the tab is in the background
+  const [onscreen, setOnscreen] = useState(true) // the slideshow is on the screen (it does not keep turning above the visitor's head)
+  const [choice, setChoice] = useState<boolean | null>(null) // true = the visitor pressed Pause, false = pressed Play
+  const reduced = usePrefersReducedMotion()
+  const halted = choice ?? reduced // visitors who ask for less motion get no autoplay unless they press Play (WCAG 2.2.2: a way to stop it)
+  const running = count > 1 && !halted && !hover && !hidden && onscreen
+  const root = useRef<HTMLElement>(null)
   const touch = useRef<number | null>(null)
   const indexRef = useRef(0)
 
@@ -112,19 +132,26 @@ export function HeroSlider({
     [count, show],
   )
 
-  // Autoplay
+  // Autoplay: one timer per slide; it stops while the pointer or focus is on the slideshow, in a background tab, off screen, or after Pause
   useEffect(() => {
-    if (count < 2 || paused || stopped) return
+    if (!running) return
     const id = window.setTimeout(() => step(1), autoplay * 1000)
     return () => window.clearTimeout(id)
-  }, [index, paused, stopped, autoplay, count, step])
+  }, [index, running, autoplay, step])
 
-  // Pause on hidden tab
   useEffect(() => {
-    const onVis = () => setPaused(document.hidden)
+    const onVis = () => setHidden(document.hidden)
     document.addEventListener('visibilitychange', onVis)
     return () => document.removeEventListener('visibilitychange', onVis)
   }, [])
+
+  useEffect(() => {
+    const el = root.current
+    if (!el) return
+    const io = new IntersectionObserver(([e]) => setOnscreen(e.isIntersecting), { threshold: 0.15 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [count])
 
   if (!count) return null
 
@@ -132,12 +159,14 @@ export function HeroSlider({
 
   return (
     <section
+      ref={root}
       className="relative isolate w-full overflow-hidden bg-[#00081c] text-white select-none"
       aria-roledescription="carousel"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={() => setPaused(false)}
+      // only a real mouse pointer holds the slideshow: on a phone a tap would otherwise leave it "hovered" (and stopped) for good
+      onPointerEnter={(e) => e.pointerType === 'mouse' && setHover(true)}
+      onPointerLeave={() => setHover(false)}
+      onFocusCapture={() => setHover(true)}
+      onBlurCapture={() => setHover(false)}
       onTouchStart={(e) => (touch.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         if (touch.current === null) return
@@ -206,30 +235,24 @@ export function HeroSlider({
           {/* Words on the Left (Matching Image 3); on mobile they sit at the bottom, below the face */}
           <div className="max-w-3xl lg:max-w-4xl py-6">
             <AnimatePresence mode="wait">
-              <m.div
-                key={index}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <m.div key={index} variants={words} initial="hidden" animate="show" exit="exit">
                 {/* Orange/Saffron Uppercase Kicker */}
                 {activeSlide.kicker && (
-                  <p className="mb-2.5 sm:mb-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.16em] text-[#ff7a00] drop-shadow-sm">
+                  <m.p variants={word} className="mb-2.5 sm:mb-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.16em] text-[#ff7a00] drop-shadow-sm">
                     {activeSlide.kicker}
-                  </p>
+                  </m.p>
                 )}
 
                 {/* Big White Bold Heading (2-Line Poster Layout) */}
-                <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.9rem] font-bold leading-[1.18] tracking-tight text-white drop-shadow-md">
+                <m.h1 variants={word} className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.9rem] font-bold leading-[1.18] tracking-tight text-white drop-shadow-md">
                   <FormattedHeading text={activeSlide.heading} />
-                </h1>
+                </m.h1>
 
                 {/* Subtitle / Description if provided */}
                 {activeSlide.subheading && (
-                  <p className="mt-4 sm:mt-5 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-slate-200/90 font-normal">
+                  <m.p variants={word} className="mt-4 sm:mt-5 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-slate-200/90 font-normal">
                     {activeSlide.subheading}
-                  </p>
+                  </m.p>
                 )}
               </m.div>
             </AnimatePresence>
@@ -258,15 +281,34 @@ export function HeroSlider({
                     )}
                   >
                     {isActive && (
-                      <span
-                        aria-hidden
-                        className="inline-block w-6 sm:w-8 h-[2px] bg-white mr-2.5 transition-all duration-300"
-                      />
+                      /* the line fills while this slide is on screen, so the visitor sees how long is left; it stands still, full, whenever the slideshow is held or stopped */
+                      <span aria-hidden className="relative mr-2.5 inline-block h-[2px] w-6 overflow-hidden bg-white/35 sm:w-8">
+                        <span
+                          key={running ? `run-${index}` : 'still'}
+                          className={cn('absolute inset-0 bg-white', running && 'hero-progress')}
+                          style={running ? { animationDuration: `${autoplay}s` } : undefined}
+                        />
+                      </span>
                     )}
                     <span>{pad(idx + 1)}</span>
                   </button>
                 )
               })}
+              <button
+                type="button"
+                // Play must start the slideshow at once, even though the pointer (or focus) is still on the button that was pressed
+                onClick={() => {
+                  setChoice(!halted)
+                  setHover(false)
+                }}
+                aria-label={halted ? t('playSlides') : t('pauseSlides')}
+                title={halted ? t('playSlides') : t('pauseSlides')}
+                className="group -ml-2 -mt-1 grid size-11 cursor-pointer place-items-center rounded-full text-white/70 transition-colors hover:text-white"
+              >
+                <span className="grid size-7 place-items-center rounded-full border border-white/40 transition-colors group-hover:border-white">
+                  {halted ? <Play aria-hidden className="size-3 translate-x-px fill-current" /> : <Pause aria-hidden className="size-3 fill-current" />}
+                </span>
+              </button>
             </div>
           )}
         </div>

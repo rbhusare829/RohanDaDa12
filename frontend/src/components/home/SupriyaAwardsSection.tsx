@@ -1,6 +1,8 @@
 import { Link } from 'react-router'
+import { m, type Variants } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { EASE_OUT } from '@/lib/motion'
+import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { cn } from '@/lib/utils'
 
 interface FamilyItem {
@@ -47,6 +49,12 @@ const FAMILY_MEMBERS: FamilyItem[] = [
   },
 ]
 
+/** the portrait rises into its panel after its card (nested in the Stagger below; `custom` = the card's number, so the portraits follow one another too) */
+const rise: Variants = {
+  hidden: { opacity: 0, y: 20, scale: 0.97 },
+  show: (i: number) => ({ opacity: 1, y: 0, scale: 1, transition: { duration: 0.7, delay: 0.14 + i * 0.07, ease: EASE_OUT } }),
+}
+
 /** Same colour families as the कौटुंबिक पार्श्वभूमी page (kesariya, green, navy): the photo panel tint, the halo (father only) */
 const ACCENTS = [
   { panel: 'from-saffron-100/90 via-saffron-50 to-orange-50/60', halo: '' },
@@ -69,28 +77,25 @@ export function SupriyaAwardsSection({
     <section className="bg-[#000d3d] py-14 sm:py-20 text-white overflow-hidden border-b border-white/10">
       <div className="container-x">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <Reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
             <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
               {isMr ? 'कौटुंबिक पार्श्वभूमी' : 'Family Background'}
             </h2>
-            <div className="mt-2.5 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
-              <span className="h-1 w-3 rounded-full bg-saffron-500" />
-            </div>
+            <AccentBar className="mt-2.5" />
           </div>
-        </div>
+        </Reveal>
 
-        <Reveal delay={0.1}>
-          <div className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3 lg:gap-7">
+        <Stagger className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 py-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-3 lg:gap-7">
             {FAMILY_MEMBERS.map((member, i) => {
               const a = ACCENTS[i % ACCENTS.length]
               return (
-                <article
+                <StaggerItem
+                  as="article"
                   key={i}
                   className={cn(
                     'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl sm:h-full sm:w-auto sm:max-w-none sm:shrink sm:snap-align-none bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.25)] ring-1 ring-stone-200/85',
-                    'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(14,30,52,0.35)] motion-safe:hover:-translate-y-1.5',
+                    'transition-[box-shadow,translate] duration-300 ease-soft hover:shadow-[0_28px_56px_-24px_rgba(14,30,52,0.35)] motion-safe:hover:-translate-y-1.5',
                                   )}
                 >
                   {/* Photo panel: a soft tint, a halo behind the person, the relation label */}
@@ -99,12 +104,15 @@ export function SupriyaAwardsSection({
                     <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-[#800020]">
                       {isMr ? member.relationMr : member.relationEn}
                     </span>
-                    <img
-                      src={member.image}
-                      alt={isMr ? member.nameMr : member.nameEn}
-                      loading="lazy"
-                      className="absolute inset-x-[4%] bottom-0 top-[10%] h-[90%] w-[92%] origin-bottom object-contain object-bottom transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
-                    />
+                    {/* the portrait settles into its panel a moment after the card has arrived */}
+                    <m.div variants={rise} custom={i} className="absolute inset-x-[4%] bottom-0 top-[10%]">
+                      <img
+                        src={member.image}
+                        alt={isMr ? member.nameMr : member.nameEn}
+                        loading="lazy"
+                        className="size-full origin-bottom object-contain object-bottom transition-transform duration-500 ease-out motion-safe:group-hover:scale-[1.04]"
+                      />
+                    </m.div>
                   </div>
 
                   {/* Name, rule and short description */}
@@ -124,11 +132,10 @@ export function SupriyaAwardsSection({
                       <ArrowRight className="size-3 transition-transform group-hover/btn:translate-x-0.5" />
                     </Link>
                   </div>
-                </article>
+                </StaggerItem>
               )
             })}
-          </div>
-        </Reveal>
+        </Stagger>
       </div>
     </section>
   )

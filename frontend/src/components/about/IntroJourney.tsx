@@ -12,7 +12,7 @@ import {
 import type { Page } from '@/types/cms'
 import { cn } from '@/lib/utils'
 import { Img } from '@/components/ui/Img'
-import { Reveal } from '@/components/ui/Motion'
+import { AccentBar, Reveal } from '@/components/ui/Motion'
 
 type Block = NonNullable<Page['layout']>[number]
 
@@ -96,10 +96,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           </h2>
 
           {/* Signature red and saffron underline bar */}
-          <div className="mt-3.5 flex items-center gap-1.5">
-            <span className="h-1.5 w-14 rounded-full bg-red-600" />
-            <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
-          </div>
+          <AccentBar className="mt-3.5" bar="h-1.5 w-14" dot="h-1.5 w-3.5" />
         </div>
 
         {/* Structured biographical paragraphs */}
@@ -190,10 +187,7 @@ function MilestoneSection({ isMr }: { isMr: boolean }) {
           <h2 className="mt-1.5 font-display text-2xl font-bold leading-snug tracking-tight text-[#000d3d] sm:text-3xl">
             {isMr ? 'लोकमंगल फाउंडेशन — सोलापूर आणि धाराशिव' : 'Lokmangal Foundation — Solapur and Dharashiv'}
           </h2>
-          <div aria-hidden className="mt-3 mb-5 flex items-center gap-1.5">
-            <span className="h-1 w-12 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
+          <AccentBar className="mt-3 mb-5" bar="h-1 w-12" />
           <p className="text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
             {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून रोहन सुभाष देशमुख समाजाच्या गरजांनुसार विविध उपक्रम राबवतात. सोलापूर आणि धाराशिव जिल्ह्यांमध्ये कार्यरत असलेल्या या फाउंडेशनचा मुख्य उद्देश गरजू व्यक्तींना योग्य वेळी मदत करणे, त्यांच्या अडचणी दूर करण्यासाठी प्रयत्न करणे आणि त्यांना प्रगतीच्या संधी उपलब्ध करून देणे हा आहे. समाजातील विविध घटकांचे जीवनमान उंचावावे आणि त्यांना स्वावलंबी होण्यासाठी बळ मिळावे, यासाठी फाउंडेशन सातत्याने प्रयत्नशील आहे.' : 'Through Lokmangal Foundation, Rohan turns his ideas into action on the ground. The Foundation runs a range of social initiatives across Solapur and Dharashiv districts with one simple aim: to stand with people when they need it most and help them move forward.'}
           </p>
@@ -229,10 +223,7 @@ function MilestoneSection({ isMr }: { isMr: boolean }) {
       {/* दृष्टिकोन: the text, then its key line in a highlighted card */}
       <Reveal delay={0.1} className="mx-auto max-w-4xl text-center">
         <p className="text-xs font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'दृष्टिकोन' : 'Vision'}</p>
-        <div aria-hidden className="mt-2.5 mb-5 flex items-center justify-center gap-1.5">
-          <span className="h-1 w-12 rounded-full bg-red-600" />
-          <span className="h-1 w-3 rounded-full bg-saffron-500" />
-        </div>
+        <AccentBar center className="mt-2.5 mb-5" bar="h-1 w-12" />
         <p className="text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
           {isMr ? '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.' : 'Rohan is the author of New India Manifesto, a book that sets out his ideas for a new India. Inspired by it, he has set out to build a strong startup ecosystem across Maharashtra, where young people with ideas get the right guidance, support and opportunity to grow, whether they come from a big city or a small town.'}
         </p>
@@ -298,10 +289,7 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
           {isMr ? 'भूषविलेली पदे व जबाबदाऱ्या' : 'Positions Held'}
         </h2>
         {/* Signature red and saffron underline */}
-        <div className="mt-2.5 flex items-center gap-1.5">
-          <span className="h-1.5 w-14 rounded-full bg-red-600" />
-          <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
-        </div>
+        <AccentBar className="mt-2.5" bar="h-1.5 w-14" dot="h-1.5 w-3.5" />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

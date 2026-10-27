@@ -10,7 +10,7 @@ import { RichText } from '@/components/ui/RichText'
 import { CMSLink } from '@/components/ui/CMSLink'
 import { CountUp } from '@/components/ui/CountUp'
 import { Img } from '@/components/ui/Img'
-import { Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
+import { AccentBar, Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 
 type Block = NonNullable<Page['layout']>[number]
 type Cards = Extract<Block, { blockType: 'cards' }>
@@ -34,12 +34,7 @@ const btn = (i: number) =>
 
 /** the red-and-saffron bar under every homepage heading */
 function Bar({ center }: { center?: boolean }) {
-  return (
-    <span aria-hidden className={cn('flex items-center gap-1.5', center && 'justify-center')}>
-      <span className="h-1 w-14 rounded-full bg-red-600" />
-      <span className="h-1 w-3 rounded-full bg-saffron-500" />
-    </span>
-  )
+  return <AccentBar center={center} />
 }
 
 /**

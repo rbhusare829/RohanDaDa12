@@ -7,6 +7,7 @@ import { NewsCard, SectionTitle } from '@/components/blog/BlogParts'
 import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { CardSlider, type SlideCard } from '@/components/ui/CardSlider'
+import { Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 
 /** All events: Lokmangal initiatives slider, key events/campaigns (incl. New India Manifesto) and the latest blog posts */
 export async function loader() {
@@ -45,26 +46,34 @@ export default function EventsPage() {
       <Seo title={t('title')} description={t('intro')} />
       <InnerPage path="/events" title={t('title')} subtitle={t('intro')} sideMenu={false} variant="navy">
         <section>
-          <SectionTitle>{t('initiatives')}</SectionTitle>
-          <p className="lead mb-9 mt-4 max-w-3xl">{t('initiativesIntro')}</p>
-          <CardSlider cards={slides} readMore={t('readMore')} prevLabel={t('prev')} nextLabel={t('next')} />
+          <Reveal>
+            <SectionTitle>{t('initiatives')}</SectionTitle>
+            <p className="lead mb-9 mt-4 max-w-3xl">{t('initiativesIntro')}</p>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <CardSlider cards={slides} readMore={t('readMore')} prevLabel={t('prev')} nextLabel={t('next')} />
+          </Reveal>
         </section>
 
         {featured.length > 0 && (
           <section className="mt-20 md:mt-24">
-            <SectionTitle>{t('featured')}</SectionTitle>
-            <div className="mt-9">
+            <Reveal>
+              <SectionTitle>{t('featured')}</SectionTitle>
+            </Reveal>
+            <Reveal className="mt-9" delay={0.08}>
               <CardSlider cards={featured} readMore={t('readMore')} prevLabel={t('prev')} nextLabel={t('next')} />
-            </div>
+            </Reveal>
           </section>
         )}
 
         {posts.length > 0 && (
           <section className="mt-20 md:mt-24">
-            <SectionTitle aside={<Link to="/blog" className="tap-pad inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-saffron-700 hover:text-btn-hover">{tc('viewAll')} <ArrowRight className="size-4" /></Link>}>
-              {t('blog')}
-            </SectionTitle>
-            <div className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <NewsCard key={post.id} post={post} locale={locale} />)}</div>
+            <Reveal>
+              <SectionTitle aside={<Link to="/blog" className="tap-pad inline-flex shrink-0 items-center gap-1 text-sm font-semibold text-saffron-700 hover:text-btn-hover">{tc('viewAll')} <ArrowRight className="size-4" /></Link>}>
+                {t('blog')}
+              </SectionTitle>
+            </Reveal>
+            <Stagger className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-2 lg:grid-cols-3">{posts.map((post) => <StaggerItem key={post.id}><NewsCard post={post} locale={locale} /></StaggerItem>)}</Stagger>
           </section>
         )}
       </InnerPage>

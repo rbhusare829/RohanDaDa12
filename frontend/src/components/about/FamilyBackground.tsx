@@ -96,18 +96,9 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
   const start = list.findIndex((b) => b.blockType === 'mediaText')
   let end = start
   while (end >= 0 && list[end]?.blockType === 'mediaText') end++
-  if (start < 0) return <PageBlocks blocks={list} design="stitch" />
+  const count = start < 0 ? 0 : end - start
 
-  const members = list.slice(start, end) as MediaText[]
-  const introIdx = start > 0 && list[start - 1].blockType === 'content' ? start - 1 : -1
-  const intro = introIdx >= 0 ? (list[introIdx] as Content) : null
-  const before = list.slice(0, introIdx >= 0 ? introIdx : start)
-  const after = list.slice(end)
-  const count = members.length
-  // like the homepage: photo on top, two cards a row on tablets, three on wide screens
-  const cols = count >= 3 ? 'md:grid-cols-2 lg:grid-cols-3' : count === 2 ? 'md:grid-cols-2' : 'md:max-w-md'
-  const isMr = locale !== 'en'
-
+  // (before the early return below, so the hooks run in the same order on every render)
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
@@ -133,6 +124,17 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
     container.addEventListener('scroll', handleScroll, { passive: true })
     return () => container.removeEventListener('scroll', handleScroll)
   }, [count])
+
+  if (start < 0) return <PageBlocks blocks={list} design="stitch" />
+
+  const members = list.slice(start, end) as MediaText[]
+  const introIdx = start > 0 && list[start - 1].blockType === 'content' ? start - 1 : -1
+  const intro = introIdx >= 0 ? (list[introIdx] as Content) : null
+  const before = list.slice(0, introIdx >= 0 ? introIdx : start)
+  const after = list.slice(end)
+  // like the homepage: photo on top, two cards a row on tablets, three on wide screens
+  const cols = count >= 3 ? 'md:grid-cols-2 lg:grid-cols-3' : count === 2 ? 'md:grid-cols-2' : 'md:max-w-md'
+  const isMr = locale !== 'en'
 
   const scrollToIndex = (idx: number) => {
     const container = scrollRef.current

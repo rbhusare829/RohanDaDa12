@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react'
 import { ChevronRight, Home, Sparkles } from 'lucide-react'
 import { Link } from 'react-router'
+import { AccentBar } from '../ui/Motion'
 
 export type Crumb = { label: string; href?: string }
 export type BannerTab = { label: string; href: string; active?: boolean }
@@ -103,8 +104,9 @@ function StitchBanner({
         {/* Leader Photo - Visible on all screens: full height on right edge, melting naturally on left */}
         {portraitSrc && (
           <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 flex justify-end overflow-hidden">
+            {/* the portrait slides in from the right edge a moment after the page opens (a CSS entrance: it starts with the first paint) */}
             <div
-              className="relative h-full overflow-hidden"
+              className="animate-slide-in relative h-full overflow-hidden"
               style={{
                 width: 'clamp(180px, 48vw, 550px)',
                 height: '100%',
@@ -134,18 +136,15 @@ function StitchBanner({
         <div className="container-x relative flex min-h-[220px] sm:min-h-[280px] lg:min-h-[310px] flex-col justify-center py-8 sm:py-12 lg:py-14">
           <div className="max-w-[54%] sm:max-w-2xl lg:max-w-3xl space-y-2.5 sm:space-y-3.5">
             {eyebrow && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
+              <span className="animate-fade-up inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
                 <Sparkles className="size-3.5 text-saffron-600" />
                 {eyebrow}
               </span>
             )}
-            <h1 className="animate-fade-up text-2xl font-extrabold leading-[1.2] tracking-tight text-[#001f5c] sm:text-4xl lg:text-5xl">
+            <h1 className="animate-fade-up text-2xl font-extrabold leading-[1.2] tracking-tight text-[#001f5c] sm:text-4xl lg:text-5xl" style={{ animationDelay: '60ms' }}>
               {title}
             </h1>
-            <div className="mt-3 mb-2 flex items-center gap-1.5">
-              <span className="h-1.5 w-12 sm:w-14 rounded-full bg-red-600" />
-              <span className="h-1.5 w-3 sm:w-3.5 rounded-full bg-saffron-500" />
-            </div>
+            <AccentBar className="mt-3 mb-2" bar="h-1.5 w-12 sm:w-14" dot="h-1.5 w-3 sm:w-3.5" />
             {/* Subtitle removed per request: banner keeps clean title + accent line + photo */}
           </div>
         </div>

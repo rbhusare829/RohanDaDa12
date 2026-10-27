@@ -7,6 +7,7 @@ import { cn, toMarathiDigits } from '@/lib/utils'
 import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { Gallery } from '@/components/ui/Gallery'
+import { Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 import { ScrollRow } from '@/components/ui/ScrollRow'
 import { notFound } from './helpers'
 
@@ -22,13 +23,15 @@ function YearTabs({ tabs }: { tabs: { key: string; label: string; content: React
     <div>
       <ScrollRow role="tablist" className="-mx-4 mb-10 flex gap-7 border-b border-line px-4 md:mx-0 md:px-0">
         {tabs.map((t) => (
+          // the bar under the open year grows out from its middle (a closed one is the same bar, flat), so a click is answered at once
           <button key={t.key} role="tab" aria-selected={active === t.key} onClick={() => setActive(t.key)}
-            className={cn('relative min-w-11 shrink-0 px-1 py-3.5 text-center font-display text-lg font-semibold transition focus-visible:outline-offset-[-3px] after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:rounded-full', active === t.key ? 'text-charcoal-900 after:bg-saffron-500' : 'text-muted hover:text-charcoal-900')}>
+            className={cn('relative min-w-11 shrink-0 px-1 py-3.5 text-center font-display text-lg font-semibold transition-colors duration-200 focus-visible:outline-offset-[-3px] after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:rounded-full after:bg-saffron-500 after:transition-transform after:duration-300 after:ease-soft', active === t.key ? 'text-charcoal-900 after:scale-x-100' : 'text-muted after:scale-x-0 hover:text-charcoal-900')}>
             {t.label}
           </button>
         ))}
       </ScrollRow>
-      {tabs.map((t) => <div key={t.key} role="tabpanel" hidden={active !== t.key}>{t.content}</div>)}
+      {/* the year that opens settles in (a hidden panel starts its animation when it is shown) */}
+      {tabs.map((t) => <div key={t.key} role="tabpanel" hidden={active !== t.key} className="animate-tab-in">{t.content}</div>)}
     </div>
   )
 }
@@ -57,16 +60,16 @@ export default function EventPage() {
       >
         {(d.body || d.facts?.length) && (
           <div className="mb-16 grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-20">
-            {d.body && <div className="prose-rd max-w-3xl">{d.body.split(/\n\s*\n/).map((para, i) => <p key={i}>{para}</p>)}</div>}
+            {d.body && <Reveal className="prose-rd max-w-3xl">{d.body.split(/\n\s*\n/).map((para, i) => <p key={i}>{para}</p>)}</Reveal>}
             {!!d.facts?.length && (
-              <dl className="self-start border-t-2 border-charcoal-900">
+              <Stagger as="dl" className="self-start border-t-2 border-charcoal-900" delay={0.12}>
                 {d.facts.map((f, i) => (
-                  <div key={f.id ?? i} className="border-b border-line py-4">
+                  <StaggerItem key={f.id ?? i} className="border-b border-line py-4">
                     <dt className="text-sm font-semibold text-saffron-700">{f.label}</dt>
                     <dd className="mt-1 text-[1.02rem] font-medium text-charcoal-900">{f.value}</dd>
-                  </div>
+                  </StaggerItem>
                 ))}
-              </dl>
+              </Stagger>
             )}
           </div>
         )}

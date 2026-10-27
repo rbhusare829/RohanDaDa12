@@ -3,6 +3,7 @@ import { Expand } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { GalleryImage } from '@/lib/media'
 import { Img } from './Img'
+import { Reveal } from './Motion'
 
 const Lightbox = lazy(() => import('./Lightbox'))
 
@@ -12,13 +13,14 @@ export function Gallery({ images, layout = 'grid', wide = false, className }: { 
   if (!images.length) return null
   return (
     <>
-      <div className={cn(layout === 'masonry' ? (wide ? 'columns-2 gap-3 md:columns-3 lg:columns-4 xl:columns-5 [&>*]:mb-3' : 'columns-2 gap-3 md:columns-3 lg:columns-4 [&>*]:mb-3') : 'grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4', className)}>
+      <div className={cn(layout === 'masonry' ? (wide ? 'columns-2 gap-3 md:columns-3 lg:columns-4 xl:columns-5 [&>*]:mb-3 [&>*]:break-inside-avoid' : 'columns-2 gap-3 md:columns-3 lg:columns-4 [&>*]:mb-3 [&>*]:break-inside-avoid') : 'grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4', className)}>
         {images.map((img, i) => (
+          /* each photo settles in when it scrolls into view; photos of one row follow each other by 60 ms */
+          <Reveal key={img.src + i} y={18} scale={0.97} delay={(i % 4) * 0.06}>
           <button
-            key={img.src + i}
             type="button"
             onClick={() => setIndex(i)}
-            className={cn('group relative block w-full overflow-hidden rounded-xl bg-cream shadow-sm ring-1 ring-stone-200/60 transition-shadow duration-300 hover:shadow-lg hover:ring-saffron-400/60', layout === 'grid' && 'aspect-[4/3]')}
+            className={cn('group relative block w-full overflow-hidden rounded-xl bg-cream shadow-sm ring-1 ring-stone-200/60 transition-[box-shadow,scale] duration-300 ease-soft hover:shadow-lg hover:ring-saffron-400/60 active:scale-[0.985]', layout === 'grid' && 'aspect-[4/3]')}
             aria-label={img.alt || `Photo ${i + 1}`}
           >
             {layout === 'grid' ? (
@@ -53,6 +55,7 @@ export function Gallery({ images, layout = 'grid', wide = false, className }: { 
               <span className="absolute inset-x-0 bottom-0 p-3 text-left text-sm text-white opacity-0 transition group-hover:opacity-100">{img.caption}</span>
             )}
           </button>
+          </Reveal>
         ))}
       </div>
       {index >= 0 && (

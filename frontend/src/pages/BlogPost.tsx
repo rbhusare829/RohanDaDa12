@@ -9,6 +9,7 @@ import { NewsCard, SectionTitle } from '@/components/blog/BlogParts'
 import { PageBanner } from '@/components/layout/PageBanner'
 import { Seo } from '@/components/layout/Seo'
 import { Img } from '@/components/ui/Img'
+import { ReadingProgress, Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 import { RichText } from '@/components/ui/RichText'
 import { Share } from '@/components/ui/Share'
 import { notFound } from './helpers'
@@ -72,6 +73,8 @@ export default function PostPage() {
         publishedTime={post.publishedAt}
         jsonLd={[articleLd]}
       />
+      {/* a thin bar at the top of the screen fills as the article is read */}
+      <ReadingProgress />
       <PageBanner
         compact
         light
@@ -102,7 +105,8 @@ export default function PostPage() {
             </Link>
 
             {cover && (
-              <figure className="mt-7">
+              /* the cover is the first thing seen: a CSS entrance (it starts with the first paint, it does not wait for the animation code to load) */
+              <figure className="animate-fade-up mt-7">
                 <div className="relative aspect-[16/9] overflow-hidden rounded-[1.5rem] bg-cream">
                   <Img media={post.coverImage} variant="hero" alt={mediaAlt(post.coverImage, post.title)} fill priority sizes="(max-width:900px) 100vw, 780px" className="object-cover" style={photoFit(post.coverImage, 16 / 9)} />
                 </div>
@@ -112,9 +116,9 @@ export default function PostPage() {
 
             {/* summary */}
             {post.excerpt && (
-              <p className="mt-10 border-l-4 border-saffron-500 pl-5 font-display text-[1.2rem] leading-relaxed text-charcoal-900 md:pl-7 md:text-[1.35rem]">
+              <Reveal as="p" className="mt-10 border-l-4 border-saffron-500 pl-5 font-display text-[1.2rem] leading-relaxed text-charcoal-900 md:pl-7 md:text-[1.35rem]">
                 {post.excerpt}
-              </p>
+              </Reveal>
             )}
 
             {/* key points on phones and tablets (desktop: in the side column) */}
@@ -153,7 +157,7 @@ export default function PostPage() {
             <SectionTitle aside={<Link to="/blog" className="more-link text-sm">{tb('seeAll')} <ArrowRight className="size-4" /></Link>}>
               {tb('more')}
             </SectionTitle>
-            <div className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-3">{related.map((r) => <NewsCard key={r.id} post={r} locale={locale} />)}</div>
+            <Stagger className="mt-9 grid gap-x-7 gap-y-12 md:grid-cols-3">{related.map((r) => <StaggerItem key={r.id}><NewsCard post={r} locale={locale} /></StaggerItem>)}</Stagger>
           </section>
         )}
       </div>

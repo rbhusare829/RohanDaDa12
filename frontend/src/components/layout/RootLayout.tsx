@@ -62,6 +62,26 @@ function RouteEffects() {
   return <div aria-live="polite" role="status" className="sr-only">{announcement}</div>
 }
 
+/**
+ * The page itself. After a click the new page settles in (a short fade and rise, 0.38 s, never blocking the click: the page is already
+ * loaded when it shows). The page a visit starts with just appears — it is what the visitor came for, and it must not wait for an animation.
+ * Changing only the query (filters, tabs, pages of a list) is not a new page, so it does not replay.
+ */
+function PageStage() {
+  const { pathname } = useLocation()
+  const [shown, setShown] = useState(pathname)
+  const [navigated, setNavigated] = useState(false)
+  if (shown !== pathname) {
+    setShown(pathname)
+    setNavigated(true)
+  }
+  return (
+    <div key={pathname} className={navigated ? 'page-enter' : undefined}>
+      <Outlet />
+    </div>
+  )
+}
+
 /** The animation features load after the first paint (see motion-features.ts) */
 const loadMotion = () => import('@/lib/motion-features').then((m) => m.default)
 
@@ -91,7 +111,7 @@ export function RootLayout() {
         <Header />
         <FloatingSocialBar />
         <main id="main" tabIndex={-1} className="outline-none">
-          <Outlet />
+          <PageStage />
         </main>
         <Footer />
         <FloatingButtons />

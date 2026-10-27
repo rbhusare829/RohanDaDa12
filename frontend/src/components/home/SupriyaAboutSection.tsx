@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router'
 import { PlayCircle } from 'lucide-react'
 import type { Home } from '@/types/cms'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 
 type Block = NonNullable<Home['sections']>[number]
 type AboutBlock = Extract<Block, { blockType: 'aboutIntro' }>
@@ -38,25 +38,24 @@ export function SupriyaAboutSection({
       <div className="container-x">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Left Column: Content */}
-          <Reveal className="flex flex-col items-start lg:col-span-7">
+          <Stagger className="flex flex-col items-start lg:col-span-7">
             {/* Red Eyebrow */}
-            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
+            <StaggerItem as="span" className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
               {b.eyebrow || (isMr ? 'परिचय' : 'ABOUT')}
-            </span>
+            </StaggerItem>
 
             {/* Heading */}
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
-              {b.heading || (isMr ? 'रोहन देशमुख' : 'Rohan Deshmukh')}
-            </h2>
+            <StaggerItem>
+              <h2 className="mt-2 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
+                {b.heading || (isMr ? 'रोहन देशमुख' : 'Rohan Deshmukh')}
+              </h2>
+            </StaggerItem>
 
             {/* Signature Red Underline Accent Bar */}
-            <div className="mt-3 mb-6 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
-              <span className="h-1 w-3 rounded-full bg-saffron-500" />
-            </div>
+            <AccentBar className="mt-3 mb-6" />
 
             {/* Bio Body Text */}
-            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-700">
+            <StaggerItem className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-700">
               <p>
                 {bioShort}
                 {bioRest && <span className="hidden sm:inline"> {bioRest}</span>}
@@ -68,10 +67,10 @@ export function SupriyaAboutSection({
                   {isMr ? 'अधिक वाचा' : 'Read More'}
                 </Link>
               </p>
-            </div>
+            </StaggerItem>
 
             {/* Large Highlighted Quote Block (Supriya Sule style) */}
-            <div className="my-7 flex items-start gap-2.5">
+            <StaggerItem className="my-7 flex items-start gap-2.5">
               <span className="font-serif text-3xl sm:text-4xl leading-none text-red-600 select-none">&ldquo;</span>
               <p className="font-display text-lg sm:text-xl lg:text-2xl font-bold leading-snug text-[#000d3d]">
                 {b.pledge ||
@@ -80,10 +79,10 @@ export function SupriyaAboutSection({
                     : "I'm committed to the betterment of the people")}
               </p>
               <span className="font-serif text-3xl sm:text-4xl leading-none text-red-600 select-none">&rdquo;</span>
-            </div>
+            </StaggerItem>
 
             {/* Vision button (opens the video) */}
-            <div className="flex w-full justify-center pt-2">
+            <StaggerItem className="flex w-full justify-center pt-2">
               <button
                 type="button"
                 onClick={() => setShowVideo(true)}
@@ -93,8 +92,8 @@ export function SupriyaAboutSection({
                 <span>{isMr ? 'दृष्टिकोन' : 'Vision'}</span>
               </button>
 
-            </div>
-          </Reveal>
+            </StaggerItem>
+          </Stagger>
 
           {/* Video Modal (Supriya Sule style) */}
           {showVideo && (
@@ -126,7 +125,7 @@ export function SupriyaAboutSection({
           )}
 
           {/* Right Column: Portrait Photo (Supriya Sule style framed presentation) */}
-          <Reveal className="relative order-first flex items-center justify-center lg:order-none lg:col-span-5" delay={0.15}>
+          <Reveal className="relative order-first flex items-center justify-center lg:order-none lg:col-span-5" delay={0.15} x={28} y={12} scale={0.97}>
             <div className="relative w-full max-w-[420px]">
               {/* Subtle ambient backdrop glow */}
               <div

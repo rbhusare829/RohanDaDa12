@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect, type ReactNode } from 'react'
 import { m, AnimatePresence } from 'motion/react'
+import { EASE_OUT } from '@/lib/motion'
+import { AccentBar } from '@/components/ui/Motion'
 import {
   ArrowUpRight,
   Sparkles,
@@ -163,7 +165,7 @@ const containerVariants = {
 
 const itemVariants = {
   hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
 }
 
 /**
@@ -278,10 +280,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                 )}
 
                 {/* Saffron & Crimson Divider */}
-                <div className="mb-5 flex items-center gap-1.5">
-                  <span className="h-1.5 w-16 rounded-full bg-red-600" />
-                  <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
-                </div>
+                <AccentBar className="mb-5" bar="h-1.5 w-16" dot="h-1.5 w-3.5" />
 
                 {/* Narrative Text */}
                 <div className="leading-relaxed text-stone-700 font-normal text-base sm:text-[1.05rem]">
@@ -586,7 +585,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3, ease: 'easeOut' }}
+                  transition={{ duration: 0.35, ease: EASE_OUT }}
                   className="space-y-6"
                 >
                   {/* Sector Header Card */}
@@ -734,7 +733,7 @@ function InstitutionCard({
       {/* Bottom Action Footer */}
       <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-semibold">
         <span className="flex items-center gap-1.5 text-stone-400 text-[11px]">
-          <span className={cn('size-1.5 rounded-full', item.url ? 'bg-saffron-500 animate-pulse' : 'bg-stone-300')} />
+          <span className={cn('size-1.5 rounded-full', item.url ? 'bg-saffron-500' : 'bg-stone-300')} />
           <span>{item.url ? (isMr ? 'अधिकृत संकेतस्थळ' : 'Official Portal') : (isMr ? 'लोकमंगल परिवार संलग्न' : 'Lokmangal Group')}</span>
         </span>
 

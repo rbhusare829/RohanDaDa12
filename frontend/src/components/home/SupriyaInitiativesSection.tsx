@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { Landmark, Briefcase, GraduationCap, HeartPulse, Users, Sprout, ArrowRight } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 
 const INITIATIVES = [
   {
@@ -79,33 +79,29 @@ export function SupriyaInitiativesSection({
   return (
     <section className="bg-[#f0f6fc] border-t border-stone-200 py-16 sm:py-24">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <Reveal className="text-center mb-12 sm:mb-16">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'विकासाची ध्येये' : 'Key Focus Areas'}
           </span>
           <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'प्रमुख कार्यक्षेत्रे आणि उपक्रम' : 'Key Initiatives & Social Work'}
           </h2>
-          <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
+          <AccentBar center className="mt-2.5 mb-4" />
           <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600">
             {isMr
               ? 'सहकार, उद्योग, शिक्षण, आरोग्य आणि समाजसेवेच्या माध्यमातून सोलापूर व महाराष्ट्राच्या प्रगतीसाठी अविरत कार्य.'
               : 'Working dedicatedly across banking, industries, education, healthcare and community service.'}
           </p>
-        </div>
+        </Reveal>
 
-        <Reveal delay={0.08}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {INITIATIVES.map((it, i) => {
               const Icon = it.icon
               return (
+                <StaggerItem key={i} className="h-full">
                 <Link
-                  key={i}
                   to={it.link}
-                  className="group flex flex-col justify-between h-full rounded-2xl bg-white border border-stone-200/90 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400"
+                  className="group flex flex-col justify-between h-full rounded-2xl bg-white border border-stone-200/90 p-6 shadow-sm transition-[translate,box-shadow,border-color] duration-300 ease-soft motion-safe:hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400 active:scale-[0.99]"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
@@ -131,10 +127,10 @@ export function SupriyaInitiativesSection({
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </Link>
+                </StaggerItem>
               )
             })}
-          </div>
-        </Reveal>
+        </Stagger>
       </div>
     </section>
   )

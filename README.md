@@ -437,9 +437,15 @@ A second pass looked at touch, edges, colour and motion (all tokens live in `@th
   (4.5:1 or better on white and on its own soft background; `warning` is a little darker than the usual amber `#b45309`, which is 4.46:1 on the admin page background).
   Impact numbers are green. The cream sections use `#fff8f0`. The admin uses the same tokens for status pills, toasts and errors.
 * **Focus ring** — 3 px dark orange on light backgrounds, light saffron on navy and on the hero photo.
-* **Motion** — the hero's first slide is on screen from the first paint (the heading is the largest text at once); slides fade, nothing slides sideways. Both auto-advancing
-  sliders (hero, featured initiatives) have a Pause / Play button (WCAG 2.2.2). With "reduce motion" on nothing moves — no sliding, growing or bouncing, entrances
-  become plain fades — and the sliders do not play until the visitor presses Play.
+* **Motion** — one rhythm for the whole site (the rules of the ui-ux-pro-max guide): only opacity and transform move, arrivals use one soft ease-out (`--ease-soft` in `index.css`,
+  `EASE_OUT` in `frontend/src/lib/motion.ts`) for 0.5–0.6 s, hover and press feedback takes 0.15–0.25 s, and a row of cards follows its heading 70 ms apart (never more than half a second
+  for the whole row). The pieces: `frontend/src/components/ui/Motion.tsx` (`Reveal`, `Stagger` / `StaggerItem`, `AccentBar` — the red bar under a heading draws itself —, `DrawRule`, `Lift`,
+  `ReadingProgress` on articles) and, for what is on screen at the first paint, CSS entrances (`animate-fade-up`, `animate-slide-in` for the banner portrait, `.page-enter` for a page opened by a click —
+  the first page of a visit never waits for it). Photos fade in when they arrive (`Img.tsx`; cached ones show at once), loading placeholders use one shimmer (`.skeleton`), tab bars slide or grow their
+  indicator, form errors drop in, and mouse-only effects (card lift, photo zoom) never apply on a touch screen. The hero's first slide is on screen from the first paint; the words of each slide arrive one after another
+  and a line under the open slide's number fills while it is shown. Both auto-advancing sliders (hero, featured initiatives) have a Pause / Play button (WCAG 2.2.2) and stop while the pointer or focus is on
+  them, in a background tab and (the hero) off screen. With "reduce motion" on nothing moves — no sliding, growing, pulsing or scrolling tickers — everything is in place at once (there is no hidden first state),
+  the few CSS entrances become plain fades, and the sliders do not play until the visitor presses Play.
 * **Rows that scroll sideways** (filter chips, tabs) fade at the edge where more is waiting and keep the current item in view; the filter chips wrap into rows on wider screens.
 * The words on the hero photo were measured against the actual pixels behind them (the worst 5 % of each text box, all four slides, ten screen sizes from a 360 px phone to a 1920 px desktop): all at or above 4.5:1 (3:1 for large text).
 

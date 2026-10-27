@@ -17,7 +17,7 @@ export function Pagination({ page, totalPages, base, query = {} }: { page: numbe
       {pages.map((p, i) => (
         <span key={p} className="flex items-center gap-1.5">
           {i > 0 && pages[i - 1] !== p - 1 && <span className="px-1 text-muted">…</span>}
-          <Link to={href(p)} aria-current={p === page ? 'page' : undefined} className={cn('grid size-11 place-items-center rounded-xl border font-semibold', p === page ? 'border-btn bg-btn text-white' : 'border-field hover:border-field-hover hover:bg-cream')}>{p}</Link>
+          <Link to={href(p)} aria-current={p === page ? 'page' : undefined} className={cn('grid size-11 place-items-center rounded-xl border font-semibold transition-[color,background-color,border-color,scale] duration-200 active:scale-[0.94]', p === page ? 'border-btn bg-btn text-white' : 'border-field hover:border-field-hover hover:bg-cream')}>{p}</Link>
         </span>
       ))}
       {page < totalPages && <Link to={href(page + 1)} className="btn-icon size-11" aria-label="Next"><ChevronRight className="size-4" /></Link>}
@@ -34,7 +34,7 @@ export function FilterChips({ items, active, base, param = 'category' }: { items
         const on = (active ?? '') === it.value
         return (
           <Link key={it.value || 'all'} to={it.value ? `${base}?${param}=${encodeURIComponent(it.value)}` : base} aria-current={on ? 'true' : undefined}
-            className={cn('inline-flex min-h-11 shrink-0 items-center rounded-xl border px-4 py-2 text-[0.95rem] font-medium transition', on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-muted hover:border-field-hover hover:text-charcoal-900')}>
+            className={cn('inline-flex min-h-11 shrink-0 items-center rounded-xl border px-4 py-2 text-[0.95rem] font-medium transition-[color,background-color,border-color,scale] duration-200 active:scale-[0.96]', on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-muted hover:border-field-hover hover:text-charcoal-900')}>
             {it.label}
           </Link>
         )

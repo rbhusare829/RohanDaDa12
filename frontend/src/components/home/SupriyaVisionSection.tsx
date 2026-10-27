@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { ArrowRight } from 'lucide-react'
 import type { Home } from '@/types/cms'
 import { mediaUrl } from '@/lib/media'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal } from '../ui/Motion'
 
 type Block = NonNullable<Home['sections']>[number]
 type VisionBlock = Extract<Block, { blockType: 'homeVision' }>
@@ -51,18 +51,15 @@ export function SupriyaVisionSection({
   return (
     <section className="bg-[#f0f6fc] border-t border-stone-200 py-16 sm:py-24" aria-labelledby="home-vision-title">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <Reveal className="text-center mb-12 sm:mb-16">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">{eyebrow}</span>
           {heading && (
             <h2 id="home-vision-title" className="mx-auto mt-1 max-w-4xl font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
               {heading}
             </h2>
           )}
-          <div className="mt-2.5 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
-        </div>
+          <AccentBar center className="mt-2.5" />
+        </Reveal>
 
         <Reveal className="grid grid-cols-1 overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-sm lg:grid-cols-12">
           {/* the book */}
@@ -78,10 +75,7 @@ export function SupriyaVisionSection({
             <h3 className="mt-2 font-display text-xl font-bold leading-snug text-[#000d3d] sm:text-2xl">
               {bookTitle}
             </h3>
-            <div className="mt-3 mb-4 flex items-center gap-1.5">
-              <span className="h-1 w-10 rounded-full bg-red-600" />
-              <span className="h-1 w-3 rounded-full bg-saffron-500" />
-            </div>
+            <AccentBar className="mt-3 mb-4" bar="h-1 w-10" />
             {text && <p className="text-sm leading-relaxed text-slate-600 sm:text-base">{text}</p>}
             <div className="mt-6 max-md:flex max-md:justify-center">
               <Link

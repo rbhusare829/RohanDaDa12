@@ -1,4 +1,4 @@
-import { useRef, type KeyboardEvent, type ReactNode } from 'react'
+import { useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router'
 import { HandHeart, Landmark } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -18,6 +18,20 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
   const [params, setParams] = useSearchParams()
   const active: TabId = params.get('tab') === 'social' ? 'social' : 'career'
   const refs = useRef<Record<TabId, HTMLButtonElement | null>>({ career: null, social: null })
+  // the red pill slides from one tab to the other (it follows the open tab's position and width, also when the window is resized)
+  const bar = useRef<HTMLDivElement>(null)
+  const [pill, setPill] = useState<{ x: number; w: number } | null>(null)
+  useLayoutEffect(() => {
+    const el = refs.current[active]
+    const box = bar.current
+    if (!el || !box) return
+    const measure = () => setPill({ x: el.offsetLeft, w: el.offsetWidth })
+    measure()
+    const ro = new ResizeObserver(measure)
+    ro.observe(box)
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [active, locale])
 
   const tabs: { id: TabId; label: string; icon: typeof Landmark }[] = [
     { id: 'career', label: isMr ? 'राजकीय कारकीर्द' : 'Political Career', icon: Landmark },
@@ -45,11 +59,19 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
     <>
       <div className="mb-12 flex justify-center sm:mb-14">
         <div
+          ref={bar}
           role="tablist"
           aria-label={isMr ? 'राजकीय कारकीर्द व सामाजिक उपक्रम' : 'Political career and social activities'}
           onKeyDown={onKey}
-          className="grid w-full max-w-md grid-cols-2 gap-1.5 rounded-full bg-[#f0f6fc] p-1.5 shadow-sm ring-1 ring-stone-200 sm:inline-flex sm:w-auto sm:max-w-none"
+          className="relative grid w-full max-w-md grid-cols-2 gap-1.5 rounded-full bg-[#f0f6fc] p-1.5 shadow-sm ring-1 ring-stone-200 sm:inline-flex sm:w-auto sm:max-w-none"
         >
+          {pill && (
+            <span
+              aria-hidden
+              className="absolute inset-y-1.5 left-0 rounded-full bg-red-600 shadow-md transition-[transform,width] duration-300 ease-soft motion-reduce:transition-none"
+              style={{ width: pill.w, transform: `translateX(${pill.x}px)` }}
+            />
+          )}
           {tabs.map(({ id, label, icon: Icon }) => {
             const selected = id === active
             return (
@@ -66,9 +88,9 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
                 tabIndex={selected ? 0 : -1}
                 onClick={() => open(id)}
                 className={cn(
-                  'inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3 py-3 text-[13px] font-bold transition-all duration-300 sm:gap-2 sm:px-7 sm:text-base',
+                  'relative z-10 inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3 py-3 text-[13px] font-bold transition-[color,background-color] duration-300 sm:gap-2 sm:px-7 sm:text-base',
                   selected
-                    ? 'bg-red-600 text-white shadow-md'
+                    ? 'text-white'
                     : 'text-[#000d3d] hover:bg-white hover:text-red-600',
                 )}
               >
@@ -80,7 +102,7 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
         </div>
       </div>
 
-      <div role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`} tabIndex={0} className="focus:outline-none">
+      <div key={active} role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`} tabIndex={0} className="animate-tab-in focus:outline-none">
         {active === 'career' ? career : <SocialActivitiesList locale={locale} />}
       </div>
     </>

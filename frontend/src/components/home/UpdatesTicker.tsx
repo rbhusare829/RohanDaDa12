@@ -24,10 +24,11 @@ export function UpdatesTicker({ locale = 'mr' }: { locale?: 'mr' | 'en' }) {
           <span className="size-2 rounded-full bg-red-500 animate-pulse" />
           <span>{isMr ? 'महत्त्वाचे दुवे' : 'Updates'}</span>
         </div>
-        <div className="overflow-hidden whitespace-nowrap flex-1 ml-3 relative">
-          <div className="inline-flex items-center text-xs sm:text-sm text-charcoal-700 font-medium animate-[marquee_35s_linear_infinite] hover:[animation-play-state:paused]">
+        {/* it stops while the pointer or keyboard focus is on it; for visitors who ask for less motion it stands still and can be scrolled by hand */}
+        <div className="group/ticker overflow-hidden whitespace-nowrap flex-1 ml-3 relative motion-reduce:overflow-x-auto motion-reduce:[scrollbar-width:none]">
+          <div className="inline-flex items-center text-xs sm:text-sm text-charcoal-700 font-medium animate-[marquee_35s_linear_infinite] group-hover/ticker:[animation-play-state:paused] group-focus-within/ticker:[animation-play-state:paused] motion-reduce:animate-none">
             {[0, 1].map((copy) => (
-              <div key={copy} aria-hidden={copy === 1 || undefined} className="inline-flex shrink-0 items-center gap-8 pr-8">
+              <div key={copy} aria-hidden={copy === 1 || undefined} className={`inline-flex shrink-0 items-center gap-8 pr-8${copy === 1 ? ' motion-reduce:hidden' : ''}`}>
                 {UPDATES.map((u, i) => (
                   <Fragment key={u.to}>
                     {i > 0 && <span className="text-stone-300">|</span>}

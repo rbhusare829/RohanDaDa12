@@ -3,6 +3,7 @@ import { useLayout } from '@/lib/layout'
 import { useTranslations } from '@/lib/i18n'
 import { isLiveLink } from '@/lib/nav'
 import { CMSLink } from '../ui/CMSLink'
+import { Stagger, StaggerItem } from '../ui/Motion'
 import { SocialIcon } from '../ui/SocialIcon'
 import { socialLabels } from '@/lib/social'
 
@@ -24,8 +25,8 @@ export function Footer() {
   return (
     <footer className="on-dark relative z-10 border-t-4 border-saffron-500 bg-[#000d3d] pb-10 pt-16 text-white">
       <div className="container-x">
-        <div className="grid grid-cols-1 gap-10 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <div className="flex flex-col items-start gap-4 lg:col-span-4">
+        <Stagger className="grid grid-cols-1 gap-10 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <StaggerItem className="flex flex-col items-start gap-4 lg:col-span-4">
             <h4 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{t('contactUs')}</h4>
             <img src="/brand/logo-name.svg" alt={settings.siteName} width={180} height={46} loading="lazy" className="h-11 w-auto brightness-0 invert" />
             <ul className="space-y-2.5 pt-2 text-sm text-slate-300">
@@ -60,10 +61,10 @@ export function Footer() {
                 ))}
               </ul>
             )}
-          </div>
+          </StaggerItem>
 
           {cols.map((col, i) => (
-            <div key={col.id} className={i === cols.length - 1 && cols.length < 4 ? 'flex flex-col gap-3 lg:col-span-3' : 'flex flex-col gap-3 lg:col-span-2.5 lg:col-span-2'}>
+            <StaggerItem key={col.id} className={i === cols.length - 1 && cols.length < 4 ? 'flex flex-col gap-3 lg:col-span-3' : 'flex flex-col gap-3 lg:col-span-2.5 lg:col-span-2'}>
               <h4 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{col.title}</h4>
               <ul className="space-y-2 text-sm text-slate-300">
                 {col.links?.filter((l) => isLiveLink(l.url) && !HIDDEN_LINKS.includes(l.url ?? '')).map((l) => (
@@ -75,9 +76,9 @@ export function Footer() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-slate-400 sm:flex-row">
           <p className="text-center sm:text-left">

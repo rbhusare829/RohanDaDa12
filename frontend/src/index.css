@@ -119,7 +119,51 @@
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Tiro Devanagari Marathi', serif;
   --font-quote: 'Literata Variable', 'Literata', 'Tiro Devanagari Marathi', Georgia, serif;
 
-  --animate-fade-up: fade-up 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-fade-up: fade-up 0.6s var(--ease-soft) both;
+  /* a tab panel that opens: the same rise, shorter and quicker than a page's own entrance */
+  --animate-tab-in: fade-up 0.35s var(--ease-soft) both;
+  /* a form error drops in a few pixels, so the eye finds it; a success mark pops (a small overshoot, the one playful moment of the site) */
+  --animate-field-error: field-error 0.22s var(--ease-soft) both;
+  --animate-pop-in: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+
+  @keyframes field-error {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pop-in {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* the portrait in a page banner arrives from the right edge */
+  --animate-slide-in: slide-in-right 0.8s var(--ease-soft) 0.12s both;
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
   @keyframes fade-up {
     from {
@@ -132,6 +176,12 @@
       transform: none;
     }
   }
+}
+
+/* motion tokens (ui-ux-pro-max: one shared rhythm). Arrivals use this soft ease-out, 0.5–0.6 s; hover and press feedback 0.15–0.25 s; nothing
+   in the interface takes longer than 0.6 s. The same curve is EASE_OUT in components/ui/Motion.tsx. */
+@theme static {
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
@@ -321,7 +371,8 @@
     }
 
     .animate-bounce,
-    .animate-ping {
+    .animate-ping,
+    .animate-pulse {
       animation: none !important;
     }
   }
@@ -409,13 +460,20 @@
     color: #fff;
     background-image: linear-gradient(to right, var(--color-saffron-600), var(--color-saffron-500), #f97316);
     box-shadow: 0 10px 15px -3px rgb(255 122 0 / .3), 0 4px 6px -4px rgb(255 122 0 / .3);
-    transition: background .2s, transform .15s, box-shadow .2s, filter .2s;
+    transition: background .2s, transform .2s var(--ease-soft), box-shadow .25s var(--ease-soft), filter .2s;
     white-space: nowrap;
   }
 
   .btn:hover {
     filter: brightness(.94);
     box-shadow: 0 20px 25px -5px rgb(255 122 0 / .4), 0 8px 10px -6px rgb(255 122 0 / .4);
+  }
+
+  /* a mouse pointer lifts the button 1px (never on a touch screen, where hover would stick after a tap); the press below wins over it */
+  @media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+      transform: translateY(-1px);
+    }
   }
 
   .btn:active {
@@ -512,13 +570,19 @@
   }
 
   .card-hover {
-    transition: transform .25s, box-shadow .25s, border-color .25s;
+    transition: transform .3s var(--ease-soft), box-shadow .3s var(--ease-soft), border-color .25s;
   }
 
-  .card-hover:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-saffron-500);
-    box-shadow: 0 10px 15px -3px rgb(14 30 52 / .1), 0 4px 6px -4px rgb(14 30 52 / .1);
+  @media (hover: hover) {
+    .card-hover:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-saffron-500);
+      box-shadow: 0 14px 22px -6px rgb(14 30 52 / .12), 0 6px 8px -6px rgb(14 30 52 / .1);
+    }
+  }
+
+  .card-hover:active {
+    transform: translateY(-1px) scale(.995);
   }
 
   /* ---------- page rhythm: every section breathes the same amount ---------- */
@@ -649,11 +713,23 @@
   }
 
   .tile-media img {
-    transition: transform .7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition: transform .7s var(--ease-soft);
   }
 
-  .tile:hover .tile-media img {
-    transform: scale(1.045);
+  /* the photo zooms a little under a mouse pointer (not on touch screens, where hover would stick after a tap) */
+  @media (hover: hover) {
+    .tile:hover .tile-media img {
+      transform: scale(1.045);
+    }
+  }
+
+  /* pressing a card gives the photo a small push back, so a tap is answered at once */
+  .tile-media {
+    transition: transform .25s var(--ease-soft);
+  }
+
+  .tile:active .tile-media {
+    transform: scale(.985);
   }
 
   .tile-body {
@@ -1043,13 +1119,133 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-fade-up {
+  .animate-fade-up,
+  .animate-tab-in,
+  .animate-slide-in,
+  .animate-field-error,
+  .animate-pop-in {
     animation-name: fade-only;
   }
 
   /* unlayered on purpose: the layered `.btn:active` above would win over a rule inside @layer base */
-  .btn:active {
+  .btn:active,
+  .btn:hover {
     transform: none;
+  }
+}
+
+/* ---------- motion (ui-ux-pro-max): transform + opacity only, the soft ease-out, short and few ---------- */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes img-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes hero-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes dock-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* the social icons on the left edge slip in one after another (the delay is set per icon) */
+.dock-in {
+  animation: dock-in .5s var(--ease-soft) backwards;
+}
+
+/* a page that opens after a click settles in. `backwards` (not `both`): once it has finished nothing stays applied, so the page keeps no
+   stacking context or containing block that would change how sticky bars and fixed overlays inside it behave */
+.page-enter {
+  animation: page-in .38s var(--ease-soft) backwards;
+}
+
+/* photos fade in when they arrive instead of popping in; a cached photo shows at once (Img.tsx sets data-ready) */
+img[data-rd-img]:not([data-ready]) {
+  opacity: 0;
+}
+
+img[data-rd-img][data-ready='fade'] {
+  animation: img-in .5s var(--ease-soft) backwards;
+}
+
+/* loading placeholders: a soft light passes over them (one sweep for the whole group, not a pulse per block) */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .55), transparent);
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* the line under the open slide's number in the hero fills while the slide is on screen (it is time left, not decoration) */
+.hero-progress {
+  transform-origin: left;
+  animation: hero-progress linear both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter,
+  img[data-rd-img][data-ready='fade'],
+  .skeleton::after,
+  .hero-progress,
+  .dock-in {
+    animation: none;
+  }
+}
+
+/* on paper everything is shown: nothing waits for a scroll to appear */
+@media print {
+  img[data-rd-img] {
+    opacity: 1 !important;
+    animation: none !important;
+  }
+
+  [style*='opacity: 0'] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { Img } from '@/components/ui/Img'
+import { Reveal } from '@/components/ui/Motion'
 import type { Home } from '@/types/cms'
 
 type FamilyBlock = Extract<NonNullable<Home['sections']>[number], { blockType: 'family' }>
@@ -32,22 +33,23 @@ export default function FamilyPage() {
             return (
               <article key={m.id ?? i} className={cn('grid items-center gap-8 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16', i % 2 === 1 && 'md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]')}>
                 {mediaUrl(m.image, 'card') && (
-                  <div className={cn('overflow-hidden rounded-[1.75rem] bg-cream', i % 2 === 1 && 'md:order-2')}>
+                  /* the photo comes in from its own side (left on odd rows, right on even ones), the words a moment later */
+                  <Reveal x={i % 2 === 1 ? 28 : -28} y={0} className={cn('overflow-hidden rounded-[1.75rem] bg-cream', i % 2 === 1 && 'md:order-2')}>
                     <Img media={m.image} variant="card" alt={mediaAlt(m.image, m.name ?? '')} sizes="(max-width:768px) 100vw, 40vw" className="h-auto w-full" />
-                  </div>
+                  </Reveal>
                 )}
-                <div>
+                <Reveal delay={0.1}>
                   {m.relation && <p className="eyebrow">{m.relation}</p>}
                   <h2 className="mt-2 text-[1.8rem] leading-tight text-charcoal-900 md:text-[2.3rem]">{m.name}</h2>
                   <div className="prose-rd mt-5 max-w-2xl">{paras.map((p, k) => <p key={k}>{p}</p>)}</div>
-                </div>
+                </Reveal>
               </article>
             )
           })}
         </div>
-        <div className="mt-16 border-t border-line pt-10 md:mt-24">
+        <Reveal className="mt-16 border-t border-line pt-10 md:mt-24">
           <Link to="/political-career" className="btn btn-dark">{t('next')} <ArrowRight className="size-4" /></Link>
-        </div>
+        </Reveal>
       </InnerPage>
     </>
   )

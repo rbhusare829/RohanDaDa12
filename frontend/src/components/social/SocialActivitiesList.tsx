@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router'
 import { ArrowDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { ACTIVITIES, num, type Text } from '@/lib/social-activities'
-import { Reveal } from '@/components/ui/Motion'
+import { AccentBar, Reveal } from '@/components/ui/Motion'
 
 /**
  * A link to one activity (/social-activities#yuva-sahitya-sammelan, from the homepage cards) lands on it. The browser's own jump can
@@ -85,10 +85,7 @@ export function SocialActivitiesList({ locale = 'mr' }: { locale?: 'mr' | 'en' }
                   <h2 id={`${a.id}-title`} className="font-display text-2xl font-bold leading-tight tracking-tight text-[#000d3d] sm:text-3xl lg:text-4xl">
                     {t(a.title)}
                   </h2>
-                  <div className="mt-2.5 mb-5 flex items-center gap-1.5">
-                    <span className="h-1 w-14 rounded-full bg-red-600" />
-                    <span className="h-1 w-3 rounded-full bg-saffron-500" />
-                  </div>
+                  <AccentBar className="mt-2.5 mb-5" />
                   <p className="font-display text-lg font-bold text-slate-800">{t(a.tagline)}</p>
                   <div className="mt-3 space-y-4 text-sm leading-relaxed text-slate-700 sm:text-base">
                     {(isMr ? a.body.mr : a.body.en).map((p, k) => (

@@ -8,6 +8,7 @@ import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { CountUp } from '@/components/ui/CountUp'
 import { Img } from '@/components/ui/Img'
+import { DrawRule, Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 import { FilterChips } from '@/components/ui/Pagination'
 import { searchOf } from './helpers'
 
@@ -34,14 +35,15 @@ export default function SocialWorkPage() {
         <div className="space-y-20">
           {groups.map((g) => (
             <section key={g.value} aria-labelledby={`cat-${g.value}`}>
-              <div className="mb-8 flex items-center gap-4">
+              <Reveal className="mb-8 flex items-center gap-4">
                 <h2 id={`cat-${g.value}`} className="text-[1.6rem] leading-tight text-charcoal-900 md:text-[2rem]">{categoryLabel(g.value, locale)}</h2>
-                <span className="h-px flex-1 bg-line" />
+                <DrawRule />
                 <span className="text-sm text-muted">{g.items.length}</span>
-              </div>
-              <div className="grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              </Reveal>
+              <Stagger className="grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
                 {g.items.map((it) => (
-                  <Link key={it.id} to={`/social-work/${it.slug}`} className="tile group">
+                  <StaggerItem key={it.id}>
+                  <Link to={`/social-work/${it.slug}`} className="tile group h-full">
                     <div className="tile-media aspect-[16/10]">
                       <Img media={it.heroImage} variant="card" alt={mediaAlt(it.heroImage, it.title)} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" style={photoFit(it.heroImage, 1.6, 0.6)} />
                       {it.counters?.[0] && (
@@ -56,8 +58,9 @@ export default function SocialWorkPage() {
                       <span className="more-link mt-auto pt-4">{tc('moreInfo')} <ArrowRight className="size-4" /></span>
                     </div>
                   </Link>
+                  </StaggerItem>
                 ))}
-              </div>
+              </Stagger>
             </section>
           ))}
         </div>

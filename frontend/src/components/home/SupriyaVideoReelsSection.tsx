@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import type { Home } from '@/types/cms'
 // import { useLayout } from '@/lib/layout'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal } from '../ui/Motion'
 import { YouTube } from '../ui/YouTube'
 import { SocialIcon } from '../ui/SocialIcon'
 import { InstagramReels } from './InstagramReels'
@@ -73,16 +73,13 @@ export function SupriyaVideoReelsSection({
   return (
     <section className="bg-white border-t border-stone-200 py-16 sm:py-24" aria-labelledby="video-reels-title">
       <div className="container-x">
-        <div className="text-center mb-12 sm:mb-16">
+        <Reveal className="text-center mb-12 sm:mb-16">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">{isMr ? 'व्हिडिओ' : 'Video'}</span>
           <h2 id="video-reels-title" className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'भारतातील दुधात भेसळ' : 'Milk Adulteration in India'}
           </h2>
-          <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
-        </div>
+          <AccentBar center className="mt-2.5 mb-4" />
+        </Reveal>
 
         {/* the featured video: player on the left (navy), its title, a few lines and the YouTube button on the right */}
         {v && (
@@ -95,10 +92,7 @@ export function SupriyaVideoReelsSection({
                 <SocialIcon name="youtube" className="size-4" /> {v.eyebrow || (isMr ? 'व्हिडिओ' : 'Video')}
               </p>
               {v.title && <h3 className="mt-2 font-display text-xl font-bold leading-snug text-[#000d3d] sm:text-2xl">{v.title}</h3>}
-              <div className="mt-3 mb-4 flex items-center gap-1.5">
-                <span className="h-1 w-10 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
-              </div>
+              <AccentBar className="mt-3 mb-4" bar="h-1 w-10" />
               {v.text && <p className="text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">{v.text}</p>}
               {v.links.length > 0 && (
                 <div className="mt-6 flex flex-wrap gap-3 max-md:justify-center">
@@ -127,16 +121,13 @@ export function SupriyaVideoReelsSection({
         {r && r.items.length > 0 && (
           <div className={v ? 'mt-14 sm:mt-16' : ''}>
             {/* centred, with the same red and saffron line under "Reels" as under the section title */}
-            <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
+            <Reveal className="mb-8 flex flex-col items-center text-center sm:mb-10">
               <p className="flex items-center justify-center gap-2 text-xs font-extrabold uppercase tracking-widest text-red-600">
                 <SocialIcon name="instagram" className="size-4" /> {r.eyebrow || 'Instagram'}
               </p>
               {r.title && <h3 className="mt-1 font-display text-2xl font-bold text-[#000d3d] sm:text-3xl">{r.title}</h3>}
-              <div className="mt-2.5 flex items-center justify-center gap-1.5">
-                <span className="h-1 w-14 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
-              </div>
-            </div>
+              <AccentBar center className="mt-2.5" />
+            </Reveal>
             <Reveal>
               <InstagramReels reels={r.items} />
             </Reveal>

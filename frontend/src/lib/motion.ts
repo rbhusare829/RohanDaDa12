@@ -2,6 +2,9 @@ import { useSyncExternalStore } from 'react'
 
 const REDUCED = '(prefers-reduced-motion: reduce)'
 
+/** The one ease-out of the site: arrive fast, settle softly (the same curve as --ease-soft in index.css). Every entrance in components/ui/Motion.tsx uses it. */
+export const EASE_OUT = [0.22, 1, 0.36, 1] as const
+
 const subscribe = (onChange: () => void) => {
   const mq = window.matchMedia(REDUCED)
   mq.addEventListener('change', onChange)

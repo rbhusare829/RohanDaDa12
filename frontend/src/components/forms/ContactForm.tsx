@@ -68,11 +68,11 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
 
   if (sent)
     return (
-      <div className="flex flex-col items-center rounded-2xl bg-ivory px-6 py-12 text-center ring-1 ring-saffron-200" role="status">
-        <span className="grid size-16 place-items-center rounded-full bg-gradient-to-br from-saffron-600 to-saffron-500 text-white shadow-lg shadow-saffron-500/30">
+      <div className="animate-tab-in flex flex-col items-center rounded-2xl bg-ivory px-6 py-12 text-center ring-1 ring-saffron-200" role="status">
+        <span className="animate-pop-in grid size-16 place-items-center rounded-full bg-gradient-to-br from-saffron-600 to-saffron-500 text-white shadow-lg shadow-saffron-500/30">
           <CheckCircle2 className="size-8" />
         </span>
-        <p className="mt-5 font-display text-2xl font-bold text-charcoal-950">{t('success')}</p>
+        <p className="animate-fade-up mt-5 font-display text-2xl font-bold text-charcoal-950" style={{ animationDelay: '180ms' }}>{t('success')}</p>
       </div>
     )
 
@@ -117,11 +117,11 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
           }}
           className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-saffron-200 bg-ivory px-4 py-3 text-sm text-gray-600 transition hover:border-saffron-400 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-charcoal-950 file:px-4 file:py-2 file:font-semibold file:text-white hover:file:bg-saffron-600"
         />
-        {fileError && <p id="f-attachment-error" className="mt-1 text-sm text-danger">{t.has(fileError) ? t(fileError) : fileError}</p>}
+        {fileError && <p id="f-attachment-error" className="animate-field-error mt-1 text-sm text-danger">{t.has(fileError) ? t(fileError) : fileError}</p>}
       </div>
 
       {banner && (
-        <p className="rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger md:col-span-2" role="alert">{banner}</p>
+        <p className="animate-field-error rounded-xl bg-danger-soft px-4 py-3 text-sm text-danger md:col-span-2" role="alert">{banner}</p>
       )}
 
       <div className="md:col-span-2">
@@ -136,7 +136,7 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
           />
           <span>{t('consent')}</span>
         </label>
-        {errors.consent && <p id="f-consent-error" className="mt-1 text-sm text-danger">{t.has('required') ? t('required') : 'required'}</p>}
+        {errors.consent && <p id="f-consent-error" className="animate-field-error mt-1 text-sm text-danger">{t.has('required') ? t('required') : 'required'}</p>}
       </div>
       <div className="md:col-span-2">
         <button type="submit" disabled={isSubmitting} className="btn min-w-44 text-base disabled:opacity-60 max-sm:w-full">
@@ -191,7 +191,7 @@ function Field({ id, label, required, error, full, as = 'input', inputProps, tex
       ) : (
         <input id={fieldId} className={cls} {...aria} {...inputProps} />
       )}
-      {message && <p id={errorId} className="mt-1 text-sm text-danger">{t.has(message) ? t(message) : message}</p>}
+      {message && <p id={errorId} className="animate-field-error mt-1 text-sm text-danger">{t.has(message) ? t(message) : message}</p>}
     </div>
   )
 }

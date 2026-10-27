@@ -31,7 +31,7 @@ function QuickCard({ icon: Icon, label, href, accent, children }: { icon: Lucide
       </span>
     </>
   )
-  const cls = 'group flex h-full items-center gap-4 rounded-2xl border border-stone-200/90 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-saffron-300 hover:shadow-lg'
+  const cls = 'group flex h-full items-center gap-4 rounded-2xl border border-stone-200/90 bg-white p-5 shadow-sm transition-[translate,box-shadow,border-color] duration-300 ease-soft motion-safe:hover:-translate-y-1 hover:border-saffron-300 hover:shadow-lg active:scale-[0.99]'
   return href ? <a href={href} className={cls}>{body}</a> : <div className={cls}>{body}</div>
 }
 

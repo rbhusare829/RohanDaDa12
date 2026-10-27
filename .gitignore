@@ -15,3 +15,6 @@ node_modules
 
 # screenshots of the end-to-end tests
 /e2e/.shots
+
+# raw camera photos folder
+Edited/

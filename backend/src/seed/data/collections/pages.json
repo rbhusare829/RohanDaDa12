@@ -157,8 +157,8 @@
   "menuOrder": 2,
   "showSideMenu": false,
   "subtitle": {
-   "en": "A New Voice from Solapur. A New Voice for New India.",
-   "mr": "सोलापूरच्या मातीने घडवलेलं व्यक्तिमत्त्व, संस्कारांनी दिलेली दिशा आणि समाजासाठीची बांधिलकी..."
+   "en": null,
+   "mr": null
   },
   "bannerImage": 145,
   "layout": [
@@ -319,8 +319,8 @@
   "menuOrder": 1,
   "showSideMenu": false,
   "subtitle": {
-   "en": "A manifesto for a self-reliant India — building New India by empowering rural India; honesty, enterprise and a goal of one lakh new entrepreneurs.",
-   "mr": "स्वावलंबी भारतासाठीचा जाहीरनामा — ग्रामीण भारताच्या सामर्थ्याला बळ देत नवभारत घडवण्याचा ध्यास; प्रामाणिकपणा, उद्यमशीलता आणि एक लाख नव्या उद्योजकांना घडवण्याचे ध्येय."
+   "en": null,
+   "mr": null
   },
   "bannerImage": 142,
   "layout": [
@@ -681,8 +681,8 @@
   "menuOrder": 1,
   "showSideMenu": false,
   "subtitle": {
-   "en": "Political Journey — Rohan Deshmukh",
-   "mr": "राजकीय प्रवास — रोहन देशमुख"
+   "en": null,
+   "mr": null
   },
   "bannerImage": 125,
   "layout": [
@@ -801,8 +801,8 @@
   "menuOrder": 1,
   "showSideMenu": true,
   "subtitle": {
-   "en": "Serving Today, Building a Prosperous Tomorrow",
-   "mr": "आजची सेवा, उद्याची समृद्धी"
+   "en": null,
+   "mr": null
   },
   "bannerImage": 123,
   "layout": [
@@ -983,8 +983,8 @@
   "menuOrder": 1,
   "showSideMenu": true,
   "subtitle": {
-   "en": "Spiritual values and a deep sense of duty towards society — the Deshmukh family.",
-   "mr": "आध्यात्मिक मूल्ये आणि समाजाप्रती कर्तव्याची भावना — देशमुख परिवार."
+   "en": null,
+   "mr": null
   },
   "bannerImage": 119,
   "layout": [
@@ -1092,8 +1092,8 @@
   "menuOrder": 0,
   "showSideMenu": true,
   "subtitle": {
-   "en": "A new voice from Solapur. A new voice for a new India.",
-   "mr": "सोलापूरचा नवा आवाज. नव्या भारतासाठी नवा आवाज."
+   "en": null,
+   "mr": null
   },
   "bannerImage": null,
   "layout": [
@@ -1427,8 +1427,8 @@
   "menuOrder": 2,
   "showSideMenu": false,
   "subtitle": {
-   "en": "A family of institutions in banking, industry, education, healthcare and social service",
-   "mr": "बँकिंग, उद्योग, शिक्षण, दुग्धव्यवसाय आणि समाजसेवेतील संस्थांचा परिवार"
+   "en": null,
+   "mr": null
   },
   "bannerImage": 124,
   "layout": [

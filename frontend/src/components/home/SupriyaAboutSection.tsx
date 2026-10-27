@@ -138,7 +138,7 @@ export function SupriyaAboutSection({
               <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-[0_25px_60px_-15px_rgba(0,13,61,0.25)] ring-1 ring-stone-200/80">
                 <div className="aspect-[3/4] w-full overflow-hidden bg-stone-100">
                   <img
-                    src="/images/portraits/rohan-deshmukh-kurta.webp"
+                    src="/images/portraits/rohan-peach-kurta-namaskar.webp"
                     alt={b.heading || 'Rohan Deshmukh'}
                     width={500}
                     height={667}

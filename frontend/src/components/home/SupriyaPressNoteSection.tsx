@@ -36,21 +36,21 @@ const FALLBACK_POSTS = [
     title: 'सोलापूर आणि धाराशिव जिल्ह्यातील शेतकऱ्यांच्या प्रश्नांवर रोहन देशमुख यांचे निवेदन',
     slug: 'solapur-dharashiv-farmers-statement',
     publishedAt: '2026-10-22T10:00:00.000Z',
-    coverImage: '/images/portraits/rohan-deshmukh-office.webp',
+    coverImage: '/images/portraits/rohan-executive-desk.webp',
   },
   {
     id: 'f2',
     title: 'लोकमंगल समूहाच्या माध्यमातून ग्रामीण युवकांसाठी रोजगार व कौशल्य विकास मेळावा',
     slug: 'lokmangal-youth-skill-fair',
     publishedAt: '2026-10-18T10:00:00.000Z',
-    coverImage: '/images/portraits/rohan-deshmukh-tiranga.webp',
+    coverImage: '/images/portraits/rohan-flag-tiranga.webp',
   },
   {
     id: 'f3',
     title: 'सहकारी साखर कारखानदारी व इथेनॉल उत्पादनास प्रोत्साहन देण्याची मागणी',
     slug: 'coop-sugar-ethanol-demand',
     publishedAt: '2026-10-14T10:00:00.000Z',
-    coverImage: '/images/portraits/rohan-deshmukh-kurta.webp',
+    coverImage: '/images/portraits/rohan-blue-suit-magazine.webp',
   },
   {
     id: 'f4',
@@ -64,7 +64,7 @@ const FALLBACK_POSTS = [
     title: 'तरुणांनी कृषी व नवनिर्मिती क्षेत्रात स्टार्टअप सुरू करण्याचे रोहन देशमुख यांचे आवाहन',
     slug: 'youth-startup-agri-call',
     publishedAt: '2026-10-02T10:00:00.000Z',
-    coverImage: '/images/portraits/rohan-deshmukh-introduction.webp',
+    coverImage: '/images/portraits/rohan-blue-jacket-book.webp',
   },
 ]
 

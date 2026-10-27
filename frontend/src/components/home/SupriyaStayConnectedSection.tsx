@@ -52,7 +52,7 @@ export function SupriyaStayConnectedSection({ locale = 'mr' }: { locale?: 'mr' |
             {/* Facebook Page header */}
             <div className="flex items-center justify-between gap-3 bg-[#1877F2] p-4 text-white">
               <div className="flex min-w-0 items-center gap-3">
-                <img src="/images/portraits/rohan-deshmukh-office.webp" alt="" className="size-11 shrink-0 rounded-full border-2 border-white object-cover object-top" />
+                <img src="/images/portraits/rohan-blue-suit-smile.webp" alt="" className="size-11 shrink-0 rounded-full border-2 border-white object-cover object-top" />
                 <div className="min-w-0">
                   <h3 className="truncate text-sm font-bold leading-tight text-white">Rohan Subhash Deshmukh</h3>
                   <span className="text-xs text-white/80">Facebook</span>

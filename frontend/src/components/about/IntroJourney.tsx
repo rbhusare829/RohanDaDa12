@@ -61,7 +61,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
         <div className="group relative overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-2.5 shadow-[0_20px_50px_-12px_rgba(9,20,34,0.18)] transition-all duration-500 hover:shadow-[0_28px_65px_-16px_rgba(9,20,34,0.28)]">
           <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[#000d3d]">
             <Img
-              src="/images/portraits/rohan-deshmukh-introduction.webp"
+              src="/images/portraits/rohan-blue-jacket-book.webp"
               alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
               fill
               priority
@@ -343,7 +343,7 @@ function DualPerformanceProfileSection({ isMr }: { isMr: boolean }) {
               {/* Leader Photo */}
               <div className="relative my-4 aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100 sm:aspect-[16/10]">
                 <Img
-                  src="/images/portraits/rohan-deshmukh-office.webp"
+                  src="/images/portraits/rohan-peach-kurta-namaskar.webp"
                   alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
                   fill
                   className="object-cover object-top"

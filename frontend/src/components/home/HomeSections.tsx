@@ -24,7 +24,6 @@ import { UpdatesTicker } from './UpdatesTicker'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
 import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
-import { SupriyaStayConnectedSection } from './SupriyaStayConnectedSection'
 import { SupriyaSocialActivitiesSection } from './SupriyaSocialActivitiesSection'
 import { SupriyaVideoReelsSection } from './SupriyaVideoReelsSection'
 import { SupriyaVisionSection } from './SupriyaVisionSection'
@@ -91,9 +90,6 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
 
       {/* 9. Video & Reels (featured YouTube video, then the Instagram reels) */}
       <SupriyaVideoReelsSection video={videoBlock} reels={reelsBlock} locale={locale} />
-
-      {/* 10. Stay Connected (the Facebook Page's latest posts) */}
-      <SupriyaStayConnectedSection locale={locale} />
     </>
   )
 }

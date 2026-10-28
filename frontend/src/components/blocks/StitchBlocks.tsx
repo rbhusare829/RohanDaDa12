@@ -31,10 +31,10 @@ const pad = (n: number) => String(n).padStart(2, '0')
 export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }: { eyebrow?: string | null; heading?: string | null; intro?: string | null; as?: 'h2' | 'h3'; className?: string }) {
   if (!eyebrow && !heading && !intro) return null
   return (
-    <Reveal className={cn('mb-6 sm:mb-10 max-w-3xl space-y-2', className)}>
+    <Reveal className={cn('mb-5 sm:mb-8 md:mb-10 max-w-3xl space-y-1.5 sm:space-y-2', className)}>
       {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{eyebrow}</p>}
-      {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{heading}</H>}
-      {intro && <p className="pt-1 text-base leading-relaxed text-gray-600">{intro}</p>}
+      {heading && <H className="font-display text-2xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-3xl md:text-4xl">{heading}</H>}
+      {intro && <p className="pt-1 text-sm sm:text-base leading-relaxed text-gray-600">{intro}</p>}
     </Reveal>
   )
 }
@@ -175,7 +175,7 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
   return (
     <>
       <StitchHead eyebrow={b.eyebrow} heading={b.heading} intro={b.intro} />
-      <Stagger className={cn('grid grid-cols-1 gap-6 lg:gap-8', cols)}>
+      <Stagger className={cn('grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8', cols)}>
         {items.map((c, i) => {
           if (withImages) {
             const inner = (
@@ -185,9 +185,9 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
                     <Img media={c.image} variant="card" alt={mediaAlt(c.image, c.title)} fill sizes="(max-width:768px) 100vw, 33vw" className="transition-transform duration-700 group-hover:scale-105" style={photoFit(c.image, 1.6)} />
                   </div>
                 )}
-                <div className="flex flex-1 flex-col gap-2 p-6">
+                <div className="flex flex-1 flex-col gap-2 p-5 sm:p-6">
                   {c.meta && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">{c.meta}</p>}
-                  <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
+                  <CardTitle className="font-display text-lg sm:text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
                   {c.text && <p className="whitespace-pre-line text-sm leading-relaxed text-gray-600">{c.text}</p>}
                 </div>
               </>
@@ -195,40 +195,39 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
             const cls = cn(card, 'group flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl')
             return <StaggerItem key={c.id}>{c.url ? <CMSLink url={c.url} className={cls}>{inner}</CMSLink> : <div className={cls}>{inner}</div>}</StaggerItem>
           }
-          // text-only cards: Stitch "area" cards with a numbered icon box (the whole card is the link when it has one)
           // text-only cards: clean cards with title, index, description and link
           return (
             <StaggerItem key={c.id} className="h-full">
               <Box
                 url={c.url}
                 className={cn(
-                  'group relative flex h-full flex-col justify-between rounded-2xl bg-white p-7 shadow-xs ring-1 ring-stone-200/80 transition-all duration-300 hover:shadow-xl sm:p-8',
-                  c.url && 'hover:-translate-y-1.5 hover:ring-saffron-300',
+                  'group relative flex h-full flex-col justify-between rounded-2xl bg-[#f0f6fc] p-5 sm:p-6 lg:p-7 shadow-xs ring-1 ring-[#d0dbe7] transition-all duration-300 hover:bg-[#e8f1fb] hover:shadow-md hover:ring-[#b8cee4]',
+                  c.url && 'hover:-translate-y-1',
                 )}
               >
-                <div className="flex flex-col gap-3.5">
+                <div className="flex flex-col gap-2.5 sm:gap-3.5">
                   <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="font-display text-xl font-bold leading-snug text-[#000d3d] transition-colors group-hover:text-red-600">
+                    <CardTitle className="font-display text-lg sm:text-xl font-bold leading-snug text-[#000d3d] transition-colors group-hover:text-red-600">
                       {c.title}
                     </CardTitle>
-                    <span className="font-display text-sm font-bold text-stone-300 transition-colors group-hover:text-saffron-600 shrink-0 pt-0.5 select-none">
+                    <span className="font-display text-xs sm:text-sm font-bold text-slate-400 transition-colors group-hover:text-saffron-600 shrink-0 pt-0.5 select-none">
                       {pad(i + 1)}
                     </span>
                   </div>
-                  {c.text && <p className="whitespace-pre-line text-sm sm:text-[0.95rem] leading-relaxed text-slate-600">{c.text}</p>}
+                  {c.text && <p className="whitespace-pre-line text-sm sm:text-[0.95rem] leading-relaxed text-slate-700">{c.text}</p>}
                   {!!c.tags?.length && (
                     <ul className="flex flex-wrap gap-1.5 pt-1">
                       {c.tags.map((t, k) => (
-                        <li key={k} className="rounded-full bg-cream px-2.5 py-1 text-xs font-medium text-charcoal-800">
+                        <li key={k} className="rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-charcoal-800 ring-1 ring-slate-200">
                           {t}
                         </li>
                       ))}
                     </ul>
                   )}
                 </div>
-                <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-red-600">
+                <div className="mt-5 flex items-center justify-between gap-2 border-t border-[#d8e3ef] pt-3.5 sm:pt-4 text-xs font-bold tracking-wider uppercase text-red-600">
                   <span>{c.meta || (c.url ? (LOCALE === 'en' ? 'Learn more' : 'अधिक जाणून घ्या') : '')}</span>
-                  <ArrowRight aria-hidden className="size-4 text-red-600 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  <ArrowRight aria-hidden className="size-4 shrink-0 text-red-600 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </div>
               </Box>
             </StaggerItem>

@@ -17,18 +17,18 @@ export function FloatingButtons() {
     return () => window.removeEventListener('scroll', f)
   }, [])
   return (
-    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+    <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-40 flex flex-col items-end gap-3">
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label={t('backToTop')}
         tabIndex={show ? 0 : -1}
         className={cn(
-          'grid size-11 place-items-center rounded-full bg-[#000d3d] text-white shadow-[0_6px_20px_rgba(0,13,61,0.35)] border border-white/20 transition-all duration-300 hover:bg-saffron-600 hover:scale-105 active:scale-95',
+          'grid size-10 sm:size-11 place-items-center rounded-full bg-[#000d3d] text-white shadow-[0_6px_20px_rgba(0,13,61,0.35)] border border-white/20 transition-all duration-300 hover:bg-saffron-600 hover:scale-105 active:scale-95',
           show ? 'translate-y-0 opacity-100 pointer-events-auto' : 'pointer-events-none translate-y-4 opacity-0',
         )}
       >
-        <ArrowUp className="size-5" />
+        <ArrowUp className="size-4 sm:size-5" />
       </button>
     </div>
   )

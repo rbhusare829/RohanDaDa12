@@ -1,6 +1,4 @@
-import { useState } from 'react'
 import { Link } from 'react-router'
-import { PlayCircle } from 'lucide-react'
 import type { Home } from '@/types/cms'
 import { Reveal } from '../ui/Motion'
 
@@ -10,7 +8,7 @@ type AboutBlock = Extract<Block, { blockType: 'aboutIntro' }>
 /**
  * About Section (100% Supriya Sule Layout):
  * - Left column: ABOUT eyebrow, Leader Heading with red/saffron underline bar,
- *   bio text with Read More link, large quote callout, and 2 action buttons.
+ *   bio text with Read More link, and large quote callout.
  * - Right column: Full portrait of Rohan Deshmukh directly on the background.
  */
 export function SupriyaAboutSection({
@@ -21,7 +19,6 @@ export function SupriyaAboutSection({
   locale?: 'mr' | 'en'
 }) {
   const isMr = locale !== 'en'
-  const [showVideo, setShowVideo] = useState(false)
 
   const bio =
     b.text ||
@@ -82,48 +79,7 @@ export function SupriyaAboutSection({
               <span className="font-serif text-3xl sm:text-4xl leading-none text-red-600 select-none">&rdquo;</span>
             </div>
 
-            {/* Vision button (opens the video) */}
-            <div className="flex w-full justify-center pt-2">
-              <button
-                type="button"
-                onClick={() => setShowVideo(true)}
-                className="inline-flex items-center gap-2 rounded-md bg-red-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#000d3d] hover:shadow-md active:scale-95 cursor-pointer"
-              >
-                <PlayCircle className="size-4.5 text-white" />
-                <span>{isMr ? 'दृष्टिकोन' : 'Vision'}</span>
-              </button>
-
-            </div>
           </Reveal>
-
-          {/* Video Modal (Supriya Sule style) */}
-          {showVideo && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm" onClick={() => setShowVideo(false)}>
-              <div className="relative w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                <div className="flex items-center justify-between border-b border-stone-200 px-6 py-4">
-                  <h3 className="font-display text-base sm:text-lg font-bold text-[#000d3d]">
-                    {isMr ? 'रोहन सुभाष देशमुख - नेतृत्व व कार्य आढावा' : 'Rohan Subhash Deshmukh - Leadership & Performance'}
-                  </h3>
-                  <button
-                    type="button"
-                    onClick={() => setShowVideo(false)}
-                    className="grid size-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-red-600 hover:text-white transition-colors"
-                  >
-                    &times;
-                  </button>
-                </div>
-                <div className="aspect-video w-full bg-black">
-                  <iframe
-                    className="size-full border-0"
-                    src="https://www.youtube-nocookie.com/embed/p3E7W2g6iZ8?autoplay=1"
-                    title="Leadership Performance Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Right Column: Portrait Photo (Supriya Sule style framed presentation) */}
           <Reveal className="relative order-first flex items-center justify-center lg:order-none lg:col-span-5" delay={0.15}>

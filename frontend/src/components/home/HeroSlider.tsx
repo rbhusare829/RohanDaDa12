@@ -181,27 +181,27 @@ export function HeroSlider({
           })}
 
           {/* Dark Gradient Overlay for Maximum Text Contrast (matching Image 3) */}
-          {/* Left-to-right gradient: dark navy/black on the left, translucent on the right */}
+          {/* Left-to-right gradient: dark behind the words on the left, clear from the middle on so Rohan (on the right) shows at full brightness */}
           <div
             aria-hidden
-            className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#00081c]/95 via-[#00081c]/65 via-50% to-[#00081c]/30 pointer-events-none"
+            className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#00081c]/90 via-[#00081c]/40 via-40% to-transparent to-60% pointer-events-none"
           />
           {/* phones: a fade from the bottom, so the words over the lower part of the photo stay readable and the face stays clear */}
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-3/5 md:hidden bg-gradient-to-t from-[#00081c] via-[#00081c]/75 to-transparent pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-1/2 md:hidden bg-gradient-to-t from-[#00081c] via-[#00081c]/60 to-transparent pointer-events-none"
           />
 
           {/* Top subtle vignette for seamless header blend */}
           <div
             aria-hidden
-            className="absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-[#00081c]/80 to-transparent pointer-events-none md:block"
+            className="absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-[#00081c]/50 to-transparent pointer-events-none md:block"
           />
 
           {/* Bottom vignette for overlapping card integration */}
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-[#00081c]/95 via-[#00081c]/60 to-transparent pointer-events-none md:block"
+            className="absolute inset-x-0 bottom-0 hidden h-24 bg-gradient-to-t from-[#00081c]/80 to-transparent pointer-events-none md:block"
           />
         </div>
       )}

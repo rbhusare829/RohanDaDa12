@@ -131,8 +131,8 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
   )
 }
 
-/** Media + text as a Stitch chapter: chip + heading, then the photo beside a text card */
-export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
+/** Media + text as a Stitch chapter: chip + heading, then the photo beside a text card (`plain`: the text straight on the page, no card) */
+export function StitchChapter({ b, n, plain }: { b: MediaText; n?: number; plain?: boolean }) {
   const hasImg = Boolean(mediaUrl(b.image, 'card'))
   const fit = photoFit(b.image, 1.5, 0.45)
   const right = b.imagePosition === 'right'
@@ -157,7 +157,7 @@ export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
             </div>
           </Reveal>
         )}
-        <Reveal delay={0.1} className={cn('flex flex-col gap-6 rounded-2xl bg-ivory p-8 shadow-sm ring-1 ring-stone-200/70 md:p-10', hasImg && 'lg:col-span-5')}>
+        <Reveal delay={0.1} className={cn('flex flex-col gap-6', !plain && 'rounded-2xl bg-ivory p-8 shadow-sm ring-1 ring-stone-200/70 md:p-10', plain && 'lg:justify-center', hasImg && 'lg:col-span-5')}>
           <RichText html={b.body} readMore />
           {!!b.buttons?.length && (
             <div className="flex flex-wrap gap-3 border-t border-stone-200/80 pt-6">

@@ -1,5 +1,7 @@
 import { type ReactNode } from 'react'
-import { Sparkles } from 'lucide-react'
+import { ChevronRight, Home, Sparkles } from 'lucide-react'
+import { Link } from 'react-router'
+import { useTranslations } from '@/lib/i18n'
 
 export type Crumb = { label: string; href?: string }
 export type BannerTab = { label: string; href: string; active?: boolean }
@@ -18,16 +20,52 @@ const BANNER_PORTRAITS: { match: RegExp; src: string; position: string }[] = [
 ]
 
 /**
+ * Breadcrumbs bar under the banner: Home › Section › Current page. Every label is in the visitor's language — "मुख्य पृष्ठ / Home" from
+ * the translations, the section and page names from the menu and the page itself (both kept in Marathi and English in the admin).
+ */
+function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
+  const t = useTranslations('nav')
+  if (!crumbs?.length) return null
+  return (
+    <nav aria-label="Breadcrumb" className="border-b border-stone-200 bg-[#f8fafc] py-2.5 text-xs text-slate-600">
+      <ol className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+        <li>
+          <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] transition-colors hover:text-red-600">
+            <Home aria-hidden className="size-3.5" />
+            <span>{t('home')}</span>
+          </Link>
+        </li>
+        {crumbs.map((crumb, idx) => {
+          const isLast = idx === crumbs.length - 1
+          return (
+            <li key={idx} className="flex items-center gap-2">
+              <ChevronRight aria-hidden className="size-3 text-slate-400" />
+              {isLast || !crumb.href ? (
+                <span aria-current={isLast ? 'page' : undefined} className="line-clamp-1 font-semibold text-slate-900">{crumb.label}</span>
+              ) : (
+                <Link to={crumb.href} className="font-medium text-slate-600 transition-colors hover:text-red-600">
+                  {crumb.label}
+                </Link>
+              )}
+            </li>
+          )
+        })}
+      </ol>
+    </nav>
+  )
+}
+
+/**
  * The top of every inner page — 100% Supriya Sule ja-masthead layout:
  * - Photographic banner with deep navy overlay
  * - Large title with signature red & saffron accent line
+ * - Breadcrumb row (Home › Section › Current)
  * - Sibling pages as horizontal tab bar
  */
 export function PageBanner({
-  title, subtitle, image, imagePosition, eyebrow, path, variant,
+  title, subtitle, image, imagePosition, eyebrow, path, variant, crumbs,
 }: {
   title: string; eyebrow?: string | null; subtitle?: string | null
-  /** no longer shown (the breadcrumb row was removed, Oct 2026) */
   crumbs?: Crumb[]; image?: string | null; imagePosition?: string
   tabs?: BannerTab[]; tabsLabel?: string
   /** article pages: long headline in a smaller size */
@@ -41,7 +79,7 @@ export function PageBanner({
   /** Stitch page header (Oct 2026): 'navy' = deep navy band with kesariya & green glows, 'light' = warm ivory band */
   variant?: 'navy' | 'light'
 }) {
-  return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant || 'navy'} path={path} image={image} imagePosition={imagePosition} />
+  return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant || 'navy'} crumbs={crumbs} path={path} image={image} imagePosition={imagePosition} />
 }
 
 /**
@@ -49,9 +87,9 @@ export function PageBanner({
  * a card beside the title). The section's sibling pages follow as a row of pills.
  */
 function StitchBanner({
-  title, subtitle: _subtitle, eyebrow, variant: _variant, path, image, imagePosition,
+  title, subtitle: _subtitle, eyebrow, variant: _variant, crumbs, path, image, imagePosition,
 }: {
-  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'
+  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'; crumbs?: Crumb[]
   path?: string; image?: string | null; imagePosition?: string
 }) {
   const matched = BANNER_PORTRAITS.find((b) => b.match.test(path || '/')) || BANNER_PORTRAITS[BANNER_PORTRAITS.length - 1]
@@ -119,6 +157,8 @@ function StitchBanner({
           </div>
         </div>
       </section>
+
+      <BreadcrumbsBar crumbs={crumbs} />
     </>
   )
 }

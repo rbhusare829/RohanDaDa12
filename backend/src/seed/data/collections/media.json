@@ -7558,5 +7558,26 @@
   "folder": null,
   "createdAt": "2026-10-22T05:54:31.000Z",
   "updatedAt": "2026-10-22T05:54:31.000Z"
+ },
+ {
+  "id": 361,
+  "alt": {
+   "en": "Rohan Deshmukh with his mother",
+   "mr": "रोहन देशमुख आईसोबत"
+  },
+  "caption": {
+   "en": null,
+   "mr": null
+  },
+  "filename": "rd-family-mother.webp",
+  "mimeType": "image/webp",
+  "filesize": 103226,
+  "width": 947,
+  "height": 800,
+  "focalX": 50,
+  "focalY": 35,
+  "folder": null,
+  "createdAt": "2026-10-28T12:00:00.000Z",
+  "updatedAt": "2026-10-28T12:00:00.000Z"
  }
 ]

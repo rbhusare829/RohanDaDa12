@@ -20,7 +20,6 @@ import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { CitizenEngagementBanner } from './CitizenEngagementBanner'
 import { SupriyaAboutSection } from './SupriyaAboutSection'
 import { SupriyaAwardsSection } from './SupriyaAwardsSection'
-import { UpdatesTicker } from './UpdatesTicker'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
 import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
@@ -112,37 +111,35 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
     {
       image: '/images/hero/rohan-hero-white-kurta.webp',
       alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
-      kicker: isMr ? 'अध्यक्ष, लोकमंगल फाउंडेशन' : 'PRESIDENT, LOKMANGAL FOUNDATION',
+      kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
       heading: isMr
         ? 'मोठ्या बदलांची सुरुवात मोठ्या व्यासपीठावरून नव्हे, तर सामान्य माणसाच्या प्रश्नांना समजून घेण्यापासून होते.'
         : 'Good leadership begins with understanding the problems of people at the grassroots',
-      position: '77% 20%',
+      position: '77% 15%',
     },
     {
       image: '/images/hero/rohan-hero-book.webp',
       alt: isMr ? 'रोहन सुभाष देशमुख ‘The New India Manifesto’ पुस्तकासह' : 'Rohan Subhash Deshmukh with The New India Manifesto',
       kicker: isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'NEW INDIA MANIFESTO',
       heading: isMr
-        ? 'शक्यतांच्या पलीकडे पाहण्याची दृष्टी आणि नवभारताच्या भविष्याचा विचार—यातून साकारले ‘The New India Manifesto: Going Beyond Possible’.'
+        ? '‘द न्यू इंडिया मॅनिफेस्टो : शक्यतांच्या पलीकडे’ या पुस्तकाचे लेखक'
         : 'Author of The New India Manifesto: Going Beyond Possible',
-      subheading: isMr ? 'लेखक — रोहन देशमुख' : null,
-      position: '77% 20%',
+      position: '77% 15%',
     },
     {
       image: '/images/hero/rohan-hero-namaskar.webp',
       alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
-      kicker: isMr ? 'लोकमंगल फाउंडेशन' : 'LOKMANGAL FOUNDATION',
+      kicker: isMr ? 'युवा नेतृत्व' : 'YOUTH LEADERSHIP',
       heading: isMr
         ? 'समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही मोठा बदल घडवू शकतो.'
         : 'Small steps toward change can lead to a big difference',
-      position: '77% 20%',
+      position: '77% 15%',
     },
   ]
 
   const social = (Object.entries(settings.social ?? {}).filter(([k, v]) => v && k !== 'id') as [string, string][]).map(([key, url]) => ({ key, url, label: socialLabels[key] ?? key }))
   return (
     <>
-      <UpdatesTicker locale={locale} />
       <HeroSlider slides={slides} autoplay={b.autoplaySeconds ?? 6} social={social} textOnly={textOnly} labels={{ prev: t('prev'), next: t('next') }} />
       <CitizenEngagementBanner locale={locale} />
     </>

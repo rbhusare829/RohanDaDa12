@@ -201,7 +201,7 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
               <Box
                 url={c.url}
                 className={cn(
-                  'group relative flex h-full flex-col justify-between rounded-2xl bg-[#f0f6fc] p-5 sm:p-6 lg:p-7 shadow-xs ring-1 ring-[#d0dbe7] transition-all duration-300 hover:bg-[#e8f1fb] hover:shadow-md hover:ring-[#b8cee4]',
+                  'group relative flex h-full flex-col justify-between rounded-2xl bg-[#f0f6fc] p-5 sm:p-6 lg:p-7 ring-1 ring-[#d0dbe7] transition-all duration-300 hover:bg-[#e8f1fb] hover:ring-[#b8cee4]',
                   c.url && 'hover:-translate-y-1',
                 )}
               >

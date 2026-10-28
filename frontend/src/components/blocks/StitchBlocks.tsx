@@ -149,15 +149,15 @@ export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
         {b.heading && <h2 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{b.heading}</h2>}
       </Reveal>
 
-      <div className={cn('grid grid-cols-1 items-stretch gap-8', hasImg && 'lg:grid-cols-12')}>
+      <div className={cn('grid grid-cols-1 items-start gap-8 lg:gap-12', hasImg && 'lg:grid-cols-12')}>
         {hasImg && (
-          <Reveal className={cn('lg:col-span-7', right && 'lg:order-2')}>
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-md sm:aspect-[16/10] lg:aspect-auto lg:min-h-[400px] lg:h-full bg-stone-100">
-              <Img media={b.image} variant="card" alt={mediaAlt(b.image, b.heading ?? '')} fill sizes="(max-width:1024px) 100vw, 680px" className="h-full w-full transition-transform duration-[1.2s] ease-out hover:scale-[1.03]" style={{ ...fit, objectPosition: '50% 6%' }} />
+          <Reveal className={cn('lg:col-span-6', right && 'lg:order-2')}>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-md sm:aspect-[16/10] lg:aspect-[4/3] bg-stone-100">
+              <Img media={b.image} variant="card" alt={mediaAlt(b.image, b.heading ?? '')} fill sizes="(max-width:1024px) 100vw, 680px" className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out hover:scale-[1.03]" style={{ ...fit, objectPosition: '50% 6%' }} />
             </div>
           </Reveal>
         )}
-        <Reveal delay={0.1} className={cn('flex flex-col gap-6 rounded-2xl bg-ivory p-8 shadow-sm ring-1 ring-stone-200/70 md:p-10', hasImg && 'lg:col-span-5')}>
+        <Reveal delay={0.1} className={cn('flex flex-col gap-6 text-charcoal-900', hasImg ? 'lg:col-span-6' : 'max-w-3xl')}>
           <RichText html={b.body} readMore />
           {!!b.buttons?.length && (
             <div className="flex flex-wrap gap-3 border-t border-stone-200/80 pt-6">

@@ -5,7 +5,6 @@ import {
   Heart,
   Landmark,
   MapPin,
-  Sparkles,
   Trophy,
   Users,
 } from 'lucide-react'
@@ -84,14 +83,8 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
       {/* Right Column: Narrative & Ideals */}
       <Reveal delay={0.1} className="flex flex-col space-y-6 lg:col-span-7">
         <div>
-          {/* Eyebrow badge */}
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-300 bg-saffron-50 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
-            <Sparkles className="size-3.5 text-saffron-600" />
-            <span>{isMr ? 'सोलापूरच्या मातीशी जोडलेली नाळ' : 'Grounded in Solapur'}</span>
-          </span>
-
           {/* Heading / Core Tagline */}
-          <h2 className="mt-4 font-display text-2xl font-bold leading-snug text-charcoal-950 sm:text-3xl lg:text-[2.1rem]">
+          <h2 className="font-display text-2xl font-bold leading-snug text-charcoal-950 sm:text-3xl lg:text-[2.1rem]">
             {isMr ? 'सोलापूरचा नवा स्वर, नव्या भारताचा नवा विश्वास.' : 'A new voice from Solapur. A new voice for a new India.'}
           </h2>
 

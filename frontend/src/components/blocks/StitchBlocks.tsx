@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ArrowRight, Award, BookOpen, Building2, Download, FileText, HeartHandshake, Quote, Sparkles, Users } from 'lucide-react'
+import { ArrowRight, BookOpen, Download, FileText, HeartHandshake, Quote } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { LOCALE } from '@/lib/i18n'
 import { mediaAlt, mediaPosition, mediaUrl, photoFit, toGallery } from '@/lib/media'
@@ -26,16 +26,6 @@ type Content = Extract<PageBlock, { blockType: 'content' }>
 type MediaText = Extract<PageBlock, { blockType: 'mediaText' }>
 
 const pad = (n: number) => String(n).padStart(2, '0')
-
-const getCardIcon = (title?: string | null, url?: string | null) => {
-  const s = `${title ?? ''} ${url ?? ''}`.toLowerCase()
-  if (s.includes('family') || s.includes('biography') || s.includes('कौटुंबिक')) return Users
-  if (s.includes('parivar') || s.includes('foundation') || s.includes('संस्था')) return Building2
-  if (s.includes('politic') || s.includes('career') || s.includes('राजकीय')) return Award
-  if (s.includes('vision') || s.includes('manifesto') || s.includes('व्हिजन')) return BookOpen
-  if (s.includes('social') || s.includes('कार्य') || s.includes('सेवा')) return HeartHandshake
-  return Sparkles
-}
 
 /** label + heading + intro, Stitch style */
 export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }: { eyebrow?: string | null; heading?: string | null; intro?: string | null; as?: 'h2' | 'h3'; className?: string }) {
@@ -207,38 +197,39 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
             return <StaggerItem key={c.id}>{c.url ? <CMSLink url={c.url} className={cls}>{inner}</CMSLink> : <div className={cls}>{inner}</div>}</StaggerItem>
           }
           // text-only cards: Stitch "area" cards with a numbered icon box (the whole card is the link when it has one)
-          const green = i % 3 === 1
-          const Icon = getCardIcon(c.title, c.url)
+          // text-only cards: clean cards with title, index, description and link
           return (
             <StaggerItem key={c.id} className="h-full">
-              <Box url={c.url} className={cn('group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-white p-7 shadow-xs ring-1 ring-stone-200/80 transition-all duration-300 hover:shadow-xl sm:p-8', c.url && 'hover:-translate-y-1.5 hover:ring-saffron-300')}>
-                {/* Top accent line */}
-                <span aria-hidden className={cn('absolute inset-x-0 top-0 h-1 bg-gradient-to-r', green ? 'from-leaf-500 to-emerald-400' : 'from-saffron-500 to-amber-400')} />
-
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-between">
-                    <span
-                      aria-hidden
-                      className={cn(
-                        'grid size-12 place-items-center rounded-xl font-display text-base font-bold transition-all duration-300',
-                        green ? 'bg-leaf-600/10 text-leaf-600 group-hover:bg-leaf-600 group-hover:text-white' : 'bg-saffron-500/10 text-saffron-600 group-hover:bg-saffron-600 group-hover:text-white',
-                      )}
-                    >
-                      <Icon className="size-5" />
+              <Box
+                url={c.url}
+                className={cn(
+                  'group relative flex h-full flex-col justify-between rounded-2xl bg-white p-7 shadow-xs ring-1 ring-stone-200/80 transition-all duration-300 hover:shadow-xl sm:p-8',
+                  c.url && 'hover:-translate-y-1.5 hover:ring-saffron-300',
+                )}
+              >
+                <div className="flex flex-col gap-3.5">
+                  <div className="flex items-start justify-between gap-3">
+                    <CardTitle className="font-display text-xl font-bold leading-snug text-[#000d3d] transition-colors group-hover:text-red-600">
+                      {c.title}
+                    </CardTitle>
+                    <span className="font-display text-sm font-bold text-stone-300 transition-colors group-hover:text-saffron-600 shrink-0 pt-0.5 select-none">
+                      {pad(i + 1)}
                     </span>
-                    <span className="font-display text-xs font-bold text-stone-300">{pad(i + 1)}</span>
                   </div>
-                  <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
-                  {c.text && <p className="whitespace-pre-line text-[0.95rem] leading-relaxed text-gray-600">{c.text}</p>}
+                  {c.text && <p className="whitespace-pre-line text-sm sm:text-[0.95rem] leading-relaxed text-slate-600">{c.text}</p>}
                   {!!c.tags?.length && (
                     <ul className="flex flex-wrap gap-1.5 pt-1">
-                      {c.tags.map((t, k) => <li key={k} className="rounded-full bg-cream px-2.5 py-1 text-xs font-medium text-charcoal-800">{t}</li>)}
+                      {c.tags.map((t, k) => (
+                        <li key={k} className="rounded-full bg-cream px-2.5 py-1 text-xs font-medium text-charcoal-800">
+                          {t}
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </div>
-                <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-saffron-700">
+                <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-red-600">
                   <span>{c.meta || (c.url ? (LOCALE === 'en' ? 'Learn more' : 'अधिक जाणून घ्या') : '')}</span>
-                  <ArrowRight aria-hidden className={cn('size-4 transition-transform duration-300 group-hover:translate-x-1.5', green ? 'text-leaf-600' : 'text-saffron-600')} />
+                  <ArrowRight aria-hidden className="size-4 text-red-600 transition-transform duration-300 group-hover:translate-x-1.5" />
                 </div>
               </Box>
             </StaggerItem>

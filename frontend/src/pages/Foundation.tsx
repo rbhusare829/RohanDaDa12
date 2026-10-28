@@ -3,7 +3,7 @@ import { Link, useLoaderData } from 'react-router'
 import { cms } from '@/lib/api'
 import { INITIATIVE_CATEGORIES, categoryLabel } from '@/lib/categories'
 import { LOCALE, useTranslations } from '@/lib/i18n'
-import { mediaAlt, mediaPosition, mediaUrl, photoFit } from '@/lib/media'
+import { mediaAlt, mediaPosition, mediaUrl, photoFit, staticMedia } from '@/lib/media'
 import { PageBlocks } from '@/components/blocks/PageBlocks'
 import { Reveal } from '@/components/ui/Motion'
 import { InnerPage } from '@/components/layout/InnerPage'
@@ -28,6 +28,9 @@ const TEXT = {
 }
 
 const DEV = '०१२३४५६७८९'
+
+/** the photo beside the Foundation's introduction (Oct 2026): Rohan Deshmukh speaking at a Lokmangal Foundation event */
+const INTRO_PHOTO = staticMedia('/images/lokmangal/lokmangal-foundation-rohan-speech.webp', 1800, 1200, 'Rohan Deshmukh at a Lokmangal Foundation event', 30, 40)
 
 export async function loader() {
   const [page, events, initiatives] = await Promise.all([
@@ -57,7 +60,9 @@ export default function FoundationPage() {
   const te = useTranslations('events')
 
   // माहिती = the page's own blocks (edited under Pages in the admin); its call-to-action closes the page
-  const blocks = page.layout ?? []
+  // the introduction (the first Media + text block) always shows INTRO_PHOTO, whatever photo is set in the admin
+  const firstMedia = (page.layout ?? []).findIndex((b) => b.blockType === 'mediaText')
+  const blocks = (page.layout ?? []).map((b, i) => (i === firstMedia ? { ...b, image: INTRO_PHOTO } : b))
   const about = blocks.filter((b) => b.blockType !== 'cta')
   const closing = blocks.filter((b) => b.blockType === 'cta')
 

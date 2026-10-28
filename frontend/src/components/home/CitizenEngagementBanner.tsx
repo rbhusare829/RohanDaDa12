@@ -5,8 +5,8 @@ const APPLY_URL = 'https://newindiamanifesto.com/apply/founder'
 
 /**
  * The New India Manifesto card that overlaps the bottom of the homepage hero: a white card with an orange top border — the
- * label, the line about building a self-reliant India from its rural heartland, the mentorship / investors / 1,00,000
- * entrepreneurs line after a quote mark, and the red "Apply now" button (navy on hover, like every homepage button).
+ * label, the line about building a self-reliant India from its rural heartland, the guidance / funding / 1,00,000
+ * entrepreneurs line after a quote mark, and the red "Join the Movement" button (navy on hover, like every homepage button).
  */
 export function CitizenEngagementBanner({
   locale = 'mr',
@@ -26,16 +26,16 @@ export function CitizenEngagementBanner({
 
             <h2 className="font-display text-xl sm:text-2xl lg:text-[1.4rem] font-bold leading-snug text-pretty tracking-tight text-[#000d3d]">
               {isMr
-                ? 'ग्रामीण भारताच्या मातीतून आत्मनिर्भर भारताची उभारणी — प्रामाणिकपणा आणि उद्योजकतेच्या बळावर.'
-                : 'Building a self-reliant India from its rural heartland — with integrity and enterprise.'}
+                ? 'आजच्या नव्या कल्पना, उद्याच्या आत्मनिर्भर भारताचा पाया!'
+                : 'Building a self-reliant India from its rural heartland, with integrity and enterprise.'}
             </h2>
 
             <p className="flex items-start gap-2 pt-1 text-sm sm:text-base leading-relaxed text-slate-600">
               <Quote aria-hidden className="mt-0.5 size-4 shrink-0 rotate-180 fill-[#ff7a00] text-[#ff7a00]" />
               <span>
                 {isMr
-                  ? 'शहरे आणि गावांतील नवउद्योजकांसाठी मार्गदर्शन, संपर्काचे जाळे आणि विश्वासार्ह गुंतवणूकदार. ध्येय: १,००,००० उद्योजक.'
-                  : 'Mentorship, a network and vetted investors for founders from towns and villages. The goal: 1,00,000 entrepreneurs.'}
+                  ? 'ग्रामीण भारतातील उद्यमशीलतेला प्रोत्साहन देत, नवउद्योजकांना मार्गदर्शन आणि आर्थिक पाठबळ उपलब्ध करून देत, १ लाख उद्योजकांच्या माध्यमातून विकासाच्या नव्या शक्यता साकारण्याचा निर्धार!'
+                  : 'Guidance and funding for new founders. A new startup ecosystem for 1,00,000 entrepreneurs.'}
               </span>
             </p>
           </div>
@@ -47,7 +47,7 @@ export function CitizenEngagementBanner({
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 hover:bg-[#000d3d] px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              <span>{isMr ? 'आत्ताच अर्ज करा' : 'Apply now'}</span>
+              <span>{isMr ? 'आपल्या उद्योजकीय प्रवासाची नोंद करा!' : 'Join the Movement'}</span>
               <ArrowRight aria-hidden className="size-4" />
             </a>
           </div>

@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import { Link } from 'react-router'
-import { PlayCircle } from 'lucide-react'
 import type { Home } from '@/types/cms'
 import { Reveal } from '../ui/Motion'
+import { ROHAN_BIO } from '@/lib/rohan-bio'
 
 type Block = NonNullable<Home['sections']>[number]
 type AboutBlock = Extract<Block, { blockType: 'aboutIntro' }>
@@ -10,7 +9,7 @@ type AboutBlock = Extract<Block, { blockType: 'aboutIntro' }>
 /**
  * About Section (100% Supriya Sule Layout):
  * - Left column: ABOUT eyebrow, Leader Heading with red/saffron underline bar,
- *   bio text with Read More link, large quote callout, and 2 action buttons.
+ *   tagline, and bio text with Read More link.
  * - Right column: Full portrait of Rohan Deshmukh directly on the background.
  */
 export function SupriyaAboutSection({
@@ -21,17 +20,11 @@ export function SupriyaAboutSection({
   locale?: 'mr' | 'en'
 }) {
   const isMr = locale !== 'en'
-  const [showVideo, setShowVideo] = useState(false)
 
-  const bio =
-    b.text ||
-    (isMr
-      ? 'रोहन सुभाष देशमुख हे सोलापूर येथील उद्योजक, लेखक आणि समाजकार्यकर्ते आहेत. नव्या विचारांकडे सकारात्मक दृष्टिकोनातून पाहत, नावीन्यपूर्ण उपक्रम राबवण्याची आणि समाजाच्या प्रगतीत योगदान देण्याची जिद्द बाळगणारे ते एक तरुण नेतृत्व. स्वामी विवेकानंदांच्या विचारांपासून प्रेरणा घेत त्यांनी आपल्या कार्याची दिशा निश्चित केली. आत्मविश्वासू आणि स्वावलंबी तरुणाई हाच सक्षम राष्ट्राचा पाया, असा त्यांचा ठाम विश्वास आहे. युवाशक्ती, उद्योजकता आणि स्वावलंबन हे त्यांच्या कार्याचे तीन प्रमुख आधारस्तंभ असून, तरुणांनी केवळ रोजगाराच्या संधी शोधण्यापुरते मर्यादित न राहता रोजगारनिर्मिती करणारे व्हावे, हा त्यांच्या विचारांचा केंद्रबिंदू आहे.'
-      : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. A young leader with a positive outlook, he is driven to do things differently, to turn fresh ideas into action and to contribute to society’s progress in his own way. Inspired by the thoughts of Swami Vivekananda, he has built his work around one belief: confident, self-reliant young people are the foundation of a strong nation. Youth power, enterprise and self-reliance are the three pillars of his work. His message to young people is clear: do not just look for jobs, become the ones who create them.')
-  // On mobile only the first two sentences are shown; the rest appears from the sm breakpoint up
-  const sentences = bio.split(/(?<=[.।])\s+/)
-  const bioShort = sentences.slice(0, 2).join(' ')
-  const bioRest = sentences.slice(2).join(' ')
+  // the same text as the Introduction page: the first two paragraphs (on every screen), then "Read More"
+  const bio = isMr ? ROHAN_BIO.mr : ROHAN_BIO.en
+  const bioShort = bio[0]
+  const bioRest = bio[1]
 
   return (
     <section className="bg-white py-8 sm:py-12 lg:py-14 overflow-hidden">
@@ -50,80 +43,25 @@ export function SupriyaAboutSection({
             </h2>
 
             {/* Signature Red Underline Accent Bar */}
-            <div className="mt-3 mb-6 flex items-center gap-1.5">
+            <div className="mt-3 flex items-center gap-1.5">
               <span className="h-1 w-14 rounded-full bg-red-600" />
               <span className="h-1 w-3 rounded-full bg-saffron-500" />
             </div>
 
+            {/* Tagline under the name and its underline */}
+            <p className="mt-3 mb-6 font-display text-[1.2rem] leading-snug sm:text-lg lg:text-xl font-bold sm:font-semibold text-red-600">
+              {isMr ? 'सर्वसामान्यांच्या हितासाठी आणि सर्वांगीण विकासासाठी कटिबद्ध' : "I'm committed to the betterment of the people"}
+            </p>
+
             {/* Bio Body Text */}
-            <div className="space-y-4 text-base sm:text-lg leading-relaxed text-slate-700">
+            {/* same paragraph layout as the Introduction page; "Read More" ends the last paragraph shown */}
+            <div className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
+              <p>{bioShort}</p>
               <p>
-                {bioShort}
-                {bioRest && <span className="hidden sm:inline"> {bioRest}</span>}
-                {' '}
-                <Link
-                  to="/about/introduction"
-                  className="font-bold text-[#000d3d] hover:text-red-600 underline underline-offset-4 ml-1 inline-block"
-                >
-                  {isMr ? 'अधिक वाचा' : 'Read More'}
-                </Link>
+                {bioRest} <ReadMore isMr={isMr} />
               </p>
-            </div>
-
-            {/* Large Highlighted Quote Block (Supriya Sule style) */}
-            <div className="my-7 flex items-start gap-2.5">
-              <span className="font-serif text-3xl sm:text-4xl leading-none text-red-600 select-none">&ldquo;</span>
-              <p className="font-display text-lg sm:text-xl lg:text-2xl font-bold leading-snug text-[#000d3d]">
-                {b.pledge ||
-                  (isMr
-                    ? 'सर्वसामान्यांच्या हितासाठी आणि सर्वांगीण विकासासाठी कटिबद्ध'
-                    : "I'm committed to the betterment of the people")}
-              </p>
-              <span className="font-serif text-3xl sm:text-4xl leading-none text-red-600 select-none">&rdquo;</span>
-            </div>
-
-            {/* Vision button (opens the video) */}
-            <div className="flex w-full justify-center pt-2">
-              <button
-                type="button"
-                onClick={() => setShowVideo(true)}
-                className="inline-flex items-center gap-2 rounded-md bg-red-600 px-5 py-3 text-sm font-bold text-white shadow-sm transition-all duration-200 hover:bg-[#000d3d] hover:shadow-md active:scale-95 cursor-pointer"
-              >
-                <PlayCircle className="size-4.5 text-white" />
-                <span>{isMr ? 'दृष्टिकोन' : 'Vision'}</span>
-              </button>
-
             </div>
           </Reveal>
-
-          {/* Video Modal (Supriya Sule style) */}
-          {showVideo && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm" onClick={() => setShowVideo(false)}>
-              <div className="relative w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl" onClick={(e) => e.stopPropagation()}>
-                <div className="flex items-center justify-between border-b border-stone-200 px-6 py-4">
-                  <h3 className="font-display text-base sm:text-lg font-bold text-[#000d3d]">
-                    {isMr ? 'रोहन सुभाष देशमुख - नेतृत्व व कार्य आढावा' : 'Rohan Subhash Deshmukh - Leadership & Performance'}
-                  </h3>
-                  <button
-                    type="button"
-                    onClick={() => setShowVideo(false)}
-                    className="grid size-8 place-items-center rounded-full bg-stone-100 text-stone-600 hover:bg-red-600 hover:text-white transition-colors"
-                  >
-                    &times;
-                  </button>
-                </div>
-                <div className="aspect-video w-full bg-black">
-                  <iframe
-                    className="size-full border-0"
-                    src="https://www.youtube-nocookie.com/embed/p3E7W2g6iZ8?autoplay=1"
-                    title="Leadership Performance Video"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Right Column: Portrait Photo (Supriya Sule style framed presentation) */}
           <Reveal className="relative order-first flex items-center justify-center lg:order-none lg:col-span-5" delay={0.15}>
@@ -154,3 +92,12 @@ export function SupriyaAboutSection({
     </section>
   )
 }
+
+const ReadMore = ({ isMr }: { isMr: boolean }) => (
+  <Link
+    to="/about/introduction"
+    className="font-bold text-[#000d3d] hover:text-red-600 underline underline-offset-4 ml-1 inline-block"
+  >
+    {isMr ? 'अधिक वाचा' : 'Read More'}
+  </Link>
+)

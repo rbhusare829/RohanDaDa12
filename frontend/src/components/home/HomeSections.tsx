@@ -20,7 +20,6 @@ import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { CitizenEngagementBanner } from './CitizenEngagementBanner'
 import { SupriyaAboutSection } from './SupriyaAboutSection'
 import { SupriyaAwardsSection } from './SupriyaAwardsSection'
-import { UpdatesTicker } from './UpdatesTicker'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
 import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
@@ -142,7 +141,6 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const social = (Object.entries(settings.social ?? {}).filter(([k, v]) => v && k !== 'id') as [string, string][]).map(([key, url]) => ({ key, url, label: socialLabels[key] ?? key }))
   return (
     <>
-      <UpdatesTicker locale={locale} />
       <HeroSlider slides={slides} autoplay={b.autoplaySeconds ?? 6} social={social} textOnly={textOnly} labels={{ prev: t('prev'), next: t('next') }} />
       <CitizenEngagementBanner locale={locale} />
     </>

@@ -11,46 +11,50 @@ interface Milestone {
   imgPos?: string
 }
 
-const MILESTONES: Milestone[] = [
+type Text = { mr: string; en: string }
+
+/** The four milestones of the home Journey, in both languages (Oct 2026). `place` is shown at the foot of each card. */
+const MILESTONES: { title: Text; description: Text; place: Text; image: string; imgPos: string }[] = [
   {
-    year: '2024',
-    title: 'लोकसभा संवाद व ग्रामीण विकास मोहीम',
-    description: 'सोलापूर आणि धाराशिव भागातील गावागावांत थेट जनतेशी संवाद साधत, शेतकरी व तरुणांच्या हक्कासाठी व्यापक लोकचळवळ.',
-    category: 'जनसंवाद व नेतृत्व',
-    image: '/images/gallery/political/rd-political-06.webp',
-    imgPos: 'object-top',
+    title: { mr: 'लिटल फ्लॉवर कॉन्व्हेंट स्कूल', en: 'Little Flower Convent School' },
+    description: {
+      mr: 'सोलापूरमधील लिटल फ्लॉवर कॉन्व्हेंट स्कूलमधून त्यांच्या प्रवासाची सुरुवात झाली. इयत्ता नववीत त्यांनी NCC मध्ये प्रवेश घेतला. येथे त्यांनी शिस्तीमुळे व्यक्तिमत्त्व घडते आणि नेतृत्व म्हणजे स्वतःपेक्षा इतरांच्या हिताला प्राधान्य देणे, हे शिकले.',
+      en: 'His journey began at Little Flower Convent School in Solapur. In Class IX, he joined the NCC, where he learned that discipline builds character and leadership means putting the needs of others before his own.',
+    },
+    place: { mr: 'सोलापूर, महाराष्ट्र', en: 'Solapur, Maharashtra' },
+    image: '/images/journey/journey-little-flower-school.webp',
+    imgPos: 'object-center',
   },
   {
-    year: '2019',
-    title: 'लोकमंगल मल्टीस्टेट बँकेचा विस्तार',
-    description: 'ग्रामीण महाराष्ट्रातील शेतकरी व महिला बचत गटांना आर्थिक पाठबळ देण्यासाठी सहकार क्षेत्रात व्यापक विस्तार व आधुनिकीकरण.',
-    category: 'सहकार व बँकिंग',
-    image: '/images/gallery/political/rd-political-05.webp',
-    imgPos: 'object-top',
+    title: { mr: 'NCC सर्वोत्कृष्ट कॅडेट', en: 'NCC Best Cadet' },
+    description: {
+      mr: 'NCC मधील उत्कृष्ट कामगिरीमुळे त्यांना नवी दिल्लीतील राष्ट्रीय संचलनात सहभागी होण्याची संधी मिळाली. तेथे त्यांची ‘सर्वोत्कृष्ट कॅडेट’ म्हणून निवड झाली. हा सन्मान त्यांच्या शिस्त, समर्पण आणि नेतृत्वगुणांची पोचपावती ठरला.',
+      en: 'His outstanding performance in the NCC earned him the opportunity to participate in the National Parade in New Delhi. He was selected as the Best Cadet, a recognition of his discipline, dedication, and leadership.',
+    },
+    place: { mr: 'नवी दिल्ली, भारत', en: 'New Delhi, India' },
+    // the NCC crest: shown whole (not cropped) on a white panel
+    image: '/images/journey/journey-ncc-crest.webp',
+    imgPos: 'object-contain bg-white p-2',
   },
   {
-    year: '2016',
-    title: 'लोकमंगल फाऊंडेशनचे अध्यक्षपद',
-    description: 'सर्वोपचार मोफत विवाह सोहळे, आरोग्य शिबिरे, शिक्षण आणि युवा सक्षमीकरणाच्या सामाजिक कामांची सूत्रे स्वीकारली.',
-    category: 'सामाजिक कार्य',
-    image: '/images/gallery/political/rd-political-04.webp',
-    imgPos: 'object-top',
+    title: { mr: 'रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी', en: 'Rochester Institute of Technology' },
+    description: {
+      mr: 'अमेरिकेतील रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी येथे त्यांनी जैवतंत्रज्ञान आणि उद्योजकता विकास या विषयांत उच्च शिक्षण घेतले. येथे विज्ञान आणि उद्योजकतेचा संगम अनुभवत, समाजाच्या जीवनात सकारात्मक बदल घडवणाऱ्या संकल्पनांना प्रत्यक्षात आणण्याची दृष्टी विकसित केली.',
+      en: 'At Rochester Institute of Technology, he pursued advanced studies in Biotechnology and Entrepreneurship Development. There, he explored the intersection of science and enterprise, learning to turn discoveries into opportunities that could improve lives.',
+    },
+    place: { mr: 'रोचेस्टर, अमेरिका', en: 'Rochester, United States' },
+    image: '/images/journey/journey-rit.webp',
+    imgPos: 'object-center',
   },
   {
-    year: '2012',
-    title: 'RIT अमेरिका येथून उच्च शिक्षण',
-    description: 'अमेरिकेतील रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी (RIT) येथून जैवतंत्रज्ञान व उद्योजकता विकास या विषयात उच्च शिक्षण पूर्ण.',
-    category: 'उच्च शिक्षण व उद्योजकता',
-    image: '/images/gallery/political/rd-political-02.webp',
-    imgPos: 'object-[center_20%]',
-  },
-  {
-    year: '2008',
-    title: 'नवी दिल्ली — NCC बेस्ट कॅडेट सन्मान',
-    description: 'नवी दिल्लीतील प्रजासत्ताक दिन NCC संचलनात महाराष्ट्राचे प्रतिनिधित्व आणि मानाचा ‘बेस्ट कॅडेट’ सन्मान प्राप्त.',
-    category: 'नेतृत्व व सन्मान',
-    image: '/images/portraits/rohan-deshmukh-introduction.webp',
-    imgPos: 'object-top',
+    title: { mr: 'लोकमंगल फाऊंडेशन | २०१६', en: 'Lokmangal Foundation | 2016' },
+    description: {
+      mr: 'समाजाच्या विकासासाठी योगदान देण्याच्या ध्येयाने त्यांनी २०१६ मध्ये लोकमंगल फाऊंडेशनच्या अध्यक्षपदाची जबाबदारी स्वीकारली. समाजहिताला केंद्रस्थानी ठेवून, लोकांच्या जीवनात सकारात्मक आणि दीर्घकालीन बदल घडवणाऱ्या उपक्रमांना दिशा देण्याचे कार्य त्यांनी हाती घेतले.',
+      en: 'In 2016, he took on the role of President of Lokmangal Foundation with a clear purpose: to serve society. With public welfare at the heart of his work, he began guiding initiatives aimed at creating positive and lasting change in people’s lives.',
+    },
+    place: { mr: 'सोलापूर, महाराष्ट्र | २०१६', en: 'Solapur, Maharashtra | 2016' },
+    image: '/images/lokmangal/lokmangal-foundation-rohan-speech.webp',
+    imgPos: 'object-[30%_40%]',
   },
 ]
 
@@ -65,7 +69,7 @@ type JourneyBlock = Extract<NonNullable<Home['sections']>[number], { blockType: 
  * - Milestone timeline with red connecting line and node points: all milestones side by side on desktop, swipe on phones/tablets
  */
 export function SupriyaJourneySection({
-  b,
+  b: _b,
   locale = 'mr',
 }: {
   b?: JourneyBlock
@@ -73,33 +77,15 @@ export function SupriyaJourneySection({
 }) {
   const isMr = locale !== 'en'
 
-  // Map verified photos matching the specific milestone topic
-  const milestonePhotos = [
-    { src: '/uploads/school-supplies-notebook-01.webp', pos: 'object-top' }, // 0: Schooling / Little Flower / Education
-    { src: '/images/gallery/political/rd-political-04.webp', pos: 'object-top' }, // 1: NCC Cadet / National Honour
-    { src: '/images/gallery/political/rd-political-02.webp', pos: 'object-[center_20%]' }, // 2: RIT USA Higher Education
-    { src: '/images/gallery/political/rd-political-05.webp', pos: 'object-top' }, // 3: Lokmangal Foundation Leadership
-    { src: '/images/gallery/political/rd-political-06.webp', pos: 'object-top' }, // 4: PM Modi / Jan Samvad
-  ]
-
-  // Use real CMS items if available, else use verified default milestones
-  const milestones: Milestone[] = (b?.items && b.items.length > 0)
-    ? b.items.map((it, idx) => {
-        const placeStr = it.place || ''
-        const parts = placeStr.split('—').map((s) => s.trim())
-        const yearOrPlace = parts[0] || (idx === 0 ? 'पायाभरणी' : idx === 1 ? 'अभिमानाचा क्षण' : idx === 2 ? '२०१२' : '२०१६')
-        const cat = parts[1] || it.title || 'प्रवास'
-        const pick = milestonePhotos[idx % milestonePhotos.length]
-        return {
-          year: yearOrPlace,
-          title: it.title || '',
-          description: it.text || '',
-          category: cat,
-          image: pick.src,
-          imgPos: pick.pos,
-        }
-      })
-    : MILESTONES
+  // the milestones are fixed here in both languages (the CMS Journey items are no longer used for the home page)
+  const milestones: Milestone[] = MILESTONES.map((m) => ({
+    year: isMr ? m.place.mr : m.place.en,
+    title: isMr ? m.title.mr : m.title.en,
+    description: isMr ? m.description.mr : m.description.en,
+    category: '',
+    image: m.image,
+    imgPos: m.imgPos,
+  }))
 
   // desktop: every milestone in full, side by side in equal columns (up to five in a row); phones and tablets swipe through them
   const cols = Math.min(milestones.length, 5)
@@ -146,8 +132,8 @@ export function SupriyaJourneySection({
               >
                 <div
                   className={cn(
-                    'flex flex-col justify-between h-full rounded-2xl bg-white border p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl',
-                    i === 0 ? 'border-red-500 ring-2 ring-red-500/20 shadow-md' : 'border-stone-200/90',
+                    // every card the same: photo, title, description right under it, then the place pinned to the bottom
+                    'flex flex-col h-full rounded-2xl bg-white border border-stone-200/90 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-500',
                   )}
                 >
                   {/* Milestone Photo Header */}
@@ -157,16 +143,13 @@ export function SupriyaJourneySection({
                         src={m.image}
                         alt={m.title}
                         loading="lazy"
-                        className={cn('size-full object-cover', m.imgPos || 'object-top')}
+                        className={cn('size-full', !m.imgPos?.includes('object-contain') && 'object-cover', m.imgPos || 'object-top')}
                       />
                     </div>
                   )}
 
-                  <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                      {m.category}
-                    </span>
-                    <h4 className="mt-1 font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
+                  <div className="flex-1">
+                    <h4 className="font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
                       {m.title}
                     </h4>
                     <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">

@@ -5,10 +5,16 @@ import { Reveal } from '../ui/Motion'
 import { YouTube } from '../ui/YouTube'
 import { SocialIcon } from '../ui/SocialIcon'
 import { InstagramReels } from './InstagramReels'
+import { youtubeId } from '@/lib/utils'
 
 type Block = NonNullable<Home['sections']>[number]
 type VideoBlock = Extract<Block, { blockType: 'featuredVideo' }>
 type ReelsBlock = Extract<Block, { blockType: 'socialFeeds' }>
+
+/** our own thumbnails for featured videos, by YouTube video id (shown instead of YouTube's) */
+const POSTERS: Record<string, string> = {
+  KN_Pb_Cm8Xs: '/images/videos/milk-adulteration-thumbnail.webp', // Milk Adulteration in Maharashtra
+}
 
 /** the same video and reels as the main website, for when the homepage content has no such section */
 const FALLBACK = {
@@ -88,7 +94,7 @@ export function SupriyaVideoReelsSection({
         {v && (
           <Reveal className="grid grid-cols-1 overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-sm lg:grid-cols-12">
             <div className="flex items-center bg-[#000d3d] lg:col-span-8 [&>div]:rounded-none">
-              <YouTube url={v.url} title={null} playClassName="bg-red-600" />
+              <YouTube url={v.url} title={null} playClassName="bg-red-600" poster={POSTERS[youtubeId(v.url) ?? '']} />
             </div>
             <div className="flex flex-col justify-center p-6 sm:p-8 lg:col-span-4">
               <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-red-600">

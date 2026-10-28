@@ -104,9 +104,28 @@ export function SupriyaJourneySection({
   const cols = Math.min(milestones.length, 5)
 
   return (
-    <section className="bg-gradient-to-b from-[#f8fafc] via-white to-[#f0f6fc] border-b border-stone-200 py-6 sm:py-10 lg:py-12 overflow-hidden">
+    <section
+      className="relative border-b border-stone-200 py-6 sm:py-10 lg:py-12 overflow-hidden"
+      style={{
+        background:
+          'radial-gradient(ellipse 75% 85% at 100% 80%, #9ee0ac 0%, #cdf4d5 28%, #ebfbf0 52%, #ffffff 78%, #ffffff 100%)',
+      }}
+    >
+      {/* Soft atmospheric bokeh lights from reference design */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -bottom-10 -right-10 size-80 rounded-full bg-[#9ee0ac]/35 blur-3xl -z-10"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-1/3 right-[10%] size-60 rounded-full bg-[#c2f2cf]/40 blur-2xl -z-10"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute bottom-1/4 right-[20%] size-24 rounded-full bg-white/70 blur-lg -z-10"
+      />
       {/* Political Journey Heading, Parliament Emblem & Slogan */}
-      <div className="container-x text-center mb-6 sm:mb-8">
+      <div className="container-x relative z-10 text-center mb-6 sm:mb-8">
         <Reveal>
           {/* <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
             {isMr ? 'कारकीर्द' : 'Political Journey'}

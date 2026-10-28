@@ -20,21 +20,13 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
     <section className="bg-white border-t border-stone-200 py-6 sm:py-10 lg:py-12" aria-labelledby="social-activities-title">
       <div className="container-x">
         <div className="text-center mb-6 sm:mb-8">
-          <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
+          <h2 id="social-activities-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'सामाजिक उपक्रम' : 'Social Activities'}
-          </span>
-          <h2 id="social-activities-title" className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
-            {isMr ? 'लोकांशी थेट नात्यावर उभे नेतृत्व' : 'Leadership built on a direct bond with people'}
           </h2>
-          <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
+          <div className="mt-2.5 flex justify-center items-center gap-1.5">
             <span className="h-1 w-14 rounded-full bg-red-600" />
             <span className="h-1 w-3 rounded-full bg-saffron-500" />
           </div>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600">
-            {isMr
-              ? 'तरुणांच्या कल्पना, गावातील उद्योजक, विद्यार्थ्यांची प्रतिभा आणि नवे लेखक — समाजातील प्रत्येक घटकाला संधी देणारे उपक्रम.'
-              : 'Young ideas, village entrepreneurs, student talent and new writers — activities that open doors for every part of society.'}
-          </p>
         </div>
 
         <Stagger

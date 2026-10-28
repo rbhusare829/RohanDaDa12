@@ -19,13 +19,12 @@ import { InstagramReels } from './InstagramReels'
 import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { CitizenEngagementBanner } from './CitizenEngagementBanner'
 import { SupriyaAboutSection } from './SupriyaAboutSection'
-import { SocialAndVisionSection } from './SocialAndVisionSection'
+import { SocialWorkSection } from './SocialWorkSection'
+import { DrishtikonSection } from './DrishtikonSection'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
-import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
 import { SupriyaSocialActivitiesSection } from './SupriyaSocialActivitiesSection'
 import { SupriyaVideoReelsSection } from './SupriyaVideoReelsSection'
-import { SupriyaVisionSection } from './SupriyaVisionSection'
 
 type Block = NonNullable<Home['sections']>[number]
 type Of<T extends Block['blockType']> = Extract<Block, { blockType: T }>
@@ -72,23 +71,20 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
       {/* 3. Political Journey ("कारकीर्द") timeline — in place of the Press Notes, removed Oct 2026 */}
       <SupriyaJourneySection b={journeyBlock} locale={locale} />
 
-      {/* 4. Social Work & Vision (समाजकार्य आणि दृष्टिकोन) */}
-      <SocialAndVisionSection locale={locale} />
+      {/* 4. Social Work (समाजकार्य) */}
+      <SocialWorkSection locale={locale} />
 
-      {/* 5. Latest News (5 Columns with Real CMS Articles & Media Badges) */}
-      <SupriyaLatestNewsSection posts={extras.posts} locale={locale} />
+      {/* 5. Vision (दृष्टिकोन) */}
+      {visionBlock !== null && <DrishtikonSection locale={locale} />}
 
-      {/* 6. Key Focus Areas / Initiatives Showcase */}
-      <SupriyaInitiativesSection locale={locale} />
-
-      {/* 7. Social Activities (4 photo cards in a mosaic; "Read more" opens each activity's full story) */}
+      {/* 6. Social Activities (सामाजिक उपक्रम) */}
       <SupriyaSocialActivitiesSection locale={locale} />
 
-      {/* 8. Vision (New India Manifesto) */}
-      <SupriyaVisionSection b={visionBlock} locale={locale} />
-
-      {/* 9. Video & Reels (featured YouTube video, then the Instagram reels) */}
+      {/* 7. Video & Reels (featured YouTube video, then the Instagram reels) */}
       <SupriyaVideoReelsSection video={videoBlock} reels={reelsBlock} locale={locale} />
+
+      {/* 8. Latest News & Blogs (माध्यम वार्तांकन / ब्लॉग - Last section on home page) */}
+      <SupriyaLatestNewsSection posts={extras.posts} locale={locale} />
     </>
   )
 }

@@ -2,12 +2,12 @@ import { Link } from 'react-router'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Stagger, StaggerItem } from '../ui/Motion'
 import { cn } from '@/lib/utils'
-import { ACTIVITIES, SOCIAL_ACTIVITIES_PATH, num, type Text } from '@/lib/social-activities'
+import { ACTIVITIES, SOCIAL_ACTIVITIES_PATH, type Text } from '@/lib/social-activities'
 
 /**
  * Social Activities (Supriya Sule layout, Oct 2026), below Key Focus Areas: the centred header used across the homepage
  * (red label, navy title, red and saffron bars), then the four activities as photo cards in a mosaic — the first one large,
- * two small, one wide — with the number, title and tagline over a navy fade. Tablets show two columns; phones one row to swipe
+ * two small, one wide — with the title and tagline over a navy fade. Tablets show two columns; phones one row to swipe
  * through. Each card opens that activity on the Social Activities page (/social-activities#…), where its full story and key facts are;
  * "सर्व सामाजिक उपक्रम / All social activities" under the cards opens the page at the top.
  */
@@ -53,10 +53,6 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-[#000d3d] via-[#000d3d]/45 to-transparent" />
                   <span aria-hidden className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-red-600 to-saffron-500 transition-transform duration-500 group-hover:scale-x-100" />
                   <div className={cn('p-5 sm:p-6', big && 'lg:p-9')}>
-                    <p className="mb-3 flex items-center gap-2.5 text-xs font-extrabold tabular-nums tracking-[0.2em] text-saffron-400">
-                      {num(i, isMr)}
-                      <span aria-hidden className="h-0.5 w-8 rounded-full bg-red-500 transition-all duration-500 group-hover:w-12" />
-                    </p>
                     <h3 className={cn('font-display font-bold leading-tight text-white', big ? 'text-2xl lg:text-[2.1rem]' : 'text-xl')}>{t(a.title)}</h3>
                     <p className={cn('mt-2 leading-relaxed text-white/80', big ? 'text-[0.95rem] lg:text-lg' : 'text-sm')}>{t(a.tagline)}</p>
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-white">

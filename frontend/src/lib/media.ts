@@ -76,3 +76,7 @@ export const toGallery = (items: (number | Media | null | undefined)[] | null | 
       height: m.height,
       media: m,
     }))
+
+/** a photo kept in the site's own /public folder, shaped like a CMS photo so it can stand in for one (e.g. in a page block) */
+export const staticMedia = (url: string, width: number, height: number, alt = '', focalX = 50, focalY = 50): Media =>
+  ({ url, width, height, alt, focalX, focalY, sizes: {} }) as unknown as Media

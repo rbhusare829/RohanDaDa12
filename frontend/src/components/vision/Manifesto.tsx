@@ -1,9 +1,9 @@
 import { m } from 'motion/react'
-import { ArrowRight, ArrowUpRight, BookOpen, ChevronRight, Quote } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Quote } from 'lucide-react'
 import type { Page } from '@/types/cms'
 import { cn, toMarathiDigits } from '@/lib/utils'
 import { LOCALE } from '@/lib/i18n'
-import { mediaAlt, mediaPosition, mediaSize, mediaUrl } from '@/lib/media'
+import { mediaAlt, mediaSize, mediaUrl } from '@/lib/media'
 import { PageBlocks } from '@/components/blocks/PageBlocks'
 import { StitchBlock } from '@/components/blocks/StitchBlocks'
 import { RichText } from '@/components/ui/RichText'
@@ -16,8 +16,74 @@ type Block = NonNullable<Page['layout']>[number]
 type Cards = Extract<Block, { blockType: 'cards' }>
 type MediaText = Extract<Block, { blockType: 'mediaText' }>
 type Stats = Extract<Block, { blockType: 'stats' }>
-type Cta = Extract<Block, { blockType: 'cta' }>
 type QuoteBlock = Extract<Block, { blockType: 'quote' }>
+type Text = { mr: string; en: string }
+
+/** the page's words, in both languages (Oct 2026) */
+const COPY = {
+  title: { mr: 'द न्यू इंडिया मॅनिफेस्टो', en: 'The New India Manifesto' },
+  pledge: { mr: 'उद्योजकतेतून स्वावलंबी भारताच्या निर्मितीचा संकल्प', en: 'A pledge to build a self-reliant India through enterprise' },
+  motto: { mr: 'विचार करा. संकल्प करा. कृतीत उतरवा.', en: 'Think. Commit. Act.' },
+  intro: {
+    mr: '‘द न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी उद्योजकतेच्या माध्यमातून भारताच्या विकासाला नवी दिशा देण्याचा विचार मांडला आहे. तरुणांनी नोकरीच्या संधी शोधण्यापुरते मर्यादित न राहता स्वतः रोजगारनिर्मिती करावी, आपल्या कल्पनांना व्यवसायाचे स्वरूप द्यावे आणि देशाच्या आर्थिक व सामाजिक प्रगतीत योगदान द्यावे, हा या विचारामागील मुख्य हेतू आहे. सोलापूरपासून सुरू झालेला हा प्रवास देशभरातील तरुणांमधून एक लाख नवे उद्योजक घडवण्याच्या संकल्पाशी जोडलेला आहे.',
+    en: 'In The New India Manifesto, Rohan Subhash Deshmukh sets out a simple idea: India’s growth can take a new direction through enterprise. He believes young people should not stop looking for jobs. They should create jobs, turn their ideas into businesses and add to the nation’s economic and social progress. This journey began in Solapur and is tied to one pledge: to help build one lakh new entrepreneurs from among India’s youth.',
+  },
+  goals: [
+    {
+      title: { mr: 'एक लाख उद्योजक घडवण्याचे ध्येय', en: 'One lakh entrepreneurs' },
+      text: { mr: 'तरुणांमधील उद्योजकीय क्षमता विकसित करून त्यांना स्वतःचे व्यवसाय उभारण्यासाठी प्रेरित करणे.', en: 'Build the entrepreneurial strength of young people and inspire them to start businesses of their own.' },
+    },
+    {
+      title: { mr: 'ग्रामीण भागात उद्योजकतेला चालना', en: 'Enterprise in rural India' },
+      text: { mr: 'ग्रामीण भागातील संसाधने, कौशल्ये आणि स्थानिक गरजा यांवर आधारित व्यवसायांच्या संधी निर्माण करणे.', en: 'Create business opportunities rooted in the resources, skills and needs of rural communities.' },
+    },
+    {
+      title: { mr: 'कल्पनांना संधी आणि मार्गदर्शन', en: 'Ideas with guidance' },
+      text: {
+        mr: 'शेती, दुग्धव्यवसाय, हस्तकला, व्यापार किंवा तंत्रज्ञान अशा विविध क्षेत्रांतील व्यावसायिक कल्पनांना योग्य मार्गदर्शन आणि आवश्यक संसाधनांची जोड मिळवून देणे.',
+        en: 'Give ideas in farming, dairy, handicrafts, trade or technology the right guidance and resources to grow.',
+      },
+    },
+    {
+      title: { mr: 'उद्योजकतेतून सामाजिक परिवर्तन', en: 'Change through enterprise' },
+      text: { mr: 'व्यवसायाच्या माध्यमातून रोजगारनिर्मिती करणे, स्थानिक समस्या सोडवणे आणि समाजाच्या आर्थिक प्रगतीत योगदान देणे.', en: 'Use business to create jobs, solve local problems and strengthen the economy of the community.' },
+    },
+  ],
+  stepsTitle: { mr: 'वाचा → संकल्प करा → कृती करा', en: 'Read → Commit → Act' },
+  steps: [
+    {
+      title: { mr: 'वाचा', en: 'Read' },
+      text: { mr: 'उद्योजकता, स्वावलंबन आणि नवभारताच्या निर्मितीविषयी पुस्तकात मांडलेले विचार जाणून घ्या.', en: 'Discover the ideas in the book on enterprise, self-reliance and building a new India.' },
+      url: 'https://newindiamanifesto.com/book',
+    },
+    {
+      title: { mr: 'संकल्प करा', en: 'Commit' },
+      text: {
+        mr: 'स्वतःचा व्यवसाय सुरू करण्याचा, एखादी नवी कल्पना प्रत्यक्षात आणण्याचा किंवा उद्योजकतेच्या प्रवासात सहभागी होण्याचा निर्धार करा.',
+        en: 'Decide to start a business, bring a new idea to life or join the entrepreneurial journey.',
+      },
+      url: 'https://newindiamanifesto.com/pledge',
+    },
+    {
+      title: { mr: 'कृती करा', en: 'Act' },
+      text: {
+        mr: 'आपल्या कल्पनेला कृतीची जोड द्या, व्यवसाय उभारण्याच्या दिशेने पहिले पाऊल टाका किंवा नवोदित उद्योजकांना मार्गदर्शन व सहकार्य करा.',
+        en: 'Take the first step towards building your business, or guide and support a new entrepreneur.',
+      },
+      url: 'https://newindiamanifesto.com/initiative',
+    },
+  ],
+  quote: {
+    mr: 'नवभारताची निर्मिती केवळ घोषणांनी होणार नाही; ती नव्या विचारांतून, उद्योजकतेतून आणि सामान्य माणसाला संधी उपलब्ध करून देणाऱ्या कृतीतून साकार होईल.',
+    en: 'A new India will not be built by slogans alone. It will be built through new ideas, through enterprise, and through action that gives the common person a chance.',
+  },
+  author: { mr: 'रोहन सुभाष देशमुख', en: 'Rohan Subhash Deshmukh' },
+}
+
+const t = (x: Text) => (LOCALE === 'mr' ? x.mr : x.en)
+const esc = (x: string) => x.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+/** the four aims as a list, their titles in bold */
+const goalsList = () => `<ul>${COPY.goals.map((g) => `<li><strong>${esc(t(g.title))}:</strong> ${esc(t(g.text))}</li>`).join('')}</ul>`
 
 /** 01, 02… (Devanagari digits on the Marathi site) */
 const pad = (n: number) => (LOCALE === 'mr' ? toMarathiDigits(String(n).padStart(2, '0')) : String(n).padStart(2, '0'))
@@ -46,21 +112,22 @@ function Bar({ center }: { center?: boolean }) {
  * Vision page (redesign, Oct 2026) — the page's blocks from Pages in the admin, each in a look made for the manifesto, in the
  * homepage's colours (navy titles, red labels and buttons that turn navy on hover, the red-and-saffron bar, light-blue bands,
  * white cards with stone borders):
- *  - a Cards block without a heading (Read · Pledge · Act) → a step bar joined by arrows
- *  - Media + text (the book) → the cover in 3D on a light-blue band, beside the text and buttons
+ *  - a Cards block without a heading (the Read · Pledge · Act bar) is not shown
+ *  - Media + text (the book) → the cover in 3D beside the text and buttons
  *  - Stats → a navy band of big numbers
- *  - the first Call to action → a light invitation card with its photo; later ones → the navy banner
+ *  - the first Call to action (the invitation card) is not shown; later ones → the navy banner
  *  - Quote → a large centred statement
  *  - Cards with a heading (How it works) → numbered steps joined by a dashed line
  */
 export function Manifesto({ blocks }: { blocks?: Block[] | null }) {
-  const list = (blocks ?? []).filter((b) => !('hidden' in b && b.hidden))
+  const all = (blocks ?? []).filter((b) => !('hidden' in b && b.hidden))
+  // the quote always closes the page, after every other block
+  const list = [...all.filter((b) => b.blockType !== 'quote'), ...all.filter((b) => b.blockType === 'quote')]
   const firstCta = list.find((b) => b.blockType === 'cta')
   if (!list.length) return null
   return (
-    <div className="relative isolate space-y-10 sm:space-y-16 md:space-y-24">
-      {/* white behind the whole page (the homepage's white, not the cream of the other inner pages), up to the header and footer */}
-      <div aria-hidden className="absolute -bottom-40 -top-12 left-1/2 -z-10 !mt-0 w-screen -translate-x-1/2 bg-white md:-bottom-48 md:-top-16" />
+    // the page's own background (as on the Introduction page); the book starts right under the banner (the template's top gap is taken back)
+    <div className="relative isolate -mt-8 space-y-10 sm:-mt-12 sm:space-y-16 md:-mt-16 md:space-y-24">
       {list.map((b, i) => {
         const key = b.id ?? String(i)
         switch (b.blockType) {
@@ -69,15 +136,14 @@ export function Manifesto({ blocks }: { blocks?: Block[] | null }) {
               <PageBlocks key={key} blocks={[b]} design="stitch" />
             ) : b.heading ? (
               <HowItWorks key={key} block={b} />
-            ) : (
-              <StepBar key={key} block={b} />
-            )
+            ) : null // the short Read · Commit · Act bar at the top was removed, Oct 2026
           case 'mediaText':
             return <Book key={key} block={b} />
           case 'stats':
             return <StatsBand key={key} block={b} />
           case 'cta':
-            return b === firstCta ? <Invitation key={key} block={b} /> : <StitchBlock key={key} b={b} />
+            // the first call to action (the "Invitation" card: Starting something new in your village or city?) was removed, Oct 2026
+            return b === firstCta ? null : <StitchBlock key={key} b={b} />
           case 'quote':
             return <Statement key={key} block={b} />
           default:
@@ -88,41 +154,26 @@ export function Manifesto({ blocks }: { blocks?: Block[] | null }) {
   )
 }
 
-/** Read → Pledge → Act: one white bar, the steps divided by arrows */
-function StepBar({ block }: { block: Cards }) {
-  const items = block.items ?? []
-  return (
-    <Stagger as="ol" className="grid grid-cols-1 overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(9,20,34,0.12)] md:grid-cols-[repeat(var(--n),minmax(0,1fr))]" style={{ ['--n' as string]: items.length }}>
-      {items.map((c, i) => (
-        <StaggerItem as="li" key={c.id ?? i} className="group relative flex items-center gap-5 border-stone-200/80 p-6 transition-colors hover:bg-[#f0f6fc] max-md:border-b max-md:last:border-b-0 md:border-r md:p-8 md:last:border-r-0">
-          <span className={cn('grid size-14 shrink-0 place-items-center rounded-2xl font-display text-xl font-bold text-white shadow-md transition-transform duration-300 group-hover:scale-105', stepBg(i))}>
-            {pad(i + 1)}
-          </span>
-          <div className="min-w-0">
-            <h2 className={cn('font-display text-xl font-bold md:text-2xl', NAVY)}>{c.title}</h2>
-            {c.text && <p className="mt-0.5 text-sm text-slate-600">{c.text}</p>}
-          </div>
-          {i < items.length - 1 && (
-            <span aria-hidden className="absolute -right-4 top-1/2 z-10 hidden size-8 -translate-y-1/2 place-items-center rounded-full border border-stone-200 bg-white text-red-600 shadow-sm md:grid">
-              <ChevronRight className="size-4" />
-            </span>
-          )}
-        </StaggerItem>
-      ))}
-    </Stagger>
-  )
-}
-
-/** the book: its cover tilted in 3D on a light-blue band, the text and buttons beside it */
+/** the book: its cover tilted in 3D, the text and buttons beside it (on the page's own background) */
 function Book({ block }: { block: MediaText }) {
   const hasImg = Boolean(mediaUrl(block.image, 'card'))
   const size = mediaSize(block.image)
   const right = block.imagePosition === 'right'
   return (
-    <section className={cn(bleed, 'overflow-hidden border-y border-stone-200 bg-[#f0f6fc]')}>
-      <div className={cn('container-x relative grid grid-cols-1 items-center gap-8 sm:gap-12 py-10 sm:py-16 lg:gap-16 lg:py-24', hasImg && 'lg:grid-cols-12')}>
+    <section className={cn(bleed, 'overflow-hidden')}>
+      {/* phones: heading → first paragraph, then the book, then the aims and buttons; desktop: the book beside all the text */}
+      <div className={cn('container-x relative grid grid-cols-1 gap-8 sm:gap-12 pt-8 pb-4 sm:pt-12 sm:pb-6 lg:gap-x-16 lg:gap-y-5 lg:pt-14 lg:pb-8', hasImg && 'lg:grid-cols-12')}>
+        <Reveal delay={0.1} className={cn('flex flex-col gap-5', hasImg && 'lg:col-span-7 lg:row-start-1 lg:self-end', hasImg && (right ? 'lg:col-start-1' : 'lg:col-start-6'))}>
+          <div>
+            <h2 className={cn('font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl', NAVY)}>{t(COPY.title)}</h2>
+            <p className="mt-3 font-display text-lg font-semibold leading-snug text-slate-700 sm:text-xl">{t(COPY.pledge)}</p>
+          </div>
+          <Bar />
+          <p className="font-display text-lg font-bold text-red-600">{t(COPY.motto)}</p>
+          <RichText html={`<p>${esc(t(COPY.intro))}</p>`} className="max-w-2xl" />
+        </Reveal>
         {hasImg && (
-          <Reveal className={cn('flex justify-center lg:col-span-5', right && 'lg:order-2')}>
+          <Reveal className={cn('flex items-center justify-center lg:col-span-5 lg:row-span-2 lg:row-start-1', right ? 'lg:col-start-8' : 'lg:col-start-1')}>
             <div className="relative [perspective:1400px]">
               <div aria-hidden className="absolute inset-6 -z-10 rounded-full bg-[#000d3d]/15 blur-3xl" />
               <m.div
@@ -132,23 +183,15 @@ function Book({ block }: { block: MediaText }) {
                 transition={{ type: 'spring', stiffness: 120, damping: 16 }}
                 style={{ transformStyle: 'preserve-3d' }}
               >
-                <Img media={block.image} variant="card" alt={mediaAlt(block.image, block.heading ?? '')} width={size.width} height={size.height} sizes="(max-width:640px) 240px, 320px" className="h-auto w-full" />
+                <Img media={block.image} variant="card" alt={mediaAlt(block.image, t(COPY.title))} width={size.width} height={size.height} sizes="(max-width:640px) 240px, 320px" className="h-auto w-full" />
                 {/* spine shading */}
                 <span aria-hidden className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-black/35 to-transparent" />
               </m.div>
             </div>
           </Reveal>
         )}
-        <Reveal delay={0.1} className={cn('flex flex-col gap-5', hasImg && 'lg:col-span-7')}>
-          {block.eyebrow && (
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-xs font-extrabold uppercase tracking-widest text-red-600 ring-1 ring-stone-200">
-              <BookOpen aria-hidden className="size-4" />
-              {block.eyebrow}
-            </span>
-          )}
-          {block.heading && <h2 className={cn('font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl', NAVY)}>{block.heading}</h2>}
-          <Bar />
-          <RichText html={block.body} className="max-w-2xl" />
+        <Reveal delay={0.1} className={cn('flex flex-col gap-5', hasImg && 'lg:col-span-7 lg:row-start-2 lg:self-start', hasImg && (right ? 'lg:col-start-1' : 'lg:col-start-6'))}>
+          <RichText html={goalsList()} className="max-w-2xl" />
           {!!block.buttons?.length && (
             <div className="flex flex-wrap gap-3 pt-2 max-md:justify-center">
               {block.buttons.map((l, i) => (
@@ -191,39 +234,8 @@ function StatsBand({ block }: { block: Stats }) {
   )
 }
 
-/** the first call to action: a light card with its photo */
-function Invitation({ block }: { block: Cta }) {
-  const hasImg = Boolean(mediaUrl(block.image, 'card'))
-  return (
-    <Reveal className={cn('relative grid overflow-hidden rounded-3xl border border-stone-200/90 bg-white shadow-[0_20px_50px_-12px_rgba(9,20,34,0.14)]', hasImg && 'md:grid-cols-[1.2fr_1fr]')}>
-      <span aria-hidden className="absolute inset-x-0 top-0 z-10 h-1.5 bg-gradient-to-r from-red-600 via-red-600 to-saffron-500" />
-      <div className="relative p-8 md:p-12 lg:p-14">
-        {block.eyebrow && <p className="relative text-xs font-extrabold uppercase tracking-widest text-red-600">{block.eyebrow}</p>}
-        {block.heading && <h2 className={cn('relative mt-2 mb-3 font-display text-3xl font-bold leading-tight md:text-4xl', NAVY)}>{block.heading}</h2>}
-        <Bar />
-        {block.text && <p className="relative mt-4 whitespace-pre-line text-lg leading-relaxed text-slate-600">{block.text}</p>}
-        {!!block.buttons?.length && (
-          <div className="relative mt-8 flex flex-wrap gap-3 max-md:justify-center">
-            {block.buttons.map((l, i) => (
-              <CMSLink key={l.id} url={l.url} newTab={l.newTab} className={btn(i)}>
-                {l.label} <ArrowRight className="size-4" />
-              </CMSLink>
-            ))}
-          </div>
-        )}
-      </div>
-      {hasImg && (
-        <div className="group relative min-h-64 overflow-hidden">
-          <Img media={block.image} variant="card" alt={mediaAlt(block.image)} fill sizes="(max-width:768px) 100vw, 45vw" className="object-cover transition-transform duration-700 group-hover:scale-105" style={{ objectPosition: mediaPosition(block.image) }} />
-          <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent max-md:bg-gradient-to-b" />
-        </div>
-      )}
-    </Reveal>
-  )
-}
-
 /** the quote as a large centred statement */
-function Statement({ block }: { block: QuoteBlock }) {
+function Statement(_: { block: QuoteBlock }) {
   return (
     <Reveal as="figure" className="relative mx-auto max-w-5xl px-2 py-6 text-center md:py-10">
       <span aria-hidden className="mx-auto mb-8 flex items-center justify-center gap-3">
@@ -231,20 +243,20 @@ function Statement({ block }: { block: QuoteBlock }) {
         <Quote className="size-7 text-red-600" />
         <span className="h-px w-12 bg-saffron-500" />
       </span>
-      <blockquote className="font-quote relative text-2xl leading-relaxed text-[#000d3d] sm:text-3xl lg:text-[2.4rem] lg:leading-[1.45]">{block.text}</blockquote>
-      {block.author && <figcaption className="mt-8 text-sm font-extrabold uppercase tracking-widest text-red-600">{block.author}</figcaption>}
+      <blockquote className="font-quote relative text-2xl leading-relaxed text-[#000d3d] sm:text-3xl lg:text-[2.4rem] lg:leading-[1.45]">{t(COPY.quote)}</blockquote>
+      <figcaption className="mt-8 text-sm font-extrabold uppercase tracking-widest text-red-600">— {t(COPY.author)}</figcaption>
     </Reveal>
   )
 }
 
 /** How it works: numbered steps joined by a dashed line, each one a link */
 function HowItWorks({ block }: { block: Cards }) {
-  const items = block.items ?? []
+  const items = COPY.steps.map((st, i) => ({ id: block.items?.[i]?.id ?? String(i), title: t(st.title), text: t(st.text), url: block.items?.[i]?.url || st.url }))
   return (
     <section>
       <Reveal className="mx-auto mb-12 max-w-2xl space-y-2 text-center">
         {block.eyebrow && <p className="text-xs font-extrabold uppercase tracking-widest text-red-600 sm:text-sm">{block.eyebrow}</p>}
-        {block.heading && <h2 className={cn('font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl', NAVY)}>{block.heading}</h2>}
+        <h2 className={cn('font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl', NAVY)}>{t(COPY.stepsTitle)}</h2>
         <Bar center />
         {block.intro && <p className="pt-1 text-base leading-relaxed text-slate-600">{block.intro}</p>}
       </Reveal>

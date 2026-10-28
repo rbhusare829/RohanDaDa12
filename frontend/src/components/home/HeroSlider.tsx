@@ -151,6 +151,7 @@ export function HeroSlider({
       {/* 1. Full-Bleed Background Images with Smooth Cross-Fade & Ken-Burns Motion */}
       {!textOnly && (
         <div className="absolute inset-0 size-full overflow-hidden">
+          {/* The photo fills the whole band behind the words on every screen; on phones the words sit over its lower part. */}
           {slides.map((s, i) => {
             const active = i === index
             return (

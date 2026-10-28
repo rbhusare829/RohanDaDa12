@@ -12,6 +12,7 @@ import type { Page } from '@/types/cms'
 import { cn } from '@/lib/utils'
 import { Img } from '@/components/ui/Img'
 import { AccentBar, Reveal } from '@/components/ui/Motion'
+import { ROHAN_BIO } from '@/lib/rohan-bio'
 
 type Block = NonNullable<Page['layout']>[number]
 
@@ -84,8 +85,14 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
       <Reveal delay={0.1} className="flex flex-col space-y-6 lg:col-span-7">
         <div>
           {/* Heading / Core Tagline */}
-          <h2 className="font-display text-2xl font-bold leading-snug text-charcoal-950 sm:text-3xl lg:text-[2.1rem]">
-            {isMr ? 'सोलापूरचा नवा स्वर, नव्या भारताचा नवा विश्वास.' : 'A new voice from Solapur. A new voice for a new India.'}
+          {/* phones: the Marathi line stays on one line, sized to the screen width */}
+          <h2
+            className={cn(
+              'font-display font-bold leading-snug text-charcoal-950 sm:text-3xl lg:text-[2.1rem]',
+              isMr ? 'whitespace-nowrap text-[clamp(0.85rem,3.9vw,1.5rem)] sm:whitespace-normal' : 'text-2xl',
+            )}
+          >
+            {isMr ? 'सर्वसामान्यांच्या हितासाठी आणि सर्वांगीण विकासासाठी कटिबद्ध' : "I'm committed to the betterment of the people"}
           </h2>
 
           {/* Signature red and saffron underline bar */}
@@ -94,21 +101,9 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
 
         {/* Structured biographical paragraphs */}
         <div className="space-y-4 text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
-          <p>
-            {isMr ? 'रोहन सुभाष देशमुख हे सोलापूर येथील उद्योजक, लेखक आणि समाजकार्यकर्ते आहेत. नव्या विचारांकडे सकारात्मक दृष्टिकोनातून पाहत, नावीन्यपूर्ण उपक्रम राबवण्याची आणि समाजाच्या प्रगतीत योगदान देण्याची जिद्द बाळगणारे ते एक तरुण नेतृत्व. स्वामी विवेकानंदांच्या विचारांपासून प्रेरणा घेत त्यांनी आपल्या कार्याची दिशा निश्चित केली. आत्मविश्वासू आणि स्वावलंबी तरुणाई हाच सक्षम राष्ट्राचा पाया, असा त्यांचा ठाम विश्वास आहे. युवाशक्ती, उद्योजकता आणि स्वावलंबन हे त्यांच्या कार्याचे तीन प्रमुख आधारस्तंभ असून, तरुणांनी केवळ रोजगाराच्या संधी शोधण्यापुरते मर्यादित न राहता रोजगारनिर्मिती करणारे व्हावे, हा त्यांच्या विचारांचा केंद्रबिंदू आहे.' : 'Rohan Subhash Deshmukh is an entrepreneur, author and social worker from Solapur. A young leader with a positive outlook, he is driven to do things differently, to turn fresh ideas into action and to contribute to society’s progress in his own way. Inspired by the thoughts of Swami Vivekananda, he has built his work around one belief: confident, self-reliant young people are the foundation of a strong nation. Youth power, enterprise and self-reliance are the three pillars of his work. His message to young people is clear: do not just look for jobs, become the ones who create them.'}
-          </p>
-          <p>
-            {isMr ? 'आमदार श्री. सुभाष बापू देशमुख यांचे पुत्र म्हणून वाढताना त्यांना वडिलांच्या कामाचा, विचारांचा आणि समाजाशी असलेल्या नात्याचा जवळून अनुभव घेता आला. त्यांच्या वाटचालीतून कष्ट, सातत्य, धाडस आणि समाजाप्रती बांधिलकी या मूल्यांचे संस्कार रोहन यांच्यावर झाले. मात्र वडिलांकडून मिळालेले संस्कार ही त्यांच्या प्रवासाची केवळ सुरुवात आहे. समाजकार्याकडे ते केवळ तात्कालिक मदत म्हणून पाहत नाहीत. लोकांशी प्रत्यक्ष संवाद साधणे, त्यांच्या अडचणी समजून घेणे आणि समस्यांच्या मूळ कारणांचा शोध घेऊन शाश्वत उपाययोजना करणे, ही त्यांची कार्यपद्धती आहे.' : 'As the son of MLA Shri Subhash Bapu Deshmukh, Rohan grew up watching his father’s work, his thinking and his bond with the people up close. That journey taught him the value of hard work, consistency, courage and commitment to society. But this legacy is only the beginning of his own path. For Rohan, social work is not about temporary relief. He speaks to people directly, listens to their problems and looks for the root cause, so that the solutions last.'}
-          </p>
-
-          {/* Mobile Only: Portrait Card positioned after Paragraph 2 */}
-          <div className="my-5 block lg:hidden">
-            <LeaderPortraitCard isMr={isMr} />
-          </div>
-
-          <p>
-            {isMr ? 'त्यांनी लिहिलेल्या "न्यू इंडिया मॅनिफेस्टो" या पुस्तकातून मिळालेल्या प्रेरणेतून संपूर्ण महाराष्ट्रात स्टार्टअप परिसंस्था (इकोसिस्टम) उभारण्याचा त्यांचा संकल्प आहे. उद्योजकता, लेखन आणि समाजकार्य या तिन्ही माध्यमांतून ते तरुणांसाठी नव्या संधी निर्माण करण्यासाठी आणि समाजाच्या सर्वांगीण विकासासाठी कार्यरत आहेत.' : 'Inspired by his book New India Manifesto, he is working to build a startup ecosystem across Maharashtra. Through enterprise, writing and social work, Rohan is creating new opportunities for young people and working for the all-round development of society.'}
-          </p>
+          {(isMr ? ROHAN_BIO.mr : ROHAN_BIO.en).map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
         </div>
 
         {/* Quick Facts Grid */}

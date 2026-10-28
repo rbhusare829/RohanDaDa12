@@ -26,11 +26,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 const TEXT = {
   mr: {
-    back: 'सर्व उपक्रमांकडे परत जा', tag: 'लोकमंगल उपक्रम', impact: 'प्रमुख उपलब्धी', objective: 'उद्दिष्ट', videos: 'उपक्रमाचा माहितीपट व व्हिडिओ',
+    back: 'सर्व उपक्रमांकडे परत जा', impact: 'प्रमुख उपलब्धी', objective: 'उद्दिष्ट', videos: 'उपक्रमाचा माहितीपट व व्हिडिओ',
     videoCount: (n: number) => `एकूण ${n} व्हिडिओ उपलब्ध`, photos: 'छायाचित्रे', all: 'सर्व उपक्रम पहा', support: 'या उपक्रमास हातभार लावा',
   },
   en: {
-    back: 'Back to all initiatives', tag: 'Lokmangal Initiative', impact: 'Key impact', objective: 'Objective', videos: 'Project Video Showcase',
+    back: 'Back to all initiatives', impact: 'Key impact', objective: 'Objective', videos: 'Project Video Showcase',
     videoCount: (n: number) => `${n} videos available`, photos: 'Photos', all: 'View all initiatives', support: 'Support this initiative',
   },
 }
@@ -54,7 +54,6 @@ export default function InitiativePage() {
     <>
       <Seo title={d.meta?.title || d.title} description={d.meta?.description || d.excerpt} image={mediaUrl(d.meta?.image, 'card') || mediaUrl(d.heroImage, 'card')} />
       <PageBanner
-        eyebrow={x.tag}
         title={d.title}
         path="/social-work"
         variant="navy"

@@ -257,14 +257,8 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
       {intro && (
         <section className="space-y-8 sm:space-y-10">
           <div className="grid grid-cols-1 items-stretch gap-6 sm:gap-8 lg:grid-cols-12 lg:gap-10">
-            {/* Left Narrative Card */}
-            <div className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-stone-200/80 bg-gradient-to-br from-white via-white/95 to-amber-50/30 p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_-15px_rgba(14,30,52,0.08),inset_0_1px_2px_rgba(255,255,255,0.95)] backdrop-blur-xl lg:col-span-7">
-              {/* Top Accent Gradient Bar */}
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-red-600 via-saffron-500 to-amber-500 shadow-xs"
-              />
-
+            {/* Left: the narrative, straight on the page background (no card) */}
+            <div className="relative flex flex-col justify-between lg:col-span-7 lg:pr-4">
               <div className="relative">
                 {intro.eyebrow && (
                   <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-300/80 bg-saffron-50/90 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700 shadow-xs backdrop-blur-sm">
@@ -289,7 +283,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
               </div>
 
               {/* Verified Trust Badge at bottom of card */}
-              <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-stone-100 pt-4 text-xs font-semibold text-stone-500">
+              <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-stone-200/80 pt-4 text-xs font-semibold text-stone-500">
                 <span className="flex items-center gap-1.5 text-emerald-700">
                   <ShieldCheck className="size-4 text-emerald-600" />
                   {isMr ? '२५+ वर्षांची अखंड सेवा परंपरा' : '25+ Years Legacy of Trust'}
@@ -302,19 +296,18 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
               </div>
             </div>
 
-            {/* Right: 4 Core Value Pillars */}
+            {/* Right: the core values as a plain list (no cards), divided by thin rules */}
             {parts && (
               <div id="hero-values" className="flex flex-col justify-between gap-3.5 lg:col-span-5">
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-1">
                   {parts.items.map((it, i) => {
                     const IconComponent = VALUE_ICONS[i % VALUE_ICONS.length]
                     const isEven = i % 2 === 0
                     return (
                       <div
                         key={i}
-                        className="group relative flex items-start gap-3.5 overflow-hidden rounded-2xl border border-stone-200/80 bg-white/95 p-4 sm:p-4.5 shadow-[0_4px_16px_-4px_rgba(14,30,52,0.06),inset_0_1px_2px_rgba(255,255,255,0.95)] backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-saffron-300 hover:shadow-[0_16px_32px_-10px_rgba(14,30,52,0.1)]"
+                        className="group relative flex items-start gap-3.5 border-b border-stone-200/80 py-4 last:border-b-0"
                       >
-
                         {/* Icon Box */}
                         <div
                           className={cn(

@@ -1,6 +1,5 @@
 import { type ReactNode } from 'react'
-import { ChevronRight, Home, Sparkles } from 'lucide-react'
-import { Link } from 'react-router'
+import { Sparkles } from 'lucide-react'
 import { AccentBar } from '../ui/Motion'
 
 export type Crumb = { label: string; href?: string }
@@ -19,48 +18,18 @@ const BANNER_PORTRAITS: { match: RegExp; src: string; position: string }[] = [
   { match: /.*/, src: '/images/portraits/rohan-executive-desk.webp', position: 'center bottom' },
 ]
 
-/** Breadcrumbs bar (100% Supriya Sule mubase-breadcrumb layout) */
-function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
-  if (!crumbs || crumbs.length === 0) return null
-  return (
-    // phones: no padding on the bar, each link is 44 px high instead (the bar stays about as tall, the links become easy to tap)
-    <div className="border-b border-stone-200 bg-[#f8fafc] text-xs text-slate-600 lg:py-2.5">
-      <div className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap no-scrollbar">
-        <Link to="/" className="inline-flex min-h-11 items-center gap-1.5 font-bold text-[#000d3d] hover:text-red-600 transition-colors lg:min-h-0">
-          <Home className="size-3.5" />
-          <span>मुख्यपृष्ठ</span>
-        </Link>
-        {crumbs.map((crumb, idx) => {
-          const isLast = idx === crumbs.length - 1
-          return (
-            <div key={idx} className="flex items-center gap-2">
-              <ChevronRight className="size-3 text-slate-400" />
-              {isLast || !crumb.href ? (
-                <span className="font-semibold text-slate-900 line-clamp-1">{crumb.label}</span>
-              ) : (
-                <Link to={crumb.href} className="inline-flex min-h-11 items-center font-medium text-slate-600 hover:text-red-600 transition-colors lg:min-h-0">
-                  {crumb.label}
-                </Link>
-              )}
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  )
-}
 
 /**
  * The top of every inner page — 100% Supriya Sule ja-masthead layout:
  * - Photographic banner with deep navy overlay
  * - Large title with signature red & saffron accent line
- * - Breadcrumb row (Home > Section > Current)
  * - Sibling pages as horizontal tab bar
  */
 export function PageBanner({
-  title, subtitle, image, imagePosition, eyebrow, path, variant, crumbs,
+  title, subtitle, image, imagePosition, eyebrow, path, variant,
 }: {
   title: string; eyebrow?: string | null; subtitle?: string | null
+  /** no longer shown (the breadcrumb row was removed, Oct 2026) */
   crumbs?: Crumb[]; image?: string | null; imagePosition?: string
   tabs?: BannerTab[]; tabsLabel?: string
   /** article pages: long headline in a smaller size */
@@ -74,7 +43,7 @@ export function PageBanner({
   /** Stitch page header (Oct 2026): 'navy' = deep navy band with kesariya & green glows, 'light' = warm ivory band */
   variant?: 'navy' | 'light'
 }) {
-  return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant || 'navy'} crumbs={crumbs} path={path} image={image} imagePosition={imagePosition} />
+  return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant || 'navy'} path={path} image={image} imagePosition={imagePosition} />
 }
 
 /**
@@ -82,9 +51,9 @@ export function PageBanner({
  * a card beside the title). The section's sibling pages follow as a row of pills.
  */
 function StitchBanner({
-  title, subtitle: _subtitle, eyebrow, variant: _variant, crumbs, path, image, imagePosition,
+  title, subtitle: _subtitle, eyebrow, variant: _variant, path, image, imagePosition,
 }: {
-  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'; crumbs?: Crumb[]
+  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'
   path?: string; image?: string | null; imagePosition?: string
 }) {
   const matched = BANNER_PORTRAITS.find((b) => b.match.test(path || '/')) || BANNER_PORTRAITS[BANNER_PORTRAITS.length - 1]
@@ -150,9 +119,6 @@ function StitchBanner({
           </div>
         </div>
       </section>
-
-      {/* Breadcrumbs Row (100% Supriya Sule layout) */}
-      <BreadcrumbsBar crumbs={crumbs} />
     </>
   )
 }

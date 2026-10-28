@@ -10,8 +10,6 @@ const INITIATIVES = [
     description: 'शेतकरी, छोटे व्यावसायिक व महिला बचत गटांना स्वावलंबी बनवण्यासाठी आधुनिक व विश्वासार्ह बँकिंग सेवा.',
     enDescription: 'Modern, trustworthy banking that helps farmers, small businesses and women’s self-help groups stand on their own feet.',
     link: '/lokmangal/parivar',
-    badge: '४ संस्था',
-    enBadge: '4 institutions',
   },
   {
     icon: Briefcase,
@@ -20,8 +18,6 @@ const INITIATIVES = [
     description: 'साखर, इथेनॉल व सहवीज निर्मितीच्या माध्यमातून ग्रामीण भागात रोजगार निर्मिती आणि शेतकऱ्यांच्या मालाला योग्य दर.',
     enDescription: 'Sugar, ethanol and co-generation units that create rural jobs and get farmers a fair price for their produce.',
     link: '/lokmangal/parivar',
-    badge: '४ उद्योग',
-    enBadge: '4 industries',
   },
   {
     icon: GraduationCap,
@@ -30,8 +26,6 @@ const INITIATIVES = [
     description: 'प्राथमिक शाळेपासून व्यावसायिक महाविद्यालयांपर्यंत ग्रामीण विद्यार्थ्यांना गुणवत्तापूर्ण शिक्षण व करिअर मार्गदर्शन.',
     enDescription: 'Quality education and career guidance for rural students, from primary school to professional colleges.',
     link: '/lokmangal/parivar',
-    badge: '१० महाविद्यालये',
-    enBadge: '10 colleges',
   },
   {
     icon: HeartPulse,
@@ -40,8 +34,6 @@ const INITIATIVES = [
     description: 'मोफत सर्वोपचार आरोग्य शिबिरे, मोफत सामूहिक विवाह सोहळे आणि आपत्कालीन मदतीचे सामाजिक उपक्रम.',
     enDescription: 'Free health camps, free community weddings and emergency relief for families in need.',
     link: '/social-work',
-    badge: '५ उपक्रम',
-    enBadge: '5 initiatives',
   },
   {
     icon: Users,
@@ -50,8 +42,6 @@ const INITIATIVES = [
     description: 'स्वामी विवेकानंद विचार यात्रा, सीएम चषक क्रीडा स्पर्धा आणि स्टार्टअप परिसंस्थेच्या माध्यमातून तरुणांना संधी.',
     enDescription: 'Opportunities for young people through the Swami Vivekananda Vichar Yatra, the CM Cup sports tournament and the startup ecosystem.',
     link: '/political-career',
-    badge: 'लाखो तरुण',
-    enBadge: 'Lakhs of youth',
   },
   {
     icon: Sprout,
@@ -60,8 +50,6 @@ const INITIATIVES = [
     description: 'जलसंधारण प्रकल्प, आधुनिक शेती तंत्रज्ञान आणि शेतकरी कुटुंबांना शाश्वत उपजीविकेसाठी थेट सहकार्य.',
     enDescription: 'Water conservation projects, modern farming techniques and direct support for sustainable livelihoods for farming families.',
     link: '/social-work',
-    badge: 'ग्रामीण विकास',
-    enBadge: 'Rural development',
   },
 ]
 
@@ -109,13 +97,10 @@ export function SupriyaInitiativesSection({
                   className="group flex w-[80vw] max-w-[320px] shrink-0 snap-center flex-col justify-between h-auto rounded-2xl bg-white border border-stone-200/90 p-5 shadow-sm sm:h-full sm:w-auto sm:max-w-none sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="mb-4">
                       <div className="grid size-12 place-items-center rounded-xl bg-red-50 text-red-600 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white">
                         <Icon className="size-6" />
                       </div>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-[11px] font-bold text-slate-600">
-                        {isMr ? it.badge : it.enBadge}
-                      </span>
                     </div>
 
                     <h3 className="font-display text-lg sm:text-xl font-bold text-[#000d3d] group-hover:text-red-600 transition-colors">

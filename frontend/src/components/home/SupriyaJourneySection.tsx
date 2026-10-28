@@ -87,14 +87,13 @@ export function SupriyaJourneySection({
     ? b.items.map((it, idx) => {
         const placeStr = it.place || ''
         const parts = placeStr.split('—').map((s) => s.trim())
-        const yearOrPlace = parts[0] || (idx === 0 ? 'पायाभरणी' : idx === 1 ? 'अभिमानाचा क्षण' : idx === 2 ? '२०१२' : '२०१६')
-        const cat = parts[1] || it.title || 'प्रवास'
+        const yearOrPlace = parts[0] || (idx === 0 ? (isMr ? 'सोलापूर, महाराष्ट्र' : 'Solapur, Maharashtra') : idx === 1 ? (isMr ? 'नवी दिल्ली' : 'New Delhi') : idx === 2 ? (isMr ? 'रोचेस्टर, अमेरिका' : 'Rochester, USA') : '२०१६')
         const pick = milestonePhotos[idx % milestonePhotos.length]
         return {
           year: yearOrPlace,
           title: it.title || '',
           description: it.text || '',
-          category: cat,
+          category: '',
           image: pick.src,
           imgPos: pick.pos,
         }
@@ -163,10 +162,7 @@ export function SupriyaJourneySection({
                   )}
 
                   <div>
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                      {m.category}
-                    </span>
-                    <h4 className="mt-1 font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
+                    <h4 className="font-display text-base sm:text-lg font-bold leading-snug text-[#000d3d]">
                       {m.title}
                     </h4>
                     <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600">

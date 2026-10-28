@@ -19,7 +19,7 @@ import { InstagramReels } from './InstagramReels'
 import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 import { CitizenEngagementBanner } from './CitizenEngagementBanner'
 import { SupriyaAboutSection } from './SupriyaAboutSection'
-import { SupriyaAwardsSection } from './SupriyaAwardsSection'
+import { SocialAndVisionSection } from './SocialAndVisionSection'
 import { SupriyaJourneySection } from './SupriyaJourneySection'
 import { SupriyaLatestNewsSection } from './SupriyaLatestNewsSection'
 import { SupriyaInitiativesSection } from './SupriyaInitiativesSection'
@@ -72,8 +72,8 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
       {/* 3. Political Journey ("कारकीर्द") timeline — in place of the Press Notes, removed Oct 2026 */}
       <SupriyaJourneySection b={journeyBlock} locale={locale} />
 
-      {/* 4. Speasy Awards & Recognitions Gallery (6 Columns) */}
-      <SupriyaAwardsSection locale={locale} />
+      {/* 4. Social Work & Vision (समाजकार्य आणि दृष्टिकोन) */}
+      <SocialAndVisionSection locale={locale} />
 
       {/* 5. Latest News (5 Columns with Real CMS Articles & Media Badges) */}
       <SupriyaLatestNewsSection posts={extras.posts} locale={locale} />

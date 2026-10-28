@@ -41,17 +41,16 @@ export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }:
 
 const card = 'rounded-3xl border border-stone-200/90 bg-white shadow-[0_15px_40px_-10px_rgba(9,20,34,0.07)]'
 
-/** one or more consecutive Content blocks: white cards with a kesariya edge, two per row when there are several */
+/** one or more consecutive Content blocks: displayed directly on the page in Stitch style */
 export function StitchContent({ blocks }: { blocks: Content[] }) {
   if (blocks.length === 1) {
     const b = blocks[0]
     return (
-      <Reveal className={cn(card, 'relative overflow-hidden border-l-4 border-l-saffron-500 p-8 md:p-10 lg:p-12')}>
-        <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-32 rounded-bl-full bg-gradient-to-bl from-saffron-100/60 to-transparent" />
-        <div className="relative max-w-4xl">
-          {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{b.eyebrow}</p>}
-          {b.heading && <h2 className="mb-5 mt-1 font-display text-2xl font-bold leading-tight text-charcoal-950 md:text-3xl">{b.heading}</h2>}
-          <RichText html={b.body} readMore />
+      <Reveal className="max-w-4xl pt-2">
+        {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{b.eyebrow}</p>}
+        {b.heading && <h2 className="mb-4 font-display text-2xl font-bold leading-tight text-charcoal-950 md:text-3xl">{b.heading}</h2>}
+        <div className="text-base sm:text-lg leading-relaxed text-charcoal-900 font-normal">
+          <RichText html={b.body} />
         </div>
       </Reveal>
     )
@@ -245,21 +244,27 @@ export function StitchBlock({ b }: { b: PageBlock }): ReactNode {
   switch (b.blockType) {
     case 'cards':
       return <Cards b={b} />
-    case 'stats':
+    case 'stats': {
+      const count = b.items?.length ?? 0
+      const gridCols = count === 3 ? 'grid-cols-1 sm:grid-cols-3' : count === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-2 md:grid-cols-4'
       return (
-        <>
+        <div className="py-2">
           <StitchHead eyebrow={b.eyebrow} heading={b.heading} />
-          <Stagger className="grid grid-cols-2 gap-4 md:grid-cols-4">
-            {b.items?.map((s, i) => (
-              <StaggerItem key={s.id} className="group relative overflow-hidden rounded-2xl border border-stone-200/90 bg-white p-6 shadow-sm transition-all hover:border-saffron-400/60 hover:shadow-md">
-                <span aria-hidden className={cn('absolute inset-x-0 top-0 h-1', i % 2 ? 'bg-leaf-600' : 'bg-saffron-500')} />
-                <p className="font-display text-3xl font-bold text-charcoal-950 transition-colors group-hover:text-saffron-600 lg:text-4xl"><CountUp value={s.value} /></p>
-                <p className="mt-1 text-xs font-bold uppercase tracking-wider text-gray-500">{s.label}</p>
+          <Stagger className={cn('grid gap-6 sm:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-stone-200/80', gridCols)}>
+            {b.items?.map((s, idx) => (
+              <StaggerItem key={s.id} className={cn('flex flex-col', idx > 0 && 'pt-4 sm:pt-0 sm:pl-8')}>
+                <p className="font-display text-3xl font-bold text-[#000d3d] sm:text-4xl lg:text-[2.6rem] leading-none">
+                  <CountUp value={s.value} />
+                </p>
+                <p className="mt-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">
+                  {s.label}
+                </p>
               </StaggerItem>
             ))}
           </Stagger>
-        </>
+        </div>
       )
+    }
     case 'gallery':
       return (
         <>

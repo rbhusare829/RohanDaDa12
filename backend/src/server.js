@@ -13,10 +13,13 @@ const server = app.listen(cfg.port, () => {
   // This runs AFTER server.listen() so Render detects the open port immediately without timeout!
   import('./seed/load.js')
     .then(async ({ isEmpty, readSnapshot, loadSnapshot, ensureAdmin }) => {
-      if (await isEmpty(ctx)) {
-        console.log('Database is empty — auto-seeding initial content in background…')
+      const empty = await isEmpty(ctx)
+      const homeRaw = await ctx.documents.getGlobalRaw('home').catch(() => null)
+      const needsSeed = empty || !homeRaw?.sections?.length
+      if (needsSeed) {
+        console.log('Database missing content or globals — seeding initial content in background…')
         const snapshot = await readSnapshot()
-        const stats = await loadSnapshot(ctx, snapshot)
+        const stats = await loadSnapshot(ctx, snapshot, { strict: false })
         console.log(`✓ Loaded ${stats.documents} documents (${stats.media} photos) and ${stats.globals} settings pages.`)
         const admin = await ensureAdmin(ctx)
         if (admin) console.log(`✓ Created admin account ${admin}`)

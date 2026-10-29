@@ -2,9 +2,10 @@ node_modules
 .env
 .env*.local
 
-# local database, uploaded files and backups (created when the site first runs)
-/backend/data
-/backend/uploads
+# local database temporary files, uploaded private files and backups
+/backend/data/*.sqlite-shm
+/backend/data/*.sqlite-wal
+/backend/uploads/private
 /backend/backups
 
 # the built website

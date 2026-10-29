@@ -56,6 +56,21 @@ export async function loadSnapshot(ctx, snapshot, { mediaDir = DEFAULT_MEDIA_DIR
   const stats = { documents: 0, media: 0, globals: 0, problems: [] }
   const order = [...ORDER, ...collections.map((c) => c.slug).filter((s) => !ORDER.includes(s))]
 
+// 1. Load globals first (site-settings, header nav, home sections, footer)
+  for (const g of globals) {
+    const data = snapshot.globals[g.slug]
+    if (!data) continue
+    try {
+      await documents.updateGlobal(g.slug, data, { overrideAccess: true, locale: 'all' })
+      stats.globals++
+    } catch (err) {
+      const detail = err.errors ? err.errors.map((e) => `${e.field}: ${e.message}`).join('; ') : err.message
+      if (strict) throw new Error(`Could not load global ${g.slug}: ${detail}`)
+      stats.problems.push(`global ${g.slug}: ${detail}`)
+    }
+  }
+
+  // 2. Load collections
   for (const slug of order) {
     const docs = snapshot.collections[slug]
     if (!docs?.length) continue
@@ -83,18 +98,6 @@ export async function loadSnapshot(ctx, snapshot, { mediaDir = DEFAULT_MEDIA_DIR
     }
   }
 
-  for (const g of globals) {
-    const data = snapshot.globals[g.slug]
-    if (!data) continue
-    try {
-      await documents.updateGlobal(g.slug, data, { overrideAccess: true, locale: 'all' })
-      stats.globals++
-    } catch (err) {
-      const detail = err.errors ? err.errors.map((e) => `${e.field}: ${e.message}`).join('; ') : err.message
-      if (strict) throw new Error(`Could not load global ${g.slug}: ${detail}`)
-      stats.problems.push(`global ${g.slug}: ${detail}`)
-    }
-  }
   await db.syncIdCounters?.()
   return stats
 }

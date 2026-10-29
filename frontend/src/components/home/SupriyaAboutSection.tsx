@@ -63,17 +63,21 @@ export function SupriyaAboutSection({
             </div>
           </Reveal>
 
-          {/* Right Column: Portrait Photo (Supriya Sule style framed presentation) */}
+          {/* Right Column: Portrait Photo (with rich black back shadow) */}
           <Reveal className="relative order-first flex items-center justify-center lg:order-none lg:col-span-5" delay={0.15}>
-            <div className="relative w-full max-w-[420px]">
-              {/* Subtle ambient backdrop glow */}
+            <div className="group relative w-full max-w-[420px]">
+              {/* Deep diffused black back shadow behind the photo */}
               <div
                 aria-hidden
-                className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-saffron-200/40 via-red-100/30 to-blue-200/30 blur-2xl"
+                className="pointer-events-none absolute inset-x-4 -bottom-7 top-10 -z-10 rounded-3xl bg-black/45 blur-2xl transition-all duration-500 group-hover:bg-black/60 group-hover:blur-3xl group-hover:-bottom-8"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute -inset-2.5 -z-10 rounded-[2rem] bg-black/25 blur-xl transition-all duration-500"
               />
 
-              {/* Elegant framed portrait card */}
-              <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-[0_25px_60px_-15px_rgba(0,13,61,0.25)] ring-1 ring-stone-200/80">
+              {/* Elegant framed portrait card with deep black elevation shadow */}
+              <div className="relative overflow-hidden rounded-3xl border-4 border-white bg-white shadow-[0_25px_50px_-10px_rgba(0,0,0,0.35),0_12px_24px_-6px_rgba(0,0,0,0.2)] ring-1 ring-stone-200/80 transition-all duration-500 group-hover:shadow-[0_35px_65px_-10px_rgba(0,0,0,0.45)] group-hover:-translate-y-1">
                 <div className="aspect-[3/4] w-full overflow-hidden bg-stone-100">
                   <img
                     src="/images/portraits/rohan-peach-kurta-namaskar.webp"
@@ -81,7 +85,7 @@ export function SupriyaAboutSection({
                     width={500}
                     height={667}
                     loading="eager"
-                    className="size-full object-cover object-top transition-transform duration-700 hover:scale-105"
+                    className="size-full object-cover object-top transition-transform duration-700 group-hover:scale-103"
                   />
                 </div>
               </div>

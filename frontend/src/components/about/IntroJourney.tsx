@@ -62,15 +62,30 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
   const visibleRemaining = expanded ? remainingParagraphs : remainingParagraphs.slice(0, 1)
 
   return (
-    <section className="relative py-10 sm:py-14 lg:py-20 bg-white overflow-hidden">
-      {/* Subtle ambient atmospheric glows */}
+    <section
+      className="relative py-12 sm:py-16 lg:py-20 border-b border-orange-200/70 overflow-hidden"
+      style={{
+        background:
+          'linear-gradient(115deg, #fde3ca 0%, #feedd7 35%, #fff4e8 70%, #fde7d2 100%)',
+      }}
+    >
+      {/* Saffron watercolor texture (richer opacity for visible warm presence) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-12 right-1/4 -z-10 size-96 rounded-full bg-orange-100/30 blur-3xl"
+        className="pointer-events-none absolute inset-0 opacity-70 bg-no-repeat bg-left-top bg-cover sm:bg-[length:auto_100%]"
+        style={{
+          backgroundImage: "url('/images/backgrounds/manifesto-pattern.png')",
+        }}
+      />
+
+      {/* Deeper warm saffron atmospheric glows */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-12 -left-12 size-96 rounded-full bg-[#fb923c]/25 blur-3xl -z-10"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 left-10 -z-10 size-80 rounded-full bg-sky-100/25 blur-3xl"
+        className="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-[#f97316]/20 blur-3xl -z-10"
       />
 
       <div className="container-x relative z-10">
@@ -79,7 +94,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           <div className="order-1 lg:col-span-8 lg:col-start-5">
             <Reveal>
               {/* Heading / Core Tagline */}
-              <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.1rem] font-bold leading-snug tracking-tight text-[#000d3d]">
+              <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.2rem] font-bold leading-snug tracking-tight text-[#000d3d]">
                 {isMr ? (
                   <>
                     <span>सर्वसामान्यांच्या हितासाठी आणि</span>{' '}
@@ -97,7 +112,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
               </div>
 
               {/* Lead Paragraph */}
-              <p className="mt-4 text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
+              <p className="mt-4 sm:mt-5 text-base leading-relaxed text-slate-700 sm:text-[1.03rem] font-normal">
                 {leadParagraph}
               </p>
             </Reveal>
@@ -106,21 +121,19 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           {/* 2. Photo: on mobile order-2 (shows AFTER lead text), on desktop col-span-4 in left column */}
           <div className="order-2 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:row-span-3 lg:sticky lg:top-24">
             <Reveal delay={0.08}>
-              <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[330px] lg:max-w-none">
-                {/* Soft modern ambient aura behind the photo (NO hard border) */}
+              <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[330px] lg:max-w-none group">
+                {/* Diffused realistic back shadow behind the photo */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -inset-3 -z-10 rounded-3xl bg-gradient-to-tr from-saffron-500/20 via-sky-500/10 to-transparent blur-xl opacity-80"
+                  className="pointer-events-none absolute inset-x-2 -bottom-5 top-8 -z-10 rounded-3xl bg-slate-900/25 blur-2xl transition-all duration-500 group-hover:bg-slate-900/35 group-hover:blur-3xl group-hover:-bottom-6"
                 />
-
-                {/* Subtle modern offset backdrop accent behind photo */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -bottom-2 -right-2 -top-2 -left-2 -z-10 rounded-[1.75rem] bg-gradient-to-br from-saffron-100/60 via-transparent to-slate-200/50"
+                  className="pointer-events-none absolute -inset-1.5 -z-10 rounded-2xl sm:rounded-3xl bg-slate-900/15 blur-lg transition-all duration-500"
                 />
 
-                {/* Direct borderless photo container - NO white padding frame, NO border box */}
-                <div className="group relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-[0_20px_45px_-12px_rgba(0,13,61,0.22)] transition-all duration-500 hover:shadow-[0_25px_55px_-10px_rgba(0,13,61,0.28)] hover:scale-[1.01]">
+                {/* Direct photo container with clean rounded corners and depth shadow */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-[0_22px_45px_-10px_rgba(15,23,42,0.28),0_8px_18px_-6px_rgba(15,23,42,0.15)] transition-all duration-500 group-hover:shadow-[0_28px_55px_-10px_rgba(15,23,42,0.36)] group-hover:-translate-y-1">
                   <Img
                     src="/images/portraits/rohan-white-shirt-armchair.webp"
                     alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
@@ -173,9 +186,9 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           </div>
 
           {/* 4. Quick Facts Grid: on mobile order-4 (shows at bottom), on desktop col-span-8 in right column */}
-          <div className="order-4 lg:col-span-8 lg:col-start-5 pt-2">
+          <div className="order-4 lg:col-span-8 lg:col-start-5 pt-3">
             <Reveal delay={0.15}>
-              <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4 border-t border-stone-200/80 pt-4">
+              <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4 border-t border-stone-200/90 pt-5">
                 <QuickFactCard
                   icon={Calendar}
                   label={isMr ? 'जन्म' : 'Born'}
@@ -215,7 +228,7 @@ function QuickFactCard({
   val: string
 }) {
   return (
-    <div className="rounded-2xl border border-stone-200/90 bg-stone-50/70 p-3.5 transition-all hover:border-saffron-300 hover:bg-white hover:shadow-sm">
+    <div className="rounded-2xl border border-stone-200/90 bg-white/85 backdrop-blur-sm p-3.5 transition-all hover:border-saffron-400 hover:bg-white hover:shadow-md">
       <div className="flex items-center gap-2 text-saffron-600">
         <Icon className="size-4" />
         <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500">{label}</span>

@@ -36,7 +36,8 @@
     "e2e": "npm run e2e:site && npm run e2e:admin",
     "e2e:site": "node e2e/site.e2e.mjs",
     "e2e:admin": "node e2e/admin.e2e.mjs",
-    "admin": "npm run admin -w backend --"
+    "admin": "npm run admin -w backend --",
+    "start:prod": "npm run seed -w backend && npm run start -w backend"
   },
   "engines": {
     "node": ">=20.9.0"

@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: rohan-deshmukh-website
+    runtime: node
+    plan: free
+    region: singapore
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:prod
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: TRUST_PROXY
+        value: "1"
+      - key: AUTO_MIGRATE
+        value: "true"
+      - key: ADMIN_EMAIL
+        value: admin@rohandeshmukh.in
+      - key: ADMIN_PASSWORD
+        value: RohanAdmin@2026!

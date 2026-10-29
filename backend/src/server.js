@@ -8,6 +8,21 @@ const jobs = startJobs(ctx)
 
 const server = app.listen(cfg.port, () => {
   console.log(`Rohan Deshmukh website API  →  http://localhost:${cfg.port}   (${cfg.nodeEnv}, ${cfg.db.dialect}${cfg.serveFrontend ? ', serving the website' : ''})`)
+
+  // Automatically seed initial content in the background if the database is empty (e.g. first deploy on Render)
+  // This runs AFTER server.listen() so Render detects the open port immediately without timeout!
+  import('./seed/load.js')
+    .then(async ({ isEmpty, readSnapshot, loadSnapshot, ensureAdmin }) => {
+      if (await isEmpty(ctx)) {
+        console.log('Database is empty — auto-seeding initial content in background…')
+        const snapshot = await readSnapshot()
+        const stats = await loadSnapshot(ctx, snapshot)
+        console.log(`✓ Loaded ${stats.documents} documents (${stats.media} photos) and ${stats.globals} settings pages.`)
+        const admin = await ensureAdmin(ctx)
+        if (admin) console.log(`✓ Created admin account ${admin}`)
+      }
+    })
+    .catch((err) => console.error('Background seed notice:', err.message))
 })
 
 // a clean stop: finish the requests in flight, stop the scheduled jobs, close the database

@@ -7,16 +7,17 @@ import { m, type Variants } from 'motion/react'
 
 /* Scroll-in animations (Oct 2026), once per activity; <MotionConfig reducedMotion="user"> (RootLayout) keeps them still for visitors
    who ask their device for reduced motion. The photo slides in from its own side, the words rise one after another, the red-and-saffron
-   bar draws itself, and the fact tiles pop in in turn. */
+   bar draws itself, and the key facts rise in turn. */
 const EASE = [0.22, 1, 0.36, 1] as const
 const group: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
 const rise: Variants = { hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } } }
 const draw: Variants = { hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.6, ease: EASE } } }
-const pop: Variants = { hidden: { opacity: 0, y: 12, scale: 0.96 }, show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: EASE } } }
 const photo = (fromRight: boolean): Variants => ({
   hidden: { opacity: 0, x: fromRight ? 48 : -48, scale: 0.96 },
   show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.75, ease: EASE } },
 })
+/** activities shown on a white band (the rest sit on the page's own background) */
+const WHITE = new Set(['chhota-udyojak-motha-udyojak', 'yuva-sahitya-sammelan', 'rural-sports-competitions'])
 const inView = { initial: 'hidden', whileInView: 'show', viewport: { once: true, amount: 0.2 } } as const
 
 /**
@@ -61,26 +62,37 @@ export function SocialActivitiesList({ locale = 'mr', extra = [] }: { locale?: '
 
   return (
     <>
-      {/* each activity is its own card — white and light blue in turn, a red-to-saffron strip on top — so one never runs into the next */}
-      <div className="space-y-8 sm:space-y-12">
+      {/* no cards (Oct 2026): each activity sits straight on the page, a thin line between one and the next.
+          Phones: title → photo → words. Wide screens: the photo on one side (swapping from one activity to the next), title and words on the other. */}
+      <div className="divide-y divide-stone-200">
         {list.map((a, i) => {
           const flip = i % 2 === 1
-          const tinted = i % 2 === 1
           return (
             <article
               key={a.id}
               id={a.id}
               aria-labelledby={`${a.id}-title`}
               className={cn(
-                'relative scroll-mt-28 overflow-clip rounded-3xl border border-stone-200/90 shadow-[0_18px_45px_-28px_rgba(0,13,61,0.35)]',
-                tinted ? 'bg-[#f0f6fc]' : 'bg-white',
+                'scroll-mt-28 py-8 first:pt-0 last:pb-0 sm:py-12',
+                // a white band across the full width of the page behind this activity
+                WHITE.has(a.id) && 'bg-white shadow-[0_0_0_100vmax_#fff] [clip-path:inset(0_-100vmax)] last:-mb-10 last:pb-18 sm:last:-mb-20 sm:last:pb-32 md:last:-mb-28 md:last:pb-40', // the last one runs on to the footer (no cream strip under it)
               )}
             >
-              <span aria-hidden className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-red-600 via-red-500 to-saffron-500" />
-              <m.div {...inView} variants={group} className="grid grid-cols-1 items-start gap-6 p-5 pt-7 sm:gap-8 sm:p-8 sm:pt-10 lg:grid-cols-12 lg:gap-12 lg:p-10 lg:pt-12">
+              <m.div {...inView} variants={group} className="grid grid-cols-1 items-start gap-x-12 gap-y-5 lg:grid-cols-12 lg:gap-y-0">
+                {/* the title (first on phones) */}
+                <m.div variants={group} className={cn('lg:col-span-7 lg:row-start-1', flip ? 'lg:col-start-1' : 'lg:col-start-6')}>
+                  <m.h2 variants={rise} id={`${a.id}-title`} className="font-display text-2xl font-bold leading-tight tracking-tight text-[#000d3d] sm:text-3xl lg:text-4xl">
+                    {t(a.title)}
+                  </m.h2>
+                  <m.div variants={draw} className="mt-2.5 flex origin-left items-center gap-1.5 lg:mb-5">
+                    <span className="h-1 w-14 rounded-full bg-red-600" />
+                    <span className="h-1 w-3 rounded-full bg-saffron-500" />
+                  </m.div>
+                </m.div>
+
                 {/* the whole photo: shown in full, a soft blurred copy of it filling any space around it */}
-                <m.div variants={photo(flip)} className={cn('lg:sticky lg:top-28 lg:col-span-5', flip && 'lg:order-2')}>
-                  <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl border border-stone-200 bg-[#000d3d] shadow-sm transition-shadow duration-500 hover:shadow-xl">
+                <m.div variants={photo(flip)} className={cn('lg:sticky lg:top-28 lg:col-span-5 lg:row-span-2 lg:row-start-1', flip ? 'lg:col-start-8' : 'lg:col-start-1')}>
+                  <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-[#000d3d] shadow-[0_10px_28px_-12px_rgba(0,13,61,0.35)] transition-shadow duration-500 hover:shadow-[0_18px_40px_-14px_rgba(0,13,61,0.45)]">
                     {a.image ? (
                       <>
                         {!a.fill && <img src={a.image} alt="" aria-hidden className="absolute inset-0 size-full scale-110 object-cover opacity-60 blur-xl" />}
@@ -104,29 +116,24 @@ export function SocialActivitiesList({ locale = 'mr', extra = [] }: { locale?: '
                   </div>
                 </m.div>
 
-                {/* the words */}
-                <m.div variants={group} className={cn('lg:col-span-7', flip && 'lg:order-1')}>
-                  <m.h2 variants={rise} id={`${a.id}-title`} className="font-display text-2xl font-bold leading-tight tracking-tight text-[#000d3d] sm:text-3xl lg:text-4xl">
-                    {t(a.title)}
-                  </m.h2>
-                  <m.div variants={draw} className="mt-2.5 mb-5 flex origin-left items-center gap-1.5">
-                    <span className="h-1 w-14 rounded-full bg-red-600" />
-                    <span className="h-1 w-3 rounded-full bg-saffron-500" />
-                  </m.div>
+                {/* the words: tagline, story, key facts on light-blue boxes */}
+                <m.div variants={group} className={cn('lg:col-span-7 lg:row-start-2', flip ? 'lg:col-start-1' : 'lg:col-start-6')}>
                   <m.p variants={rise} className="font-display text-lg font-bold text-slate-800">{t(a.tagline)}</m.p>
                   <div className="mt-3 space-y-4 text-sm leading-relaxed text-slate-700 sm:text-base">
                     {(isMr ? a.body.mr : a.body.en).map((p, k) => (
                       <m.p key={k} variants={rise}>{p}</m.p>
                     ))}
                   </div>
-                  <m.dl variants={group} className="mt-7 grid gap-3 sm:grid-cols-2">
-                    {a.facts.map((f, k) => (
-                      <m.div key={k} variants={pop} className={cn('rounded-xl border border-stone-200 p-4', tinted ? 'bg-white' : 'bg-[#f0f6fc]', 'transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:shadow-md')}>
-                        <dt className="text-[11px] font-extrabold uppercase tracking-wider text-red-600">{t(f.label)}</dt>
-                        <dd className="mt-1 text-sm font-semibold leading-snug text-[#000d3d]">{t(f.value)}</dd>
-                      </m.div>
-                    ))}
-                  </m.dl>
+                  {a.facts.length > 0 && (
+                    <m.dl variants={group} className="mt-6 grid gap-3 sm:grid-cols-2">
+                      {a.facts.map((f, k) => (
+                        <m.div key={k} variants={rise} className="rounded-xl border border-stone-200 bg-[#f0f6fc] p-4 transition-[translate,border-color,box-shadow] duration-300 hover:-translate-y-0.5 hover:border-red-300 hover:shadow-md">
+                          <dt className="text-[11px] font-extrabold uppercase tracking-wider text-red-600">{t(f.label)}</dt>
+                          <dd className="mt-1 text-sm font-semibold leading-snug text-[#000d3d]">{t(f.value)}</dd>
+                        </m.div>
+                      ))}
+                    </m.dl>
+                  )}
                 </m.div>
               </m.div>
             </article>

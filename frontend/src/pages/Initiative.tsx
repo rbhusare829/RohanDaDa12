@@ -56,7 +56,6 @@ export default function InitiativePage() {
         title={d.title}
         path="/social-work"
         variant="navy"
-        crumbs={[{ label: locale === 'mr' ? 'लोकमंगल फाऊंडेशन' : 'Lokmangal Foundation', href: '/lokmangal/foundation' }, { label: locale === 'mr' ? 'प्रकल्प' : 'Projects', href: '/lokmangal/foundation#projects' }, { label: d.title }]}
       >
         {d.stat && (
           <p className="mt-6 inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 border-l-2 border-saffron-500 pl-4">

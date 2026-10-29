@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react'
-import { ArrowRight, ChevronLeft, ChevronRight, Newspaper, Pause, Play, Search, Sparkles, TrendingUp, X } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Newspaper, Search, Sparkles, TrendingUp, X } from 'lucide-react'
 import { Link } from 'react-router'
 import type { Media } from '@/types/cms'
-import { useTranslations } from '@/lib/i18n'
 import { usePrefersReducedMotion } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import { Img } from '../ui/Img'
@@ -119,14 +118,12 @@ function Photo({ p, sizes, className }: { p: ProjectCard; sizes: string; classNa
   )
 }
 
-/** Large highlight card: photo left, story right; arrows, dots and a gentle auto-advance with a Pause button (WCAG 2.2.2) */
+/** Large highlight card: photo left, story right; arrows, dots and a gentle auto-advance that stops while the pointer or focus is on it */
 function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: Labels; n: (v: number) => string }) {
-  const tc = useTranslations('common')
   const [i, setI] = useState(0)
   const [hold, setHold] = useState(false) // pointer or focus is inside
-  const [choice, setChoice] = useState<boolean | null>(null) // true = the visitor pressed Pause, false = Play
   const reduced = usePrefersReducedMotion()
-  const paused = choice ?? reduced // people who ask for less motion get no auto-advance unless they press Play
+  const paused = reduced // people who ask for less motion get no auto-advance
   const count = items.length
   const go = useCallback((to: number) => setI(((to % count) + count) % count), [count])
 
@@ -172,15 +169,6 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
                 <div className="flex gap-2">
                   <button type="button" onClick={() => go(i - 1)} aria-label={labels.prev} className="btn-icon size-11">
                     <ChevronLeft aria-hidden className="size-5" />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setChoice(!paused)}
-                    aria-label={paused ? tc('playSlides') : tc('pauseSlides')}
-                    title={paused ? tc('playSlides') : tc('pauseSlides')}
-                    className="btn-icon size-11"
-                  >
-                    {paused ? <Play aria-hidden className="size-4 fill-current" /> : <Pause aria-hidden className="size-4 fill-current" />}
                   </button>
                   <button type="button" onClick={() => go(i + 1)} aria-label={labels.next} className="btn-icon size-11">
                     <ChevronRight aria-hidden className="size-5" />

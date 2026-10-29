@@ -1,7 +1,6 @@
-import { useEffect } from 'react'
-import { useLocation } from 'react-router'
 import { Trophy } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useHashTarget } from '@/lib/use-hash-target'
 import { ACTIVITIES, type Activity, type Text } from '@/lib/social-activities'
 import { m, type Variants } from 'motion/react'
 
@@ -20,31 +19,6 @@ const photo = (fromRight: boolean): Variants => ({
 const WHITE = new Set(['chhota-udyojak-motha-udyojak', 'yuva-sahitya-sammelan', 'rural-sports-competitions'])
 const inView = { initial: 'hidden', whileInView: 'show', viewport: { once: true, amount: 0.2 } } as const
 
-/**
- * A link to one activity (/social-activities#yuva-sahitya-sammelan, from the homepage cards) lands on it. The browser's own jump can
- * come before the photos above it have their height, so the page aims again once they have settled — unless the visitor has
- * started scrolling by then.
- */
-function useHashTarget() {
-  const { hash, pathname } = useLocation()
-  useEffect(() => {
-    const id = decodeURIComponent(hash.slice(1))
-    if (!id) return
-    let moved = false
-    const stop = () => (moved = true)
-    const go = () => !moved && document.getElementById(id)?.scrollIntoView({ block: 'start' })
-    window.addEventListener('wheel', stop, { passive: true, once: true })
-    window.addEventListener('touchstart', stop, { passive: true, once: true })
-    const raf = requestAnimationFrame(go)
-    const timers = [250, 700].map((ms) => window.setTimeout(go, ms))
-    return () => {
-      cancelAnimationFrame(raf)
-      timers.forEach(clearTimeout)
-      window.removeEventListener('wheel', stop)
-      window.removeEventListener('touchstart', stop)
-    }
-  }, [hash, pathname])
-}
 
 /**
  * The four social activities in full (Oct 2026) — the "सामाजिक उपक्रम / Social Activities" tab of the Political Career page.

@@ -38,12 +38,13 @@ const getCardIcon = (title?: string | null, url?: string | null) => {
 }
 
 /** label + heading + intro, Stitch style */
-export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }: { eyebrow?: string | null; heading?: string | null; intro?: string | null; as?: 'h2' | 'h3'; className?: string }) {
+export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className, accent }: { eyebrow?: string | null; heading?: string | null; intro?: string | null; as?: 'h2' | 'h3'; className?: string; /** the red and saffron bars under the heading */ accent?: boolean }) {
   if (!eyebrow && !heading && !intro) return null
   return (
     <Reveal className={cn('mb-6 sm:mb-10 max-w-3xl space-y-2', className)}>
       {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{eyebrow}</p>}
       {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{heading}</H>}
+      {heading && accent && <div aria-hidden className="mt-3 flex items-center gap-1.5"><span className="h-1.5 w-12 rounded-full bg-red-600 sm:w-14" /><span className="h-1.5 w-3 rounded-full bg-saffron-500 sm:w-3.5" /></div>}
       {intro && <p className="pt-1 text-base leading-relaxed text-gray-600">{intro}</p>}
     </Reveal>
   )
@@ -132,7 +133,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
 }
 
 /** Media + text as a Stitch chapter: chip + heading, then the photo beside a text card (`plain`: the text straight on the page, no card) */
-export function StitchChapter({ b, n, plain }: { b: MediaText; n?: number; plain?: boolean }) {
+export function StitchChapter({ b, n, plain, accent }: { b: MediaText; n?: number; plain?: boolean; /** the red and saffron bars under the heading */ accent?: boolean }) {
   const hasImg = Boolean(mediaUrl(b.image, 'card'))
   const fit = photoFit(b.image, 1.5, 0.45)
   const right = b.imagePosition === 'right'
@@ -147,6 +148,7 @@ export function StitchChapter({ b, n, plain }: { b: MediaText; n?: number; plain
           </div>
         )}
         {b.heading && <h2 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{b.heading}</h2>}
+        {b.heading && accent && <div aria-hidden className="mt-3 flex items-center gap-1.5"><span className="h-1.5 w-12 rounded-full bg-red-600 sm:w-14" /><span className="h-1.5 w-3 rounded-full bg-saffron-500 sm:w-3.5" /></div>}
       </Reveal>
 
       <div className={cn('grid grid-cols-1 items-stretch gap-8', hasImg && 'lg:grid-cols-12')}>
@@ -178,14 +180,14 @@ export function StitchChapter({ b, n, plain }: { b: MediaText; n?: number; plain
 const Box = ({ url, className, children }: { url?: string | null; className?: string; children: ReactNode }) =>
   url ? <CMSLink url={url} className={className}>{children}</CMSLink> : <div className={className}>{children}</div>
 
-function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
+function Cards({ b, accent }: { b: Extract<PageBlock, { blockType: 'cards' }>; accent?: boolean }) {
   const items = b.items ?? []
   const withImages = items.some((c) => mediaUrl(c.image, 'card'))
   const CardTitle = b.heading ? 'h3' : 'h2'
   const cols = b.columns === '2' ? 'md:grid-cols-2' : b.columns === '4' ? 'sm:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-2 lg:grid-cols-3'
   return (
     <>
-      <StitchHead eyebrow={b.eyebrow} heading={b.heading} intro={b.intro} />
+      <StitchHead eyebrow={b.eyebrow} heading={b.heading} intro={b.intro} accent={accent} />
       <Stagger className={cn('grid grid-cols-1 gap-6 lg:gap-8', cols)}>
         {items.map((c, i) => {
           if (withImages) {
@@ -250,10 +252,10 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
 }
 
 /** every block type except Content / Media + text (handled above, they need their neighbours) */
-export function StitchBlock({ b }: { b: PageBlock }): ReactNode {
+export function StitchBlock({ b, accent }: { b: PageBlock; accent?: boolean }): ReactNode {
   switch (b.blockType) {
     case 'cards':
-      return <Cards b={b} />
+      return <Cards b={b} accent={accent} />
     case 'stats':
       return (
         <>

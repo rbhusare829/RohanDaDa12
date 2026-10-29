@@ -39,14 +39,11 @@ export function DrishtikonSection({
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-14 lg:mb-16">
           <Reveal>
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-saffron-700 mb-1.5">
-              {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
-            </p>
             <h2
               id="vision-section-heading"
               className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]"
             >
-              {isMr ? 'दृष्टिकोन' : 'Vision'}
+              {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </h2>
 
             <div className="mt-3 flex justify-center items-center gap-1.5">

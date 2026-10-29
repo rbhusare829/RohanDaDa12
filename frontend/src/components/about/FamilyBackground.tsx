@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router'
 import { m, type Variants } from 'motion/react'
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Page } from '@/types/cms'
 import { cn } from '@/lib/utils'
 import { mediaAlt, mediaUrl } from '@/lib/media'
@@ -33,46 +32,6 @@ const HOME_PHOTOS = ['/images/family/family-suresh-deshmukh.webp', '/images/fami
 
 /** the whole family together, beside the परिवार introduction (Oct 2026) */
 const FAMILY_PHOTO = { src: '/images/gallery/family/rd-family-together.webp', width: 710, height: 565 }
-
-const FAMILY_MOMENTS = [
-  {
-    src: '/images/gallery/family/rd-family-01.webp',
-    badge: 'माझे कुटुंब',
-    title: 'कुटुंबासोबतचे आनंदाचे क्षण',
-    desc: 'सौ. व दोन्ही कन्यांसोबत घरगुती वातावरणात घालवलेले सुखद क्षण. कौटुंबिक आधार हीच जनसेवेची खरी प्रेरणा आहे.',
-    en: { badge: 'My family', title: 'Happy moments with family', desc: 'Warm moments at home with his wife and both daughters. The support of family is the true inspiration for public service.' },
-  },
-  {
-    src: '/images/gallery/family/rd-family-06.webp',
-    badge: 'वडिलांचे मार्गदर्शन',
-    title: 'मा. बापूसाहेबांसोबत संवाद',
-    desc: 'मा. आ. श्री. सुभाष (बापूसाहेब) देशमुख यांच्यासोबतचे जिव्हाळ्याचे क्षण आणि त्यांच्या समृद्ध राजकीय-सामाजिक अनुभवाचे मार्गदर्शन.',
-    en: { badge: 'Father’s guidance', title: 'In conversation with Bapusaheb', desc: 'Close moments with Hon. MLA Shri Subhash (Bapusaheb) Deshmukh, and the guidance of his rich political and social experience.' },
-  },
-  {
-    src: '/images/gallery/family/rd-family-02.webp',
-    badge: 'संयुक्त कुटुंब',
-    title: 'एकत्र कुटुंबाचा स्नेहमेळावा',
-    desc: 'सण, उत्सव आणि कौटुंबिक कार्यक्रमांच्या निमित्ताने सर्व पिढ्या एकत्र येऊन संस्कृती व परंपरेचे जतन करतात.',
-    en: { badge: 'Joint family', title: 'The whole family together', desc: 'At festivals, celebrations and family occasions, every generation comes together to keep its culture and traditions alive.' },
-  },
-  {
-    src: '/images/gallery/family/rd-family-03.webp',
-    /** a tall photo: show the middle, so both Rohan's face and the baby's are in the card */
-    position: 'center 36%',
-    badge: 'पुढची पिढी',
-    title: 'चिमुकल्यांसोबत संस्कारांची शिदोरी',
-    desc: 'पुढच्या पिढीमध्ये लहानपणापासूनच समाजभान, नम्रता आणि संस्कृतीचे बीजारोपण करणे ही कुटुंबाची जबाबदारी आहे.',
-    en: { badge: 'The next generation', title: 'Passing on values to the little ones', desc: 'The family sees it as its duty to plant social awareness, humility and culture in the next generation from childhood.' },
-  },
-  {
-    src: '/images/gallery/family/rd-family-15.webp',
-    badge: 'कौटुंबिक परंपरा',
-    title: 'संस्कार, श्रद्धा आणि सेवा',
-    desc: 'कै. सुरेशचंद्रजी देशमुखांपासून सुरू झालेली अध्यात्म, श्रद्धा आणि लोककल्याणाची परंपरा अविरत पुढे चालू आहे.',
-    en: { badge: 'Family tradition', title: 'Values, faith and service', desc: 'The tradition of spirituality, faith and public welfare begun by the late Sureshchandra Deshmukh carries on to this day.' },
-  },
-]
 
 /* What happens inside a card when it scrolls into view: the halo blooms and the person rises into it. These variants have no `initial` of their own: they follow the card's own hidden → show (see StaggerItem), and `custom` (the
    card's number) staggers them the same way the cards are staggered (a delay written in a variant replaces the one inherited from the card). */
@@ -309,67 +268,6 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
               </div>
             </div>
           )}
-        </div>
-
-        {/* Family Spotlight & Moments Gallery (Supriya Sule style) */}
-        <div className="mt-8 sm:mt-14 pt-6 sm:pt-10 border-t border-stone-200/80 md:mt-20">
-          <Reveal className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">
-                <Sparkles className="size-3 text-saffron-600" />
-                {isMr ? 'संस्कार आणि स्नेह' : 'Family Values & Legacy'}
-              </span>
-              <h3 className="mt-2 font-display text-2xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-3xl">
-                {isMr ? 'कौटुंबिक स्नेह आणि क्षणचित्रे' : 'Family Moments & Togetherness'}
-              </h3>
-              <p className="mt-2 text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
-                {isMr
-                  ? 'एकत्र कुटुंब हीच आमची खरी ताकद आहे. आदर, प्रेम आणि समाजसेवेचे संस्कार पुढच्या पिढीमध्ये संक्रमित करणे हा आमच्या कुटुंबाचा मूळ विचार आहे.'
-                  : 'A joint family rooted in shared values, mutual respect, and dedicated service to society.'}
-              </p>
-            </div>
-            <Link
-              to="/media/photos/family-moments"
-              className="group inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-full border border-saffron-300 bg-saffron-50/80 px-4 py-2 text-xs font-bold uppercase tracking-wider text-saffron-800 transition-all hover:bg-saffron-700 hover:text-white hover:border-saffron-700 active:scale-[0.98]"
-            >
-              <span>{isMr ? 'सर्व कौटुंबिक फोटो पहा' : 'View Full Family Album'}</span>
-              <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Reveal>
-
-          {/* Curated Family Moments Cards (Oct 2026: the "With Manish Deshmukh" card removed) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {FAMILY_MOMENTS.map((item, idx) => (
-              <div
-                key={idx}
-                className="group overflow-hidden rounded-2xl border border-stone-200/90 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-saffron-300 flex flex-col"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-stone-100">
-                  <Img
-                    src={item.src}
-                    alt={isMr ? item.title : item.en.title}
-                    fill
-                    priority
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                    style={'position' in item ? { objectPosition: item.position } : undefined}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <span className="absolute top-2.5 left-2.5 rounded-full bg-white/90 backdrop-blur-sm px-2.5 py-0.5 text-[10px] font-bold uppercase text-charcoal-800 shadow-xs">
-                    {isMr ? item.badge : item.en.badge}
-                  </span>
-                </div>
-                <div className="p-3.5 flex flex-col flex-1">
-                  <h4 className="font-display text-base font-bold text-charcoal-950 group-hover:text-saffron-700 transition-colors">
-                    {isMr ? item.title : item.en.title}
-                  </h4>
-                  <p className="mt-1.5 text-xs sm:text-sm text-slate-600 leading-relaxed flex-1">
-                    {isMr ? item.desc : item.en.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

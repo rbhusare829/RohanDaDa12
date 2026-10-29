@@ -1234,6 +1234,112 @@
   }
 }
 
+/* Glass reflection sheen sweep across glass canvas */
+@keyframes glass-sheen {
+  0% {
+    transform: translateX(-120%) skewX(-25deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateX(220%) skewX(-25deg);
+    opacity: 0.85;
+  }
+  60%, 100% {
+    transform: translateX(220%) skewX(-25deg);
+    opacity: 0;
+  }
+}
+
+.animate-glass-sheen {
+  animation: glass-sheen 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Secondary opposing glass shimmer */
+@keyframes glass-sheen-reverse {
+  0%, 35% {
+    transform: translateX(220%) skewX(25deg);
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.65;
+  }
+  80% {
+    transform: translateX(-120%) skewX(25deg);
+    opacity: 0.65;
+  }
+  90%, 100% {
+    transform: translateX(-120%) skewX(25deg);
+    opacity: 0;
+  }
+}
+
+.animate-glass-sheen-reverse {
+  animation: glass-sheen-reverse 4.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Glass sparkle twinkle */
+@keyframes glass-sparkle {
+  0%, 100% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1) rotate(180deg);
+    opacity: 0.95;
+  }
+}
+
+.animate-glass-sparkle {
+  animation: glass-sparkle 2.8s ease-in-out infinite;
+}
+
+/* Organic floating lights behind glass */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(35px, -25px) scale(1.18);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-35px, 25px) scale(1.12);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 8.5s ease-in-out infinite;
+}
+
+/* Fluid morphing glass orb movement */
+@keyframes float-fluid {
+  0%, 100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(45px, -30px) scale(1.2) rotate(15deg);
+  }
+  66% {
+    transform: translate(-35px, 30px) scale(0.9) rotate(-10deg);
+  }
+}
+
+.animate-float-fluid {
+  animation: float-fluid 6.5s ease-in-out infinite;
+}
+
 /* the social icons on the left edge slip in one after another (the delay is set per icon) */
 .dock-in {
   animation: dock-in .5s var(--ease-soft) backwards;

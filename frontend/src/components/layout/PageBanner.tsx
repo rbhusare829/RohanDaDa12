@@ -28,7 +28,7 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
   if (!crumbs?.length) return null
   return (
     <nav aria-label="Breadcrumb" className="border-b border-stone-200 bg-[#f8fafc] py-2.5 text-xs text-slate-600">
-      <ol className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+      <ol className="container-x pl-12 sm:pl-14 lg:pl-16 xl:pl-12 flex items-center gap-2 overflow-x-auto whitespace-nowrap">
         <li>
           <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] transition-colors hover:text-red-600">
             <Home aria-hidden className="size-3.5" />

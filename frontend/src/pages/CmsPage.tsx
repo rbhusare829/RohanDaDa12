@@ -42,7 +42,7 @@ export default function CmsPage() {
   return (
     <>
       <Seo title={page.meta?.title || page.title} description={page.meta?.description || page.subtitle} image={img} />
-      <InnerPage path={path} title={path === VISION_PATH ? (LOCALE === 'mr' ? 'व्हिजन' : 'Vision') : page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant={STITCH_HEADER[path]}>
+      <InnerPage path={path} title={path === VISION_PATH ? (LOCALE === 'mr' ? 'व्हिजन' : 'Vision') : page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant={STITCH_HEADER[path]} fullWidth={path === INTRO_PATH}>
         {path === FAMILY_PATH ? <FamilyBackground blocks={page.layout} locale={LOCALE} /> : path === INTRO_PATH ? <IntroJourney blocks={page.layout} locale={LOCALE} /> : path === PARIVAR_PATH ? <LokmangalParivar blocks={page.layout} locale={LOCALE} /> : path === VISION_PATH ? <Manifesto blocks={page.layout} /> : path === POLITICAL_PATH ? <PoliticalCareerTabs career={<PageBlocks blocks={page.layout} design="stitch" plainChapters />} locale={LOCALE} /> : <PageBlocks blocks={page.layout} design={STITCH_HEADER[path] ? 'stitch' : undefined} />}
       </InnerPage>
     </>

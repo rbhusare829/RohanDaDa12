@@ -160,11 +160,11 @@ export function HeroSlider({
                 initial={false}
                 animate={{
                   opacity: active ? 1 : 0,
-                  scale: active ? 1.04 : 1,
+                  scale: active && count > 1 ? 1.04 : 1,
                 }}
                 transition={{
                   opacity: { duration: 1.1, ease: [0.25, 1, 0.5, 1] },
-                  scale: { duration: active ? 7 : 1.1, ease: 'easeOut' },
+                  scale: { duration: active && count > 1 ? 7 : 0.2, ease: 'easeOut' },
                 }}
               >
                 <img
@@ -174,35 +174,11 @@ export function HeroSlider({
                   fetchPriority={i === 0 ? 'high' : 'low'}
                   decoding="async"
                   className="size-full object-cover"
-                  style={{ objectPosition: s.position ?? 'center 20%' }}
+                  style={{ objectPosition: s.mobilePosition ?? (s.position ?? 'right center') }}
                 />
               </m.div>
             )
           })}
-
-          {/* Dark Gradient Overlay for Maximum Text Contrast (matching Image 3) */}
-          {/* Left-to-right gradient: dark behind the words on the left, clear from the middle on so Rohan (on the right) shows at full brightness */}
-          <div
-            aria-hidden
-            className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#00081c]/90 via-[#00081c]/40 via-40% to-transparent to-60% pointer-events-none"
-          />
-          {/* phones: a fade from the bottom, so the words over the lower part of the photo stay readable and the face stays clear */}
-          <div
-            aria-hidden
-            className="absolute inset-x-0 bottom-0 h-1/2 md:hidden bg-gradient-to-t from-[#00081c] via-[#00081c]/60 to-transparent pointer-events-none"
-          />
-
-          {/* Top subtle vignette for seamless header blend */}
-          <div
-            aria-hidden
-            className="absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-[#00081c]/50 to-transparent pointer-events-none md:block"
-          />
-
-          {/* Bottom vignette for overlapping card integration */}
-          <div
-            aria-hidden
-            className="absolute inset-x-0 bottom-0 hidden h-24 bg-gradient-to-t from-[#00081c]/80 to-transparent pointer-events-none md:block"
-          />
         </div>
       )}
 
@@ -221,19 +197,19 @@ export function HeroSlider({
               >
                 {/* Orange/Saffron Uppercase Kicker */}
                 {activeSlide.kicker && (
-                  <p className="mb-2.5 sm:mb-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.16em] text-[#ff7a00] drop-shadow-sm">
+                  <p className="mb-2 sm:mb-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em] text-[#ff7a00] drop-shadow-sm">
                     {activeSlide.kicker}
                   </p>
                 )}
 
-                {/* Big White Bold Heading (2-Line Poster Layout) */}
-                <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.9rem] font-bold leading-[1.18] tracking-tight text-white drop-shadow-md">
+                {/* Clean White Heading (Refined Font Size) */}
+                <h1 className="font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
                   <FormattedHeading text={activeSlide.heading} />
                 </h1>
 
                 {/* Subtitle / Description if provided */}
                 {activeSlide.subheading && (
-                  <p className="mt-4 sm:mt-5 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-slate-200/90 font-normal">
+                  <p className="mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed text-slate-200/90 font-normal">
                     {activeSlide.subheading}
                   </p>
                 )}

@@ -18,6 +18,8 @@ type Props = {
   variant?: 'navy' | 'light'
   /** small label above the title (Stitch header) */
   eyebrow?: string | null
+  /** full width: children provide their own full-bleed sections & container-x */
+  fullWidth?: boolean
   children: ReactNode
 }
 
@@ -26,7 +28,7 @@ type Props = {
  * banner (breadcrumb, title, sibling pages as tabs) → content on the site grid, starting at the same
  * left edge as the title. Blocks inside decide their own reading width.
  */
-export function InnerPage({ path, title, subtitle, image, imagePosition, crumbs, sideMenu = true, variant, eyebrow, children }: Props) {
+export function InnerPage({ path, title, subtitle, image, imagePosition, crumbs, sideMenu = true, variant, eyebrow, fullWidth, children }: Props) {
   const { header } = useLayout()
   const menu = getSectionMenu(path, header)
   const autoCrumbs: Crumb[] = crumbs ?? [...(menu.title && menu.title !== title ? [{ label: menu.title, href: menu.sectionHref }] : []), { label: title }]
@@ -35,9 +37,19 @@ export function InnerPage({ path, title, subtitle, image, imagePosition, crumbs,
   return (
     <>
       <PageBanner title={title} subtitle={subtitle} crumbs={autoCrumbs} image={image} imagePosition={imagePosition} tabs={tabs} tabsLabel={menu.title ?? undefined} path={path} variant={variant} eyebrow={eyebrow} />
-      <div className={variant ? 'container-x pb-10 sm:pb-20 pt-8 sm:pt-12 md:pb-28 md:pt-16' : 'container-x pb-10 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12'}>
-        <div className="min-w-0">{children}</div>
-      </div>
+      {fullWidth ? (
+        <main className="relative min-h-[60vh] text-slate-800">
+          {children}
+        </main>
+      ) : (
+        <main className="relative min-h-[60vh] bg-white text-slate-800">
+          {/* Soft atmospheric gradient top fade from breadcrumb row */}
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/40 to-transparent" />
+          <div className={variant ? 'container-x relative z-10 pb-12 sm:pb-20 pt-8 sm:pt-12 md:pb-28 md:pt-14' : 'container-x relative z-10 pb-12 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12'}>
+            <div className="min-w-0">{children}</div>
+          </div>
+        </main>
+      )}
     </>
   )
 }

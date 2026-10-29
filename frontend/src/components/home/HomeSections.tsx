@@ -99,37 +99,17 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const textOnly = b.heroStyle === 'text'
   const isMr = locale !== 'en'
 
-  // The three hero slides (Oct 2026), each with a photo that fits its words:
-  // 1. grassroots → Rohan in a white kurta (a wide version of the portrait; no political photos)
-  // 2. the book → Rohan holding it (a wide version of the portrait, him on the right and space for the words on the left)
-  // 3. small steps → Rohan in a peach kurta (a wide version of the portrait; no political photos)
+  // Single Hero Banner (Oct 2026, custom graphic image without shadow overlay)
   const slides: Slide[] = [
     {
-      image: '/images/hero/rohan-hero-white-kurta.webp',
+      image: '/images/hero/rohan-hero-main.jpg',
       alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
       kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
       heading: isMr
         ? 'मोठ्या बदलांची सुरुवात मोठ्या व्यासपीठावरून नव्हे, तर सामान्य माणसाच्या प्रश्नांना समजून घेण्यापासून होते.'
         : 'Good leadership begins with understanding the problems of people at the grassroots',
-      position: '77% 15%',
-    },
-    {
-      image: '/images/hero/rohan-hero-book.webp',
-      alt: isMr ? 'रोहन सुभाष देशमुख ‘The New India Manifesto’ पुस्तकासह' : 'Rohan Subhash Deshmukh with The New India Manifesto',
-      kicker: isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'NEW INDIA MANIFESTO',
-      heading: isMr
-        ? '‘द न्यू इंडिया मॅनिफेस्टो : शक्यतांच्या पलीकडे’ या पुस्तकाचे लेखक'
-        : 'Author of The New India Manifesto: Going Beyond Possible',
-      position: '77% 15%',
-    },
-    {
-      image: '/images/hero/rohan-hero-namaskar.webp',
-      alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
-      kicker: isMr ? 'युवा नेतृत्व' : 'YOUTH LEADERSHIP',
-      heading: isMr
-        ? 'समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही मोठा बदल घडवू शकतो.'
-        : 'Small steps toward change can lead to a big difference',
-      position: '77% 15%',
+      position: 'right center',
+      mobilePosition: '75% 10%',
     },
   ]
 

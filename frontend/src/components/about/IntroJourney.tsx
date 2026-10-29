@@ -154,16 +154,24 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
     {
       role: isMr ? 'अध्यक्ष' : 'President',
       org: isMr ? 'लोकमंगल फाउंडेशन' : 'Lokmangal Foundation',
-      desc: isMr ? 'फाउंडेशनचे अध्यक्ष म्हणून रोहन देशमुख विविध उपक्रमांचे नियोजन, अंमलबजावणी आणि प्रत्यक्ष कार्याचा आढावा घेण्याची जबाबदारी सांभाळतात.' : 'As President of Lokmangal Foundation, Rohan Deshmukh leads the Foundation and oversees every initiative, from planning to work on the ground.',
+      desc: isMr ? 'सन २००५ मध्ये माननीय श्री. सुभाष (बापू) देशमुख यांनी लोकमंगल फाउंडेशनची स्थापना केली. गरजू कुटुंबांना आधार देणे, प्रत्येक व्यक्तीला प्रगतीची संधी उपलब्ध करून देणे आणि ग्रामीण भागाच्या विकासाला चालना देणे, ही या संस्थेची प्रमुख उद्दिष्टे आहेत. फाउंडेशनचे अध्यक्ष म्हणून रोहन देशमुख विविध उपक्रमांचे नियोजन, अंमलबजावणी आणि प्रत्यक्ष कार्याचा आढावा घेण्याची जबाबदारी सांभाळतात.' : 'As President of Lokmangal Foundation, Rohan Deshmukh leads the Foundation and oversees every initiative, from planning to work on the ground. Founded in 2005 by Hon. Shri Subhash (Bapu) Deshmukh, the Foundation was built on a clear belief: every family in need should find support, every person should get a chance to grow, and every village should move forward.',
       image: '/images/positions/position-foundation-president.webp',
       imgPos: '30% 40%',
     },
     {
       role: isMr ? 'संचालक' : 'Director',
-      org: isMr ? 'लोकमंगल मल्टिस्टेट' : 'Lokmangal Multistate',
-      desc: isMr ? 'माननीय श्री. सुभाष देशमुख यांनी स्थापन केलेला लोकमंगल समूह आज बँकिंग, उद्योग, शिक्षण, आरोग्यसेवा आणि समाजसेवा अशा विविध क्षेत्रांत कार्यरत आहे.' : 'Founded by Hon. Shri Subhash Deshmukh, the Lokmangal Group has grown over the years into a large family working in banking, industry, education, healthcare and social service.',
+      org: isMr ? 'लोकमंगल मल्टीस्टेट' : 'Lokmangal Multistate',
+      desc: isMr ? 'लोकमंगल मल्टीस्टेटच्या माध्यमातून रोहन सुभाष देशमुख यांनी अर्थकारणाच्या क्षेत्रातही आपला ठसा उमटवला. दोन राज्यांमध्ये ६० शाखांचे विस्तृत जाळे आणि ७०० कोटी रुपयांहून अधिक ठेवींच्या बळावर संस्थेने अल्पावधीत विश्वासार्हता व लौकिक मिळवला. प्रशिक्षित कर्मचारीवर्ग, तत्पर सेवा आणि पारदर्शक व्यवहारांच्या माध्यमातून आर्थिक साक्षरता वाढवणे आणि सर्वसामान्यांमध्ये आर्थिक जागरूकता निर्माण करणे, हा त्यांचा महत्त्वपूर्ण प्रयत्न राहिला आहे.' : 'Through Lokmangal Multistate, Rohan Subhash Deshmukh has made his mark in the world of finance as well. With a network of 60 branches across two states and deposits exceeding ₹700 crore, the institution has earned trust and a strong reputation in a short span of time. Backed by a trained team, prompt service, and transparent dealings, he has made it his mission to improve financial literacy and build financial awareness among ordinary people.',
       image: '/images/positions/position-lokmangal-multistate.webp',
       imgPos: '20% 50%',
+    },
+    {
+      role: isMr ? 'अध्यक्ष' : 'Chairman',
+      org: isMr ? 'लोकमंगल कॉलेज' : 'Lokmangal College',
+      desc: isMr ? 'लोकमंगल कॉलेजचे अध्यक्ष रोहन सुभाष देशमुख यांचे जैवतंत्रज्ञान आणि उद्योजकतेतील शैक्षणिक पार्श्वभूमीमुळे या क्षेत्रांकडे पाहण्याची स्वतंत्र दृष्टी लाभली आहे. याच दृष्टिकोनातून वडाळा, ता. उत्तर सोलापूर येथे २०० एकरांच्या विस्तीर्ण परिसरात लोकमंगल जैवतंत्रज्ञान महाविद्यालयाची स्थापना करण्यात आली. आज येथे सुमारे १२०० विद्यार्थी शिक्षण घेत आहेत.' : 'Rohan Subhash Deshmukh, Chairman of Lokmangal College, draws on his background in biotechnology and entrepreneurship to bring a fresh vision to both fields. That vision led to the founding of Lokmangal College of Biotechnology on a 200-acre campus in Wadala, North Solapur, where around 1,200 students now study.',
+      /* the Lokmangal Colleges crest, shown whole on a light panel */
+      image: '/images/positions/position-lokmangal-college.webp',
+      contain: true,
     },
     {
       role: isMr ? 'सरचिटणीस' : 'General Secretary',
@@ -178,14 +186,6 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
       desc: isMr ? 'मतदारसंघातील विविध गावांना भेटी देत त्यांनी नागरिकांशी थेट संवाद साधला आणि आपले विचार त्यांच्यापर्यंत पोहोचवले.' : 'He took his ideas directly to voters, reaching every corner of the constituency.',
       image: '/images/positions/position-loksabha.webp',
       imgPos: '50% 30%',
-    },
-    {
-      role: isMr ? 'लेखक' : 'Author',
-      org: isMr ? 'द न्यू इंडिया मॅनिफेस्टो' : 'The New India Manifesto',
-      desc: isMr ? '‘द न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी उद्योजकतेच्या माध्यमातून भारताच्या विकासाला नवी दिशा देण्याचा विचार मांडला आहे.' : 'In The New India Manifesto, Rohan Subhash Deshmukh sets out a simple idea: India’s growth can take a new direction through enterprise.',
-      image: '/images/positions/position-author.webp',
-      /* the book cover is shown whole on a light panel */
-      contain: true,
     },
   ]
 
@@ -214,15 +214,22 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
             >
               <div>
                 {/* the photo for this position */}
-                <div className={cn('relative aspect-[4/3] overflow-hidden rounded-xl', item.contain ? 'bg-[#f0f6fc]' : 'bg-stone-100')}>
-                  <img
-                    src={item.image}
-                    alt={`${item.role}, ${item.org}`}
-                    loading="lazy"
-                    decoding="async"
-                    className={cn('size-full transition-transform duration-500 group-hover:scale-105', item.contain ? 'object-contain p-3' : 'object-cover')}
-                    style={item.contain ? undefined : { objectPosition: item.imgPos }}
-                  />
+                <div className={cn('relative aspect-[4/3] overflow-hidden rounded-xl', item.contain || !item.image ? 'bg-[#f0f6fc]' : 'bg-stone-100')}>
+                  {item.image ? (
+                    <img
+                      src={item.image}
+                      alt={`${item.role}, ${item.org}`}
+                      loading="lazy"
+                      decoding="async"
+                      className={cn('size-full transition-transform duration-500 group-hover:scale-105', item.contain ? 'object-contain p-3' : 'object-cover')}
+                      style={item.contain ? undefined : { objectPosition: item.imgPos }}
+                    />
+                  ) : (
+                    <div className="flex size-full flex-col items-center justify-center gap-2 p-4 text-center text-[#000d3d]">
+                      <GraduationCap aria-hidden className="size-10 text-red-600" />
+                      <span className="font-display text-sm font-bold">{item.org}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mt-3.5">

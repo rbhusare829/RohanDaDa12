@@ -8,6 +8,7 @@ import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { Gallery } from '@/components/ui/Gallery'
 import { ScrollRow } from '@/components/ui/ScrollRow'
+import { SOCIAL_ACTIVITIES_PATH } from '@/lib/social-activities'
 import { notFound } from './helpers'
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -51,7 +52,10 @@ export default function EventPage() {
         crumbs={
           ini
             ? [{ label: t('socialWork'), href: '/social-work' }, { label: ini.title, href: `/social-work/${ini.slug}` }, { label: d.title }]
-            : [{ label: locale === 'mr' ? 'लोकमंगल फाऊंडेशन' : 'Lokmangal Foundation', href: '/lokmangal/foundation' }, { label: locale === 'mr' ? 'कार्यक्रम' : 'Events', href: '/lokmangal/foundation#events' }, { label: d.title }]
+            : d.group === 'sports'
+              ? // Sports events now sit under Political Career → Social Activities (Oct 2026)
+                [{ label: locale === 'mr' ? 'राजकीय कारकीर्द' : 'Political Career', href: '/political-career' }, { label: locale === 'mr' ? 'सामाजिक उपक्रम' : 'Social Activities', href: SOCIAL_ACTIVITIES_PATH }, { label: d.title }]
+              : [{ label: locale === 'mr' ? 'कार्यक्रम' : 'Events', href: '/events' }, { label: d.title }]
         }
         variant="navy"
       >

@@ -26,6 +26,7 @@
     "content:intro-know-more": "node scripts/intro-know-more.mjs",
     "content:rd-content": "node scripts/rd-content.mjs",
     "content:update": "node scripts/content-update.mjs",
+    "content:rename-intro": "node scripts/rename-intro.mjs",
     "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
     "lint": "eslint .",
     "admin": "node src/seed/admin.js"

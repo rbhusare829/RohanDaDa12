@@ -1,10 +1,35 @@
 import { useRef, type KeyboardEvent, type ReactNode } from 'react'
 import { useSearchParams } from 'react-router'
 import { HandHeart, Landmark } from 'lucide-react'
+import type { Event } from '@/types/cms'
 import { cn } from '@/lib/utils'
+import { mediaUrl } from '@/lib/media'
+import type { Activity } from '@/lib/social-activities'
 import { SocialActivitiesList } from '@/components/social/SocialActivitiesList'
 
 type TabId = 'career' | 'social'
+
+/** photos for events that have no cover photo in the admin yet, by event address */
+const EVENT_PHOTOS: Record<string, string> = {
+  'rural-sports-competitions': '/images/social-activities/rural-sports-competitions.webp', // CM Cup (मुख्यमंत्री चषक) sports, Rohan with the players
+  'international-womens-lawn-tennis-tournament': '/images/social-activities/international-womens-lawn-tennis-tournament.webp', // tournament artwork
+}
+
+/** an event (in the visitor's language, from the admin) as one more activity, shown in the same design as the four */
+const toActivity = (e: Event): Activity => {
+  const same = (x?: string | null) => ({ mr: x ?? '', en: x ?? '' })
+  const paras = (e.body || e.description || '').split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean)
+  return {
+    id: e.slug,
+    image: mediaUrl(e.coverImage, 'card') ?? EVENT_PHOTOS[e.slug] ?? '',
+    // the sports photos fill their frame edge to edge (no blurred border)
+    fill: e.slug in EVENT_PHOTOS,
+    title: same(e.title),
+    tagline: same(e.tagline || e.description),
+    body: { mr: paras, en: paras },
+    facts: (e.facts ?? []).map((f) => ({ label: same(f.label), value: same(f.value) })),
+  }
+}
 
 /**
  * Political Career page (Oct 2026): two tabs in the homepage's colours — a light-blue pill bar, the open tab in red with white
@@ -13,7 +38,7 @@ type TabId = 'career' | 'social'
  * (?tab=social), so it can be linked to and survives a refresh; the homepage's Social Activities cards open the second tab at their
  * activity (/political-career?tab=social#…). Arrow keys move between the tabs.
  */
-export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNode; locale?: 'mr' | 'en' }) {
+export function PoliticalCareerTabs({ career, sportsEvents = [], locale = 'mr' }: { career: ReactNode; sportsEvents?: Event[]; locale?: 'mr' | 'en' }) {
   const isMr = locale !== 'en'
   const [params, setParams] = useSearchParams()
   const active: TabId = params.get('tab') === 'social' ? 'social' : 'career'
@@ -81,7 +106,12 @@ export function PoliticalCareerTabs({ career, locale = 'mr' }: { career: ReactNo
       </div>
 
       <div role="tabpanel" id={`panel-${active}`} aria-labelledby={`tab-${active}`} tabIndex={0} className="focus:outline-none">
-        {active === 'career' ? career : <SocialActivitiesList locale={locale} />}
+        {active === 'career' ? (
+          career
+        ) : (
+          // the four activities, then the Lokmangal Sports events in the same design (moved from the Lokmangal Foundation page, Oct 2026)
+          <SocialActivitiesList locale={locale} extra={sportsEvents.map(toActivity)} />
+        )}
       </div>
     </>
   )

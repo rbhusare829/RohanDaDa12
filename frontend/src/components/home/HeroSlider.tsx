@@ -167,26 +167,39 @@ export function HeroSlider({
                   scale: { duration: active && count > 1 ? 7 : 0.2, ease: 'easeOut' },
                 }}
               >
-                <img
-                  src={s.image}
-                  alt={active ? s.alt : ''}
-                  loading={i === 0 ? 'eager' : 'lazy'}
-                  fetchPriority={i === 0 ? 'high' : 'low'}
-                  decoding="async"
-                  className="size-full object-cover"
-                  style={{ objectPosition: s.mobilePosition ?? (s.position ?? 'right center') }}
-                />
+                <picture className="size-full">
+                  {s.mobileImage && (
+                    <source media="(max-width: 767px)" srcSet={s.mobileImage} />
+                  )}
+                  <img
+                    src={s.image}
+                    alt={active ? s.alt : ''}
+                    loading={i === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={i === 0 ? 'high' : 'low'}
+                    decoding="async"
+                    className="size-full object-cover object-[var(--pos-mob)] md:object-[var(--pos-desk)]"
+                    style={{
+                      ['--pos-mob' as string]: s.mobilePosition ?? 'center top',
+                      ['--pos-desk' as string]: s.position ?? 'right center',
+                    }}
+                  />
+                </picture>
               </m.div>
             )
           })}
+
+          {/* Mobile Bottom Scrim: soft dark gradient so text over the desk remains 100% legible without dimming Rohan sir's face */}
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00081c] via-[#00081c]/70 to-transparent md:hidden z-10 pointer-events-none" />
         </div>
       )}
 
       {/* 2. Hero Content Container */}
-      <div className="container-x relative z-20 min-h-[460px] sm:min-h-[520px] md:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-12 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-30">
-        <div className="w-full flex items-end md:items-center justify-between gap-8">
-          {/* Words on the Left (Matching Image 3); on mobile they sit at the bottom, below the face */}
-          <div className="max-w-3xl lg:max-w-4xl py-2 md:py-6">
+      {/* On mobile (<md): items-end places text over the dark desk area at the bottom. */}
+      {/* On desktop (>=md): items-center centers text vertically on the left beside Rohan sir. */}
+      <div className="container-x relative z-20 min-h-[520px] sm:min-h-[560px] md:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-30">
+        <div className="w-full flex items-end md:items-center justify-between gap-4 sm:gap-6 md:gap-8">
+          {/* Words on the Left: at the top on mobile, vertically centered on desktop */}
+          <div className="flex-1 max-w-3xl lg:max-w-4xl py-2 md:py-6">
             <AnimatePresence mode="wait">
               <m.div
                 key={index}
@@ -220,7 +233,7 @@ export function HeroSlider({
           {/* Right: Vertical Slide Indicators (— 01 / 02) exactly like Image 3 */}
           {count > 1 && (
             <div
-              className="shrink-0 flex flex-col items-start gap-4 select-none z-30"
+              className="shrink-0 flex flex-col items-start gap-2.5 sm:gap-4 select-none z-30"
               aria-label="Carousel navigation"
             >
               {slides.map((_, idx) => {
@@ -233,16 +246,16 @@ export function HeroSlider({
                     aria-label={`Go to slide ${idx + 1}`}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'group flex items-center text-sm sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
+                      'group flex items-center text-xs sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
                       isActive
                         ? 'text-white font-bold'
-                        : 'text-white/50 hover:text-white font-medium pl-8 sm:pl-10',
+                        : 'text-white/50 hover:text-white font-medium pl-5 sm:pl-8 md:pl-10',
                     )}
                   >
                     {isActive && (
                       <span
                         aria-hidden
-                        className="inline-block w-6 sm:w-8 h-[2px] bg-white mr-2.5 transition-all duration-300"
+                        className="inline-block w-4 sm:w-6 md:w-8 h-[2px] bg-white mr-1.5 sm:mr-2.5 transition-all duration-300"
                       />
                     )}
                     <span>{pad(idx + 1)}</span>

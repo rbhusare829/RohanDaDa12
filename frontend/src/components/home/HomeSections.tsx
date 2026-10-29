@@ -99,17 +99,42 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const textOnly = b.heroStyle === 'text'
   const isMr = locale !== 'en'
 
-  // Single Hero Banner (Oct 2026, custom graphic image without shadow overlay)
+  // The three final hero slides (Oct 2026):
+  // Desktop: slide19B, slide21, slide20
+  // Mobile: Custom vertical mobile portraits from WhatsApp exports
   const slides: Slide[] = [
     {
-      image: '/images/hero/rohan-hero-main.jpg',
+      image: '/images/hero/hero-slide-1.webp',
+      mobileImage: '/images/hero/hero-mobile-slide-1.webp',
       alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
       kicker: isMr ? 'लोकमंगल फाऊंडेशन' : 'LOKMANGAL FOUNDATION',
       heading: isMr
         ? 'मोठ्या बदलांची सुरुवात मोठ्या व्यासपीठावरून नव्हे, तर सामान्य माणसाच्या प्रश्नांना समजून घेण्यापासून होते.'
         : 'Good leadership begins with understanding the problems of people at the grassroots',
       position: 'right center',
-      mobilePosition: '75% 10%',
+      mobilePosition: 'center top',
+    },
+    {
+      image: '/images/hero/hero-slide-2.webp',
+      mobileImage: '/images/hero/hero-mobile-slide-2.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख ‘The New India Manifesto’ पुस्तकासह' : 'Rohan Subhash Deshmukh with The New India Manifesto',
+      kicker: isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'NEW INDIA MANIFESTO',
+      heading: isMr
+        ? '‘द न्यू इंडिया मॅनिफेस्टो : शक्यतांच्या पलीकडे’ या पुस्तकाचे लेखक'
+        : 'Author of The New India Manifesto: Going Beyond Possible',
+      position: 'right center',
+      mobilePosition: 'center top',
+    },
+    {
+      image: '/images/hero/hero-slide-3.webp',
+      mobileImage: '/images/hero/hero-mobile-slide-3.webp',
+      alt: isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh',
+      kicker: isMr ? 'युवा नेतृत्व' : 'YOUTH LEADERSHIP',
+      heading: isMr
+        ? 'समाजात बदल घडवण्यासाठी केलेला छोटासा प्रयत्नही मोठा बदल घडवू शकतो.'
+        : 'Small steps toward change can lead to a big difference',
+      position: 'right center',
+      mobilePosition: 'center top',
     },
   ]
 

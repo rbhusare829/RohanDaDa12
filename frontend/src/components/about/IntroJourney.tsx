@@ -63,84 +63,59 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
 
   return (
     <section
-      className="relative py-12 sm:py-16 lg:py-20 border-b border-orange-200/70 overflow-hidden"
+      className="relative py-12 sm:py-16 lg:py-20 border-b border-amber-400/60 overflow-hidden"
       style={{
         background:
-          'linear-gradient(115deg, #fde3ca 0%, #feedd7 35%, #fff4e8 70%, #fde7d2 100%)',
+          'linear-gradient(170deg, #f6aa5c 0%, #f69e44 45%, #f69731 100%)',
       }}
     >
-      {/* Saffron watercolor texture (richer opacity for visible warm presence) */}
+      {/* Saffron watercolor texture overlay */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-70 bg-no-repeat bg-left-top bg-cover sm:bg-[length:auto_100%]"
+        className="pointer-events-none absolute inset-0 opacity-20 mix-blend-overlay bg-no-repeat bg-left-top bg-cover sm:bg-[length:auto_100%]"
         style={{
           backgroundImage: "url('/images/backgrounds/manifesto-pattern.png')",
         }}
       />
 
-      {/* Deeper warm saffron atmospheric glows */}
+      {/* Atmospheric saffron glow accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-12 -left-12 size-96 rounded-full bg-[#fb923c]/25 blur-3xl -z-10"
+        className="pointer-events-none absolute -top-12 -left-12 size-96 rounded-full bg-amber-300/30 blur-3xl -z-10"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-[#f97316]/20 blur-3xl -z-10"
+        className="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-orange-600/25 blur-3xl -z-10"
       />
 
       <div className="container-x relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 xl:gap-14 items-start">
-          {/* 1. Header & Lead Paragraph: on mobile order-1 (shows FIRST), on desktop col-span-8 in right column */}
-          <div className="order-1 lg:col-span-8 lg:col-start-5">
-            <Reveal>
-              {/* Heading / Core Tagline */}
-              <h2 className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2.2rem] font-bold leading-snug tracking-tight text-[#000d3d]">
-                {isMr ? (
-                  <>
-                    <span>सर्वसामान्यांच्या हितासाठी आणि</span>{' '}
-                    <span className="block sm:inline">सर्वांगीण विकासासाठी कटिबद्ध</span>
-                  </>
-                ) : (
-                  "I'm committed to the betterment of the people"
-                )}
-              </h2>
-
-              {/* Signature red and saffron underline bar */}
-              <div className="mt-3.5 flex items-center gap-1.5">
-                <span className="h-1.5 w-14 rounded-full bg-red-600" />
-                <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
-              </div>
-
-              {/* Lead Paragraph */}
-              <p className="mt-4 sm:mt-5 text-base leading-relaxed text-slate-700 sm:text-[1.03rem] font-normal">
-                {leadParagraph}
-              </p>
-            </Reveal>
-          </div>
-
-          {/* 2. Photo: on mobile order-2 (shows AFTER lead text), on desktop col-span-4 in left column */}
-          <div className="order-2 lg:order-none lg:col-span-4 lg:col-start-1 lg:row-start-1 lg:row-span-3 lg:sticky lg:top-24">
+        {/* ============================================================== */}
+        {/* DESKTOP LAYOUT (lg: and up): Clean 2-column, no vertical gap   */}
+        {/* ============================================================== */}
+        <div className="hidden lg:grid lg:grid-cols-12 lg:gap-10 xl:gap-14 items-start">
+          {/* Left Column: Photo (sticky) with rich black back shadow */}
+          <div className="lg:col-span-4 lg:sticky lg:top-24">
             <Reveal delay={0.08}>
-              <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[330px] lg:max-w-none group">
-                {/* Diffused realistic back shadow behind the photo */}
+              <div className="relative mx-auto w-full group">
+                {/* Diffused realistic black back shadow behind the photo */}
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-2 -bottom-5 top-8 -z-10 rounded-3xl bg-slate-900/25 blur-2xl transition-all duration-500 group-hover:bg-slate-900/35 group-hover:blur-3xl group-hover:-bottom-6"
+                  className="pointer-events-none absolute inset-x-2 -bottom-6 top-8 -z-10 rounded-3xl bg-black/45 blur-2xl transition-all duration-500 group-hover:bg-black/60 group-hover:blur-3xl group-hover:-bottom-7"
                 />
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute -inset-1.5 -z-10 rounded-2xl sm:rounded-3xl bg-slate-900/15 blur-lg transition-all duration-500"
+                  className="pointer-events-none absolute -inset-2 -z-10 rounded-2xl sm:rounded-3xl bg-black/25 blur-xl transition-all duration-500"
                 />
 
                 {/* Direct photo container with clean rounded corners and depth shadow */}
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl shadow-[0_22px_45px_-10px_rgba(15,23,42,0.28),0_8px_18px_-6px_rgba(15,23,42,0.15)] transition-all duration-500 group-hover:shadow-[0_28px_55px_-10px_rgba(15,23,42,0.36)] group-hover:-translate-y-1">
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-white bg-white shadow-[0_22px_45px_-10px_rgba(0,0,0,0.35),0_10px_20px_-6px_rgba(0,0,0,0.2)] transition-all duration-500 group-hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.45)] group-hover:-translate-y-1">
                   <Img
                     src="/images/portraits/rohan-white-shirt-armchair.webp"
                     alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
                     fill
                     priority
                     className="object-cover object-[50%_15%] transition-transform duration-700 ease-out group-hover:scale-103"
-                    sizes="(max-width: 640px) 300px, (max-width: 1024px) 330px, 360px"
+                    sizes="380px"
                   />
 
                   {/* Gentle bottom shade to ground the image naturally */}
@@ -153,17 +128,37 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
             </Reveal>
           </div>
 
-          {/* 3. Remaining Narrative & Read More: on mobile order-3 (shows AFTER photo), on desktop col-span-8 in right column */}
-          <div className="order-3 lg:col-span-8 lg:col-start-5 space-y-4 text-base leading-relaxed text-slate-700 sm:text-[1.03rem]">
-            <Reveal delay={0.12}>
-              <div className="space-y-4">
+          {/* Right Column: All content continuous */}
+          <div className="lg:col-span-8 space-y-5">
+            <Reveal>
+              {/* Heading / Core Tagline */}
+              <h2 className="font-display text-2xl lg:text-[2.2rem] font-bold leading-snug tracking-tight text-[#000d3d]">
+                {isMr ? (
+                  <>
+                    <span>सर्वसामान्यांच्या हितासाठी आणि</span>{' '}
+                    <span>सर्वांगीण विकासासाठी कटिबद्ध</span>
+                  </>
+                ) : (
+                  "I'm committed to the betterment of the people"
+                )}
+              </h2>
+
+              {/* Signature red and saffron underline bar */}
+              <div className="mt-3.5 flex items-center gap-1.5">
+                <span className="h-1.5 w-14 rounded-full bg-red-600" />
+                <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
+              </div>
+
+              {/* Continuous narrative: Lead Paragraph + Remaining Paragraphs */}
+              <div className="mt-5 space-y-4 text-base leading-relaxed text-charcoal-950 lg:text-[1.03rem] font-normal">
+                <p>{leadParagraph}</p>
                 {visibleRemaining.map((para, i) => (
                   <p key={i}>{para}</p>
                 ))}
               </div>
 
               {/* Read More / Show Less Toggle Button */}
-              <div className="pt-3">
+              <div className="pt-2">
                 <button
                   type="button"
                   onClick={() => setExpanded(!expanded)}
@@ -183,11 +178,9 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
                 </button>
               </div>
             </Reveal>
-          </div>
 
-          {/* 4. Quick Facts Grid: on mobile order-4 (shows at bottom), on desktop col-span-8 in right column */}
-          <div className="order-4 lg:col-span-8 lg:col-start-5 pt-3">
-            <Reveal delay={0.15}>
+            {/* Quick Facts Grid */}
+            <Reveal delay={0.12} className="pt-2">
               <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4 border-t border-stone-200/90 pt-5">
                 <QuickFactCard
                   icon={Calendar}
@@ -212,6 +205,123 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
               </div>
             </Reveal>
           </div>
+        </div>
+
+        {/* ============================================================== */}
+        {/* MOBILE LAYOUT (<lg): Header -> Lead -> Photo -> Remaining     */}
+        {/* ============================================================== */}
+        <div className="block lg:hidden">
+          <Reveal className="flex flex-col items-start">
+            {/* Heading / Core Tagline */}
+            <h2 className="font-display text-xl sm:text-2xl font-bold leading-snug tracking-tight text-[#000d3d]">
+              {isMr ? (
+                <>
+                  <span>सर्वसामान्यांच्या हितासाठी आणि</span>{' '}
+                  <span className="block sm:inline">सर्वांगीण विकासासाठी कटिबद्ध</span>
+                </>
+              ) : (
+                "I'm committed to the betterment of the people"
+              )}
+            </h2>
+
+            {/* Signature red and saffron underline bar */}
+            <div className="mt-3.5 flex items-center gap-1.5">
+              <span className="h-1.5 w-14 rounded-full bg-red-600" />
+              <span className="h-1.5 w-3.5 rounded-full bg-saffron-500" />
+            </div>
+
+            {/* Lead Paragraph */}
+            <p className="mt-4 text-base leading-relaxed text-charcoal-950 font-normal">
+              {leadParagraph}
+            </p>
+
+            {/* Photo placed after lead paragraph */}
+            <div className="w-full flex justify-center my-6">
+              <div className="relative mx-auto w-full max-w-[310px] sm:max-w-[340px] group">
+                {/* Diffused realistic black back shadow behind the photo */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-2 -bottom-6 top-8 -z-10 rounded-3xl bg-black/45 blur-2xl transition-all duration-500 group-hover:bg-black/60 group-hover:blur-3xl group-hover:-bottom-7"
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute -inset-2 -z-10 rounded-2xl sm:rounded-3xl bg-black/25 blur-xl transition-all duration-500"
+                />
+
+                {/* Direct photo container with clean rounded corners and depth shadow */}
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-white bg-white shadow-[0_22px_45px_-10px_rgba(0,0,0,0.35),0_10px_20px_-6px_rgba(0,0,0,0.2)] transition-all duration-500 group-hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.45)] group-hover:-translate-y-1">
+                  <Img
+                    src="/images/portraits/rohan-white-shirt-armchair.webp"
+                    alt={isMr ? 'रोहन सुभाष देशमुख' : 'Rohan Subhash Deshmukh'}
+                    fill
+                    priority
+                    className="object-cover object-[50%_15%] transition-transform duration-700 ease-out group-hover:scale-103"
+                    sizes="340px"
+                  />
+
+                  {/* Gentle bottom shade to ground the image naturally */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/25 to-transparent"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Remaining Narrative */}
+            <div className="space-y-4 text-base leading-relaxed text-charcoal-950 font-normal">
+              {visibleRemaining.map((para, i) => (
+                <p key={i}>{para}</p>
+              ))}
+            </div>
+
+            {/* Read More / Show Less Toggle Button */}
+            <div className="pt-4">
+              <button
+                type="button"
+                onClick={() => setExpanded(!expanded)}
+                className="group inline-flex items-center gap-2 rounded-xl bg-red-600 hover:bg-[#000d3d] px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md transition-all duration-200 hover:scale-102 active:scale-98 cursor-pointer"
+              >
+                <span>
+                  {expanded
+                    ? (isMr ? 'कमी माहिती पहा' : 'Show Less')
+                    : (isMr ? 'अधिक वाचा' : 'Read More')}
+                </span>
+                <ChevronDown
+                  className={cn(
+                    'size-4 transition-transform duration-300',
+                    expanded && 'rotate-180',
+                  )}
+                />
+              </button>
+            </div>
+
+            {/* Quick Facts Grid */}
+            <div className="w-full pt-4">
+              <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-4 border-t border-stone-200/90 pt-5">
+                <QuickFactCard
+                  icon={Calendar}
+                  label={isMr ? 'जन्म' : 'Born'}
+                  val={isMr ? '१२ डिसेंबर १९८७' : '12 December 1987'}
+                />
+                <QuickFactCard
+                  icon={MapPin}
+                  label={isMr ? 'जन्मस्थान' : 'Birthplace'}
+                  val={isMr ? 'सोलापूर, देशमुख कुटुंब' : 'Solapur, into the Deshmukh family'}
+                />
+                <QuickFactCard
+                  icon={GraduationCap}
+                  label={isMr ? 'शिक्षण' : 'Education'}
+                  val={isMr ? 'रोचेस्टर इन्स्टिट्यूट (RIT)' : 'Rochester Institute (RIT)'}
+                />
+                <QuickFactCard
+                  icon={Heart}
+                  label={isMr ? 'प्रेरणा' : 'Inspiration'}
+                  val={isMr ? 'स्वामी विवेकानंद' : 'Swami Vivekananda'}
+                />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -356,26 +466,7 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
   ]
 
   return (
-    <section
-      className="relative py-14 sm:py-20 border-t border-sky-200/80 overflow-hidden"
-      style={{
-        background: 'linear-gradient(180deg, #edf6fd 0%, #f4f9fe 50%, #ffffff 100%)',
-      }}
-    >
-      {/* Subtle crowd watermark from homepage */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-30 bg-repeat bg-center"
-        style={{
-          backgroundImage: "url('/images/backgrounds/social-work-pattern.png')",
-          backgroundSize: '1017px auto',
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-sky-200/35 blur-3xl -z-10"
-      />
-
+    <section className="relative py-14 sm:py-20 bg-white border-t border-stone-200/80 overflow-hidden">
       <div className="container-x relative z-10">
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-14">

@@ -15,7 +15,7 @@ export function FloatingSocialBar() {
   return (
     <aside
       aria-label="Social links"
-      className="fixed left-3 top-1/2 -translate-y-1/2 z-40 hidden xl:flex flex-col gap-2.5"
+      className="fixed left-3 top-1/2 -translate-y-1/2 z-40 hidden min-[1400px]:flex flex-col gap-2.5"
     >
       {social.map(([k, v], i) => (
         <a

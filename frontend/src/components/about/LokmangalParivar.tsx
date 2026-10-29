@@ -216,34 +216,6 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
     }
   }, [activeView])
 
-  // 4 Big Conglomerate Statistics
-  const conglomerateStats = [
-    {
-      value: isMr ? '₹५,६००+ कोटी' : '₹5,600+ Cr',
-      label: isMr ? 'एकत्रित वार्षिक व्यवसाय' : 'Combined Turnover',
-      sub: isMr ? '४ प्रमुख वित्तीय व उद्योग संस्था' : '4 Major Business Entities',
-      icon: TrendingUp,
-    },
-    {
-      value: isMr ? '३,४०१+ कोटी' : '₹3,401+ Cr',
-      label: isMr ? 'विश्वासार्ह सार्वजनिक ठेवी' : 'Public Deposits',
-      sub: isMr ? 'लाखो समाधानी खातेदार' : 'Millions of Satisfied Members',
-      icon: Landmark,
-    },
-    {
-      value: isMr ? '१४३+ शाखा' : '143+ Branches',
-      label: isMr ? 'विस्तृत सेवा नेटवर्क' : 'Service Network',
-      sub: isMr ? 'महाराष्ट्र व कर्नाटक कार्यक्षेत्र' : 'Maharashtra & Karnataka',
-      icon: Building2,
-    },
-    {
-      value: isMr ? '२५+ वर्षे' : '25+ Years',
-      label: isMr ? 'अखंड लोकसेवेचा वारसा' : 'Legacy of Public Service',
-      sub: isMr ? '१९९८ गुढीपाडव्यापासून अविरत' : 'Since Gudi Padwa 1998',
-      icon: Sparkles,
-    },
-  ]
-
   return (
     <div className="relative isolate space-y-8 sm:space-y-16 md:space-y-20">
       {/* Ambient Atmospheric Lighting */}
@@ -338,41 +310,6 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
             )}
           </div>
 
-          {/* 4 Big Conglomerate Scale Metrics Ribbon */}
-          <div className="relative overflow-hidden rounded-3xl border border-amber-500/25 bg-gradient-to-r from-[#000d3d] via-[#091b4f] to-[#000d3d] p-6 sm:p-8 shadow-[0_20px_45px_-12px_rgba(0,13,61,0.35)] text-white">
-            <div aria-hidden className="pointer-events-none absolute -top-20 -right-20 size-60 rounded-full bg-saffron-500/20 blur-[90px]" />
-            <div aria-hidden className="pointer-events-none absolute -bottom-20 -left-20 size-60 rounded-full bg-emerald-500/20 blur-[90px]" />
-
-            <div className="relative grid grid-cols-2 gap-6 sm:gap-8 lg:grid-cols-4">
-              {conglomerateStats.map((st, idx) => {
-                const StatIcon = st.icon
-                return (
-                  <div
-                    key={idx}
-                    className="flex flex-col border-b sm:border-b-0 sm:border-r border-white/10 pb-4 sm:pb-0 last:border-none pl-2 sm:pl-4 group"
-                  >
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <div className="grid size-7 place-items-center rounded-lg bg-amber-400/15 border border-amber-400/30 text-amber-400 shadow-xs">
-                        <StatIcon className="size-4" />
-                      </div>
-                      <span className="text-[11px] font-semibold text-amber-300 uppercase tracking-wider">
-                        {isMr ? 'अधिकृत सांख्यिकी' : 'Official Metric'}
-                      </span>
-                    </div>
-                    <span className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-amber-400 drop-shadow-sm transition-transform duration-300 group-hover:translate-x-1">
-                      {st.value}
-                    </span>
-                    <span className="mt-1 text-sm sm:text-base font-bold text-white">
-                      {st.label}
-                    </span>
-                    <span className="mt-0.5 text-xs text-slate-300">
-                      {st.sub}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
         </section>
       )}
 

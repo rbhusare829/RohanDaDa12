@@ -10,9 +10,12 @@ export const SOCIAL_ACTIVITIES_PATH = '/political-career?tab=social'
 export type Text = { mr: string; en: string }
 export type Activity = {
   id: string
+  /** empty: no photo yet (the list shows a navy panel with the title instead) */
   image: string
   /** where the photo is anchored when it is cropped to fit a card */
   position?: string
+  /** the photo fills its frame edge to edge (no blurred border around it) */
+  fill?: boolean
   title: Text
   tagline: Text
   /** the story, one entry per paragraph */
@@ -98,6 +101,7 @@ export const ACTIVITIES: Activity[] = [
   {
     id: 'yuva-sahitya-sammelan',
     image: '/images/social-activities/yuva-sahitya-sammelan.webp',
+    fill: true,
     position: '50% 40%',
     title: { mr: 'युवा साहित्य संमेलन', en: 'Yuva Sahitya Sammelan' },
     tagline: { mr: 'नव्या पिढीतील लेखकांसाठी व्यासपीठ', en: 'A platform for the next generation of writers' },
@@ -118,10 +122,3 @@ export const ACTIVITIES: Activity[] = [
     ],
   },
 ]
-
-const DEV = '०१२३४५६७८९'
-/** "01", or "०१" in Marathi */
-export const num = (i: number, isMr: boolean) => {
-  const n = String(i + 1).padStart(2, '0')
-  return isMr ? n.replace(/\d/g, (d) => DEV[Number(d)]) : n
-}

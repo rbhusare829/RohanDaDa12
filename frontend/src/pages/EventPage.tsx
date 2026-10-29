@@ -7,8 +7,8 @@ import { cn, toMarathiDigits } from '@/lib/utils'
 import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { Gallery } from '@/components/ui/Gallery'
-import { Reveal, Stagger, StaggerItem } from '@/components/ui/Motion'
 import { ScrollRow } from '@/components/ui/ScrollRow'
+import { SOCIAL_ACTIVITIES_PATH } from '@/lib/social-activities'
 import { notFound } from './helpers'
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -23,15 +23,13 @@ function YearTabs({ tabs }: { tabs: { key: string; label: string; content: React
     <div>
       <ScrollRow role="tablist" className="-mx-4 mb-6 sm:mb-10 flex gap-7 border-b border-line px-4 md:mx-0 md:px-0">
         {tabs.map((t) => (
-          // the bar under the open year grows out from its middle (a closed one is the same bar, flat), so a click is answered at once
           <button key={t.key} role="tab" aria-selected={active === t.key} onClick={() => setActive(t.key)}
-            className={cn('relative min-w-11 shrink-0 px-1 py-3.5 text-center font-display text-lg font-semibold transition-colors duration-200 focus-visible:outline-offset-[-3px] after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:rounded-full after:bg-saffron-500 after:transition-transform after:duration-300 after:ease-soft', active === t.key ? 'text-charcoal-900 after:scale-x-100' : 'text-muted after:scale-x-0 hover:text-charcoal-900')}>
+            className={cn('relative min-w-11 shrink-0 px-1 py-3.5 text-center font-display text-lg font-semibold transition focus-visible:outline-offset-[-3px] after:absolute after:inset-x-0 after:-bottom-px after:h-[3px] after:rounded-full', active === t.key ? 'text-charcoal-900 after:bg-saffron-500' : 'text-muted hover:text-charcoal-900')}>
             {t.label}
           </button>
         ))}
       </ScrollRow>
-      {/* the year that opens settles in (a hidden panel starts its animation when it is shown) */}
-      {tabs.map((t) => <div key={t.key} role="tabpanel" hidden={active !== t.key} className="animate-tab-in">{t.content}</div>)}
+      {tabs.map((t) => <div key={t.key} role="tabpanel" hidden={active !== t.key}>{t.content}</div>)}
     </div>
   )
 }
@@ -54,22 +52,25 @@ export default function EventPage() {
         crumbs={
           ini
             ? [{ label: t('socialWork'), href: '/social-work' }, { label: ini.title, href: `/social-work/${ini.slug}` }, { label: d.title }]
-            : [{ label: locale === 'mr' ? 'लोकमंगल फाऊंडेशन' : 'Lokmangal Foundation', href: '/lokmangal/foundation' }, { label: locale === 'mr' ? 'कार्यक्रम' : 'Events', href: '/lokmangal/foundation#events' }, { label: d.title }]
+            : d.group === 'sports'
+              ? // Sports events now sit under Political Career → Social Activities (Oct 2026)
+                [{ label: locale === 'mr' ? 'राजकीय कारकीर्द' : 'Political Career', href: '/political-career' }, { label: locale === 'mr' ? 'सामाजिक उपक्रम' : 'Social Activities', href: SOCIAL_ACTIVITIES_PATH }, { label: d.title }]
+              : [{ label: locale === 'mr' ? 'कार्यक्रम' : 'Events', href: '/events' }, { label: d.title }]
         }
         variant="navy"
       >
         {(d.body || d.facts?.length) && (
           <div className="mb-10 sm:mb-16 grid gap-8 sm:gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] lg:gap-20">
-            {d.body && <Reveal className="prose-rd max-w-3xl">{d.body.split(/\n\s*\n/).map((para, i) => <p key={i}>{para}</p>)}</Reveal>}
+            {d.body && <div className="prose-rd max-w-3xl">{d.body.split(/\n\s*\n/).map((para, i) => <p key={i}>{para}</p>)}</div>}
             {!!d.facts?.length && (
-              <Stagger as="dl" className="self-start border-t-2 border-charcoal-900" delay={0.12}>
+              <dl className="self-start border-t-2 border-charcoal-900">
                 {d.facts.map((f, i) => (
-                  <StaggerItem key={f.id ?? i} className="border-b border-line py-4">
+                  <div key={f.id ?? i} className="border-b border-line py-4">
                     <dt className="text-sm font-semibold text-saffron-700">{f.label}</dt>
                     <dd className="mt-1 text-[1.02rem] font-medium text-charcoal-900">{f.value}</dd>
-                  </StaggerItem>
+                  </div>
                 ))}
-              </Stagger>
+              </dl>
             )}
           </div>
         )}

@@ -1071,7 +1071,7 @@
   "id": 1,
   "title": {
    "en": "Introduction",
-   "mr": "स्वपरिचय"
+   "mr": "परिचय"
   },
   "path": "/about/introduction",
   "section": "about",
@@ -1088,7 +1088,7 @@
     "blockType": "mediaText",
     "eyebrow": {
      "en": "Biography",
-     "mr": "स्वपरिचय"
+     "mr": "परिचय"
     },
     "heading": {
      "en": "Rohan Subhash Deshmukh",
@@ -1108,7 +1108,7 @@
     "blockType": "cards",
     "eyebrow": {
      "en": "Biography",
-     "mr": "स्वपरिचय"
+     "mr": "परिचय"
     },
     "heading": {
      "en": "Personal Details",

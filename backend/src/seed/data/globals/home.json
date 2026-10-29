@@ -151,8 +151,8 @@
         {
           "id": "6ad5ec7615929451e81266cb",
           "place": {
-            "en": "Solapur, Maharashtra",
-            "mr": "सोलापूर, महाराष्ट्र"
+            "en": "Solapur, Maharashtra — The Foundation",
+            "mr": "सोलापूर, महाराष्ट्र — पायाभरणी"
           },
           "title": {
             "en": "Little Flower Convent School",
@@ -166,8 +166,8 @@
         {
           "id": "6ad5ec7615929451e81266cc",
           "place": {
-            "en": "New Delhi",
-            "mr": "नवी दिल्ली"
+            "en": "New Delhi — A Proud Achievement",
+            "mr": "नवी दिल्ली — अभिमानाचा क्षण"
           },
           "title": {
             "en": "NCC Best Cadet",
@@ -181,8 +181,8 @@
         {
           "id": "6ad5ec7615929451e81266cd",
           "place": {
-            "en": "Rochester, USA",
-            "mr": "रोचेस्टर, अमेरिका"
+            "en": "Rochester, USA — Expanding Horizons",
+            "mr": "रोचेस्टर, अमेरिका — क्षितिजे विस्तारताना"
           },
           "title": {
             "en": "Higher Education at RIT",
@@ -196,8 +196,8 @@
         {
           "id": "6ad5ec7615929451e81266ce",
           "place": {
-            "en": "2016",
-            "mr": "२०१६"
+            "en": "2016 — A New Chapter of Service",
+            "mr": "२०१६ — सेवेचा नवा अध्याय"
           },
           "title": {
             "en": "Lokmangal Foundation",
@@ -211,7 +211,7 @@
       ],
       "buttonLabel": {
         "en": "Introduction",
-        "mr": "स्वपरिचय"
+        "mr": "परिचय"
       },
       "buttonUrl": "/about/introduction"
     },

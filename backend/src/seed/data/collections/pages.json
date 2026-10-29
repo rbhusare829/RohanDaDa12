@@ -698,7 +698,7 @@
      "mr": "विवेकानंद विचार यात्रा"
     },
     "hidden": false,
-    "image": 126,
+    "image": 772,
     "imagePosition": "left",
     "body": {
      "en": "<p>The Swami Vivekananda Vichar Yatra was Rohan Deshmukh’s idea, born from a belief that young minds can change the world when they are given the right inspiration. The yatra travelled across Osmanabad (now Dharashiv) district, carrying the timeless thoughts of Swami Vivekananda to young people in towns and villages.</p><ul><li><strong>An Idea Born From Belief:</strong> Rohan Deshmukh conceived the yatra to connect today’s youth with Swami Vivekananda’s ideas.</li><li><strong>From Town to Village:</strong> It travelled through towns and villages across Dharashiv district, reaching young people where they live.</li><li><strong>Igniting Young Minds:</strong> The aim was to inspire youth through Swami Vivekananda’s teachings and encourage them to bring positive change into their own lives.</li><li><strong>Discipline at Every Step:</strong> The entire yatra was carried out with careful planning and discipline, from the first stop to the last.</li></ul>",
@@ -718,7 +718,7 @@
      "mr": "भारतीय जनता युवा मोर्चा"
     },
     "hidden": false,
-    "image": 125,
+    "image": 773,
     "imagePosition": "right",
     "body": {
      "en": "<p>As General Secretary of the Bharatiya Janata Yuva Morcha, Rohan Deshmukh travelled across Maharashtra to connect with young people and raise their political awareness. Along the way, he also raised his voice on social issues that affect common citizens.</p><ul><li><strong>The Voice of Youth:</strong> He travelled across Maharashtra, meeting young people and encouraging them to take an active interest in politics.</li><li><strong>Standing With the Common Citizen:</strong> He led movements on social issues that matter to everyday people.</li><li><strong>On the Campaign Trail:</strong> In 2009, he played an active role in Hon. Shri Subhash Deshmukh’s Madha Lok Sabha campaign.</li><li><strong>Strengthening the Roots:</strong> He worked to strengthen the party organisation at the ground level in the Osmanabad Lok Sabha constituency.</li></ul>",
@@ -728,7 +728,7 @@
    },
    {
     "id": "6ad5ec6415929451e8126680",
-    "blockType": "content",
+    "blockType": "mediaText",
     "eyebrow": {
      "en": "Election",
      "mr": "निवडणूक"
@@ -738,10 +738,44 @@
      "mr": "धाराशिव (उस्मानाबाद) लोकसभा निवडणूक"
     },
     "hidden": false,
+    "image": 774,
+    "imagePosition": "left",
     "body": {
      "en": "<p>Rohan Deshmukh contested the Dharashiv (Osmanabad) Lok Sabha election as an Independent candidate. With no party behind him, he relied on the one thing that mattered most: a direct connection with the people.</p><ul><li><strong>No Party, Only People:</strong> He contested as an Independent candidate, without the backing of any political party.</li><li><strong>Village to Village, Door to Door:</strong> He took his ideas directly to voters, reaching every corner of the constituency.</li><li><strong>A Bond Beyond Votes:</strong> The campaign helped him build a strong, personal connection with people across Dharashiv.</li><li><strong>A Promise That Continues:</strong> That bond still guides his work in the region today.</li></ul>",
      "mr": "<p>धाराशिव (उस्मानाबाद) लोकसभा निवडणुकीत रोहन देशमुख यांनी अपक्ष उमेदवार म्हणून निवडणूक लढवली. कोणत्याही राजकीय पक्षाचा पाठिंबा नसताना त्यांनी थेट जनतेशी संवाद साधत आपल्या विचारांचा आणि भूमिकेचा प्रचार केला. मतदारसंघातील गावोगावी आणि घराघरांत पोहोचून त्यांनी नागरिकांशी संवाद साधला. या निवडणुकीच्या माध्यमातून धाराशिवमधील नागरिकांशी निर्माण झालेले व्यक्तिगत नाते त्यांच्या पुढील सामाजिक वाटचालीसाठी महत्त्वाचे ठरले.</p><ul><li><strong>अपक्ष उमेदवारी:</strong> कोणत्याही राजकीय पक्षाच्या पाठिंब्याशिवाय त्यांनी अपक्ष उमेदवार म्हणून निवडणूक लढवली.</li><li><strong>जनसंपर्क:</strong> मतदारसंघातील विविध गावांना भेटी देत त्यांनी नागरिकांशी थेट संवाद साधला आणि आपले विचार त्यांच्यापर्यंत पोहोचवले.</li><li><strong>जनतेशी दृढ नाते:</strong> निवडणूक प्रचाराच्या माध्यमातून त्यांनी मतदारसंघातील नागरिकांशी वैयक्तिक संवाद आणि विश्वासाचे नाते निर्माण केले.</li><li><strong>सामाजिक वाटचालीची दिशा:</strong> धाराशिवमधील नागरिकांशी निर्माण झालेला हा संपर्क आजही त्यांच्या सामाजिक कार्याला दिशा देणारा महत्त्वाचा दुवा आहे.</li></ul>"
-    }
+    },
+    "buttons": []
+   },
+   {
+    "id": "6ad5ec6415929451e8126681",
+    "blockType": "gallery",
+    "eyebrow": {
+     "en": null,
+     "mr": null
+    },
+    "heading": {
+     "en": "Moments",
+     "mr": "क्षणचित्रे"
+    },
+    "hidden": false,
+    "layout": "grid",
+    "images": [
+     127,
+     128,
+     129,
+     130,
+     131,
+     132,
+     133,
+     134,
+     135,
+     136,
+     137,
+     138,
+     139,
+     140,
+     141
+    ]
    }
   ],
   "meta": {

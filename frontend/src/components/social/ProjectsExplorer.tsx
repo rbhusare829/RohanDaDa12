@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useMemo, useState, type CSSProperties } from 'react'
-import { ArrowRight, ChevronLeft, ChevronRight, Newspaper, Pause, Play, Search, Sparkles, TrendingUp, X } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, Newspaper, Search, Sparkles, TrendingUp, X } from 'lucide-react'
 import { Link } from 'react-router'
 import type { Media } from '@/types/cms'
-import { useTranslations } from '@/lib/i18n'
 import { usePrefersReducedMotion } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import { Img } from '../ui/Img'
-import { Stagger, StaggerItem } from '../ui/Motion'
 
 export type ProjectCard = {
   id: string | number
@@ -64,7 +62,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
                 aria-pressed={on}
                 onClick={() => setCat(c.value)}
                 className={cn(
-                  'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-sm font-semibold transition-[color,background-color,border-color,scale] duration-200 active:scale-[0.97]',
+                  'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-sm font-semibold transition',
                   on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-charcoal-900 hover:border-field-hover hover:bg-cream',
                 )}
               >
@@ -83,7 +81,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={labels.search}
-            className="min-h-11 w-full rounded-full border border-field bg-white py-2.5 pl-10 pr-4 text-base text-charcoal-900 outline-none sm:text-sm transition placeholder:text-muted hover:border-field-hover focus:border-saffron-700 focus:ring-2 focus:ring-saffron-700"
+            className="min-h-11 w-full rounded-full border border-field bg-white py-2.5 pl-10 pr-4 text-sm text-charcoal-900 outline-none transition placeholder:text-muted hover:border-field-hover focus:border-saffron-700 focus:ring-2 focus:ring-saffron-700"
           />
         </label>
       </div>
@@ -92,9 +90,9 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
         <>
           {featured.length > 0 && <FeaturedSlider key={`${cat}|${q}`} items={featured} labels={labels} n={n} />}
           {grid.length > 0 && (
-            <Stagger as="ul" className="mt-12 grid grid-cols-1 gap-x-7 gap-y-8 md:mt-14 md:grid-cols-2 md:gap-y-12 lg:grid-cols-3">
+            <ul className="mt-12 grid grid-cols-1 gap-x-7 gap-y-8 md:mt-14 md:grid-cols-2 md:gap-y-12 lg:grid-cols-3">
               {grid.map((p) => <GridCard key={p.id} p={p} labels={labels} />)}
-            </Stagger>
+            </ul>
           )}
         </>
       ) : (
@@ -120,14 +118,12 @@ function Photo({ p, sizes, className }: { p: ProjectCard; sizes: string; classNa
   )
 }
 
-/** Large highlight card: photo left, story right; arrows, dots and a gentle auto-advance with a Pause button (WCAG 2.2.2) */
+/** Large highlight card: photo left, story right; arrows, dots and a gentle auto-advance that stops while the pointer or focus is on it */
 function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: Labels; n: (v: number) => string }) {
-  const tc = useTranslations('common')
   const [i, setI] = useState(0)
   const [hold, setHold] = useState(false) // pointer or focus is inside
-  const [choice, setChoice] = useState<boolean | null>(null) // true = the visitor pressed Pause, false = Play
   const reduced = usePrefersReducedMotion()
-  const paused = choice ?? reduced // people who ask for less motion get no auto-advance unless they press Play
+  const paused = reduced // people who ask for less motion get no auto-advance
   const count = items.length
   const go = useCallback((to: number) => setI(((to % count) + count) % count), [count])
 
@@ -174,15 +170,6 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
                   <button type="button" onClick={() => go(i - 1)} aria-label={labels.prev} className="btn-icon size-11">
                     <ChevronLeft aria-hidden className="size-5" />
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => { setChoice(!paused); setHold(false) }}
-                    aria-label={paused ? tc('playSlides') : tc('pauseSlides')}
-                    title={paused ? tc('playSlides') : tc('pauseSlides')}
-                    className="btn-icon size-11"
-                  >
-                    {paused ? <Play aria-hidden className="size-4 fill-current" /> : <Pause aria-hidden className="size-4 fill-current" />}
-                  </button>
                   <button type="button" onClick={() => go(i + 1)} aria-label={labels.next} className="btn-icon size-11">
                     <ChevronRight aria-hidden className="size-5" />
                   </button>
@@ -217,7 +204,7 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
 /** Grid card: photo on top (thumbnail beside the text on phones), key impact + category, title, text, Read more */
 function GridCard({ p, labels }: { p: ProjectCard; labels: Labels }) {
   return (
-    <StaggerItem as="li" className="tile group flex-row gap-4 md:flex-col md:gap-0">
+    <li className="tile group flex-row gap-4 md:flex-col md:gap-0">
       <div className="tile-media w-28 shrink-0 self-start aspect-square sm:w-36 md:aspect-[16/10] md:w-full">
         <Photo p={p} sizes="(max-width:768px) 144px, (max-width:1024px) 50vw, 400px" />
       </div>
@@ -239,6 +226,6 @@ function GridCard({ p, labels }: { p: ProjectCard; labels: Labels }) {
           {labels.readMore} <ArrowRight aria-hidden className="size-4" />
         </span>
       </div>
-    </StaggerItem>
+    </li>
   )
 }

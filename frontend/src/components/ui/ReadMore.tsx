@@ -36,7 +36,8 @@ export function ReadMore({ children, className }: { children: ReactNode; classNa
     const el = box.current
     const inner = el?.firstElementChild
     if (!el || !inner) return
-    const measure = () => setFull(inner.getBoundingClientRect().height)
+    // flow-root keeps the first and last paragraph's margins inside, so they count; +8 covers Devanagari marks below the last line
+    const measure = () => setFull(Math.ceil(inner.getBoundingClientRect().height) + 8)
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(inner)
@@ -65,7 +66,7 @@ export function ReadMore({ children, className }: { children: ReactNode; classNa
           clamp && !open && '[mask-image:linear-gradient(to_bottom,#000_55%,transparent)]',
         )}
       >
-        <div>{children}</div>
+        <div className="flow-root">{children}</div>
       </div>
       {clamp && (
         <button

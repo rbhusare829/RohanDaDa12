@@ -19,6 +19,7 @@
     "import:payload": "npm run import:payload -w backend --",
     "content:hero-covers": "npm run content:hero-covers -w backend",
     "content:intro-education": "npm run content:intro-education -w backend",
+    "content:album-update": "npm run content:album-update -w backend",
     "content:home-highlights": "npm run content:home-highlights -w backend",
     "content:initiatives": "npm run content:initiatives -w backend",
     "content:english": "npm run content:english -w backend",

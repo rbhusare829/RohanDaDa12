@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import { ArrowRight, BookOpen, Download, FileText, HeartHandshake, Quote } from 'lucide-react'
+import { ArrowRight, Award, BookOpen, Building2, Download, FileText, HeartHandshake, Quote, Sparkles, Users } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { LOCALE } from '@/lib/i18n'
 import { mediaAlt, mediaPosition, mediaUrl, photoFit, toGallery } from '@/lib/media'
@@ -27,30 +27,41 @@ type MediaText = Extract<PageBlock, { blockType: 'mediaText' }>
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
+const getCardIcon = (title?: string | null, url?: string | null) => {
+  const s = `${title ?? ''} ${url ?? ''}`.toLowerCase()
+  if (s.includes('family') || s.includes('biography') || s.includes('कौटुंबिक')) return Users
+  if (s.includes('parivar') || s.includes('foundation') || s.includes('संस्था')) return Building2
+  if (s.includes('politic') || s.includes('career') || s.includes('राजकीय')) return Award
+  if (s.includes('vision') || s.includes('manifesto') || s.includes('व्हिजन')) return BookOpen
+  if (s.includes('social') || s.includes('कार्य') || s.includes('सेवा')) return HeartHandshake
+  return Sparkles
+}
+
 /** label + heading + intro, Stitch style */
 export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className }: { eyebrow?: string | null; heading?: string | null; intro?: string | null; as?: 'h2' | 'h3'; className?: string }) {
   if (!eyebrow && !heading && !intro) return null
   return (
-    <Reveal className={cn('mb-5 sm:mb-8 md:mb-10 max-w-3xl space-y-1.5 sm:space-y-2', className)}>
-      {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{eyebrow}</p>}
-      {heading && <H className="font-display text-2xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-3xl md:text-4xl">{heading}</H>}
-      {intro && <p className="pt-1 text-sm sm:text-base leading-relaxed text-gray-600">{intro}</p>}
+    <Reveal className={cn('mb-6 sm:mb-10 max-w-3xl space-y-2', className)}>
+      {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{eyebrow}</p>}
+      {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{heading}</H>}
+      {intro && <p className="pt-1 text-base leading-relaxed text-gray-600">{intro}</p>}
     </Reveal>
   )
 }
 
 const card = 'rounded-3xl border border-stone-200/90 bg-white shadow-[0_15px_40px_-10px_rgba(9,20,34,0.07)]'
 
-/** one or more consecutive Content blocks: displayed directly on the page in Stitch style */
+/** one or more consecutive Content blocks: white cards with a kesariya edge, two per row when there are several */
 export function StitchContent({ blocks }: { blocks: Content[] }) {
   if (blocks.length === 1) {
     const b = blocks[0]
     return (
-      <Reveal className="max-w-4xl pt-2">
-        {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{b.eyebrow}</p>}
-        {b.heading && <h2 className="mb-4 font-display text-2xl font-bold leading-tight text-charcoal-950 md:text-3xl">{b.heading}</h2>}
-        <div className="text-base sm:text-lg leading-relaxed text-charcoal-900 font-normal">
-          <RichText html={b.body} />
+      <Reveal className={cn(card, 'relative overflow-hidden border-l-4 border-l-saffron-500 p-8 md:p-10 lg:p-12')}>
+        <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-32 rounded-bl-full bg-gradient-to-bl from-saffron-100/60 to-transparent" />
+        <div className="relative max-w-4xl">
+          {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-600">{b.eyebrow}</p>}
+          {b.heading && <h2 className="mb-5 mt-1 font-display text-2xl font-bold leading-tight text-charcoal-950 md:text-3xl">{b.heading}</h2>}
+          <RichText html={b.body} readMore />
         </div>
       </Reveal>
     )
@@ -96,7 +107,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
                     <Icon className="size-6" />
                   </span>
                   <div className="min-w-0">
-                    {b.eyebrow && <p className={cn('text-[11px] font-bold uppercase tracking-[0.2em]', isSocial ? 'text-leaf-600' : 'text-saffron-700')}>{b.eyebrow}</p>}
+                    {b.eyebrow && <p className={cn('text-[11px] font-bold uppercase tracking-[0.2em]', isSocial ? 'text-leaf-600' : 'text-saffron-600')}>{b.eyebrow}</p>}
                     {b.heading && <h2 className="font-display text-xl font-bold leading-snug text-charcoal-950 md:text-2xl">{b.heading}</h2>}
                   </div>
                 </div>
@@ -108,7 +119,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
             </div>
 
             <div className="relative mt-8 border-t border-stone-100 pt-5">
-              <CMSLink url={ctaUrl} className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-700 transition-colors hover:text-saffron-800">
+              <CMSLink url={ctaUrl} className="group/btn inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-saffron-600 transition-colors hover:text-saffron-700">
                 <span>{ctaLabel}</span>
                 <ArrowRight className="size-3.5 transition-transform group-hover/btn:translate-x-1" />
               </CMSLink>
@@ -120,8 +131,8 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
   )
 }
 
-/** Media + text as a Stitch chapter: chip + heading, then the photo beside a text card */
-export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
+/** Media + text as a Stitch chapter: chip + heading, then the photo beside a text card (`plain`: the text straight on the page, no card) */
+export function StitchChapter({ b, n, plain }: { b: MediaText; n?: number; plain?: boolean }) {
   const hasImg = Boolean(mediaUrl(b.image, 'card'))
   const fit = photoFit(b.image, 1.5, 0.45)
   const right = b.imagePosition === 'right'
@@ -130,7 +141,7 @@ export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
       <Reveal className="flex flex-col gap-3">
         {(b.eyebrow || n) && (
           <div className="flex flex-wrap items-center gap-3">
-            {n && <span aria-hidden className="font-display text-sm font-bold tracking-widest text-saffron-700">{pad(n)}</span>}
+            {n && <span aria-hidden className="font-display text-sm font-bold tracking-widest text-saffron-600">{pad(n)}</span>}
             {n && b.eyebrow && <span aria-hidden className="h-0.5 w-8 bg-saffron-500" />}
             {b.eyebrow && <span className="rounded bg-saffron-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-saffron-700">{b.eyebrow}</span>}
           </div>
@@ -138,15 +149,15 @@ export function StitchChapter({ b, n }: { b: MediaText; n?: number }) {
         {b.heading && <h2 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{b.heading}</h2>}
       </Reveal>
 
-      <div className={cn('grid grid-cols-1 items-start gap-8 lg:gap-12', hasImg && 'lg:grid-cols-12')}>
+      <div className={cn('grid grid-cols-1 items-stretch gap-8', hasImg && 'lg:grid-cols-12')}>
         {hasImg && (
-          <Reveal className={cn('lg:col-span-6', right && 'lg:order-2')}>
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-md sm:aspect-[16/10] lg:aspect-[4/3] bg-stone-100">
-              <Img media={b.image} variant="card" alt={mediaAlt(b.image, b.heading ?? '')} fill sizes="(max-width:1024px) 100vw, 680px" className="h-full w-full object-cover transition-transform duration-[1.2s] ease-out hover:scale-[1.03]" style={{ ...fit, objectPosition: '50% 6%' }} />
+          <Reveal className={cn('lg:col-span-7', right && 'lg:order-2')}>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl shadow-md sm:aspect-[16/10] lg:aspect-auto lg:min-h-[400px] lg:h-full bg-stone-100">
+              <Img media={b.image} variant="card" alt={mediaAlt(b.image, b.heading ?? '')} fill sizes="(max-width:1024px) 100vw, 680px" className="h-full w-full transition-transform duration-[1.2s] ease-out hover:scale-[1.03]" style={{ ...fit, objectPosition: '50% 6%' }} />
             </div>
           </Reveal>
         )}
-        <Reveal delay={0.1} className={cn('flex flex-col gap-6 text-charcoal-900', hasImg ? 'lg:col-span-6' : 'max-w-3xl')}>
+        <Reveal delay={0.1} className={cn('flex flex-col gap-6', !plain && 'rounded-2xl bg-ivory p-8 shadow-sm ring-1 ring-stone-200/70 md:p-10', plain && 'lg:justify-center', hasImg && 'lg:col-span-5')}>
           <RichText html={b.body} readMore />
           {!!b.buttons?.length && (
             <div className="flex flex-wrap gap-3 border-t border-stone-200/80 pt-6">
@@ -175,7 +186,7 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
   return (
     <>
       <StitchHead eyebrow={b.eyebrow} heading={b.heading} intro={b.intro} />
-      <Stagger className={cn('grid grid-cols-1 gap-4 sm:gap-6 lg:gap-8', cols)}>
+      <Stagger className={cn('grid grid-cols-1 gap-6 lg:gap-8', cols)}>
         {items.map((c, i) => {
           if (withImages) {
             const inner = (
@@ -185,9 +196,9 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
                     <Img media={c.image} variant="card" alt={mediaAlt(c.image, c.title)} fill sizes="(max-width:768px) 100vw, 33vw" className="transition-transform duration-700 group-hover:scale-105" style={photoFit(c.image, 1.6)} />
                   </div>
                 )}
-                <div className="flex flex-1 flex-col gap-2 p-5 sm:p-6">
-                  {c.meta && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">{c.meta}</p>}
-                  <CardTitle className="font-display text-lg sm:text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
+                <div className="flex flex-1 flex-col gap-2 p-6">
+                  {c.meta && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-600">{c.meta}</p>}
+                  <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
                   {c.text && <p className="whitespace-pre-line text-sm leading-relaxed text-gray-600">{c.text}</p>}
                 </div>
               </>
@@ -195,39 +206,39 @@ function Cards({ b }: { b: Extract<PageBlock, { blockType: 'cards' }> }) {
             const cls = cn(card, 'group flex h-full flex-col overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl')
             return <StaggerItem key={c.id}>{c.url ? <CMSLink url={c.url} className={cls}>{inner}</CMSLink> : <div className={cls}>{inner}</div>}</StaggerItem>
           }
-          // text-only cards: clean cards with title, index, description and link
+          // text-only cards: Stitch "area" cards with a numbered icon box (the whole card is the link when it has one)
+          const green = i % 3 === 1
+          const Icon = getCardIcon(c.title, c.url)
           return (
             <StaggerItem key={c.id} className="h-full">
-              <Box
-                url={c.url}
-                className={cn(
-                  'group relative flex h-full flex-col justify-between rounded-2xl bg-[#f0f6fc] p-5 sm:p-6 lg:p-7 ring-1 ring-[#d0dbe7] transition-all duration-300 hover:bg-[#e8f1fb] hover:ring-[#b8cee4]',
-                  c.url && 'hover:-translate-y-1',
-                )}
-              >
-                <div className="flex flex-col gap-2.5 sm:gap-3.5">
-                  <div className="flex items-start justify-between gap-3">
-                    <CardTitle className="font-display text-lg sm:text-xl font-bold leading-snug text-[#000d3d] transition-colors group-hover:text-red-600">
-                      {c.title}
-                    </CardTitle>
-                    <span className="font-display text-xs sm:text-sm font-bold text-slate-400 transition-colors group-hover:text-saffron-600 shrink-0 pt-0.5 select-none">
-                      {pad(i + 1)}
+              <Box url={c.url} className={cn('group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl bg-white p-7 shadow-xs ring-1 ring-stone-200/80 transition-all duration-300 hover:shadow-xl sm:p-8', c.url && 'hover:-translate-y-1.5 hover:ring-saffron-300')}>
+                {/* Top accent line */}
+                <span aria-hidden className={cn('absolute inset-x-0 top-0 h-1 bg-gradient-to-r', green ? 'from-leaf-500 to-emerald-400' : 'from-saffron-500 to-amber-400')} />
+
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center justify-between">
+                    <span
+                      aria-hidden
+                      className={cn(
+                        'grid size-12 place-items-center rounded-xl font-display text-base font-bold transition-all duration-300',
+                        green ? 'bg-leaf-600/10 text-leaf-600 group-hover:bg-leaf-600 group-hover:text-white' : 'bg-saffron-500/10 text-saffron-600 group-hover:bg-saffron-600 group-hover:text-white',
+                      )}
+                    >
+                      <Icon className="size-5" />
                     </span>
+                    <span className="font-display text-xs font-bold text-stone-300">{pad(i + 1)}</span>
                   </div>
-                  {c.text && <p className="whitespace-pre-line text-sm sm:text-[0.95rem] leading-relaxed text-slate-700">{c.text}</p>}
+                  <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
+                  {c.text && <p className="whitespace-pre-line text-[0.95rem] leading-relaxed text-gray-600">{c.text}</p>}
                   {!!c.tags?.length && (
                     <ul className="flex flex-wrap gap-1.5 pt-1">
-                      {c.tags.map((t, k) => (
-                        <li key={k} className="rounded-full bg-white/90 px-2.5 py-1 text-xs font-medium text-charcoal-800 ring-1 ring-slate-200">
-                          {t}
-                        </li>
-                      ))}
+                      {c.tags.map((t, k) => <li key={k} className="rounded-full bg-cream px-2.5 py-1 text-xs font-medium text-charcoal-800">{t}</li>)}
                     </ul>
                   )}
                 </div>
-                <div className="mt-5 flex items-center justify-between gap-2 border-t border-[#d8e3ef] pt-3.5 sm:pt-4 text-xs font-bold tracking-wider uppercase text-red-600">
+                <div className="mt-6 flex items-center justify-between gap-3 border-t border-stone-100 pt-5 text-xs font-bold tracking-wider uppercase text-saffron-600">
                   <span>{c.meta || (c.url ? (LOCALE === 'en' ? 'Learn more' : 'अधिक जाणून घ्या') : '')}</span>
-                  <ArrowRight aria-hidden className="size-4 shrink-0 text-red-600 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  <ArrowRight aria-hidden className={cn('size-4 transition-transform duration-300 group-hover:translate-x-1.5', green ? 'text-leaf-600' : 'text-saffron-600')} />
                 </div>
               </Box>
             </StaggerItem>
@@ -243,27 +254,21 @@ export function StitchBlock({ b }: { b: PageBlock }): ReactNode {
   switch (b.blockType) {
     case 'cards':
       return <Cards b={b} />
-    case 'stats': {
-      const count = b.items?.length ?? 0
-      const gridCols = count === 3 ? 'grid-cols-1 sm:grid-cols-3' : count === 2 ? 'grid-cols-1 sm:grid-cols-2' : 'grid-cols-2 md:grid-cols-4'
+    case 'stats':
       return (
-        <div className="py-2">
+        <>
           <StitchHead eyebrow={b.eyebrow} heading={b.heading} />
-          <Stagger className={cn('grid gap-6 sm:gap-8 divide-y sm:divide-y-0 sm:divide-x divide-stone-200/80', gridCols)}>
-            {b.items?.map((s, idx) => (
-              <StaggerItem key={s.id} className={cn('flex flex-col', idx > 0 && 'pt-4 sm:pt-0 sm:pl-8')}>
-                <p className="font-display text-3xl font-bold text-[#000d3d] sm:text-4xl lg:text-[2.6rem] leading-none">
-                  <CountUp value={s.value} />
-                </p>
-                <p className="mt-2.5 text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-600">
-                  {s.label}
-                </p>
+          <Stagger className="grid grid-cols-2 gap-4 md:grid-cols-4">
+            {b.items?.map((s, i) => (
+              <StaggerItem key={s.id} className="group relative overflow-hidden rounded-2xl border border-stone-200/90 bg-white p-6 shadow-sm transition-all hover:border-saffron-400/60 hover:shadow-md">
+                <span aria-hidden className={cn('absolute inset-x-0 top-0 h-1', i % 2 ? 'bg-leaf-600' : 'bg-saffron-500')} />
+                <p className="font-display text-3xl font-bold text-charcoal-950 transition-colors group-hover:text-saffron-600 lg:text-4xl"><CountUp value={s.value} /></p>
+                <p className="mt-1 text-xs font-bold uppercase tracking-wider text-gray-500">{s.label}</p>
               </StaggerItem>
             ))}
           </Stagger>
-        </div>
+        </>
       )
-    }
     case 'gallery':
       return (
         <>

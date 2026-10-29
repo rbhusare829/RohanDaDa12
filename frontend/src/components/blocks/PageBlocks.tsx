@@ -25,7 +25,7 @@ const Heading = ({ eyebrow, heading }: { eyebrow?: string | null; heading?: stri
 type Content = Extract<PageBlock, { blockType: 'content' }>
 
 /** Stitch design: consecutive Content blocks share one row of cards; Media + text blocks become numbered chapters when there are two or more */
-function StitchList({ blocks }: { blocks: PageBlock[] }) {
+function StitchList({ blocks, plainChapters }: { blocks: PageBlock[]; plainChapters?: boolean }) {
   const list = blocks.filter((b) => !('hidden' in b && b.hidden))
   const chapters = list.filter((b) => b.blockType === 'mediaText').length
   const groups: { key: string; node: ReactNode; anchor?: string }[] = []
@@ -39,7 +39,7 @@ function StitchList({ blocks }: { blocks: PageBlock[] }) {
       groups.push({ key, node: <StitchContent blocks={run} />, anchor: b.heading ? `s-${i}` : undefined })
     } else if (b.blockType === 'mediaText') {
       chapter++
-      groups.push({ key, node: <StitchChapter b={b} n={chapters > 1 ? chapter : undefined} />, anchor: b.heading ? `s-${i}` : undefined })
+      groups.push({ key, node: <StitchChapter b={b} n={chapters > 1 ? chapter : undefined} plain={plainChapters} />, anchor: b.heading ? `s-${i}` : undefined })
     } else groups.push({ key, node: <StitchBlock b={b} />, anchor: 'heading' in b && b.heading ? `s-${i}` : undefined })
   }
   return (
@@ -54,9 +54,9 @@ function StitchList({ blocks }: { blocks: PageBlock[] }) {
 }
 
 /** The content blocks of a page (Pages → Content in the admin), one after another. `design="stitch"`: the Stitch look (Oct 2026) */
-export function PageBlocks({ blocks, design }: { blocks?: PageBlock[] | null; design?: 'stitch' }) {
+export function PageBlocks({ blocks, design, plainChapters }: { blocks?: PageBlock[] | null; design?: 'stitch'; /** stitch: Media + text without the card around the text */ plainChapters?: boolean }) {
   if (!blocks?.length) return null
-  if (design === 'stitch') return <StitchList blocks={blocks} />
+  if (design === 'stitch') return <StitchList blocks={blocks} plainChapters={plainChapters} />
   return (
     <div className="space-y-10 sm:space-y-16 md:space-y-24">
       {blocks.filter((b) => !('hidden' in b && b.hidden)).map((b, i) => (

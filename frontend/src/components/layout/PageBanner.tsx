@@ -1,6 +1,7 @@
 import { type ReactNode } from 'react'
-import { Sparkles } from 'lucide-react'
-import { AccentBar } from '../ui/Motion'
+import { ChevronRight, Home, Sparkles } from 'lucide-react'
+import { Link } from 'react-router'
+import { useTranslations } from '@/lib/i18n'
 
 export type Crumb = { label: string; href?: string }
 export type BannerTab = { label: string; href: string; active?: boolean }
@@ -18,18 +19,53 @@ const BANNER_PORTRAITS: { match: RegExp; src: string; position: string }[] = [
   { match: /.*/, src: '/images/portraits/rohan-executive-desk.webp', position: 'center bottom' },
 ]
 
+/**
+ * Breadcrumbs bar under the banner: Home › Section › Current page. Every label is in the visitor's language — "मुख्य पृष्ठ / Home" from
+ * the translations, the section and page names from the menu and the page itself (both kept in Marathi and English in the admin).
+ */
+function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
+  const t = useTranslations('nav')
+  if (!crumbs?.length) return null
+  return (
+    <nav aria-label="Breadcrumb" className="border-b border-stone-200 bg-[#f8fafc] py-2.5 text-xs text-slate-600">
+      <ol className="container-x flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+        <li>
+          <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] transition-colors hover:text-red-600">
+            <Home aria-hidden className="size-3.5" />
+            <span>{t('home')}</span>
+          </Link>
+        </li>
+        {crumbs.map((crumb, idx) => {
+          const isLast = idx === crumbs.length - 1
+          return (
+            <li key={idx} className="flex items-center gap-2">
+              <ChevronRight aria-hidden className="size-3 text-slate-400" />
+              {isLast || !crumb.href ? (
+                <span aria-current={isLast ? 'page' : undefined} className="line-clamp-1 font-semibold text-slate-900">{crumb.label}</span>
+              ) : (
+                <Link to={crumb.href} className="font-medium text-slate-600 transition-colors hover:text-red-600">
+                  {crumb.label}
+                </Link>
+              )}
+            </li>
+          )
+        })}
+      </ol>
+    </nav>
+  )
+}
 
 /**
  * The top of every inner page — 100% Supriya Sule ja-masthead layout:
  * - Photographic banner with deep navy overlay
  * - Large title with signature red & saffron accent line
+ * - Breadcrumb row (Home › Section › Current)
  * - Sibling pages as horizontal tab bar
  */
 export function PageBanner({
-  title, subtitle, image, imagePosition, eyebrow, path, variant,
+  title, subtitle, image, imagePosition, eyebrow, path, variant, crumbs,
 }: {
   title: string; eyebrow?: string | null; subtitle?: string | null
-  /** no longer shown (the breadcrumb row was removed, Oct 2026) */
   crumbs?: Crumb[]; image?: string | null; imagePosition?: string
   tabs?: BannerTab[]; tabsLabel?: string
   /** article pages: long headline in a smaller size */
@@ -43,7 +79,7 @@ export function PageBanner({
   /** Stitch page header (Oct 2026): 'navy' = deep navy band with kesariya & green glows, 'light' = warm ivory band */
   variant?: 'navy' | 'light'
 }) {
-  return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant || 'navy'} path={path} image={image} imagePosition={imagePosition} />
+  return <StitchBanner title={title} subtitle={subtitle} eyebrow={eyebrow} variant={variant || 'navy'} crumbs={crumbs} path={path} image={image} imagePosition={imagePosition} />
 }
 
 /**
@@ -51,9 +87,9 @@ export function PageBanner({
  * a card beside the title). The section's sibling pages follow as a row of pills.
  */
 function StitchBanner({
-  title, subtitle: _subtitle, eyebrow, variant: _variant, path, image, imagePosition,
+  title, subtitle: _subtitle, eyebrow, variant: _variant, crumbs, path, image, imagePosition,
 }: {
-  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'
+  title: string; subtitle?: string | null; eyebrow?: string | null; variant: 'navy' | 'light'; crumbs?: Crumb[]
   path?: string; image?: string | null; imagePosition?: string
 }) {
   const matched = BANNER_PORTRAITS.find((b) => b.match.test(path || '/')) || BANNER_PORTRAITS[BANNER_PORTRAITS.length - 1]
@@ -74,9 +110,8 @@ function StitchBanner({
         {/* Leader Photo - Visible on all screens: full height on right edge, melting naturally on left */}
         {portraitSrc && (
           <div aria-hidden className="pointer-events-none absolute inset-y-0 right-0 flex justify-end overflow-hidden">
-            {/* the portrait slides in from the right edge a moment after the page opens (a CSS entrance: it starts with the first paint) */}
             <div
-              className="animate-slide-in relative h-full overflow-hidden"
+              className="relative h-full overflow-hidden"
               style={{
                 width: 'clamp(180px, 48vw, 550px)',
                 height: '100%',
@@ -106,19 +141,24 @@ function StitchBanner({
         <div className="container-x relative flex min-h-[220px] sm:min-h-[280px] lg:min-h-[310px] flex-col justify-center py-8 sm:py-12 lg:py-14">
           <div className="max-w-[54%] sm:max-w-2xl lg:max-w-3xl space-y-2.5 sm:space-y-3.5">
             {eyebrow && (
-              <span className="animate-fade-up inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
                 <Sparkles className="size-3.5 text-saffron-600" />
                 {eyebrow}
               </span>
             )}
-            <h1 className="animate-fade-up text-2xl font-extrabold leading-[1.2] tracking-tight text-[#001f5c] sm:text-4xl lg:text-5xl" style={{ animationDelay: '60ms' }}>
+            <h1 className="animate-fade-up text-2xl font-extrabold leading-[1.2] tracking-tight text-[#001f5c] sm:text-4xl lg:text-5xl">
               {title}
             </h1>
-            <AccentBar className="mt-3 mb-2" bar="h-1.5 w-12 sm:w-14" dot="h-1.5 w-3 sm:w-3.5" />
+            <div className="mt-3 mb-2 flex items-center gap-1.5">
+              <span className="h-1.5 w-12 sm:w-14 rounded-full bg-red-600" />
+              <span className="h-1.5 w-3 sm:w-3.5 rounded-full bg-saffron-500" />
+            </div>
             {/* Subtitle removed per request: banner keeps clean title + accent line + photo */}
           </div>
         </div>
       </section>
+
+      <BreadcrumbsBar crumbs={crumbs} />
     </>
   )
 }

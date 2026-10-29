@@ -57,6 +57,18 @@ function FormattedHeading({ text }: { text?: string | null }) {
     )
   }
 
+  // Default: if words > 4, split into two balanced lines for a poster look
+  const words = text.trim().split(/\s+/)
+  if (words.length >= 4) {
+    const mid = Math.ceil(words.length / 2)
+    return (
+      <>
+        <span>{words.slice(0, mid).join(' ')}</span>
+        <span className="block">{words.slice(mid).join(' ')}</span>
+      </>
+    )
+  }
+
   return <>{text}</>
 }
 
@@ -80,13 +92,8 @@ export function HeroSlider({
 }) {
   const count = slides.length
   const [index, setIndex] = useState(0)
-  const [hover, setHover] = useState(false) // a mouse pointer or keyboard focus is on the slideshow
-  const [hidden, setHidden] = useState(false) // the tab is in the background
-  const [onscreen, setOnscreen] = useState(true) // the slideshow is on the screen (it does not keep turning above the visitor's head)
-  const reduced = usePrefersReducedMotion()
-  const halted = reduced // visitors who ask for less motion get no autoplay
-  const running = count > 1 && !halted && !hover && !hidden && onscreen
-  const root = useRef<HTMLElement>(null)
+  const [paused, setPaused] = useState(false)
+  const stopped = usePrefersReducedMotion()
   const touch = useRef<number | null>(null)
   const indexRef = useRef(0)
 
@@ -105,26 +112,19 @@ export function HeroSlider({
     [count, show],
   )
 
-  // Autoplay: one timer per slide; it stops while the pointer or focus is on the slideshow, in a background tab, off screen, or after Pause
+  // Autoplay
   useEffect(() => {
-    if (!running) return
+    if (count < 2 || paused || stopped) return
     const id = window.setTimeout(() => step(1), autoplay * 1000)
     return () => window.clearTimeout(id)
-  }, [index, running, autoplay, step])
+  }, [index, paused, stopped, autoplay, count, step])
 
+  // Pause on hidden tab
   useEffect(() => {
-    const onVis = () => setHidden(document.hidden)
+    const onVis = () => setPaused(document.hidden)
     document.addEventListener('visibilitychange', onVis)
     return () => document.removeEventListener('visibilitychange', onVis)
   }, [])
-
-  useEffect(() => {
-    const el = root.current
-    if (!el) return
-    const io = new IntersectionObserver(([e]) => setOnscreen(e.isIntersecting), { threshold: 0.15 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [count])
 
   if (!count) return null
 
@@ -132,14 +132,12 @@ export function HeroSlider({
 
   return (
     <section
-      ref={root}
       className="relative isolate w-full overflow-hidden bg-[#00081c] text-white select-none"
       aria-roledescription="carousel"
-      // only a real mouse pointer holds the slideshow: on a phone a tap would otherwise leave it "hovered" (and stopped) for good
-      onPointerEnter={(e) => e.pointerType === 'mouse' && setHover(true)}
-      onPointerLeave={() => setHover(false)}
-      onFocusCapture={() => setHover(true)}
-      onBlurCapture={() => setHover(false)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      onFocusCapture={() => setPaused(true)}
+      onBlurCapture={() => setPaused(false)}
       onTouchStart={(e) => (touch.current = e.touches[0].clientX)}
       onTouchEnd={(e) => {
         if (touch.current === null) return
@@ -176,97 +174,77 @@ export function HeroSlider({
                   fetchPriority={i === 0 ? 'high' : 'low'}
                   decoding="async"
                   className="size-full object-cover"
-                  style={{ objectPosition: s.mobilePosition ?? (s.position ?? '75% 15%') }}
+                  style={{ objectPosition: s.position ?? 'center 20%' }}
                 />
               </m.div>
             )
           })}
 
-          {/* Desktop gradient: left-to-right dark overlay for maximum text contrast */}
+          {/* Dark Gradient Overlay for Maximum Text Contrast (matching Image 3) */}
+          {/* Left-to-right gradient: dark behind the words on the left, clear from the middle on so Rohan (on the right) shows at full brightness */}
           <div
             aria-hidden
-            className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#00081c]/95 via-[#00081c]/60 via-50% to-[#00081c]/25 pointer-events-none"
+            className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#00081c]/90 via-[#00081c]/40 via-40% to-transparent to-60% pointer-events-none"
           />
-          {/* Mobile gradient: bottom-to-top dark overlay so words at bottom are 100% legible and face at top stays clear */}
+          {/* phones: a fade from the bottom, so the words over the lower part of the photo stay readable and the face stays clear */}
           <div
             aria-hidden
-            className="absolute inset-0 md:hidden bg-gradient-to-t from-[#00081c] via-[#00081c]/80 via-55% to-[#00081c]/15 pointer-events-none"
+            className="absolute inset-x-0 bottom-0 h-1/2 md:hidden bg-gradient-to-t from-[#00081c] via-[#00081c]/60 to-transparent pointer-events-none"
           />
 
           {/* Top subtle vignette for seamless header blend */}
           <div
             aria-hidden
-            className="absolute inset-x-0 top-0 hidden h-32 bg-gradient-to-b from-[#00081c]/80 to-transparent pointer-events-none md:block"
+            className="absolute inset-x-0 top-0 hidden h-20 bg-gradient-to-b from-[#00081c]/50 to-transparent pointer-events-none md:block"
           />
 
           {/* Bottom vignette for overlapping card integration */}
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 hidden h-44 bg-gradient-to-t from-[#00081c]/95 via-[#00081c]/60 to-transparent pointer-events-none md:block"
+            className="absolute inset-x-0 bottom-0 hidden h-24 bg-gradient-to-t from-[#00081c]/80 to-transparent pointer-events-none md:block"
           />
         </div>
       )}
 
       {/* 2. Hero Content Container */}
-      <div className="container-x relative z-20 min-h-[440px] sm:min-h-[500px] md:min-h-[540px] lg:min-h-[600px] xl:min-h-[640px] flex items-end md:items-center justify-between pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
-        <div className="w-full flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8">
-          {/* Words on the Left */}
-          <div className="max-w-2xl lg:max-w-3xl py-4 sm:py-6">
-            <AnimatePresence mode="wait" initial={false}>
+      <div className="container-x relative z-20 min-h-[460px] sm:min-h-[520px] md:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-12 sm:pt-20 sm:pb-20 lg:pt-24 lg:pb-30">
+        <div className="w-full flex items-end md:items-center justify-between gap-8">
+          {/* Words on the Left (Matching Image 3); on mobile they sit at the bottom, below the face */}
+          <div className="max-w-3xl lg:max-w-4xl py-2 md:py-6">
+            <AnimatePresence mode="wait">
               <m.div
                 key={index}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: 'easeOut' }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
                 {/* Orange/Saffron Uppercase Kicker */}
                 {activeSlide.kicker && (
-                  <p className="mb-2 sm:mb-2.5 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.16em] text-[#ff7a00] drop-shadow-sm">
+                  <p className="mb-2.5 sm:mb-3.5 text-xs sm:text-sm md:text-base font-bold uppercase tracking-[0.16em] text-[#ff7a00] drop-shadow-sm">
                     {activeSlide.kicker}
                   </p>
                 )}
 
-                {/* Refined Bold Heading (small and well-balanced) */}
-                <h1 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-[2.1rem] font-bold leading-relaxed sm:leading-snug tracking-tight text-white drop-shadow-md text-balance">
+                {/* Big White Bold Heading (2-Line Poster Layout) */}
+                <h1 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[2.9rem] font-bold leading-[1.18] tracking-tight text-white drop-shadow-md">
                   <FormattedHeading text={activeSlide.heading} />
                 </h1>
 
                 {/* Subtitle / Description if provided */}
                 {activeSlide.subheading && (
-                  <p className="mt-2.5 sm:mt-3.5 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed text-slate-200/90 font-normal">
+                  <p className="mt-4 sm:mt-5 max-w-2xl text-sm sm:text-base md:text-lg leading-relaxed text-slate-200/90 font-normal">
                     {activeSlide.subheading}
                   </p>
-                )}
-
-                {/* Mobile Slide Indicators (horizontal pills below text on phones) */}
-                {count > 1 && (
-                  <div className="mt-5 flex md:hidden items-center gap-2 select-none" aria-label="Carousel navigation">
-                    {slides.map((_, idx) => {
-                      const isActive = idx === index
-                      return (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={() => show(idx)}
-                          aria-label={`Go to slide ${idx + 1}`}
-                          className={cn(
-                            'h-1 rounded-full transition-all duration-300 cursor-pointer',
-                            isActive ? 'w-8 bg-[#ff7a00]' : 'w-2.5 bg-white/40 hover:bg-white/70',
-                          )}
-                        />
-                      )
-                    })}
-                  </div>
                 )}
               </m.div>
             </AnimatePresence>
           </div>
 
-          {/* Right: Vertical Slide Indicators (— 01 / 02) on tablets and desktops */}
+          {/* Right: Vertical Slide Indicators (— 01 / 02) exactly like Image 3 */}
           {count > 1 && (
             <div
-              className="hidden md:flex shrink-0 flex-col items-start select-none z-30"
+              className="shrink-0 flex flex-col items-start gap-4 select-none z-30"
               aria-label="Carousel navigation"
             >
               {slides.map((_, idx) => {
@@ -279,20 +257,17 @@ export function HeroSlider({
                     aria-label={`Go to slide ${idx + 1}`}
                     aria-current={isActive ? 'true' : undefined}
                     className={cn(
-                      'group flex min-h-11 items-center text-sm sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
+                      'group flex items-center text-sm sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
                       isActive
                         ? 'text-white font-bold'
                         : 'text-white/50 hover:text-white font-medium pl-8 sm:pl-10',
                     )}
                   >
                     {isActive && (
-                      <span aria-hidden className="relative mr-2.5 inline-block h-[2px] w-6 overflow-hidden bg-white/35 sm:w-8">
-                        <span
-                          key={running ? `run-${index}` : 'still'}
-                          className={cn('absolute inset-0 bg-white', running && 'hero-progress')}
-                          style={running ? { animationDuration: `${autoplay}s` } : undefined}
-                        />
-                      </span>
+                      <span
+                        aria-hidden
+                        className="inline-block w-6 sm:w-8 h-[2px] bg-white mr-2.5 transition-all duration-300"
+                      />
                     )}
                     <span>{pad(idx + 1)}</span>
                   </button>

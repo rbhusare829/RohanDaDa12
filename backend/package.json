@@ -17,6 +17,7 @@
     "import:payload": "node scripts/import-from-payload.mjs",
     "content:hero-covers": "node scripts/hero-covers.mjs",
     "content:intro-education": "node scripts/intro-education.mjs",
+    "content:album-update": "node scripts/album-update.mjs",
     "content:home-highlights": "node scripts/home-highlights.mjs",
     "content:initiatives": "node scripts/restore-initiatives.mjs",
     "content:english": "node scripts/english-text.mjs",

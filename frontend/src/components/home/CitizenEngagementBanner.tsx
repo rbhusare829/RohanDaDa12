@@ -1,14 +1,10 @@
-import { ArrowRight, Quote } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { Link } from 'react-router'
+import { ArrowRight, Calendar, FileText, Mail, Quote } from 'lucide-react'
+import { AccentBar, Reveal } from '../ui/Motion'
 
-/** the founder application on the New India Manifesto website (the same link as "Apply now" on the Vision page) */
+/** the founder application on the New India Manifesto website */
 const APPLY_URL = 'https://newindiamanifesto.com/apply/founder'
 
-/**
- * The New India Manifesto card that overlaps the bottom of the homepage hero: a white card with an orange top border — the
- * label, the line about building a self-reliant India from its rural heartland, the guidance / funding / 1,00,000
- * entrepreneurs line after a quote mark, and the red "Join the Movement" button (navy on hover, like every homepage button).
- */
 export function CitizenEngagementBanner({
   locale = 'mr',
 }: {
@@ -16,11 +12,49 @@ export function CitizenEngagementBanner({
 }) {
   const isMr = locale !== 'en'
 
+  const actionCards = [
+    {
+      num: isMr ? '०१' : '01',
+      icon: FileText,
+      iconBg: 'bg-orange-50 text-orange-600 border-orange-200/80',
+      title: isMr ? 'कामाचे निवेदन' : 'Work Petition',
+      desc: isMr
+        ? 'आपल्या परिसरातील समस्या किंवा विकासकामांचे निवेदन थेट रोहनदादांपर्यंत पोहोचवा.'
+        : 'Submit petitions regarding local development or civic issues directly to Rohan Deshmukh.',
+      linkText: isMr ? 'निवेदन द्या' : 'Submit Petition',
+      href: '/contact',
+    },
+    {
+      num: isMr ? '०२' : '02',
+      icon: Calendar,
+      iconBg: 'bg-amber-50 text-amber-600 border-amber-200/80',
+      title: isMr ? 'भेटीची विनंती' : 'Meeting Request',
+      desc: isMr
+        ? 'रोहनदादांना प्रत्यक्ष भेटून चर्चा करण्यासाठी व विचार मांडण्यासाठी वेळ निश्चित करा.'
+        : 'Schedule a personal meeting to discuss ideas and development initiatives.',
+      linkText: isMr ? 'वेळ मागा' : 'Request Meeting',
+      href: '/contact',
+    },
+    {
+      num: isMr ? '०३' : '03',
+      icon: Mail,
+      iconBg: 'bg-rose-50 text-red-600 border-rose-200/80',
+      title: isMr ? 'शुभकार्य आमंत्रण' : 'Event Invitation',
+      desc: isMr
+        ? 'विवाह सोहळा, उद्घाटन किंवा सामाजिक व कौटुंबिक कार्यक्रमाचे आमंत्रण पाठवा.'
+        : 'Invite Rohan Deshmukh to weddings, inaugurations, or cultural celebrations.',
+      linkText: isMr ? 'आमंत्रण पाठवा' : 'Send Invitation',
+      href: '/contact',
+    },
+  ]
+
   return (
-    <section className="container-x relative z-30 -mt-6 sm:-mt-8 lg:-mt-10">
-      {/* it rises over the bottom of the hero a moment after the hero's words have arrived */}
-      <Reveal delay={0.45} y={36} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.18)]">
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
+    <section className="container-x relative z-30 -mt-6 sm:-mt-8 lg:-mt-10 space-y-8 sm:space-y-10">
+      {/* 1. New India Manifesto Spotlight Banner */}
+      <Reveal delay={0.25} y={32} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.14)]">
+        <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
+          {/* Reliance Foundation style elegant background quote watermark */}
+          <span aria-hidden className="pointer-events-none absolute right-4 -bottom-10 select-none font-serif text-[10rem] font-bold text-orange-500/10 leading-none">”</span>
           <div className="min-w-0 max-w-4xl flex-1 space-y-2.5">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-saffron-700">
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
@@ -47,14 +81,80 @@ export function CitizenEngagementBanner({
               href={APPLY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 hover:bg-[#000d3d] px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-200 hover:scale-105 active:scale-95"
+              className="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 hover:bg-[#000d3d] px-7 py-3.5 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:scale-105 active:scale-95"
             >
               <span>{isMr ? 'आपल्या उद्योजकीय प्रवासाची नोंद करा!' : 'Join the Movement'}</span>
-              <ArrowRight aria-hidden className="size-4" />
+              <ArrowRight aria-hidden className="size-4 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         </div>
       </Reveal>
+
+      {/* 2. Citizen Action Cards (नागरिक सेवा केंद्र — inspired by subhashdeshmukh.com) */}
+      <div>
+        <div className="mb-6 sm:mb-8 text-center sm:text-left">
+          <span className="text-xs font-extrabold uppercase tracking-widest text-orange-600">
+            {isMr ? 'नागरिक सेवा केंद्र' : 'Citizen Service Portal'}
+          </span>
+          <h3 className="mt-1 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
+            {isMr ? (
+              <>
+                तुमचे काम. <span className="text-orange-600">थेट रोहनदादांपर्यंत.</span>
+              </>
+            ) : (
+              <>
+                Direct Citizen Access to <span className="text-orange-600">Rohan Deshmukh</span>
+              </>
+            )}
+          </h3>
+          <AccentBar className="mt-2.5 justify-center sm:justify-start" bar="h-1 w-14" dot="h-1.5 w-3" />
+        </div>
+
+        {/* Unified 3-Card Citizen Service Block (Exact subhashdeshmukh.com layout & animation) */}
+        <Reveal delay={0.1}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-stone-200 rounded-2xl sm:rounded-3xl bg-white border border-stone-200/90 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+            {actionCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <Link
+                  key={card.title}
+                  to={card.href}
+                  className="group relative flex flex-col justify-between p-6 sm:p-8 hover:bg-orange-50/40 transition-colors duration-300"
+                >
+                  {/* Top Bar on Hover */}
+                  <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-red-600 via-orange-500 to-amber-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                  {/* Header: Icon on Left, Number on Right */}
+                  <div className="flex items-start justify-between mb-5">
+                    <span className="flex size-12 sm:size-13 items-center justify-center rounded-2xl bg-orange-100/70 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-400 shadow-sm group-hover:scale-108 group-hover:ring-4 group-hover:ring-orange-200/80 group-hover:-translate-y-1">
+                      <Icon className="size-6" />
+                    </span>
+                    <span className="text-4xl sm:text-5xl font-black text-orange-200/70 group-hover:text-orange-400 transition-colors duration-300 select-none leading-none font-display">
+                      {card.num}
+                    </span>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h4 className="font-display font-bold text-lg sm:text-xl text-[#000d3d] group-hover:text-orange-600 transition-colors mb-2">
+                      {card.title}
+                    </h4>
+                    <p className="font-mukta text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
+                      {card.desc}
+                    </p>
+                  </div>
+
+                  {/* Action Link with Slide Arrow */}
+                  <div className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-orange-600 group-hover:text-orange-700 transition-colors">
+                    <span>{card.linkText}</span>
+                    <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+                  </div>
+                </Link>
+              )
+            })}
+          </div>
+        </Reveal>
+      </div>
     </section>
   )
 }

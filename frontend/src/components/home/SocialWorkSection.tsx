@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
+import { m } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal } from '../ui/Motion'
 
 export function SocialWorkSection({
   locale = 'mr',
@@ -11,27 +12,23 @@ export function SocialWorkSection({
 
   return (
     <section
-      className="relative py-14 sm:py-18 lg:py-22 border-t border-b border-sky-100/80 overflow-hidden"
+      className="relative py-14 sm:py-18 lg:py-22 border-t border-b border-stone-200/80 overflow-hidden"
       style={{
         background:
-          'linear-gradient(180deg, #ffffff 0%, #f1f8fe 35%, #e1f3fd 75%, #d5eefc 100%)',
+          'linear-gradient(180deg, #ffffff 0%, #faf8f5 45%, #f4f0e8 100%)',
       }}
       aria-labelledby="social-work-heading"
     >
-      {/* Crowd silhouette background pattern from user reference image */}
+      {/* Subtle warm atmospheric glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-44 opacity-40 bg-repeat-x bg-bottom"
-        style={{
-          backgroundImage: "url('/images/backgrounds/social-work-pattern.png')",
-          backgroundSize: 'auto 100%',
-        }}
+        className="pointer-events-none absolute -top-12 -right-12 size-96 rounded-full bg-[#fef3c7]/25 blur-3xl -z-10"
       />
-      {/* Soft atmospheric blue glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-[#bae6fd]/30 blur-3xl -z-10"
+        className="pointer-events-none absolute -bottom-12 -left-12 size-80 rounded-full bg-[#fed7aa]/20 blur-3xl -z-10"
       />
+
       <div className="container-x relative z-10">
         {/* Section Header */}
         <div className="text-center mb-10 sm:mb-14 lg:mb-16">
@@ -43,10 +40,7 @@ export function SocialWorkSection({
               {isMr ? 'समाजकार्य' : 'Social Work'}
             </h2>
 
-            <div className="mt-3 flex justify-center items-center gap-1.5">
-              <span className="h-1 w-16 rounded-full bg-red-600" />
-              <span className="h-1 w-3.5 rounded-full bg-saffron-500" />
-            </div>
+            <AccentBar center className="mt-3" bar="h-1 w-20" dot="h-1.5 w-4" />
 
             <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               {isMr
@@ -56,18 +50,22 @@ export function SocialWorkSection({
           </Reveal>
         </div>
 
-        {/* Open 2-Column Layout (NO enclosing card/box) */}
+        {/* Open 2-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center max-w-6xl mx-auto">
           {/* Photo Column */}
           <div className="lg:col-span-6">
-            <Reveal delay={0.1}>
-              <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 aspect-[4/3] sm:aspect-[16/11] bg-stone-100 group">
+            <Reveal x={-28} delay={0.08}>
+              <m.div
+                whileHover={{ y: -6, scale: 1.01 }}
+                transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
+                className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl ring-1 ring-black/5 aspect-[4/3] sm:aspect-[16/11] bg-stone-100 group transition-shadow duration-300"
+              >
                 <img
                   src="/images/social-work/rohan-lokmangal-914A2588.webp"
                   alt={isMr ? 'लोकमंगल फाउंडेशन समाजकार्य - सर्वधर्मीय सामुदायिक विवाह सोहळा' : 'Lokmangal Foundation Social Work'}
                   loading="lazy"
                   decoding="async"
-                  className="size-full object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="size-full object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-106"
                 />
                 <div
                   aria-hidden
@@ -78,21 +76,18 @@ export function SocialWorkSection({
                     {isMr ? 'सोलापूर आणि धाराशिव जिल्हा कार्यक्षेत्र' : 'Active in Solapur and Dharashiv Districts'}
                   </p>
                 </div>
-              </div>
+              </m.div>
             </Reveal>
           </div>
 
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <Reveal delay={0.15}>
+            <Reveal x={28} delay={0.14}>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
                 {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून जनसेवा' : 'Community Service through Lokmangal Foundation'}
               </h3>
 
-              <div className="mt-3 mb-5 flex items-center gap-1.5">
-                <span className="h-1 w-12 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
-              </div>
+              <AccentBar className="mt-3 mb-5" bar="h-1 w-14" dot="h-1.5 w-3" />
 
               <p className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
                 {isMr
@@ -103,10 +98,10 @@ export function SocialWorkSection({
               <div className="mt-8">
                 <Link
                   to="/lokmangal/foundation"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-xl hover:-translate-y-0.5"
                 >
                   <span>{isMr ? 'फाउंडेशन कार्य सविस्तर पहा' : 'Explore Foundation Work'}</span>
-                  <ArrowUpRight className="size-5" />
+                  <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
             </Reveal>

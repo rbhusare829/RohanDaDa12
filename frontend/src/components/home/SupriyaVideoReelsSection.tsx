@@ -5,6 +5,7 @@ import { YouTube } from '../ui/YouTube'
 import { SocialIcon } from '../ui/SocialIcon'
 import { InstagramReels } from './InstagramReels'
 import { cn, youtubeId } from '@/lib/utils'
+import { AccentBar } from '../ui/Motion'
 
 type Block = NonNullable<Home['sections']>[number]
 type VideoBlock = Extract<Block, { blockType: 'featuredVideo' }>
@@ -154,10 +155,7 @@ export function SupriyaVideoReelsSection({
           <h2 id="video-reels-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'व्हिडिओ' : 'Video'}
           </h2>
-          <div className="mt-2.5 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
+          <AccentBar center className="mt-2.5" bar="h-1 w-16" dot="h-1.5 w-3.5" />
         </div>
 
         {/* Horizontal Auto-scrolling Video Slider */}
@@ -199,10 +197,7 @@ export function SupriyaVideoReelsSection({
                             {item.title}
                           </h3>
                         )}
-                        <div className="mt-3 mb-4 flex items-center gap-1.5">
-                          <span className="h-1 w-10 rounded-full bg-red-600" />
-                          <span className="h-1 w-3 rounded-full bg-saffron-500" />
-                        </div>
+                        <AccentBar className="mt-3 mb-4" bar="h-1 w-12" dot="h-1.5 w-3" />
                         {item.text && (
                           <p className="text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
                             {item.text}
@@ -213,9 +208,9 @@ export function SupriyaVideoReelsSection({
                             href={item.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]"
+                            className="group inline-flex items-center gap-2.5 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
                           >
-                            {item.buttonLabel} <ArrowUpRight aria-hidden className="size-4" />
+                            {item.buttonLabel} <ArrowUpRight aria-hidden className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                           </a>
                         </div>
                       </div>
@@ -252,10 +247,7 @@ export function SupriyaVideoReelsSection({
             <div className="text-center mb-6 sm:mb-10">
               <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">{r.eyebrow}</span>
               <h3 className="mt-1 font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#000d3d]">{r.title}</h3>
-              <div className="mt-2.5 flex justify-center items-center gap-1.5">
-                <span className="h-1 w-12 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
-              </div>
+              <AccentBar center className="mt-2.5" bar="h-1 w-14" dot="h-1.5 w-3" />
             </div>
             <InstagramReels reels={r.items} />
           </div>

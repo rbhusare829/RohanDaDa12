@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { Stagger, StaggerItem } from '../ui/Motion'
+import { AccentBar, Stagger, StaggerItem } from '../ui/Motion'
 import { cn } from '@/lib/utils'
 import { ACTIVITIES, SOCIAL_ACTIVITIES_PATH, type Text } from '@/lib/social-activities'
 
@@ -23,10 +23,7 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
           <h2 id="social-activities-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? 'सामाजिक उपक्रम' : 'Social Activities'}
           </h2>
-          <div className="mt-2.5 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
-            <span className="h-1 w-3 rounded-full bg-saffron-500" />
-          </div>
+          <AccentBar center className="mt-2.5" bar="h-1 w-16" dot="h-1.5 w-3.5" />
         </div>
 
         <Stagger
@@ -39,7 +36,7 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
               <StaggerItem as="li" key={a.id} className={cn('w-[82%] shrink-0 snap-start sm:w-auto', mosaic[i])}>
                 <Link
                   to={`${SOCIAL_ACTIVITIES_PATH}#${a.id}`}
-                  className="group relative isolate flex h-full min-h-[22rem] w-full flex-col justify-end overflow-hidden rounded-2xl bg-[#000d3d] text-left text-white shadow-sm ring-1 ring-stone-200/60 transition-shadow duration-300 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/60 sm:min-h-[19rem] lg:min-h-0"
+                  className="group relative isolate flex h-full min-h-[22rem] w-full flex-col justify-end overflow-hidden rounded-2xl bg-[#000d3d] text-left text-white shadow-md ring-1 ring-stone-200/60 transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/60 sm:min-h-[19rem] lg:min-h-0"
                 >
                   <img
                     src={a.image}
@@ -52,6 +49,7 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
                   {/* navy fade (the homepage colour) so the words read on any photo */}
                   <span aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-[#000d3d] via-[#000d3d]/45 to-transparent" />
                   <span aria-hidden className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-red-600 to-saffron-500 transition-transform duration-500 group-hover:scale-x-100" />
+                  <span aria-hidden className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
                   <div className={cn('p-5 sm:p-6', big && 'lg:p-9')}>
                     <h3 className={cn('font-display font-bold leading-tight text-white', big ? 'text-2xl lg:text-[2.1rem]' : 'text-xl')}>{t(a.title)}</h3>
                     <p className={cn('mt-2 leading-relaxed text-white/80', big ? 'text-[0.95rem] lg:text-lg' : 'text-sm')}>{t(a.tagline)}</p>
@@ -71,9 +69,9 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
         <div className="mt-10 flex justify-center sm:mt-12">
           <Link
             to={SOCIAL_ACTIVITIES_PATH}
-            className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-colors hover:bg-[#000d3d]"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-xl hover:-translate-y-0.5"
           >
-            {isMr ? 'सर्व सामाजिक उपक्रम' : 'All social activities'} <ArrowRight aria-hidden className="size-4" />
+            {isMr ? 'सर्व सामाजिक उपक्रम' : 'All social activities'} <ArrowRight aria-hidden className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Link>
         </div>
       </div>

@@ -8,6 +8,7 @@ import { FloatingButtons, SitePopup } from './Floating'
 import { FloatingSocialBar } from './FloatingSocialBar'
 import { Header } from './Header'
 import { PersonSchema } from './Seo'
+import { ReadingProgress } from '../ui/Motion'
 
 /** A thin saffron bar at the top of the screen while the next page is loading (appears only if it takes a moment) */
 function TopLoader() {
@@ -105,6 +106,7 @@ export function RootLayout() {
     <LazyMotion features={loadMotion} strict>
       <MotionConfig reducedMotion="user">
         <TopLoader />
+        <ReadingProgress />
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-btn focus:px-5 focus:py-2 focus:text-white">
           {tn('skip')}
         </a>

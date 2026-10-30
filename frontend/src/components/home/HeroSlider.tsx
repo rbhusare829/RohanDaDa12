@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { AnimatePresence, m } from 'motion/react'
+import { AnimatePresence, m, type Variants } from 'motion/react'
 import { usePrefersReducedMotion } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 
@@ -19,6 +19,31 @@ export type Slide = {
 export type HeroSocial = { key: string; url: string; label: string }
 
 const pad = (n: number) => String(n).padStart(2, '0')
+
+const slideContentVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.04,
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -8,
+    transition: { duration: 0.22, ease: 'easeIn' },
+  },
+}
+
+const slideItemVariants: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
+  },
+}
 
 /**
  * Formats multi-word or newline-separated headings to match the iconic 2-line layout in Image 3:
@@ -204,14 +229,15 @@ export function HeroSlider({
             <AnimatePresence mode="wait">
               <m.div
                 key={index}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                variants={slideContentVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
               >
                 {/* Orange/Saffron Uppercase Kicker */}
                 {activeSlide.kicker && (
-                  <p
+                  <m.p
+                    variants={slideItemVariants}
                     className={cn(
                       'mb-2 sm:mb-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em]',
                       activeSlide.desktopTheme === 'light'
@@ -220,11 +246,12 @@ export function HeroSlider({
                     )}
                   >
                     {activeSlide.kicker}
-                  </p>
+                  </m.p>
                 )}
 
                 {/* Heading (Responsive across Dark & Light Desktop Themes) */}
-                <h1
+                <m.h1
+                  variants={slideItemVariants}
                   className={cn(
                     'font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight',
                     activeSlide.desktopTheme === 'light'
@@ -233,11 +260,12 @@ export function HeroSlider({
                   )}
                 >
                   <FormattedHeading text={activeSlide.heading} />
-                </h1>
+                </m.h1>
 
                 {/* Subtitle / Description if provided */}
                 {activeSlide.subheading && (
-                  <p
+                  <m.p
+                    variants={slideItemVariants}
                     className={cn(
                       'mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed font-normal',
                       activeSlide.desktopTheme === 'light'
@@ -246,7 +274,7 @@ export function HeroSlider({
                     )}
                   >
                     {activeSlide.subheading}
-                  </p>
+                  </m.p>
                 )}
               </m.div>
             </AnimatePresence>

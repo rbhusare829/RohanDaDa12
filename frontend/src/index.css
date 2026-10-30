@@ -1,58 +1,68 @@
 @import 'tailwindcss';
 
-/* Tiro Devanagari Marathi (self-hosted): primary Marathi font supporting all weights 100-900 */
+/* DB Hindi fonts (identical to subhashdeshmukh.com) */
 @font-face {
-  font-family: 'Tiro Devanagari Marathi';
+  font-family: 'DB Hindi 6';
+  src: url('/fonts/db-hindi/db-hindi-6.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
-  font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/tiro/tiro-devanagari-marathi-devanagari-400-normal.woff2') format('woff2');
-  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
 }
 
 @font-face {
-  font-family: 'Tiro Devanagari Marathi';
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('/fonts/tiro/tiro-devanagari-marathi-devanagari-400-italic.woff2') format('woff2');
-  unicode-range: U+0900-097F, U+1CD0-1CF9, U+200C-200D, U+20A8, U+20B9, U+20F0, U+25CC, U+A830-A839, U+A8E0-A8FF, U+11B00-11B09;
-}
-
-@font-face {
-  font-family: 'Tiro Devanagari Marathi';
+  font-family: 'DB Hindi 6';
+  src: url('/fonts/db-hindi/db-hindi-6-bold.woff2') format('woff2');
+  font-weight: 700;
   font-style: normal;
-  font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-ext-400-normal.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
-  font-family: 'Tiro Devanagari Marathi';
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-ext-400-italic.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-
-@font-face {
-  font-family: 'Tiro Devanagari Marathi';
+  font-family: 'DB Hindi 2';
+  src: url('/fonts/db-hindi/db-hindi-2.woff2') format('woff2');
+  font-weight: 400;
   font-style: normal;
-  font-weight: 100 900;
   font-display: swap;
-  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-400-normal.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
-  font-family: 'Tiro Devanagari Marathi';
-  font-style: italic;
-  font-weight: 100 900;
+  font-family: 'DB Hindi 2';
+  src: url('/fonts/db-hindi/db-hindi-2-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
   font-display: swap;
-  src: url('/fonts/tiro/tiro-devanagari-marathi-latin-400-italic.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'DB Hindi 5';
+  src: url('/fonts/db-hindi/db-hindi-5.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DB Hindi 5';
+  src: url('/fonts/db-hindi/db-hindi-5-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DB Hindi 7';
+  src: url('/fonts/db-hindi/db-hindi-7.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'DB Hindi 7';
+  src: url('/fonts/db-hindi/db-hindi-7-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @theme {
@@ -115,10 +125,13 @@
   --color-danger: #b42318;   --color-danger-soft: #fdeceb;
   --color-info: #1d4ed8;     --color-info-soft: #e8efff;
 
-  --font-marathi: 'Tiro Devanagari Marathi', serif;
-  --font-display: 'Space Grotesk Variable', 'Space Grotesk', 'Tiro Devanagari Marathi', serif;
-  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', 'Tiro Devanagari Marathi', serif;
-  --font-quote: 'Literata Variable', 'Literata', 'Tiro Devanagari Marathi', Georgia, serif;
+  --font-marathi: 'Mukta', sans-serif;
+  --font-display: 'DB Hindi 6', 'Baloo 2', 'Mukta', 'Space Grotesk Variable', sans-serif;
+  --font-sans: 'Mukta', 'Plus Jakarta Sans Variable', sans-serif;
+  --font-quote: 'Literata Variable', 'Literata', 'Mukta', Georgia, serif;
+  --font-db-6: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif;
+  --font-baloo: 'Baloo 2', 'Mukta', sans-serif;
+  --font-mukta: 'Mukta', sans-serif;
 
   --animate-fade-up: fade-up 0.6s var(--ease-soft) both;
   /* a tab panel that opens: the same rise, shorter and quicker than a page's own entrance */
@@ -256,27 +269,30 @@
   }
 
   /* ==========================================================================
-     Tiro Devanagari Marathi Typography: Primary font for all Marathi content
-     Headings, Paragraphs, Navigation, Buttons, Cards, Statistics, Footer
+     Marathi Typography (identical to subhashdeshmukh.com):
+     - Headings & Display: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif
+     - Body, Paragraphs, Navigation, Buttons, Cards: 'Mukta', sans-serif
+     - Numbers & Counters: 'Baloo 2', 'Mukta', sans-serif
      ========================================================================== */
   html[lang='mr'],
   [lang='mr'],
   .lang-mr {
-    --font-display: 'Tiro Devanagari Marathi', serif;
-    --font-sans: 'Tiro Devanagari Marathi', serif;
-    --font-quote: 'Tiro Devanagari Marathi', serif;
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
+    --font-display: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif;
+    --font-sans: 'Mukta', sans-serif;
+    --font-quote: 'Mukta', sans-serif;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.16px;
   }
 
   html[lang='mr'] body {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    font-size: 1.05rem;
-    line-height: 1.75;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    font-size: 1rem;
+    line-height: 1.65;
+    letter-spacing: 0.16px;
+    color: rgb(41, 37, 36);
   }
 
-  /* Headings: Tiro Devanagari Marathi */
+  /* Headings: DB Hindi 6 + Baloo 2 + Mukta */
   html[lang='mr'] h1,
   html[lang='mr'] h2,
   html[lang='mr'] h3,
@@ -286,42 +302,42 @@
   html[lang='mr'] .font-display,
   html[lang='mr'] .h-section,
   html[lang='mr'] .h-hero {
-    font-family: 'Tiro Devanagari Marathi', serif !important;
-    letter-spacing: 0;
-    line-height: 1.35;
+    font-family: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif !important;
+    letter-spacing: 0.015em;
+    line-height: 1.25;
     font-weight: 700;
   }
 
-  /* Paragraphs and list items */
+  /* Paragraphs and list items: Mukta */
   html[lang='mr'] p,
   html[lang='mr'] li,
   html[lang='mr'] blockquote {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    line-height: 1.75;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    line-height: 1.68;
+    letter-spacing: 0.16px;
   }
 
-  /* Navigation & Header */
+  /* Navigation & Header: Mukta */
   html[lang='mr'] nav,
   html[lang='mr'] header,
   html[lang='mr'] header a,
   html[lang='mr'] header button,
   html[lang='mr'] header span,
   html[lang='mr'] .nav-link {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.16px;
     font-weight: 600;
   }
 
-  /* Buttons */
+  /* Buttons: Mukta */
   html[lang='mr'] button,
   html[lang='mr'] .btn,
   html[lang='mr'] [role='button'],
   html[lang='mr'] a.btn,
   html[lang='mr'] .more-link {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
-    font-weight: 600;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.2px;
+    font-weight: 700;
   }
 
   /* Cards & Tiles */
@@ -331,30 +347,30 @@
   html[lang='mr'] .tile-kicker,
   html[lang='mr'] .card,
   html[lang='mr'] .card-title {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.16px;
   }
 
-  /* Statistics & Numbers */
+  /* Statistics & Numbers: Baloo 2 + Mukta */
   html[lang='mr'] .stat-value,
   html[lang='mr'] .stat-label,
   html[lang='mr'] .stat-card,
   html[lang='mr'] dl,
   html[lang='mr'] dt,
   html[lang='mr'] dd {
-    font-family: 'Tiro Devanagari Marathi', serif;
+    font-family: 'Baloo 2', 'Mukta', sans-serif;
     letter-spacing: 0;
   }
 
-  /* Footer */
+  /* Footer: Mukta */
   html[lang='mr'] footer,
   html[lang='mr'] footer h3,
   html[lang='mr'] footer p,
   html[lang='mr'] footer a,
   html[lang='mr'] footer span,
   html[lang='mr'] footer li {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.16px;
   }
 
   /* Form controls */
@@ -362,14 +378,25 @@
   html[lang='mr'] textarea,
   html[lang='mr'] select,
   html[lang='mr'] label {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.16px;
   }
 
   /* Devanagari characters anywhere on page */
   :lang(mr) {
-    font-family: 'Tiro Devanagari Marathi', serif;
-    letter-spacing: 0;
+    font-family: 'Mukta', sans-serif;
+    letter-spacing: 0.16px;
+  }
+
+  /* Utility classes */
+  .font-db-6 {
+    font-family: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif !important;
+  }
+  .font-baloo {
+    font-family: 'Baloo 2', 'Mukta', sans-serif !important;
+  }
+  .font-mukta {
+    font-family: 'Mukta', sans-serif !important;
   }
 
   ::selection {

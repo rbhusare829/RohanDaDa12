@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 import { ArrowRightCircle, ArrowUpRight } from 'lucide-react'
 import type { Post } from '@/types/cms'
 import { mediaUrl } from '@/lib/media'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal, Stagger, StaggerItem } from '../ui/Motion'
 
 const MONTHS_MR = [
   'जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून',
@@ -147,10 +147,7 @@ export function SupriyaLatestNewsSection({
               >
                 {isMr ? 'ब्लॉग' : 'Blogs'}
               </h2>
-              <div className="mt-2.5 flex items-center gap-1.5">
-                <span className="h-1 w-14 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
-              </div>
+              <AccentBar className="mt-2.5" bar="h-1 w-14" dot="h-1.5 w-3" />
             </Reveal>
           </div>
 
@@ -166,16 +163,19 @@ export function SupriyaLatestNewsSection({
         </div>
 
         {/* 4-Column Cards Grid matching Reference Image */}
-        <Reveal delay={0.15}>
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {displayItems.map((item) => (
-              <div
-                key={item.id}
-                className="w-[82vw] shrink-0 snap-start sm:w-auto"
-              >
+        <Stagger
+          as="div"
+          step={0.08}
+          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {displayItems.map((item) => (
+            <StaggerItem
+              key={item.id}
+              className="w-[82vw] shrink-0 snap-start sm:w-auto"
+            >
                 <Link
                   to={`/blog/${item.slug}`}
-                  className="group flex flex-col gap-3 transition-transform duration-300 hover:-translate-y-1.5"
+                  className="group flex flex-col gap-3 transition-all duration-300 hover:-translate-y-2"
                 >
                   {/* Photo with 3px solid White Border */}
                   <div className="relative aspect-[16/10] w-full overflow-hidden border-[3px] border-white shadow-md bg-stone-100">
@@ -183,7 +183,7 @@ export function SupriyaLatestNewsSection({
                       src={item.image}
                       alt={item.title}
                       loading="lazy"
-                      className="size-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
                     />
 
                     {/* Date Badge at Bottom-Right inside the Photo frame */}
@@ -206,10 +206,9 @@ export function SupriyaLatestNewsSection({
                     </h3>
                   </div>
                 </Link>
-              </div>
-            ))}
-          </div>
-        </Reveal>
+              </StaggerItem>
+          ))}
+        </Stagger>
       </div>
     </section>
   )

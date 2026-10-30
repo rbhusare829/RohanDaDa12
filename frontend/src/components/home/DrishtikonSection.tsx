@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
+import { m } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { AccentBar, Reveal } from '../ui/Motion'
 
 export function DrishtikonSection({
   locale = 'mr',
@@ -46,10 +47,7 @@ export function DrishtikonSection({
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </h2>
 
-            <div className="mt-3 flex justify-center items-center gap-1.5">
-              <span className="h-1 w-16 rounded-full bg-red-600" />
-              <span className="h-1 w-3.5 rounded-full bg-saffron-500" />
-            </div>
+            <AccentBar center className="mt-3" bar="h-1 w-20" dot="h-1.5 w-4" />
 
             <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               {isMr
@@ -63,8 +61,8 @@ export function DrishtikonSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center max-w-6xl mx-auto">
           {/* Photo & Book Column */}
           <div className="lg:col-span-6">
-            <Reveal delay={0.1}>
-              <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 aspect-[4/3] sm:aspect-[16/11] bg-[#000d3d] group">
+            <Reveal x={-28} delay={0.08}>
+              <m.div whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }} className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl ring-1 ring-black/10 aspect-[4/3] sm:aspect-[16/11] bg-[#000d3d] group transition-shadow duration-300">
                 <img
                   src="/images/hero/rohan-hero-book.webp"
                   alt={isMr ? 'रोहन देशमुख - न्यू इंडिया मॅनिफेस्टो' : 'Rohan Deshmukh - The New India Manifesto'}
@@ -79,7 +77,7 @@ export function DrishtikonSection({
 
                 {/* Centered Book Cover in the left dark zone */}
                 <div className="absolute top-1/2 -translate-y-1/2 left-[10%] sm:left-[14%] lg:left-[16%] z-10 flex items-center">
-                  <div className="relative group/book rounded-md overflow-hidden shadow-[0_16px_36px_rgba(0,0,0,0.85)] ring-1 ring-white/25 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                  <div className="relative group/book rounded-md overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.9)] ring-1 ring-white/25 transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:rotate-0" style={{ transform: 'perspective(700px) rotateY(-10deg) rotateX(3deg)' }}>
                     <img
                       src="/images/vision/new-india-manifesto-cover.webp"
                       alt={isMr ? 'न्यू इंडिया मॅनिफेस्टो - पुस्तक मुखपृष्ठ' : 'The New India Manifesto - Book Cover'}
@@ -96,23 +94,20 @@ export function DrishtikonSection({
                     {isMr ? 'नवभारताच्या उभारणीविषयीचा आधुनिक दृष्टिकोन' : 'A Vision for Modern India'}
                   </p>
                 </div>
-              </div>
+              </m.div>
             </Reveal>
           </div>
 
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <Reveal delay={0.15}>
+            <Reveal x={28} delay={0.14}>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
                 {isMr
                   ? 'उद्योजकतेतून सक्षम महाराष्ट्राची निर्मिती'
                   : 'Building an Empowered Maharashtra through Entrepreneurship'}
               </h3>
 
-              <div className="mt-3 mb-5 flex items-center gap-1.5">
-                <span className="h-1 w-12 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
-              </div>
+              <AccentBar className="mt-3 mb-5" bar="h-1 w-14" dot="h-1.5 w-3" />
 
               <p className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
                 {isMr
@@ -129,10 +124,10 @@ export function DrishtikonSection({
               <div className="mt-8">
                 <Link
                   to="/vision"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-xl hover:-translate-y-0.5"
                 >
                   <span>{isMr ? 'व्हिजन सविस्तर वाचा' : 'Read Full Vision'}</span>
-                  <ArrowUpRight className="size-5" />
+                  <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </Link>
               </div>
             </Reveal>

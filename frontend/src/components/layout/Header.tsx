@@ -91,7 +91,7 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
           // phones: the pill stays small, an invisible band above and below makes each half a 44 px tap area
           isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
           currentLocale === 'mr'
-            ? 'bg-[#000d3d] text-white shadow-xs'
+            ? 'bg-saffron-600 text-white shadow-xs'
             : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-stone-200/60',
         )}
       >
@@ -109,7 +109,7 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
           // phones: the pill stays small, an invisible band above and below makes each half a 44 px tap area
           isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
           currentLocale === 'en'
-            ? 'bg-[#000d3d] text-white shadow-xs'
+            ? 'bg-saffron-600 text-white shadow-xs'
             : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-stone-200/60',
         )}
       >

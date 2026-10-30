@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
-import { m } from 'motion/react'
 import type { Home } from '@/types/cms'
-import { AccentBar, Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 import { ROHAN_BIO } from '@/lib/rohan-bio'
 
 type Block = NonNullable<Home['sections']>[number]
@@ -36,7 +35,7 @@ export function SupriyaAboutSection({
     : "I'm committed to the betterment of the people"
 
   // Shared photo card component with rich black back shadow
-  const PhotoCard = ({ className = '' }: { className?: string }) => (
+  const photoCard = (className = '') => (
     <div className={`group relative w-full ${className}`}>
       {/* Deep diffused black back shadow behind the photo */}
       <div
@@ -48,12 +47,8 @@ export function SupriyaAboutSection({
         className="pointer-events-none absolute -inset-2 -z-10 rounded-[2rem] bg-black/25 blur-xl transition-all duration-500"
       />
 
-      {/* Framed portrait card with deep black elevation shadow & smooth hover motion */}
-      <m.div
-        whileHover={{ y: -6, scale: 1.01 }}
-        transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }}
-        className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-white bg-white shadow-[0_20px_45px_-10px_rgba(0,0,0,0.35),0_10px_20px_-6px_rgba(0,0,0,0.2)] ring-1 ring-stone-200/80 transition-shadow duration-500 group-hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.45)]"
-      >
+      {/* Framed portrait card with deep black elevation shadow */}
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-white bg-white shadow-[0_20px_45px_-10px_rgba(0,0,0,0.35),0_10px_20px_-6px_rgba(0,0,0,0.2)] ring-1 ring-stone-200/80 transition-all duration-500 group-hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.45)] group-hover:-translate-y-1">
         <div className="aspect-[3/4] w-full overflow-hidden bg-stone-100">
           <img
             src="/images/portraits/rohan-peach-kurta-namaskar.webp"
@@ -61,10 +56,10 @@ export function SupriyaAboutSection({
             width={500}
             height={667}
             loading="eager"
-            className="size-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            className="size-full object-cover object-top transition-transform duration-700 group-hover:scale-103"
           />
         </div>
-      </m.div>
+      </div>
     </div>
   )
 
@@ -76,7 +71,7 @@ export function SupriyaAboutSection({
         {/* ============================================================== */}
         <div className="hidden lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-14 lg:items-center">
           {/* Left Column: All text continuous */}
-          <Reveal x={-28} delay={0.06} className="flex flex-col items-start lg:col-span-7">
+          <Reveal className="flex flex-col items-start lg:col-span-7">
             {/* Red Eyebrow */}
             <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
               {eyebrowText}
@@ -88,7 +83,10 @@ export function SupriyaAboutSection({
             </h2>
 
             {/* Signature Red & Saffron Underline Accent Bar */}
-            <AccentBar className="mt-3" bar="h-1 w-16" dot="h-1.5 w-3.5" />
+            <div className="mt-3 flex items-center gap-1.5">
+              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-3 rounded-full bg-saffron-500" />
+            </div>
 
             {/* Tagline */}
             <p className="mt-3 mb-6 font-display text-lg lg:text-xl font-bold sm:font-semibold text-red-600">
@@ -105,8 +103,8 @@ export function SupriyaAboutSection({
           </Reveal>
 
           {/* Right Column: Portrait Photo */}
-          <Reveal x={28} delay={0.14} className="flex justify-center lg:col-span-5">
-            <PhotoCard className="max-w-[400px] xl:max-w-[420px]" />
+          <Reveal delay={0.15} x={40} className="flex justify-center lg:col-span-5">
+            {photoCard('max-w-[400px] xl:max-w-[420px]')}
           </Reveal>
         </div>
 
@@ -126,7 +124,10 @@ export function SupriyaAboutSection({
             </h2>
 
             {/* Signature Red & Saffron Underline Accent Bar */}
-            <AccentBar className="mt-3" bar="h-1 w-16" dot="h-1.5 w-3.5" />
+            <div className="mt-3 flex items-center gap-1.5">
+              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-3 rounded-full bg-saffron-500" />
+            </div>
 
             {/* Tagline */}
             <p className="mt-3 mb-5 font-display text-[1.15rem] leading-snug sm:text-lg font-bold sm:font-semibold text-red-600">
@@ -140,7 +141,7 @@ export function SupriyaAboutSection({
 
             {/* Photo placed right after '...ताकद आहे.', well-proportioned */}
             <div className="w-full flex justify-center my-6">
-              <PhotoCard className="max-w-[310px] sm:max-w-[350px]" />
+              {photoCard('max-w-[310px] sm:max-w-[350px]')}
             </div>
 
             {/* Paragraph 2 ('स्वामी विवेकानंदांच्या...') with Read More */}

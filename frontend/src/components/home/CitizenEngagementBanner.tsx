@@ -1,6 +1,7 @@
 import { Link } from 'react-router'
 import { ArrowRight, Calendar, FileText, Mail, Quote } from 'lucide-react'
-import { AccentBar, Reveal } from '../ui/Motion'
+import { AccentBar } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 
 /** the founder application on the New India Manifesto website */
 const APPLY_URL = 'https://newindiamanifesto.com/apply/founder'
@@ -17,7 +18,7 @@ export function NewIndiaManifestoBanner({
 
   return (
     <section className="container-x relative z-30 -mt-6 sm:-mt-8 lg:-mt-10">
-      <Reveal delay={0.25} y={32} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.14)]">
+      <Reveal delay={0.3} y={30} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.14)]">
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
           {/* Reliance Foundation style elegant background quote watermark */}
           <span aria-hidden className="pointer-events-none absolute right-4 -bottom-10 select-none font-serif text-[10rem] font-bold text-orange-500/10 leading-none">”</span>

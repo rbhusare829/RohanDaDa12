@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
-import { m } from 'motion/react'
 import { ArrowUpRight } from 'lucide-react'
-import { AccentBar, Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 
 export function DrishtikonSection({
   locale = 'mr',
@@ -47,7 +46,10 @@ export function DrishtikonSection({
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </h2>
 
-            <AccentBar center className="mt-3" bar="h-1 w-20" dot="h-1.5 w-4" />
+            <div className="mt-3 flex justify-center items-center gap-1.5">
+              <span className="h-1 w-16 rounded-full bg-red-600" />
+              <span className="h-1 w-3.5 rounded-full bg-saffron-500" />
+            </div>
 
             <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
               {isMr
@@ -61,8 +63,8 @@ export function DrishtikonSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center max-w-6xl mx-auto">
           {/* Photo & Book Column */}
           <div className="lg:col-span-6">
-            <Reveal x={-28} delay={0.08}>
-              <m.div whileHover={{ y: -6, scale: 1.01 }} transition={{ duration: 0.35, ease: [0.25, 1, 0.5, 1] }} className="relative overflow-hidden rounded-2xl shadow-xl hover:shadow-2xl ring-1 ring-black/10 aspect-[4/3] sm:aspect-[16/11] bg-[#000d3d] group transition-shadow duration-300">
+            <Reveal delay={0.05} x={-40}>
+              <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 aspect-[4/3] sm:aspect-[16/11] bg-[#000d3d] group">
                 <img
                   src="/images/hero/rohan-hero-book.webp"
                   alt={isMr ? 'रोहन देशमुख - न्यू इंडिया मॅनिफेस्टो' : 'Rohan Deshmukh - The New India Manifesto'}
@@ -77,7 +79,7 @@ export function DrishtikonSection({
 
                 {/* Centered Book Cover in the left dark zone */}
                 <div className="absolute top-1/2 -translate-y-1/2 left-[10%] sm:left-[14%] lg:left-[16%] z-10 flex items-center">
-                  <div className="relative group/book rounded-md overflow-hidden shadow-[0_20px_45px_rgba(0,0,0,0.9)] ring-1 ring-white/25 transition-all duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-2 group-hover:rotate-0" style={{ transform: 'perspective(700px) rotateY(-10deg) rotateX(3deg)' }}>
+                  <div className="relative group/book rounded-md overflow-hidden shadow-[0_16px_36px_rgba(0,0,0,0.85)] ring-1 ring-white/25 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
                     <img
                       src="/images/vision/new-india-manifesto-cover.webp"
                       alt={isMr ? 'न्यू इंडिया मॅनिफेस्टो - पुस्तक मुखपृष्ठ' : 'The New India Manifesto - Book Cover'}
@@ -87,47 +89,49 @@ export function DrishtikonSection({
                     />
                   </div>
                 </div>
-
-                {/* Bottom Tagline on Image */}
-                <div className="absolute bottom-4 left-5 right-5 z-10">
-                  <p className="text-xs sm:text-sm font-semibold text-white/95 drop-shadow">
-                    {isMr ? 'नवभारताच्या उभारणीविषयीचा आधुनिक दृष्टिकोन' : 'A Vision for Modern India'}
-                  </p>
-                </div>
-              </m.div>
+              </div>
             </Reveal>
           </div>
 
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <Reveal x={28} delay={0.14}>
+            <Reveal delay={0.2} x={40}>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
                 {isMr
                   ? 'उद्योजकतेतून सक्षम महाराष्ट्राची निर्मिती'
                   : 'Building an Empowered Maharashtra through Entrepreneurship'}
               </h3>
 
-              <AccentBar className="mt-3 mb-5" bar="h-1 w-14" dot="h-1.5 w-3" />
+              <div className="mt-3 mb-5 flex items-center gap-1.5">
+                <span className="h-1 w-12 rounded-full bg-red-600" />
+                <span className="h-1 w-3 rounded-full bg-saffron-500" />
+              </div>
 
-              <p className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
-                {isMr
-                  ? '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.'
-                  : 'In his book ‘The New India Manifesto’, Rohan Subhash Deshmukh articulated his vision for building a new India. Drawing inspiration from these ideals, his resolution is to cultivate a robust entrepreneurial ecosystem across Maharashtra. Providing youth from cities to villages with the right mentorship, collaboration, and opportunities to transform their ideas into thriving ventures is the core objective of his endeavors.'}
-              </p>
+              <div className="space-y-4">
+                {(isMr
+                  ? [
+                      '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.',
+                      'तरुणांनी स्वतःच्या क्षमतेवर विश्वास ठेवून स्वावलंबी व्हावे आणि रोजगार शोधण्याऐवजी रोजगारनिर्मिती करावी, हा त्यांच्या दृष्टिकोनाचा केंद्रबिंदू आहे.',
+                    ]
+                  : [
+                      'In his book New India Manifesto, Rohan Subhash Deshmukh shares his ideas for building a better India. Inspired by these ideas, he wants to build a strong business community across Maharashtra.',
+                      'He works with young people from both cities and villages. He helps them with guidance, support, and chances to grow, so their ideas can become real businesses.',
+                      'He believes young people should trust themselves, stand on their own feet, and create jobs for others instead of only looking for jobs.',
+                    ]
+                ).map((text) => (
+                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
+                    {text}
+                  </p>
+                ))}
+              </div>
 
-              <p className="mt-4 text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
-                {isMr
-                  ? 'तरुणांनी स्वतःच्या क्षमतेवर विश्वास ठेवून स्वावलंबी व्हावे आणि रोजगार शोधण्याऐवजी रोजगारनिर्मिती करावी, हा त्यांच्या दृष्टिकोनाचा केंद्रबिंदू आहे.'
-                  : 'Instilling confidence in young people to become self-reliant and shift from job seekers to job creators is the focal point of his vision.'}
-              </p>
-
-              <div className="mt-8">
+              <div className="mt-8 flex max-lg:justify-center">
                 <Link
                   to="/vision"
-                  className="group inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-xl hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
                 >
                   <span>{isMr ? 'व्हिजन सविस्तर वाचा' : 'Read Full Vision'}</span>
-                  <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="size-5" />
                 </Link>
               </div>
             </Reveal>

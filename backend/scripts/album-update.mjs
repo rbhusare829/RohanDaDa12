@@ -3,7 +3,9 @@
  *   - ADD: new photos (the file in scripts/assets goes into the Media library once, then into the album)
  *   - ALBUMS: photos to take out — "कौटुंबिक क्षण / Family Moments" (/media/photos/family-moments): 16 photos;
  *     "राजकीय क्षण / Political Moments" (/media/photos/political-moments): 7 photos
- *   - FIRST: photos to show first, in that order (Family Moments opens with Rohan and his mother; Political Moments with the evening
+ *   - REPLACE: a photo swapped for a new one in the same place (Political Moments: the group photo with Ajit Pawar → the close-up
+ *     of Rohan and Ajit Pawar cut from it)
+ *   - FIRST: photos to show first, in that order (Family Moments opens with Rohan and his mother, then Rohan with his father; Political Moments with the evening
  *     speech, then the photos with Narendra Modi, Devendra Fadnavis and Uddhav Thackeray, then the other leaders); the rest keep their
  *     order after them
  *
@@ -26,6 +28,13 @@ const ADD = {
   'family-moments': [{ filename: 'rd-family-mother.webp', alt: { en: 'Rohan Deshmukh with his mother', mr: 'रोहन देशमुख आईसोबत' } }],
 }
 
+/** photo in the album → the new photo from scripts/assets that takes its place */
+const REPLACE = {
+  'political-moments': {
+    'rd-political-03.webp': { filename: 'rd-political-03-ajit-pawar.webp', alt: { en: 'Rohan Deshmukh with Ajit Pawar', mr: 'रोहन देशमुख अजित पवार यांच्यासोबत' } },
+  },
+}
+
 const files = (prefix, numbers) => numbers.map((n) => `${prefix}-${String(n).padStart(2, '0')}.webp`)
 const ALBUMS = {
   'family-moments': files('rd-family', [1, 4, 8, 9, 11, 12, 15, 16, 17, 18, 20, 21, 24, 25, 27, 30]),
@@ -34,7 +43,7 @@ const ALBUMS = {
 
 /** photos to show first, in this order */
 const FIRST = {
-  'family-moments': ['rd-family-mother.webp'],
+  'family-moments': ['rd-family-mother.webp', 'rd-family-06.webp'],
   'political-moments': files('rd-political', [11, 6, 2, 20, 5, 4, 13, 1]),
 }
 
@@ -69,6 +78,14 @@ try {
     const kept = (raw.photos ?? []).filter((p) => !drop.has(idOf(p)))
     const removed = (raw.photos ?? []).length - kept.length
     let added = 0
+    for (const [old, item] of Object.entries(REPLACE[slug] ?? {})) {
+      const oldMedia = await documents.find('media', { where: { filename: { equals: old } }, limit: 1, overrideAccess: true })
+      const at = kept.findIndex((p) => idOf(p) === oldMedia.docs[0]?.id)
+      if (at < 0) continue
+      kept[at] = await mediaFor(item)
+      drop.add(oldMedia.docs[0].id)
+      added++
+    }
     for (const item of ADD[slug] ?? []) {
       const mid = await mediaFor(item)
       if (!kept.some((p) => idOf(p) === mid)) {

@@ -29,6 +29,8 @@
     "content:rd-content": "node scripts/rd-content.mjs",
     "content:update": "node scripts/content-update.mjs",
     "content:rename-intro": "node scripts/rename-intro.mjs",
+    "content:blog-covers": "node scripts/blog-covers.mjs",
+    "content:initiative-gallery": "node scripts/initiative-gallery.mjs",
     "test": "node --test --test-concurrency=1 \"test/*.test.js\"",
     "lint": "eslint .",
     "admin": "node src/seed/admin.js"

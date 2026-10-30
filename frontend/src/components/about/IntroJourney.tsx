@@ -190,12 +190,12 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
                 <QuickFactCard
                   icon={MapPin}
                   label={isMr ? 'जन्मस्थान' : 'Birthplace'}
-                  val={isMr ? 'सोलापूर, देशमुख कुटुंब' : 'Solapur, into the Deshmukh family'}
+                  val={isMr ? 'सोलापूर, महाराष्ट्र' : 'Solapur, Maharashtra'}
                 />
                 <QuickFactCard
                   icon={GraduationCap}
                   label={isMr ? 'शिक्षण' : 'Education'}
-                  val={isMr ? 'रोचेस्टर इन्स्टिट्यूट (RIT)' : 'Rochester Institute (RIT)'}
+                  val={isMr ? 'रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी, न्यूयॉर्क' : 'Rochester Institute of Technology, New York'}
                 />
                 <QuickFactCard
                   icon={Heart}
@@ -307,12 +307,12 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
                 <QuickFactCard
                   icon={MapPin}
                   label={isMr ? 'जन्मस्थान' : 'Birthplace'}
-                  val={isMr ? 'सोलापूर, देशमुख कुटुंब' : 'Solapur, into the Deshmukh family'}
+                  val={isMr ? 'सोलापूर, महाराष्ट्र' : 'Solapur, Maharashtra'}
                 />
                 <QuickFactCard
                   icon={GraduationCap}
                   label={isMr ? 'शिक्षण' : 'Education'}
-                  val={isMr ? 'रोचेस्टर इन्स्टिट्यूट (RIT)' : 'Rochester Institute (RIT)'}
+                  val={isMr ? 'रोचेस्टर इन्स्टिट्यूट ऑफ टेक्नॉलॉजी, रोचेस्टर, न्यूयॉर्क' : 'Rochester Institute of Technology, Rochester, New York'}
                 />
                 <QuickFactCard
                   icon={Heart}
@@ -328,6 +328,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
   )
 }
 
+/** one fact: the icon and label at the top, the value under them, centred across the card — the labels of all four line up */
 function QuickFactCard({
   icon: Icon,
   label,
@@ -338,8 +339,8 @@ function QuickFactCard({
   val: string
 }) {
   return (
-    <div className="rounded-2xl border border-stone-200/90 bg-white/85 backdrop-blur-sm p-3.5 transition-all hover:border-saffron-400 hover:bg-white hover:shadow-md">
-      <div className="flex items-center gap-2 text-saffron-600">
+    <div className="flex h-full flex-col items-center rounded-2xl border border-stone-200/90 bg-white/85 p-3.5 text-center backdrop-blur-sm transition-all hover:border-saffron-400 hover:bg-white hover:shadow-md">
+      <div className="flex items-center justify-center gap-2 text-saffron-600">
         <Icon className="size-4" />
         <span className="text-[11px] font-bold uppercase tracking-wider text-stone-500">{label}</span>
       </div>
@@ -429,10 +430,10 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
     },
     {
       role: isMr ? 'संचालक' : 'Director',
-      org: isMr ? 'लोकमंगल मल्टीस्टेट' : 'Lokmangal Multistate',
+      org: isMr ? 'लोकमंगल मल्टीस्टेट को-ऑपरेटिव्ह सोसायटी' : 'Lokmangal Multistate Co-operative Society',
       desc: isMr
-        ? 'लोकमंगल मल्टीस्टेटच्या माध्यमातून रोहन सुभाष देशमुख यांनी अर्थकारणाच्या क्षेत्रातही आपला ठसा उमटवला. दोन राज्यांमध्ये ६० शाखांचे विस्तृत जाळे आणि ७०० कोटी रुपयांहून अधिक ठेवींच्या बळावर संस्थेने अल्पावधीत विश्वासार्हता व लौकिक मिळवला. प्रशिक्षित कर्मचारीवर्ग, तत्पर सेवा आणि पारदर्शक व्यवहारांच्या माध्यमातून आर्थिक साक्षरता वाढवणे आणि सर्वसामान्यांमध्ये आर्थिक जागरूकता निर्माण करणे, हा त्यांचा महत्त्वपूर्ण प्रयत्न राहिला आहे.'
-        : 'Through Lokmangal Multistate, Rohan Subhash Deshmukh has made his mark in the world of finance as well. With a network of 60 branches across two states and deposits exceeding ₹700 crore, the institution has earned trust and a strong reputation in a short span of time. Backed by a trained team, prompt service, and transparent dealings, he has made it his mission to improve financial literacy and build financial awareness among ordinary people.',
+        ? 'लोकमंगल मल्टीस्टेट को-ऑपरेटिव्ह सोसायटीच्या माध्यमातून रोहन सुभाष देशमुख यांनी अर्थकारणाच्या क्षेत्रातही आपला ठसा उमटवला. दोन राज्यांमध्ये ६० शाखांचे विस्तृत जाळे आणि ७०० कोटी रुपयांहून अधिक ठेवींच्या बळावर संस्थेने अल्पावधीत विश्वासार्हता व लौकिक मिळवला. प्रशिक्षित कर्मचारीवर्ग, तत्पर सेवा आणि पारदर्शक व्यवहारांच्या माध्यमातून आर्थिक साक्षरता वाढवणे आणि सर्वसामान्यांमध्ये आर्थिक जागरूकता निर्माण करणे, हा त्यांचा महत्त्वपूर्ण प्रयत्न राहिला आहे.'
+        : 'Through Lokmangal Multistate Co-operative Society, Rohan Subhash Deshmukh has made his mark in the world of finance as well. With a network of 60 branches across two states and deposits exceeding ₹700 crore, the institution has earned trust and a strong reputation in a short span of time. Backed by a trained team, prompt service, and transparent dealings, he has made it his mission to improve financial literacy and build financial awareness among ordinary people.',
       image: '/images/positions/position-lokmangal-multistate.webp',
       imgPos: '20% 50%',
     },

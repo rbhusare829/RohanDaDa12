@@ -3,7 +3,7 @@ import { AnimatePresence, m } from 'motion/react'
 import { ChevronLeft, ChevronRight, MapPin, Pause, Play } from 'lucide-react'
 import type { Home } from '@/types/cms'
 import { cn } from '@/lib/utils'
-import { Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 
 type JourneyBlock = Extract<NonNullable<Home['sections']>[number], { blockType: 'homeJourney' }>
 

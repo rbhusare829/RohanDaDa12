@@ -25,9 +25,9 @@ export function Footer() {
   return (
     <footer className="on-dark relative z-10 border-t-4 border-saffron-500 bg-[#000d3d] pb-10 pt-16 text-white">
       <div className="container-x">
-        {/* phones: the contact block across, then the link lists two side by side (one long column made the footer two screens tall) */}
-        <Stagger className="grid grid-cols-2 gap-x-6 gap-y-10 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <StaggerItem className="col-span-2 flex flex-col items-start gap-4 md:col-span-1 lg:col-span-4">
+        {/* phones: one column — the contact block, then each link list under the previous one (Oct 2026); tablets: two side by side */}
+        <Stagger className="grid grid-cols-1 gap-x-6 gap-y-8 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+          <StaggerItem className="flex flex-col items-start gap-4 lg:col-span-4">
             {/* h2: the footer's own headings come after any heading of the page, so no level is skipped */}
             <h2 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{t('contactUs')}</h2>
             <img src="/brand/logo-name.svg" alt={settings.siteName} width={180} height={46} loading="lazy" className="h-11 w-auto brightness-0 invert" />

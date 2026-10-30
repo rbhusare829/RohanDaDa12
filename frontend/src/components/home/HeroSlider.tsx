@@ -13,6 +13,7 @@ export type Slide = {
   heading?: string | null
   subheading?: string | null
   buttons?: { label?: string | null; url?: string | null }[]
+  desktopTheme?: 'light' | 'dark'
 }
 
 export type HeroSocial = { key: string; url: string; label: string }
@@ -210,19 +211,40 @@ export function HeroSlider({
               >
                 {/* Orange/Saffron Uppercase Kicker */}
                 {activeSlide.kicker && (
-                  <p className="mb-2 sm:mb-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em] text-[#ff7a00] drop-shadow-sm">
+                  <p
+                    className={cn(
+                      'mb-2 sm:mb-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em]',
+                      activeSlide.desktopTheme === 'light'
+                        ? 'text-[#ff7a00] md:text-saffron-700 drop-shadow-sm md:drop-shadow-none'
+                        : 'text-[#ff7a00] drop-shadow-sm',
+                    )}
+                  >
                     {activeSlide.kicker}
                   </p>
                 )}
 
-                {/* Clean White Heading (Refined Font Size) */}
-                <h1 className="font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                {/* Heading (Responsive across Dark & Light Desktop Themes) */}
+                <h1
+                  className={cn(
+                    'font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight',
+                    activeSlide.desktopTheme === 'light'
+                      ? 'text-white md:text-[#000d3d] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] md:drop-shadow-none'
+                      : 'text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]',
+                  )}
+                >
                   <FormattedHeading text={activeSlide.heading} />
                 </h1>
 
                 {/* Subtitle / Description if provided */}
                 {activeSlide.subheading && (
-                  <p className="mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed text-slate-200/90 font-normal">
+                  <p
+                    className={cn(
+                      'mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed font-normal',
+                      activeSlide.desktopTheme === 'light'
+                        ? 'text-slate-200/90 md:text-slate-700'
+                        : 'text-slate-200/90',
+                    )}
+                  >
                     {activeSlide.subheading}
                   </p>
                 )}
@@ -238,6 +260,7 @@ export function HeroSlider({
             >
               {slides.map((_, idx) => {
                 const isActive = idx === index
+                const isLight = activeSlide.desktopTheme === 'light'
                 return (
                   <button
                     key={idx}
@@ -248,14 +271,21 @@ export function HeroSlider({
                     className={cn(
                       'group flex items-center text-xs sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
                       isActive
-                        ? 'text-white font-bold'
-                        : 'text-white/50 hover:text-white font-medium pl-5 sm:pl-8 md:pl-10',
+                        ? isLight
+                          ? 'text-white md:text-[#000d3d] font-bold'
+                          : 'text-white font-bold'
+                        : isLight
+                          ? 'text-white/50 md:text-stone-500 hover:text-white md:hover:text-[#000d3d] font-medium pl-5 sm:pl-8 md:pl-10'
+                          : 'text-white/50 hover:text-white font-medium pl-5 sm:pl-8 md:pl-10',
                     )}
                   >
                     {isActive && (
                       <span
                         aria-hidden
-                        className="inline-block w-4 sm:w-6 md:w-8 h-[2px] bg-white mr-1.5 sm:mr-2.5 transition-all duration-300"
+                        className={cn(
+                          'inline-block w-4 sm:w-6 md:w-8 h-[2px] mr-1.5 sm:mr-2.5 transition-all duration-300',
+                          isLight ? 'bg-white md:bg-[#000d3d]' : 'bg-white',
+                        )}
                       />
                     )}
                     <span>{pad(idx + 1)}</span>

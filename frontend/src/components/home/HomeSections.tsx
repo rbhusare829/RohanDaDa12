@@ -113,6 +113,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
         : 'Good leadership begins with understanding the problems of people at the grassroots',
       position: 'right center',
       mobilePosition: 'center top',
+      desktopTheme: 'light',
     },
     {
       image: '/images/hero/hero-slide-2.webp',

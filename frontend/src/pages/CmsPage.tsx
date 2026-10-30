@@ -5,6 +5,7 @@ import { mediaPosition, mediaUrl } from '@/lib/media'
 import { REMOVED_REDIRECTS, isRemovedPath } from '@/lib/removed'
 import { FamilyBackground } from '@/components/about/FamilyBackground'
 import { IntroJourney } from '@/components/about/IntroJourney'
+import { AboutTabs } from '@/components/about/AboutTabs'
 import { LokmangalParivar } from '@/components/about/LokmangalParivar'
 import { Manifesto } from '@/components/vision/Manifesto'
 import { PoliticalCareerTabs } from '@/components/political/PoliticalCareerTabs'
@@ -35,11 +36,13 @@ export async function loader({ params }: LoaderFunctionArgs) {
   if (!page) return notFound()
   // Political Career → Social Activities tab: the Lokmangal Sports events are shown below the activities (Oct 2026)
   const sportsEvents = path === POLITICAL_PATH ? await cms.find('events', { where: { group: { equals: 'sports' } }, limit: 50, depth: 1, sort: 'createdAt' }).then((r) => r.docs).catch(() => []) : []
-  return { page, path, sportsEvents }
+  // परिचय: its Family Background tab shows that page's content
+  const familyPage = path === INTRO_PATH ? await cms.findOne('pages', { where: { path: { equals: FAMILY_PATH } }, depth: 2 }).catch(() => null) : null
+  return { page, path, sportsEvents, familyPage }
 }
 
 export default function CmsPage() {
-  const { page, path, sportsEvents } = useLoaderData<typeof loader>()
+  const { page, path, sportsEvents, familyPage } = useLoaderData<typeof loader>()
   const img = mediaUrl(page.meta?.image, 'card') || mediaUrl(page.bannerImage, 'card')
   return (
     <>
@@ -53,7 +56,7 @@ export default function CmsPage() {
         variant={STITCH_HEADER[path]}
         fullWidth={path === INTRO_PATH}
       >
-        {path === FAMILY_PATH ? <FamilyBackground blocks={page.layout} locale={LOCALE} /> : path === INTRO_PATH ? <IntroJourney blocks={page.layout} locale={LOCALE} /> : path === PARIVAR_PATH ? <LokmangalParivar blocks={page.layout} locale={LOCALE} /> : path === VISION_PATH ? <Manifesto blocks={page.layout} /> : path === POLITICAL_PATH ? <PoliticalCareerTabs career={<PageBlocks blocks={page.layout} design="stitch" plainChapters />} sportsEvents={sportsEvents} locale={LOCALE} /> : <PageBlocks blocks={page.layout} design={STITCH_HEADER[path] ? 'stitch' : undefined} />}
+        {path === INTRO_PATH ? <AboutTabs intro={<IntroJourney blocks={page.layout} locale={LOCALE} />} family={<FamilyBackground blocks={familyPage?.layout} locale={LOCALE} />} locale={LOCALE} /> : path === PARIVAR_PATH ? <LokmangalParivar blocks={page.layout} locale={LOCALE} /> : path === VISION_PATH ? <Manifesto blocks={page.layout} /> : path === POLITICAL_PATH ? <PoliticalCareerTabs career={<PageBlocks blocks={page.layout} design="stitch" plainChapters />} sportsEvents={sportsEvents} locale={LOCALE} /> : <PageBlocks blocks={page.layout} design={STITCH_HEADER[path] ? 'stitch' : undefined} />}
       </InnerPage>
     </>
   )

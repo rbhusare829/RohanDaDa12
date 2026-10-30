@@ -13,7 +13,7 @@ const EASE = [0.22, 1, 0.36, 1] as const
 const VIEW = { once: true, amount: 0.15, margin: '0px 0px -60px 0px' } as const
 
 type Tag = 'div' | 'section' | 'ul' | 'ol' | 'li' | 'p' | 'span' | 'article' | 'figure'
-type Props = { as?: Tag; className?: string; children?: ReactNode; id?: string; style?: CSSProperties }
+type Props = { as?: Tag; className?: string; children?: ReactNode; id?: string; style?: CSSProperties; 'aria-hidden'?: boolean }
 
 /** one block: fade in + rise `y` px (or slide in from `x` px to the side) */
 export function Reveal({ as = 'div', className, delay = 0, y = 28, x = 0, duration = 0.8, children, id, style }: Props & { delay?: number; y?: number; x?: number; duration?: number }) {
@@ -49,10 +49,10 @@ export function Stagger({ as = 'div', className, children, style }: Props) {
   )
 }
 
-export function StaggerItem({ as = 'div', className, children, style }: Props) {
+export function StaggerItem({ as = 'div', className, children, style, 'aria-hidden': hidden }: Props) {
   const M = m[as] as typeof m.div
   return (
-    <M className={className} style={style} variants={item}>
+    <M className={className} style={style} aria-hidden={hidden} variants={item}>
       {children}
     </M>
   )

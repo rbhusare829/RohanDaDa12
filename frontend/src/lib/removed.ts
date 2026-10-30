@@ -4,10 +4,12 @@
  * website itself (development server, links followed inside the site) and to leave them out of the menu.
  */
 export const REMOVED_REDIRECTS: Record<string, string> = {
-  '/about/achievements': '/about/biography',
+  '/about/achievements': '/about/introduction?tab=family',
   '/about/party-organisation': '/political-career',
   '/about/thoughts': '/blog',
-  '/about/leaders': '/about/biography',
+  '/about/leaders': '/about/introduction?tab=family',
+  // Family Background: a tab of the परिचय page since Oct 2026 (so it also leaves the menus)
+  '/about/biography': '/about/introduction?tab=family',
   '/lokmangal/vishwamangal': '/lokmangal/foundation',
   '/media/downloads': '/media/photos',
   '/grievance': '/contact',

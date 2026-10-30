@@ -125,6 +125,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
         : 'Author of The New India Manifesto: Going Beyond Possible',
       position: 'right center',
       mobilePosition: 'center top',
+      desktopTheme: 'light',
     },
     {
       image: '/images/hero/hero-slide-3.webp',
@@ -136,6 +137,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
         : 'Small steps toward change can lead to a big difference',
       position: 'right center',
       mobilePosition: 'center top',
+      desktopTheme: 'light',
     },
   ]
 

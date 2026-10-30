@@ -214,17 +214,19 @@ export function HeroSlider({
             )
           })}
 
-          {/* Mobile Bottom Scrim: soft dark gradient so text over the desk remains 100% legible without dimming Rohan sir's face */}
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00081c] via-[#00081c]/70 to-transparent md:hidden z-10 pointer-events-none" />
+          {/* Mobile Bottom Scrim: not needed when mobile image has a light bottom wall */}
+          {activeSlide.desktopTheme !== 'light' && (
+            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00081c] via-[#00081c]/70 to-transparent md:hidden z-10 pointer-events-none" />
+          )}
         </div>
       )}
 
       {/* 2. Hero Content Container */}
-      {/* On mobile (<md): items-end places text over the dark desk area at the bottom. */}
+      {/* On mobile (<md): items-end places text over the bottom wall area. */}
       {/* On desktop (>=md): items-center centers text vertically on the left beside Rohan sir. */}
       <div className="container-x relative z-20 min-h-[520px] sm:min-h-[560px] md:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-30">
         <div className="w-full flex items-end md:items-center justify-between gap-4 sm:gap-6 md:gap-8">
-          {/* Words on the Left: at the top on mobile, vertically centered on desktop */}
+          {/* Words on the Left: at the bottom on mobile, vertically centered on desktop */}
           <div className="flex-1 max-w-3xl lg:max-w-4xl py-2 md:py-6">
             <AnimatePresence mode="wait">
               <m.div
@@ -241,7 +243,7 @@ export function HeroSlider({
                     className={cn(
                       'mb-2 sm:mb-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em]',
                       activeSlide.desktopTheme === 'light'
-                        ? 'text-[#ff7a00] md:text-saffron-700 drop-shadow-sm md:drop-shadow-none'
+                        ? 'text-saffron-700'
                         : 'text-[#ff7a00] drop-shadow-sm',
                     )}
                   >
@@ -249,13 +251,13 @@ export function HeroSlider({
                   </m.p>
                 )}
 
-                {/* Heading (Responsive across Dark & Light Desktop Themes) */}
+                {/* Heading (Responsive across Dark & Light Themes) */}
                 <m.h1
                   variants={slideItemVariants}
                   className={cn(
                     'font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight',
                     activeSlide.desktopTheme === 'light'
-                      ? 'text-white md:text-[#000d3d] drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] md:drop-shadow-none'
+                      ? 'text-[#000d3d]'
                       : 'text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]',
                   )}
                 >
@@ -269,7 +271,7 @@ export function HeroSlider({
                     className={cn(
                       'mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed font-normal',
                       activeSlide.desktopTheme === 'light'
-                        ? 'text-slate-200/90 md:text-slate-700'
+                        ? 'text-slate-700'
                         : 'text-slate-200/90',
                     )}
                   >
@@ -280,7 +282,7 @@ export function HeroSlider({
             </AnimatePresence>
           </div>
 
-          {/* Right: Vertical Slide Indicators (— 01 / 02) exactly like Image 3 */}
+          {/* Right: Vertical Slide Indicators (— 01 / 02) */}
           {count > 1 && (
             <div
               className="shrink-0 flex flex-col items-start gap-2.5 sm:gap-4 select-none z-30"
@@ -300,10 +302,10 @@ export function HeroSlider({
                       'group flex items-center text-xs sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
                       isActive
                         ? isLight
-                          ? 'text-white md:text-[#000d3d] font-bold'
+                          ? 'text-[#000d3d] font-bold'
                           : 'text-white font-bold'
                         : isLight
-                          ? 'text-white/50 md:text-stone-500 hover:text-white md:hover:text-[#000d3d] font-medium pl-5 sm:pl-8 md:pl-10'
+                          ? 'text-stone-500 hover:text-[#000d3d] font-medium pl-5 sm:pl-8 md:pl-10'
                           : 'text-white/50 hover:text-white font-medium pl-5 sm:pl-8 md:pl-10',
                     )}
                   >
@@ -312,7 +314,7 @@ export function HeroSlider({
                         aria-hidden
                         className={cn(
                           'inline-block w-4 sm:w-6 md:w-8 h-[2px] mr-1.5 sm:mr-2.5 transition-all duration-300',
-                          isLight ? 'bg-white md:bg-[#000d3d]' : 'bg-white',
+                          isLight ? 'bg-[#000d3d]' : 'bg-white',
                         )}
                       />
                     )}

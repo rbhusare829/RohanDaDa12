@@ -5,52 +5,18 @@ import { AccentBar, Reveal } from '../ui/Motion'
 /** the founder application on the New India Manifesto website */
 const APPLY_URL = 'https://newindiamanifesto.com/apply/founder'
 
-export function CitizenEngagementBanner({
+/**
+ * 1. New India Manifesto Spotlight Banner (sits directly under the Hero Slider)
+ */
+export function NewIndiaManifestoBanner({
   locale = 'mr',
 }: {
   locale?: 'mr' | 'en'
 }) {
   const isMr = locale !== 'en'
 
-  const actionCards = [
-    {
-      num: isMr ? '०१' : '01',
-      icon: FileText,
-      iconBg: 'bg-orange-50 text-orange-600 border-orange-200/80',
-      title: isMr ? 'कामाचे निवेदन' : 'Work Petition',
-      desc: isMr
-        ? 'आपल्या परिसरातील समस्या किंवा विकासकामांचे निवेदन थेट रोहनदादांपर्यंत पोहोचवा.'
-        : 'Submit petitions regarding local development or civic issues directly to Rohan Deshmukh.',
-      linkText: isMr ? 'निवेदन द्या' : 'Submit Petition',
-      href: '/contact',
-    },
-    {
-      num: isMr ? '०२' : '02',
-      icon: Calendar,
-      iconBg: 'bg-amber-50 text-amber-600 border-amber-200/80',
-      title: isMr ? 'भेटीची विनंती' : 'Meeting Request',
-      desc: isMr
-        ? 'रोहनदादांना प्रत्यक्ष भेटून चर्चा करण्यासाठी व विचार मांडण्यासाठी वेळ निश्चित करा.'
-        : 'Schedule a personal meeting to discuss ideas and development initiatives.',
-      linkText: isMr ? 'वेळ मागा' : 'Request Meeting',
-      href: '/contact',
-    },
-    {
-      num: isMr ? '०३' : '03',
-      icon: Mail,
-      iconBg: 'bg-rose-50 text-red-600 border-rose-200/80',
-      title: isMr ? 'शुभकार्य आमंत्रण' : 'Event Invitation',
-      desc: isMr
-        ? 'विवाह सोहळा, उद्घाटन किंवा सामाजिक व कौटुंबिक कार्यक्रमाचे आमंत्रण पाठवा.'
-        : 'Invite Rohan Deshmukh to weddings, inaugurations, or cultural celebrations.',
-      linkText: isMr ? 'आमंत्रण पाठवा' : 'Send Invitation',
-      href: '/contact',
-    },
-  ]
-
   return (
-    <section className="container-x relative z-30 -mt-6 sm:-mt-8 lg:-mt-10 space-y-8 sm:space-y-10">
-      {/* 1. New India Manifesto Spotlight Banner */}
+    <section className="container-x relative z-30 -mt-6 sm:-mt-8 lg:-mt-10">
       <Reveal delay={0.25} y={32} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.14)]">
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
           {/* Reliance Foundation style elegant background quote watermark */}
@@ -89,14 +55,62 @@ export function CitizenEngagementBanner({
           </div>
         </div>
       </Reveal>
+    </section>
+  )
+}
 
-      {/* 2. Citizen Action Cards (नागरिक सेवा केंद्र — inspired by subhashdeshmukh.com) */}
-      <div>
-        <div className="mb-6 sm:mb-8 text-center sm:text-left">
+/**
+ * 2. Citizen Service Section (नागरिक सेवा केंद्र: तुमचे काम. थेट रोहनदादांपर्यंत.)
+ * Rendered after "सामाजिक उपक्रम" (Social Activities) on the home page with a clean white background.
+ */
+export function CitizenServiceSection({
+  locale = 'mr',
+}: {
+  locale?: 'mr' | 'en'
+}) {
+  const isMr = locale !== 'en'
+
+  const actionCards = [
+    {
+      num: isMr ? '०१' : '01',
+      icon: FileText,
+      title: isMr ? 'कामाचे निवेदन' : 'Work Petition',
+      desc: isMr
+        ? 'आपल्या परिसरातील समस्या किंवा विकासकामांचे निवेदन थेट रोहनदादांपर्यंत पोहोचवा.'
+        : 'Submit petitions regarding local development or civic issues directly to Rohan Deshmukh.',
+      linkText: isMr ? 'निवेदन द्या' : 'Submit Petition',
+      href: '/grievance',
+    },
+    {
+      num: isMr ? '०२' : '02',
+      icon: Calendar,
+      title: isMr ? 'भेटीची विनंती' : 'Meeting Request',
+      desc: isMr
+        ? 'रोहनदादांना प्रत्यक्ष भेटून चर्चा करण्यासाठी व विचार मांडण्यासाठी वेळ निश्चित करा.'
+        : 'Schedule a personal meeting to discuss ideas and development initiatives.',
+      linkText: isMr ? 'वेळ मागा' : 'Request Meeting',
+      href: '/appointment',
+    },
+    {
+      num: isMr ? '०३' : '03',
+      icon: Mail,
+      title: isMr ? 'शुभकार्य आमंत्रण' : 'Event Invitation',
+      desc: isMr
+        ? 'विवाह सोहळा, उद्घाटन किंवा सामाजिक व कौटुंबिक कार्यक्रमाचे आमंत्रण पाठवा.'
+        : 'Invite Rohan Deshmukh to weddings, inaugurations, or cultural celebrations.',
+      linkText: isMr ? 'आमंत्रण पाठवा' : 'Send Invitation',
+      href: '/invitation',
+    },
+  ]
+
+  return (
+    <section className="bg-white py-16 sm:py-20 border-t border-stone-200/80">
+      <div className="container-x">
+        <div className="mb-8 sm:mb-10 text-center sm:text-left">
           <span className="text-xs font-extrabold uppercase tracking-widest text-orange-600">
             {isMr ? 'नागरिक सेवा केंद्र' : 'Citizen Service Portal'}
           </span>
-          <h3 className="mt-1 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
+          <h3 className="mt-1.5 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
             {isMr ? (
               <>
                 तुमचे काम. <span className="text-orange-600">थेट रोहनदादांपर्यंत.</span>
@@ -126,7 +140,7 @@ export function CitizenEngagementBanner({
 
                   {/* Header: Icon on Left, Number on Right */}
                   <div className="flex items-start justify-between mb-5">
-                    <span className="flex size-12 sm:size-13 items-center justify-center rounded-2xl bg-orange-100/70 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-400 shadow-sm group-hover:scale-108 group-hover:ring-4 group-hover:ring-orange-200/80 group-hover:-translate-y-1">
+                    <span className="flex size-12 sm:size-13 items-center justify-center rounded-2xl bg-orange-100/70 text-orange-600 group-hover:bg-orange-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:scale-108 group-hover:ring-4 group-hover:ring-orange-200/80 group-hover:-translate-y-1">
                       <Icon className="size-6" />
                     </span>
                     <span className="text-4xl sm:text-5xl font-black text-orange-200/70 group-hover:text-orange-400 transition-colors duration-300 select-none leading-none font-display">

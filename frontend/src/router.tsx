@@ -13,6 +13,9 @@ import InitiativePage, { loader as initiativeLoader } from '@/pages/Initiative'
 import FoundationPage, { loader as foundationLoader } from '@/pages/Foundation'
 import FamilyPage, { loader as familyLoader } from '@/pages/Family'
 import ContactPage, { loader as contactLoader } from '@/pages/Contact'
+import GrievancePage from '@/pages/Grievance'
+import AppointmentPage from '@/pages/Appointment'
+import InvitationPage from '@/pages/Invitation'
 import { AlbumPage, PhotosPage, VideosPage, albumLoader, photosLoader, videosLoader } from '@/pages/Media'
 import CmsPage, { loader as cmsLoader } from '@/pages/CmsPage'
 
@@ -22,6 +25,10 @@ const pages: RouteObject[] = [
   { path: 'blog', loader: blogLoader, Component: BlogPage },
   { path: 'blog/:slug', loader: postLoader, Component: PostPage },
   { path: 'contact', loader: contactLoader, Component: ContactPage },
+  { path: 'grievance', Component: GrievancePage },
+  { path: 'appointment', Component: AppointmentPage },
+  { path: 'meeting', Component: AppointmentPage },
+  { path: 'invitation', Component: InvitationPage },
   { path: 'events', loader: eventsLoader, Component: EventsPage },
   { path: 'events/:slug', loader: eventLoader, Component: EventPage },
   { path: 'lokmangal/foundation', loader: foundationLoader, Component: FoundationPage },

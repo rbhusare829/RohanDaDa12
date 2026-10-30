@@ -17,7 +17,7 @@ import { FaqAccordion } from './FaqAccordion'
 import { HeroSlider, type Slide } from './HeroSlider'
 import { InstagramReels } from './InstagramReels'
 import { Lift, Reveal, Stagger, StaggerItem } from '../ui/Motion'
-import { CitizenEngagementBanner } from './CitizenEngagementBanner'
+import { NewIndiaManifestoBanner, CitizenServiceSection } from './CitizenEngagementBanner'
 import { SupriyaAboutSection } from './SupriyaAboutSection'
 import { SocialWorkSection } from './SocialWorkSection'
 import { DrishtikonSection } from './DrishtikonSection'
@@ -80,10 +80,13 @@ export function HomeSections({ sections, extras, locale = LOCALE }: { sections: 
       {/* 6. Social Activities (सामाजिक उपक्रम) */}
       <SupriyaSocialActivitiesSection locale={locale} />
 
-      {/* 7. Video & Reels (featured YouTube video, then the Instagram reels) */}
+      {/* 7. Citizen Services (नागरिक सेवा केंद्र: तुमचे काम. थेट रोहनदादांपर्यंत.) */}
+      <CitizenServiceSection locale={locale} />
+
+      {/* 8. Video & Reels (featured YouTube video, then the Instagram reels) */}
       <SupriyaVideoReelsSection video={videoBlock} reels={reelsBlock} locale={locale} />
 
-      {/* 8. Latest News & Blogs (माध्यम वार्तांकन / ब्लॉग - Last section on home page) */}
+      {/* 9. Latest News & Blogs (माध्यम वार्तांकन / ब्लॉग - Last section on home page) */}
       <SupriyaLatestNewsSection posts={extras.posts} locale={locale} />
     </>
   )
@@ -145,7 +148,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   return (
     <>
       <HeroSlider slides={slides} autoplay={b.autoplaySeconds ?? 6} social={social} textOnly={textOnly} labels={{ prev: t('prev'), next: t('next') }} />
-      <CitizenEngagementBanner locale={locale} />
+      <NewIndiaManifestoBanner locale={locale} />
     </>
   )
 }

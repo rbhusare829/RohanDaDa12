@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useId, useRef, useState, type AnchorHTMLAttributes, type ReactNode } from 'react'
 import { AnimatePresence, m } from 'motion/react'
-import { ArrowUpRight, ChevronDown, Globe, Menu, X } from 'lucide-react'
+import { ArrowUpRight, CalendarCheck, ChevronDown, FileText, Globe, Mail, Menu, Phone, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router'
 import { useLayout } from '@/lib/layout'
 import { getLocale, setLocale, useTranslations } from '@/lib/i18n'
@@ -12,6 +12,34 @@ import { cn, isExternal } from '@/lib/utils'
    focus ring appears at once instead of fading in. Desktop menus start fast and settle softly; the phone drawer uses the familiar "sheet" curve. */
 const EASE_MENU = [0.22, 1, 0.36, 1] as const
 const EASE_SHEET = [0.32, 0.72, 0, 1] as const
+
+/** 4 Connect Services matching the citizen portal layout */
+export const CONNECT_ITEMS = [
+  {
+    titleMr: 'निवेदन',
+    titleEn: 'Petition',
+    to: '/grievance',
+    icon: FileText,
+  },
+  {
+    titleMr: 'भेटीचे विवरण',
+    titleEn: 'Appointment',
+    to: '/appointment',
+    icon: CalendarCheck,
+  },
+  {
+    titleMr: 'आमंत्रण',
+    titleEn: 'Invitation',
+    to: '/invitation',
+    icon: Mail,
+  },
+  {
+    titleMr: 'संपर्क',
+    titleEn: 'Contact',
+    to: '/contact',
+    icon: Phone,
+  },
+] as const
 
 /** Does a menu link point at the page being shown (`exact`) or at the section that page belongs to? A link to an #anchor or ?query is never "the page". */
 function pointsHere(url: string | null | undefined, pathname: string, exact = false) {
@@ -88,7 +116,6 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
         title={currentLocale === 'en' ? 'Read in Marathi' : 'मराठी मध्ये वाचा'}
         className={cn(
           'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
-          // phones: the pill stays small, an invisible band above and below makes each half a 44 px tap area
           isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
           currentLocale === 'mr'
             ? 'bg-saffron-600 text-white shadow-xs'
@@ -106,7 +133,6 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
         title={currentLocale === 'en' ? 'Read in English' : 'इंग्रजीमध्ये वाचा'}
         className={cn(
           'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
-          // phones: the pill stays small, an invisible band above and below makes each half a 44 px tap area
           isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
           currentLocale === 'en'
             ? 'bg-saffron-600 text-white shadow-xs'
@@ -121,10 +147,6 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
 
 /* ------------------------------------------------------------------ desktop menu */
 
-/* Quiet text links. The current section — and the item under the pointer — gets a 2px kesariya bar that sits on the header's bottom edge:
-   the links are 40px tall in the 80px (lg:h-20) header, so the bar is 20px (-bottom-5) below its link. The bar grows in from the left and leaves
-   towards the right (its origin switches with the hover state), so moving along the menu reads as one stroke. Only one colour / scale / origin
-   utility is ever applied to a link (cn() is a plain join), hence the idle / on pair. */
 const navBase =
   "relative flex h-10 items-center gap-1 whitespace-nowrap rounded-lg px-3 text-[0.95rem] font-medium transition-[color] xl:px-3.5 after:pointer-events-none after:absolute after:inset-x-3 after:-bottom-5 after:h-0.5 after:rounded-full after:bg-saffron-600 after:transition-transform after:duration-200 after:ease-out after:content-[''] xl:after:inset-x-3.5"
 const navIdle = 'text-charcoal-800 after:origin-right after:scale-x-0 hover:text-saffron-700 hover:after:origin-left hover:after:scale-x-100'
@@ -150,7 +172,7 @@ function DropLink({ node, pathname, onNavigate }: { node: NavNode; pathname: str
   )
 }
 
-/** the panel under a menu item: a plain list, or columns when the menu has a third level (a left-aligned panel starts 6px left of its link, so the sub-item text lines up with the link's own text) */
+/** the panel under a menu item */
 function Dropdown({ id, items, align, pathname, onNavigate }: { id: string; items: NavNode[]; align: 'left' | 'right' | 'center'; pathname: string; onNavigate: () => void }) {
   const mega = items.some((c) => c.children?.length)
   return (
@@ -197,11 +219,7 @@ function Dropdown({ id, items, align, pathname, onNavigate }: { id: string; item
   )
 }
 
-/**
- * The menu on wide screens. A dropdown opens once the pointer rests on its item (one that only passes by opens nothing, and moving from one open menu
- * to the next switches at once) and closes a moment after the pointer leaves; a click or the keyboard "pins" it open until Escape, a click elsewhere,
- * the focus leaving it or another item — so a click on an item the pointer already opened does not shut it again.
- */
+/** The menu on wide screens */
 function DesktopNav({ nav, pathname }: { nav: NavNode[]; pathname: string }) {
   const [open, setOpen] = useState<number | null>(null)
   const [pinned, setPinned] = useState(false)
@@ -210,7 +228,6 @@ function DesktopNav({ nav, pathname }: { nav: NavNode[]; pathname: string }) {
   const triggers = useRef<(HTMLButtonElement | null)[]>([])
   const uid = useId()
 
-  // a new page closes the menu
   const [menuFor, setMenuFor] = useState(pathname)
   if (menuFor !== pathname) {
     setMenuFor(pathname)
@@ -218,7 +235,6 @@ function DesktopNav({ nav, pathname }: { nav: NavNode[]; pathname: string }) {
     setPinned(false)
   }
 
-  // Escape (the focus goes back to the button) or a click anywhere else closes the open menu
   useEffect(() => {
     if (open === null) return
     const onKey = (e: KeyboardEvent) => {
@@ -318,20 +334,159 @@ function DesktopNav({ nav, pathname }: { nav: NavNode[]; pathname: string }) {
   )
 }
 
+/**
+ * 2x2 Connect Dropdown matching subhashdeshmukh.com design (Image 4):
+ * Contains:
+ * 1. निवेदन (/grievance)
+ * 2. भेटीचे विवरण (/appointment)
+ * 3. आमंत्रण (/invitation)
+ * 4. संपर्क (/contact)
+ */
+function ConnectMenu({ pathname }: { pathname: string }) {
+  const isMr = getLocale() !== 'en'
+  const [open, setOpen] = useState(false)
+  const [pinned, setPinned] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+
+  const isConnectActive = ['/grievance', '/appointment', '/meeting', '/invitation', '/contact'].some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  )
+
+  const close = () => {
+    if (timer.current) clearTimeout(timer.current)
+    setOpen(false)
+    setPinned(false)
+  }
+
+  const show = () => {
+    if (timer.current) clearTimeout(timer.current)
+    setOpen(true)
+  }
+
+  const hide = () => {
+    if (timer.current) clearTimeout(timer.current)
+    if (pinned) return
+    timer.current = setTimeout(() => setOpen(false), 140)
+  }
+
+  const toggle = () => {
+    if (timer.current) clearTimeout(timer.current)
+    if (open && pinned) close()
+    else {
+      setOpen(true)
+      setPinned(true)
+    }
+  }
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        triggerRef.current?.focus()
+        close()
+      }
+    }
+    const onPointer = (e: PointerEvent) => {
+      if (containerRef.current?.contains(e.target as Node)) return
+      close()
+    }
+    document.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointer)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointer)
+    }
+  }, [open])
+
+  useEffect(() => {
+    close()
+  }, [pathname])
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative"
+      onMouseEnter={show}
+      onMouseLeave={hide}
+    >
+      <button
+        ref={triggerRef}
+        type="button"
+        onClick={toggle}
+        aria-expanded={open}
+        aria-haspopup="true"
+        className={cn(
+          'group flex h-10 shrink-0 items-center gap-1.5 rounded-lg px-4 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-200 active:scale-95 cursor-pointer',
+          isConnectActive || open
+            ? 'bg-[#c25e00] ring-2 ring-[#c25e00]/40 shadow-md'
+            : 'bg-[#000d3d] hover:bg-[#c25e00]',
+        )}
+      >
+        <span>{isMr ? 'कनेक्ट' : 'Connect'}</span>
+        <ChevronDown
+          aria-hidden
+          className={cn(
+            'size-3.5 transition-transform duration-200 ease-out opacity-80',
+            open && 'rotate-180',
+          )}
+        />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <m.div
+            initial={{ opacity: 0, y: 6, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 4, scale: 0.96, transition: { duration: 0.1 } }}
+            transition={{ duration: 0.18, ease: EASE_MENU }}
+            className="absolute right-0 top-full z-50 pt-2"
+          >
+            {/* Matches Image 4 (media_1793356995960_a83a0043.png): Deep saffron orange rounded card */}
+            <div className="w-[316px] rounded-2xl bg-[#c25e00] p-3 shadow-[0_22px_48px_-12px_rgba(194,94,0,0.5)] ring-1 ring-black/5">
+              <div className="grid grid-cols-2 gap-2">
+                {CONNECT_ITEMS.map((item) => {
+                  const Icon = item.icon
+                  const active = pathname === item.to
+                  return (
+                    <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={close}
+                      className={cn(
+                        'group/item flex items-center gap-2.5 rounded-xl p-2.5 transition-all duration-150 cursor-pointer',
+                        active
+                          ? 'bg-white/25 shadow-xs font-semibold'
+                          : 'hover:bg-white/20 active:bg-white/30',
+                      )}
+                    >
+                      <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-white/20 text-white shadow-2xs group-hover/item:bg-white/30 group-hover/item:scale-105 transition-all">
+                        <Icon className="size-4.5" />
+                      </span>
+                      <span className="font-display text-[0.92rem] font-bold text-white tracking-wide leading-tight">
+                        {isMr ? item.titleMr : item.titleEn}
+                      </span>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </m.div>
+        )}
+      </AnimatePresence>
+    </div>
+  )
+}
+
 /* ------------------------------------------------------------------ phone & tablet drawer */
 
 const mobileRow = 'flex min-h-12 items-center rounded-xl px-4 text-[1.02rem] font-semibold transition-[color,background-color] active:bg-saffron-100'
 
-/**
- * The menu on phones and tablets: a sheet from the right with the items as large rows. Menus with sub-items fold open one at a time (the one that
- * holds the current page starts open), so the whole menu fits on a phone without scrolling. Escape closes it, Tab stays inside it.
- * Motion is plain on purpose: the sheet slides in and the dimmed page fades (no blur behind it — that is costly on a phone), a group unfolds
- * in 200 ms, a tap tints the row.
- */
 function MobileMenu({
-  id, nav, pathname, logo, menuLabel, closeLabel, contactLabel, onClose, onNavigate,
+  id, nav, pathname, logo, menuLabel, closeLabel, onClose, onNavigate,
 }: {
-  id: string; nav: NavNode[]; pathname: string; logo: ReactNode; menuLabel: string; closeLabel: string; contactLabel: string
+  id: string; nav: NavNode[]; pathname: string; logo: ReactNode; menuLabel: string; closeLabel: string
   onClose: () => void; onNavigate: () => void
 }) {
   const panel = useRef<HTMLDivElement>(null)
@@ -384,7 +539,6 @@ function MobileMenu({
         role="dialog"
         aria-modal="true"
         aria-label={menuLabel}
-        // slides in from the left edge (Oct 2026), slow enough to read as one smooth movement; transform only, so it stays fluid on phones
         className="absolute inset-y-0 left-0 flex w-[min(24rem,calc(100vw-3rem))] flex-col bg-ivory shadow-2xl will-change-transform"
         initial={{ x: '-100%' }}
         animate={{ x: 0 }}
@@ -463,7 +617,39 @@ function MobileMenu({
           </ul>
         </nav>
 
+        {/* Bottom Panel with 2x2 Connect Box + Language Selector */}
         <div className="shrink-0 space-y-3 border-t border-saffron-100 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          {/* 2x2 Connect Grid matching desktop Image 4 */}
+          <div className="rounded-2xl bg-[#c25e00] p-2.5 shadow-md">
+            <div className="mb-2 px-1 text-[11px] font-bold uppercase tracking-wider text-orange-100">
+              {getLocale() === 'mr' ? 'नागरिक सेवा — थेट कनेक्ट' : 'Citizen Connect Services'}
+            </div>
+            <div className="grid grid-cols-2 gap-1.5">
+              {CONNECT_ITEMS.map((item) => {
+                const Icon = item.icon
+                const active = pathname === item.to
+                return (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    onClick={onNavigate}
+                    className={cn(
+                      'flex items-center gap-2 rounded-xl p-2 transition-all cursor-pointer',
+                      active ? 'bg-white/25 font-bold shadow-2xs' : 'hover:bg-white/20 active:bg-white/30',
+                    )}
+                  >
+                    <span className="flex size-7.5 shrink-0 items-center justify-center rounded-lg bg-white/20 text-white">
+                      <Icon className="size-4" />
+                    </span>
+                    <span className="text-xs font-bold text-white tracking-wide">
+                      {getLocale() === 'mr' ? item.titleMr : item.titleEn}
+                    </span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+
           <div className="flex items-center justify-between rounded-xl border border-stone-200/70 bg-stone-50 px-3 py-2">
             <span className="flex items-center gap-1.5 text-xs font-semibold text-charcoal-700">
               <Globe className="size-3.5 text-saffron-600" />
@@ -471,15 +657,6 @@ function MobileMenu({
             </span>
             <LanguageToggle isMobile />
           </div>
-
-          <Link
-            to="/contact"
-            onClick={onNavigate}
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-saffron-700 text-base font-semibold text-white transition-[background-color] hover:bg-saffron-800 active:bg-saffron-800"
-          >
-            {contactLabel}
-            <ArrowUpRight aria-hidden className="size-4" />
-          </Link>
         </div>
       </m.div>
     </div>
@@ -488,16 +665,9 @@ function MobileMenu({
 
 /* ------------------------------------------------------------------ the header */
 
-/**
- * Site header: a sticky ivory bar with the logo on the left and, on wide screens, plain text links (a kesariya bar marks the current section),
- * dropdowns and one Contact button; phones and tablets get a menu button that opens a drawer. The bar is solid on phones and tablets and
- * lets a little blur through on desktop. Its heights (64 / 72 / 80 px) are also the `top` of the sticky tab bars under it
- * (PageBanner, SectionTabs, Blog) — change them together.
- */
 export function Header() {
   const { header, settings } = useLayout()
   const tn = useTranslations('nav')
-  const tc = useTranslations('common')
   const nav = normalizeNav(header.nav as never)
   const siteName = settings.siteName
   const logoUrl = isMedia(settings.logoLight) && settings.logoLight.filename === ORIGINAL_LOGO ? VECTOR_LOGO : mediaUrl(settings.logoLight)
@@ -509,9 +679,6 @@ export function Header() {
   const menuButton = useRef<HTMLButtonElement>(null)
   const drawerId = useId()
 
-  const currentLocale = getLocale()
-  const contactLabel = currentLocale === 'mr' ? 'संपर्क साधा' : (tc.has('contactUs') ? tc('contactUs') : 'Contact')
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
     onScroll()
@@ -519,14 +686,12 @@ export function Header() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // a new page closes the drawer
   const [menuFor, setMenuFor] = useState(pathname)
   if (menuFor !== pathname) {
     setMenuFor(pathname)
     setMobileOpen(false)
   }
 
-  // while the drawer is open the page behind it stays still, and it gives way when the screen grows to the desktop menu
   useEffect(() => {
     if (!mobileOpen) return
     document.body.style.overflow = 'hidden'
@@ -541,7 +706,6 @@ export function Header() {
     }
   }, [mobileOpen])
 
-  // closing with Escape, the close button or the backdrop hands the focus back to the menu button (a link is followed instead)
   const closeDrawer = useCallback(() => {
     setMobileOpen(false)
     menuButton.current?.focus()
@@ -563,18 +727,10 @@ export function Header() {
 
           <DesktopNav nav={nav} pathname={pathname} />
 
-          {/* Desktop Controls: Language Toggle & Contact CTA */}
+          {/* Desktop Controls: Language Toggle & Connect Dropdown CTA */}
           <div className="ml-3 hidden items-center gap-3 lg:flex xl:ml-5">
             <LanguageToggle />
-
-            <Link
-              to="/contact"
-              aria-current={pathname === '/contact' ? 'page' : undefined}
-              className="group flex h-10 shrink-0 items-center gap-1.5 rounded-lg bg-[#000d3d] px-4 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-200 hover:bg-saffron-600 hover:scale-105 active:scale-95"
-            >
-              <span>{contactLabel}</span>
-              <ArrowUpRight aria-hidden className="size-3.5 transition-transform duration-200 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-            </Link>
+            <ConnectMenu pathname={pathname} />
           </div>
 
           {/* Mobile Right Controls: Language Toggle + Hamburger Menu */}
@@ -605,7 +761,6 @@ export function Header() {
             logo={<Logo siteName={siteName} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} small />}
             menuLabel={tn('menu')}
             closeLabel={tn('close')}
-            contactLabel={contactLabel}
             onClose={closeDrawer}
             onNavigate={leaveDrawer}
           />

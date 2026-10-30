@@ -20,7 +20,7 @@ const inboxAccess = { read: 'editors', create: 'never', update: 'editors', delet
 
 export const ContactMessages = {
   slug: 'contact-messages',
-  labels: { singular: 'Contact message', plural: 'Contact messages' },
+  labels: { singular: 'संपर्क संदेश (Contact Message)', plural: 'संपर्क संदेश (Contact Messages)' },
   admin: { useAsTitle: 'name', group: 'Inbox', defaultColumns: ['name', 'mobile', 'subject', 'office', 'status', 'createdAt'], export: true },
   sqlOnly: true,
   access: inboxAccess,
@@ -38,23 +38,71 @@ export const ContactMessages = {
   ],
 }
 
-/* removed from the website (Oct 2026); data kept and still readable in the admin */
+/** कामाचे निवेदन (Grievance / Work Application) */
 export const Grievances = {
   slug: 'grievances',
-  labels: { singular: 'Grievance / Suggestion', plural: 'Grievances / Suggestions' },
-  admin: { hidden: true, useAsTitle: 'name', group: 'Inbox', defaultColumns: ['referenceNo', 'name', 'mobile', 'type', 'status', 'createdAt'], export: true },
+  labels: { singular: 'कामाचे निवेदन (Grievance)', plural: 'कामाचे निवेदन (Grievances)' },
+  admin: { useAsTitle: 'name', group: 'Inbox', defaultColumns: ['referenceNo', 'name', 'mobile', 'subject', 'inConstituency', 'status', 'createdAt'], export: true },
   sqlOnly: true,
   access: inboxAccess,
-  reference: { field: 'referenceNo', prefix: 'RD' },
-  notify: { label: 'grievance / suggestion', fields: ['referenceNo', 'type', 'name', 'mobile', 'email', 'address', 'issue'] },
+  reference: { field: 'referenceNo', prefix: 'RD-GR' },
+  notify: { label: 'कामाचे निवेदन (grievance)', fields: ['referenceNo', 'name', 'mobile', 'subject', 'description'] },
   fields: [
     text('referenceNo', { column: true, admin: { readOnly: true, position: 'sidebar' } }),
-    select('type', [{ label: 'Grievance', value: 'grievance' }, { label: 'Suggestion', value: 'suggestion' }], { defaultValue: 'grievance', column: true, admin: { readOnly: true } }),
     text('name', { required: true, column: true, admin: { readOnly: true } }),
     text('mobile', { required: true, column: true, admin: { readOnly: true } }),
+    select('inConstituency', [{ label: 'होय (Yes)', value: 'yes' }, { label: 'नाही (No)', value: 'no' }], { defaultValue: 'yes', column: true, admin: { readOnly: true } }),
+    text('subject', { required: true, column: true, admin: { readOnly: true } }),
+    textarea('description', { required: true, column: true, admin: { readOnly: true } }),
+    textarea('address', { column: true, admin: { readOnly: true } }),
     email('email', { column: true, admin: { readOnly: true } }),
+    upload('attachment', 'form-uploads', { column: true, admin: { readOnly: true } }),
+    status,
+    notes,
+  ],
+}
+
+/** भेटीची विनंती / भेटीचे विवरण (Appointment / Meeting Request) */
+export const Appointments = {
+  slug: 'appointments',
+  labels: { singular: 'भेटीची विनंती (Meeting Request)', plural: 'भेटीच्या विनंत्या (Meeting Requests)' },
+  admin: { useAsTitle: 'name', group: 'Inbox', defaultColumns: ['referenceNo', 'name', 'mobile', 'preferredDate', 'status', 'createdAt'], export: true },
+  sqlOnly: true,
+  access: inboxAccess,
+  reference: { field: 'referenceNo', prefix: 'RD-AP' },
+  notify: { label: 'भेटीची विनंती (meeting request)', fields: ['referenceNo', 'name', 'mobile', 'address', 'reason', 'preferredDate', 'preferredTime'] },
+  fields: [
+    text('referenceNo', { column: true, admin: { readOnly: true, position: 'sidebar' } }),
+    text('name', { required: true, column: true, admin: { readOnly: true } }),
+    text('mobile', { required: true, column: true, admin: { readOnly: true } }),
     textarea('address', { required: true, column: true, admin: { readOnly: true } }),
-    textarea('issue', { required: true, column: true, admin: { readOnly: true } }),
+    textarea('reason', { required: true, column: true, admin: { readOnly: true } }),
+    text('preferredDate', { column: true, admin: { readOnly: true } }),
+    text('preferredTime', { column: true, admin: { readOnly: true } }),
+    upload('attachment', 'form-uploads', { column: true, admin: { readOnly: true } }),
+    status,
+    notes,
+  ],
+}
+
+/** शुभकार्य आमंत्रण (Invitation) */
+export const Invitations = {
+  slug: 'invitations',
+  labels: { singular: 'शुभकार्य आमंत्रण (Invitation)', plural: 'शुभकार्य आमंत्रणे (Invitations)' },
+  admin: { useAsTitle: 'eventTitle', group: 'Inbox', defaultColumns: ['referenceNo', 'organizerName', 'eventTitle', 'eventDate', 'status', 'createdAt'], export: true },
+  sqlOnly: true,
+  access: inboxAccess,
+  reference: { field: 'referenceNo', prefix: 'RD-IN' },
+  notify: { label: 'शुभकार्य आमंत्रण (invitation)', fields: ['referenceNo', 'organizerName', 'mobile', 'eventTitle', 'eventDate', 'eventTime', 'location', 'description'] },
+  fields: [
+    text('referenceNo', { column: true, admin: { readOnly: true, position: 'sidebar' } }),
+    text('organizerName', { required: true, column: true, admin: { readOnly: true } }),
+    text('mobile', { required: true, column: true, admin: { readOnly: true } }),
+    text('eventTitle', { required: true, column: true, admin: { readOnly: true } }),
+    text('eventDate', { required: true, column: true, admin: { readOnly: true } }),
+    text('eventTime', { column: true, admin: { readOnly: true } }),
+    textarea('location', { required: true, column: true, admin: { readOnly: true } }),
+    textarea('description', { column: true, admin: { readOnly: true } }),
     upload('attachment', 'form-uploads', { column: true, admin: { readOnly: true } }),
     status,
     notes,
@@ -80,4 +128,4 @@ export const JobApplications = {
   ],
 }
 
-export const inboxCollections = [ContactMessages, Grievances, JobApplications]
+export const inboxCollections = [ContactMessages, Grievances, Appointments, Invitations, JobApplications]

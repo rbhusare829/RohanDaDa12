@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { Stagger, StaggerItem } from './HomeMotion'
@@ -7,8 +8,8 @@ import { ACTIVITIES, SOCIAL_ACTIVITIES_PATH, type Text } from '@/lib/social-acti
 /**
  * Social Activities (Supriya Sule layout, Oct 2026), below Key Focus Areas: the centred header used across the homepage
  * (red label, navy title, red and saffron bars), then the four activities as photo cards in a mosaic — the first one large,
- * two small, one wide — with the title and tagline over a navy fade. Tablets show two columns; phones one row to swipe
- * through. Each card opens that activity on the Social Activities page (/social-activities#…), where its full story and key facts are;
+ * two small, one wide — with the title and tagline over a navy fade. Tablets show two columns; phones one row that moves on its
+ * own, right to left without end (Oct 2026; it stops while touched, and stays still — swipeable — for reduced motion). Each card opens that activity on the Social Activities page (/social-activities#…), where its full story and key facts are;
  * "सर्व सामाजिक उपक्रम / All social activities" under the cards opens the page at the top.
  */
 export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr' | 'en' }) {
@@ -29,16 +30,23 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
           </div>
         </div>
 
+        {/* phones: the four cards twice in one moving row (each with the same space after it, so the loop has no seam); from tablets up the
+            copies are hidden and the row becomes the grid */}
+        <div className="group/row -mx-6 overflow-hidden motion-reduce:overflow-x-auto [mask-image:linear-gradient(90deg,transparent,#000_4%,#000_96%,transparent)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:[mask-image:none]">
         <Stagger
           as="ol"
-          className="-mx-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-1 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(16rem,1fr))]"
+          style={{ '--dur': `${ACTIVITIES.length * 6}s` } as CSSProperties}
+          className="flex w-max animate-[marquee_var(--dur)_linear_infinite] py-1 group-hover/row:[animation-play-state:paused] group-active/row:[animation-play-state:paused] group-focus-within/row:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:pl-6 sm:grid sm:w-auto sm:animate-none sm:grid-cols-2 sm:gap-5 sm:py-0 sm:motion-reduce:pl-0 lg:grid-cols-4 lg:grid-rows-[repeat(2,minmax(16rem,1fr))]"
         >
-          {ACTIVITIES.map((a, i) => {
+          {[...ACTIVITIES, ...ACTIVITIES].map((a, k) => {
+            const i = k % ACTIVITIES.length
+            const copy = k >= ACTIVITIES.length
             const big = i === 0
             return (
-              <StaggerItem as="li" key={a.id} className={cn('w-[82%] shrink-0 snap-start sm:w-auto', mosaic[i])}>
+              <StaggerItem as="li" key={`${a.id}-${k}`} aria-hidden={copy || undefined} className={cn('mr-4 w-[76vw] shrink-0 sm:mr-0 sm:w-auto', mosaic[i], copy && 'sm:hidden motion-reduce:hidden')}>
                 <Link
                   to={`${SOCIAL_ACTIVITIES_PATH}#${a.id}`}
+                  tabIndex={copy ? -1 : undefined}
                   className="group relative isolate flex h-full min-h-[22rem] w-full flex-col justify-end overflow-hidden rounded-2xl bg-[#000d3d] text-left text-white shadow-sm ring-1 ring-stone-200/60 transition-shadow duration-300 hover:shadow-xl focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-red-500/60 sm:min-h-[19rem] lg:min-h-0"
                 >
                   <img
@@ -67,6 +75,7 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
             )
           })}
         </Stagger>
+        </div>
 
         <div className="mt-10 flex justify-center sm:mt-12">
           <Link

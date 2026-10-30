@@ -5,7 +5,6 @@ import { LOCALE, useTranslations } from '@/lib/i18n'
 import { mediaAlt, mediaPosition, mediaUrl, toGallery } from '@/lib/media'
 import { siteUrl, toMarathiDigits, youtubeId } from '@/lib/utils'
 import { NewsCard } from '@/components/blog/BlogParts'
-import { PageBanner } from '@/components/layout/PageBanner'
 import { Seo } from '@/components/layout/Seo'
 import { ProjectVideos } from '@/components/social/ProjectVideos'
 import { Gallery } from '@/components/ui/Gallery'
@@ -53,23 +52,19 @@ export default function InitiativePage() {
   return (
     <>
       <Seo title={d.meta?.title || d.title} description={d.meta?.description || d.excerpt} image={mediaUrl(d.meta?.image, 'card') || mediaUrl(d.heroImage, 'card')} />
-      <PageBanner
-        title={d.title}
-        path="/social-work"
-        variant="navy"
-      >
-        {d.stat && (
-          <p className="mt-6 inline-flex flex-wrap items-baseline gap-x-3 gap-y-1 border-l-2 border-saffron-500 pl-4">
-            <span className="text-[0.95rem] text-highlight">{x.impact}</span>
-            <span className="font-display text-xl text-white">{d.stat}</span>
-          </p>
-        )}
-      </PageBanner>
 
       <div className="container-x pb-10 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12">
-        <Link to="/lokmangal/foundation#projects" className="tap-pad inline-flex items-center gap-2 text-sm font-semibold text-muted transition hover:gap-3 hover:text-charcoal-900">
+        {/* back to this project's own card in the list (a main project sits in the slider at the top of the section) */}
+        <Link to={`/lokmangal/foundation#${d.featured ? 'projects' : `project-${d.slug}`}`} className="tap-pad inline-flex items-center gap-2 text-sm font-semibold text-muted transition hover:gap-3 hover:text-charcoal-900">
           <ArrowLeft aria-hidden className="size-4" /> {x.back}
         </Link>
+
+        {/* no photo banner on the project pages (Oct 2026): the title opens the page, with the red and saffron bars */}
+        <h1 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight text-[#000d3d] sm:text-4xl lg:text-5xl">{d.title}</h1>
+        <div className="mt-3 flex items-center gap-1.5">
+          <span className="h-1.5 w-12 rounded-full bg-red-600 sm:w-14" />
+          <span className="h-1.5 w-3 rounded-full bg-saffron-500 sm:w-3.5" />
+        </div>
 
         <article className="mt-8 grid gap-8 sm:gap-14 lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:gap-20">
           <div className="min-w-0">

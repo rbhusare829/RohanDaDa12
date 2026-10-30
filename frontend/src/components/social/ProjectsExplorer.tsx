@@ -67,7 +67,6 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
                 )}
               >
                 {c.label}
-                <span className={cn('grid min-w-6 place-items-center rounded-full px-1.5 text-xs leading-5', on ? 'bg-white text-saffron-700' : 'bg-cream text-saffron-700')}>{n(c.count)}</span>
               </button>
             )
           })}
@@ -203,8 +202,9 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
 
 /** Grid card: photo on top (thumbnail beside the text on phones), key impact + category, title, text, Read more */
 function GridCard({ p, labels }: { p: ProjectCard; labels: Labels }) {
+  // #project-<slug>: "सर्व उपक्रमांकडे परत जा" on the project page comes back to this card
   return (
-    <li className="tile group flex-row gap-4 md:flex-col md:gap-0">
+    <li id={`project-${p.href.split('/').pop()}`} className="tile group scroll-mt-32 flex-row gap-4 md:flex-col md:gap-0">
       <div className="tile-media w-28 shrink-0 self-start aspect-square sm:w-36 md:aspect-[16/10] md:w-full">
         <Photo p={p} sizes="(max-width:768px) 144px, (max-width:1024px) 50vw, 400px" />
       </div>

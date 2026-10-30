@@ -3,12 +3,14 @@ import { cms } from '@/lib/api'
 import { INITIATIVE_CATEGORIES, categoryLabel } from '@/lib/categories'
 import { LOCALE } from '@/lib/i18n'
 import { mediaAlt, mediaPosition, mediaUrl, photoFit, staticMedia } from '@/lib/media'
+import { useHashTarget } from '@/lib/use-hash-target'
 import { PageBlocks } from '@/components/blocks/PageBlocks'
 import { Reveal } from '@/components/ui/Motion'
 import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { ProjectsExplorer, type ProjectCard } from '@/components/social/ProjectsExplorer'
 import { notFound } from './helpers'
+import type { Media } from '@/types/cms'
 
 const PATH = '/lokmangal/foundation'
 
@@ -39,6 +41,11 @@ export async function loader() {
   return { page, initiatives }
 }
 
+/** Key Areas card photos taken from the project's gallery (by file name) in place of its cover */
+const CARD_PHOTO: Record<string, string> = {
+  'annapurna-yojana': 'lmf-annapurna-yojana-02.webp',
+}
+
 /**
  * Lokmangal Foundation: माहिती (the page content edited under Pages in the admin) · प्रकल्प (Initiatives). (Oct 2026: the About · Events ·
  * Projects tab bar was removed, and so was the Events section — its Sports events now show under Political Career → Social Activities;
@@ -48,12 +55,29 @@ export default function FoundationPage() {
   const { page, initiatives } = useLoaderData<typeof loader>()
   const locale = LOCALE
   const x = TEXT[locale]
+  // "सर्व उपक्रमांकडे परत जा" on a project page comes back to #projects
+  useHashTarget()
 
   // माहिती = the page's own blocks (edited under Pages in the admin); its call-to-action closes the page
   // the introduction (the first Media + text block) always shows INTRO_PHOTO, whatever photo is set in the admin
   const firstMedia = (page.layout ?? []).findIndex((b) => b.blockType === 'mediaText')
-  const blocks = (page.layout ?? []).map((b, i) => (i === firstMedia ? { ...b, image: INTRO_PHOTO } : b))
-  const about = blocks.filter((b) => b.blockType !== 'cta')
+  // the Key Areas cards show the cover photo of the project each one links to (/social-work/<slug>), in place of an icon (Oct 2026)
+  // (a project whose cover is a tall photo uses a wide one from its own gallery instead — CARD_PHOTO)
+  const cover = (url?: string | null) => {
+    const it = initiatives.find((i) => url === `/social-work/${i.slug}`)
+    const pick = it && CARD_PHOTO[it.slug]
+    const fromGallery = pick ? it.gallery?.find((g): g is Media => typeof g === 'object' && g.filename === pick) : undefined
+    return fromGallery ?? it?.heroImage
+  }
+  const blocks = (page.layout ?? []).map((b, i) => {
+    // …and without the small "लोकमंगल फाऊंडेशन" label above its heading
+    if (i === firstMedia) return { ...b, image: INTRO_PHOTO, eyebrow: null }
+    // …and the Key Areas heading without its small "कार्यक्षेत्र" label
+    if (b.blockType === 'cards') return { ...b, eyebrow: null, items: (b.items ?? []).map((c) => (c.image ? c : { ...c, image: cover(c.url) ?? c.image })) }
+    return b
+  })
+  /* the closing text box ("या कार्याचा विस्तार…") is left out (Oct 2026) */
+  const about = blocks.filter((b) => b.blockType !== 'cta' && b.blockType !== 'content')
   const closing = blocks.filter((b) => b.blockType === 'cta')
 
   const projectCards: ProjectCard[] = initiatives.map((it) => ({
@@ -68,12 +92,12 @@ export default function FoundationPage() {
       <Seo title={page.meta?.title || page.title} description={page.meta?.description || page.subtitle} image={mediaUrl(page.meta?.image, 'card') || mediaUrl(page.bannerImage, 'card')} />
       <InnerPage path={PATH} title={page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant="navy">
         <section id="about" className="scroll-mt-36">
-          <PageBlocks blocks={about} design="stitch" />
+          <PageBlocks blocks={about} design="stitch" plainChapters accent />
         </section>
 
-        <section id="projects" className="mt-10 sm:mt-20 scroll-mt-36 md:mt-28">
+        <section id="projects" className="mt-4 sm:mt-6 scroll-mt-36">
           {/* same layout as lokmangalfoundation.com/projects → "Explore all social initiatives" */}
-          <div className="section relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-stone-200/70 bg-ivory">
+          <div className="section !pt-8 sm:!pt-12 relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-stone-200/70 bg-ivory">
             <div aria-hidden className="pointer-events-none absolute -top-24 right-0 size-96 rounded-full bg-saffron-500/5 blur-3xl" />
             <div aria-hidden className="pointer-events-none absolute -left-20 top-1/2 size-80 rounded-full bg-leaf-600/5 blur-3xl" />
             <div className="container-x relative">

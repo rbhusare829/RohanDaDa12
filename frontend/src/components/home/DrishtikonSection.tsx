@@ -107,17 +107,23 @@ export function DrishtikonSection({
                 <span className="h-1 w-3 rounded-full bg-saffron-500" />
               </div>
 
-              <p className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
-                {isMr
-                  ? '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.'
-                  : 'In his book ‘The New India Manifesto’, Rohan Subhash Deshmukh articulated his vision for building a new India. Drawing inspiration from these ideals, his resolution is to cultivate a robust entrepreneurial ecosystem across Maharashtra. Providing youth from cities to villages with the right mentorship, collaboration, and opportunities to transform their ideas into thriving ventures is the core objective of his endeavors.'}
-              </p>
-
-              <p className="mt-4 text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
-                {isMr
-                  ? 'तरुणांनी स्वतःच्या क्षमतेवर विश्वास ठेवून स्वावलंबी व्हावे आणि रोजगार शोधण्याऐवजी रोजगारनिर्मिती करावी, हा त्यांच्या दृष्टिकोनाचा केंद्रबिंदू आहे.'
-                  : 'Instilling confidence in young people to become self-reliant and shift from job seekers to job creators is the focal point of his vision.'}
-              </p>
+              <div className="space-y-4">
+                {(isMr
+                  ? [
+                      '‘न्यू इंडिया मॅनिफेस्टो’ या पुस्तकातून रोहन सुभाष देशमुख यांनी नवभारताच्या निर्मितीविषयीचा आपला दृष्टिकोन मांडला आहे. याच विचारांतून प्रेरणा घेत संपूर्ण महाराष्ट्रात सक्षम उद्योजकीय परिसंस्था उभारण्याचा त्यांचा संकल्प आहे. शहरांपासून गावांपर्यंतच्या तरुणांना योग्य मार्गदर्शन, सहकार्य आणि संधी उपलब्ध करून देत त्यांच्या कल्पनांचे यशस्वी व्यवसायांत रूपांतर व्हावे, हा त्यांच्या प्रयत्नांचा मुख्य उद्देश आहे.',
+                      'तरुणांनी स्वतःच्या क्षमतेवर विश्वास ठेवून स्वावलंबी व्हावे आणि रोजगार शोधण्याऐवजी रोजगारनिर्मिती करावी, हा त्यांच्या दृष्टिकोनाचा केंद्रबिंदू आहे.',
+                    ]
+                  : [
+                      'In his book New India Manifesto, Rohan Subhash Deshmukh shares his ideas for building a better India. Inspired by these ideas, he wants to build a strong business community across Maharashtra.',
+                      'He works with young people from both cities and villages. He helps them with guidance, support, and chances to grow, so their ideas can become real businesses.',
+                      'He believes young people should trust themselves, stand on their own feet, and create jobs for others instead of only looking for jobs.',
+                    ]
+                ).map((text) => (
+                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
+                    {text}
+                  </p>
+                ))}
+              </div>
 
               <div className="mt-8 flex max-lg:justify-center">
                 <Link

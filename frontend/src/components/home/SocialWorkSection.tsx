@@ -85,11 +85,20 @@ export function SocialWorkSection({
                 <span className="h-1 w-3 rounded-full bg-saffron-500" />
               </div>
 
-              <p className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
-                {isMr
-                  ? 'लोकमंगल फाउंडेशनच्या माध्यमातून रोहन सुभाष देशमुख समाजाच्या गरजांनुसार विविध उपक्रम राबवतात. सोलापूर आणि धाराशिव जिल्ह्यांमध्ये कार्यरत असलेल्या या फाउंडेशनचा मुख्य उद्देश गरजू व्यक्तींना योग्य वेळी मदत करणे, त्यांच्या अडचणी दूर करण्यासाठी प्रयत्न करणे आणि त्यांना प्रगतीच्या संधी उपलब्ध करून देणे हा आहे. समाजातील विविध घटकांचे जीवनमान उंचावावे आणि त्यांना स्वावलंबी होण्यासाठी बळ मिळावे, यासाठी फाउंडेशन सातत्याने प्रयत्नशील आहे.'
-                  : 'Through Lokmangal Foundation, Rohan Subhash Deshmukh carries out diverse initiatives tailored to societal needs. Active in Solapur and Dharashiv districts, the foundation’s primary goal is to provide timely assistance to those in need, address their challenges, and open new avenues of growth. The foundation continuously strives to uplift the living standards of all sections of society and empower them toward self-reliance.'}
-              </p>
+              {/* Marathi: one paragraph; English: two */}
+              <div className="space-y-3">
+                {(isMr
+                  ? ['लोकमंगल फाउंडेशनच्या माध्यमातून रोहन सुभाष देशमुख समाजाच्या गरजांनुसार विविध उपक्रम राबवतात. महाराष्ट्रभर कार्यरत असलेल्या या फाउंडेशनचा मुख्य उद्देश गरजू व्यक्तींना योग्य वेळी मदतीचा हात देणे, त्यांच्या अडचणी दूर करण्यासाठी प्रयत्न करणे आणि त्यांना प्रगतीच्या नव्या संधी उपलब्ध करून देणे हा आहे. समाजातील विविध घटकांचे जीवनमान उंचावावे आणि त्यांना स्वावलंबी होण्यासाठी बळ मिळावे, यासाठी फाउंडेशन सातत्याने प्रयत्नशील आहे.']
+                  : [
+                      'Through the Lokmangal Foundation, Rohan Subhash Deshmukh leads initiatives that respond to the real needs of society. Working across Maharashtra, the foundation lends a helping hand to people in need at the right time, works to solve their challenges, and opens up new opportunities for growth.',
+                      'The foundation works to improve the quality of life for every section of society and gives people the strength to become self-reliant. It continues to work towards this vision every day.',
+                    ]
+                ).map((text) => (
+                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
+                    {text}
+                  </p>
+                ))}
+              </div>
 
               <div className="mt-8 flex max-lg:justify-center">
                 <Link

@@ -15,7 +15,6 @@ export const REMOVED_REDIRECTS = new Map([
   ['/about/leaders', '/about/biography'],
   ['/lokmangal/vishwamangal', '/lokmangal/foundation'],
   ['/media/downloads', '/media/photos'],
-  ['/grievance', '/contact'],
   ['/careers', '/contact'],
   ['/search', '/'],
 ])
@@ -27,6 +26,10 @@ export const STATIC_PAGES = {
   '/blog': { title: 'Articles & Perspectives', description: 'Articles and ideas by Rohan Subhash Deshmukh on social work, policy, farming, education and development — from Solapur.' },
   '/events': { title: 'Events', description: 'Lokmangal Foundation initiatives, ceremonies, campaigns and articles — in one place.' },
   '/contact': { title: 'Contact' },
+  '/grievance': { title: 'कामाचे निवेदन — Grievance', description: 'Submit citizen work petitions and grievances directly to Rohan Subhash Deshmukh.' },
+  '/appointment': { title: 'भेटीचे विवरण — Appointment', description: 'Schedule an official appointment with Rohan Subhash Deshmukh.' },
+  '/meeting': { title: 'भेटीचे विवरण — Appointment', description: 'Schedule an official appointment with Rohan Subhash Deshmukh.' },
+  '/invitation': { title: 'शुभकार्य आमंत्रण — Invitation', description: 'Send event and wedding invitations to Rohan Subhash Deshmukh.' },
   '/social-work': { title: 'Social Initiatives' },
   '/media/photos': { title: 'Photo Gallery' },
   '/media/videos': { title: 'Video Gallery' },

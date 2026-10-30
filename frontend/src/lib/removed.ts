@@ -10,7 +10,6 @@ export const REMOVED_REDIRECTS: Record<string, string> = {
   '/about/leaders': '/about/biography',
   '/lokmangal/vishwamangal': '/lokmangal/foundation',
   '/media/downloads': '/media/photos',
-  '/grievance': '/contact',
   '/careers': '/contact',
   '/search': '/',
 }

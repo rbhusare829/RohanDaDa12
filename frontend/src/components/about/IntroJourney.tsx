@@ -485,8 +485,8 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
             </div>
             <p className="mt-3 text-sm sm:text-base text-slate-600 max-w-2xl mx-auto">
               {isMr
-                ? 'सामाजिक संस्था, उद्योग समूह, राजकीय मंच आणि साहित्य क्षेत्रात बजावलेल्या महत्त्वाच्या जबाबदाऱ्या.'
-                : 'Key responsibilities undertaken across social institutions, business conglomerates, political forums, and literature.'}
+                ? 'विविध क्षेत्रांतील नेतृत्व आणि महत्त्वपूर्ण जबाबदाऱ्या'
+                : 'Leadership and Key Responsibilities Across Different Fields'}
             </p>
           </Reveal>
         </div>

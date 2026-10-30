@@ -76,8 +76,8 @@ export default function FoundationPage() {
     if (b.blockType === 'cards') return { ...b, eyebrow: null, items: (b.items ?? []).map((c) => (c.image ? c : { ...c, image: cover(c.url) ?? c.image })) }
     return b
   })
-  /* the closing text box ("या कार्याचा विस्तार…") is left out (Oct 2026) */
-  const about = blocks.filter((b) => b.blockType !== 'cta' && b.blockType !== 'content')
+  /* the closing text box ("या कार्याचा विस्तार…") and the "Impact So Far" figures are left out (Oct 2026) */
+  const about = blocks.filter((b) => b.blockType !== 'cta' && b.blockType !== 'content' && b.blockType !== 'stats')
   const closing = blocks.filter((b) => b.blockType === 'cta')
 
   const projectCards: ProjectCard[] = initiatives.map((it) => ({

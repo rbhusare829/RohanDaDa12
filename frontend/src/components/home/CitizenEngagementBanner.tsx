@@ -1,5 +1,5 @@
 import { ArrowRight, Quote } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 
 /** the founder application on the New India Manifesto website (the same link as "Apply now" on the Vision page) */
 const APPLY_URL = 'https://newindiamanifesto.com/apply/founder'
@@ -19,7 +19,7 @@ export function CitizenEngagementBanner({
   return (
     <section className="container-x relative z-30 -mt-6 sm:-mt-8 lg:-mt-10">
       {/* it rises over the bottom of the hero a moment after the hero's words have arrived */}
-      <Reveal delay={0.45} y={36} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.18)]">
+      <Reveal delay={0.3} y={30} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.18)]">
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
           <div className="min-w-0 max-w-4xl flex-1 space-y-2.5">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-saffron-700">

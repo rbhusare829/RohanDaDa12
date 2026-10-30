@@ -1,8 +1,10 @@
+import type { CSSProperties } from 'react'
 import { Link } from 'react-router'
 import { ArrowRightCircle, ArrowUpRight } from 'lucide-react'
 import type { Post } from '@/types/cms'
 import { mediaUrl } from '@/lib/media'
-import { Reveal } from '../ui/Motion'
+import { cn } from '@/lib/utils'
+import { Reveal } from './HomeMotion'
 
 const MONTHS_MR = [
   'जानेवारी', 'फेब्रुवारी', 'मार्च', 'एप्रिल', 'मे', 'जून',
@@ -22,12 +24,10 @@ function formatDate(dateStr?: string | null, isMr = true) {
   return `${day} ${month} ${year}`
 }
 
-const SOURCES = ['सकाळ', 'लोकमत', 'पुढारी', 'महाराष्ट्र टाइम्स', 'TV9 मराठी', 'साम टीव्ही']
 
 const FALLBACK_POSTS = [
   {
     id: 'fb-1',
-    source: 'सकाळ',
     title: 'सोलापूर आणि धाराशिव भागात दुष्काळ निवारणासाठी लोकमंगल फाउंडेशनचे व्यापक कार्य',
     date: '28 October 2026',
     image: '/images/gallery/political/rd-political-06.webp',
@@ -35,7 +35,6 @@ const FALLBACK_POSTS = [
   },
   {
     id: 'fb-2',
-    source: 'TV9 Marathi',
     title: 'तरुणांनी रोजगार मागण्यापेक्षा रोजगारनिर्मिती करणारे व्हावे: रोहन देशमुख यांचे आवाहन',
     date: '28 October 2026',
     image: '/images/gallery/political/rd-political-02.webp',
@@ -43,7 +42,6 @@ const FALLBACK_POSTS = [
   },
   {
     id: 'fb-3',
-    source: 'Lokmat',
     title: 'लोकमंगल सर्वधर्मीय सामुदायिक विवाह सोहळा: हजारो गरजू कुटुंबांना मोफत आधार',
     date: '28 October 2026',
     image: '/images/gallery/political/rd-political-04.webp',
@@ -51,7 +49,6 @@ const FALLBACK_POSTS = [
   },
   {
     id: 'fb-4',
-    source: 'Jai Maharashtra',
     title: 'ग्रामीण भागात उद्योजकीय परिसंस्था उभारणीसाठी न्यू इंडिया मॅनिफेस्टोचा नवा संकल्प',
     date: '28 October 2026',
     image: '/images/gallery/political/rd-political-05.webp',
@@ -65,6 +62,7 @@ const FALLBACK_POSTS = [
  * - Header with "माध्यम वार्तांकन / ब्लॉग" and "View all ➔" link
  * - 4-column cards with white photo frame, corner date badge, and bold deep-navy headline below
  */
+
 export function SupriyaLatestNewsSection({
   posts = [],
   locale = 'mr',
@@ -76,10 +74,6 @@ export function SupriyaLatestNewsSection({
 
   // Map real CMS posts
   const realItems = posts.map((p, i) => {
-    const rawCat = p.categories?.[0]
-    const catName = typeof rawCat === 'object' && rawCat !== null ? (rawCat as { title?: string }).title : null
-    const rawTag = (p.tags?.[0] as string) || catName
-    const tag = (isMr ? rawTag : rawTag && !/[\u0900-\u097F]/.test(rawTag) ? rawTag : null) || (isMr ? SOURCES[i % SOURCES.length] : 'Media Update')
     const img = mediaUrl(p.coverImage, 'card') || (
       i === 0 ? '/images/gallery/political/rd-political-06.webp' :
       i === 1 ? '/images/gallery/political/rd-political-02.webp' :
@@ -89,7 +83,6 @@ export function SupriyaLatestNewsSection({
     )
     return {
       id: String(p.id),
-      source: tag,
       title: p.title,
       date: formatDate(p.publishedAt, isMr),
       image: img,
@@ -97,9 +90,9 @@ export function SupriyaLatestNewsSection({
     }
   })
 
-  // Fill up to 4 items using fallback if needed
+  // every blog post; fallback cards only fill up to 4 while there are fewer posts
   const displayItems = realItems.length >= 4
-    ? realItems.slice(0, 4)
+    ? realItems
     : [
         ...realItems,
         ...FALLBACK_POSTS.slice(realItems.length, 4).map((f) => ({
@@ -165,16 +158,23 @@ export function SupriyaLatestNewsSection({
           </Reveal>
         </div>
 
-        {/* 4-Column Cards Grid matching Reference Image */}
+                {/* every post in one row that moves on its own, right to left, without end (the list twice, each card with the same space after it, so the loop has no seam);
+            it stops while hovered, touched or focused, and for visitors who ask for reduced motion it is a swipeable row */}
         <Reveal delay={0.15}>
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:overflow-visible sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {displayItems.map((item) => (
+          <div className="group/row -mx-6 overflow-hidden motion-reduce:overflow-x-auto [mask-image:linear-gradient(90deg,transparent,#000_4%,#000_96%,transparent)] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:mx-0">
+            <div
+              className="flex w-max animate-[marquee_var(--dur)_linear_infinite] py-2 group-hover/row:[animation-play-state:paused] group-focus-within/row:[animation-play-state:paused] group-active/row:[animation-play-state:paused] motion-reduce:animate-none motion-reduce:pl-6 lg:motion-reduce:pl-0"
+              style={{ '--dur': `${displayItems.length * 7}s` } as CSSProperties}
+            >
+            {[...displayItems, ...displayItems].map((item, k) => (
               <div
-                key={item.id}
-                className="w-[82vw] shrink-0 snap-start sm:w-auto"
+                key={`${item.id}-${k}`}
+                aria-hidden={k >= displayItems.length || undefined}
+                className={cn('mr-5 w-[72vw] shrink-0 sm:mr-6 sm:w-[320px]', k >= displayItems.length && 'motion-reduce:hidden')}
               >
                 <Link
                   to={`/blog/${item.slug}`}
+                  tabIndex={k >= displayItems.length ? -1 : undefined}
                   className="group flex flex-col gap-3 transition-transform duration-300 hover:-translate-y-1.5"
                 >
                   {/* Photo with 3px solid White Border */}
@@ -202,12 +202,13 @@ export function SupriyaLatestNewsSection({
                   {/* Headline in bold deep navy text below the photo */}
                   <div className="pt-0.5">
                     <h3 className="font-display text-sm sm:text-[15px] font-bold leading-snug text-[#000d3d] group-hover:text-red-600 transition-colors line-clamp-3">
-                      <span className="text-[#000d3d]/90 font-extrabold">[{item.source}]</span> {item.title}
+                      {item.title}
                     </h3>
                   </div>
                 </Link>
               </div>
             ))}
+            </div>
           </div>
         </Reveal>
       </div>

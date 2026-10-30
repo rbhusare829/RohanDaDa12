@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowUpRight } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 
 export function DrishtikonSection({
   locale = 'mr',
@@ -63,7 +63,7 @@ export function DrishtikonSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center max-w-6xl mx-auto">
           {/* Photo & Book Column */}
           <div className="lg:col-span-6">
-            <Reveal delay={0.1}>
+            <Reveal delay={0.05} x={-40}>
               <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 aspect-[4/3] sm:aspect-[16/11] bg-[#000d3d] group">
                 <img
                   src="/images/hero/rohan-hero-book.webp"
@@ -89,20 +89,13 @@ export function DrishtikonSection({
                     />
                   </div>
                 </div>
-
-                {/* Bottom Tagline on Image */}
-                <div className="absolute bottom-4 left-5 right-5 z-10">
-                  <p className="text-xs sm:text-sm font-semibold text-white/95 drop-shadow">
-                    {isMr ? 'नवभारताच्या उभारणीविषयीचा आधुनिक दृष्टिकोन' : 'A Vision for Modern India'}
-                  </p>
-                </div>
               </div>
             </Reveal>
           </div>
 
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <Reveal delay={0.15}>
+            <Reveal delay={0.2} x={40}>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
                 {isMr
                   ? 'उद्योजकतेतून सक्षम महाराष्ट्राची निर्मिती'
@@ -126,7 +119,7 @@ export function DrishtikonSection({
                   : 'Instilling confidence in young people to become self-reliant and shift from job seekers to job creators is the focal point of his vision.'}
               </p>
 
-              <div className="mt-8">
+              <div className="mt-8 flex max-lg:justify-center">
                 <Link
                   to="/vision"
                   className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"

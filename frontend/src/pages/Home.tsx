@@ -13,7 +13,7 @@ export async function loader() {
 
   const [events, posts, foundationPage] = await Promise.all([
     has('homeEvents') ? cms.find('events', { limit: 50, sort: 'createdAt', depth: 1 }).then((r) => r.docs).catch(() => []) : [],
-    cms.find('posts', { limit: 20, sort: '-publishedAt', depth: 1 }).then((r) => r.docs).catch(() => []),
+    cms.find('posts', { limit: 100, sort: '-publishedAt', depth: 1 }).then((r) => r.docs).catch(() => []),
     cms.findOne('pages', { where: { path: { equals: '/lokmangal/foundation' } }, depth: 1 }).catch(() => null),
   ])
   const extras: HomeExtras = { events, posts, foundationPage }

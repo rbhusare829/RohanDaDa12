@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
-import { Stagger, StaggerItem } from '../ui/Motion'
+import { Stagger, StaggerItem } from './HomeMotion'
 import { cn } from '@/lib/utils'
 import { ACTIVITIES, SOCIAL_ACTIVITIES_PATH, type Text } from '@/lib/social-activities'
 

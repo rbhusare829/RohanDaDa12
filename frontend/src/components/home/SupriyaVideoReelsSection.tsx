@@ -1,7 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import type { Home } from '@/types/cms'
 // import { useLayout } from '@/lib/layout'
-import { Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 import { YouTube } from '../ui/YouTube'
 import { SocialIcon } from '../ui/SocialIcon'
 import { InstagramReels } from './InstagramReels'

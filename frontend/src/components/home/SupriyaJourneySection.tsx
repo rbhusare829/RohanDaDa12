@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Reveal } from '../ui/Motion'
+import { Reveal, Stagger, StaggerItem } from './HomeMotion'
 import { cn } from '@/lib/utils'
 
 interface Milestone {
@@ -140,12 +140,12 @@ export function SupriyaJourneySection({
             className="hidden lg:block absolute left-8 right-8 top-1/2 -translate-y-1/2 h-1 bg-red-600 z-0"
           />
 
-          <div
+          <Stagger
             className="-mx-4 flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:px-0 lg:grid lg:overflow-visible lg:[grid-template-columns:repeat(var(--cols),minmax(0,1fr))]"
             style={{ '--cols': cols } as CSSProperties}
           >
             {milestones.map((m, i) => (
-              <div
+              <StaggerItem
                 key={i}
                 className="w-[84vw] max-w-[340px] shrink-0 snap-center sm:w-[320px] lg:w-auto lg:max-w-none relative z-10"
               >
@@ -184,9 +184,9 @@ export function SupriyaJourneySection({
                     </span>
                   </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </div>
     </section>

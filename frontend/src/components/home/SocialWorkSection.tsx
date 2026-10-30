@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import { ArrowUpRight } from 'lucide-react'
-import { Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 
 export function SocialWorkSection({
   locale = 'mr',
@@ -60,7 +60,7 @@ export function SocialWorkSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center max-w-6xl mx-auto">
           {/* Photo Column */}
           <div className="lg:col-span-6">
-            <Reveal delay={0.1}>
+            <Reveal delay={0.05} x={-40}>
               <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 aspect-[4/3] sm:aspect-[16/11] bg-stone-100 group">
                 <img
                   src="/images/social-work/rohan-lokmangal-914A2588.webp"
@@ -69,22 +69,13 @@ export function SocialWorkSection({
                   decoding="async"
                   className="size-full object-cover object-[center_20%] transition-transform duration-700 ease-out group-hover:scale-105"
                 />
-                <div
-                  aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"
-                />
-                <div className="absolute bottom-4 left-5 right-5 z-10">
-                  <p className="text-xs sm:text-sm font-semibold text-white/95 drop-shadow">
-                    {isMr ? 'सोलापूर आणि धाराशिव जिल्हा कार्यक्षेत्र' : 'Active in Solapur and Dharashiv Districts'}
-                  </p>
-                </div>
               </div>
             </Reveal>
           </div>
 
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
-            <Reveal delay={0.15}>
+            <Reveal delay={0.2} x={40}>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
                 {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून जनसेवा' : 'Community Service through Lokmangal Foundation'}
               </h3>
@@ -100,7 +91,7 @@ export function SocialWorkSection({
                   : 'Through Lokmangal Foundation, Rohan Subhash Deshmukh carries out diverse initiatives tailored to societal needs. Active in Solapur and Dharashiv districts, the foundation’s primary goal is to provide timely assistance to those in need, address their challenges, and open new avenues of growth. The foundation continuously strives to uplift the living standards of all sections of society and empower them toward self-reliance.'}
               </p>
 
-              <div className="mt-8">
+              <div className="mt-8 flex max-lg:justify-center">
                 <Link
                   to="/lokmangal/foundation"
                   className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"

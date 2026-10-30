@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import type { Home } from '@/types/cms'
-import { Reveal } from '../ui/Motion'
+import { Reveal } from './HomeMotion'
 import { ROHAN_BIO } from '@/lib/rohan-bio'
 
 type Block = NonNullable<Home['sections']>[number]
@@ -35,7 +35,7 @@ export function SupriyaAboutSection({
     : "I'm committed to the betterment of the people"
 
   // Shared photo card component with rich black back shadow
-  const PhotoCard = ({ className = '' }: { className?: string }) => (
+  const photoCard = (className = '') => (
     <div className={`group relative w-full ${className}`}>
       {/* Deep diffused black back shadow behind the photo */}
       <div
@@ -103,8 +103,8 @@ export function SupriyaAboutSection({
           </Reveal>
 
           {/* Right Column: Portrait Photo */}
-          <Reveal delay={0.12} className="flex justify-center lg:col-span-5">
-            <PhotoCard className="max-w-[400px] xl:max-w-[420px]" />
+          <Reveal delay={0.15} x={40} className="flex justify-center lg:col-span-5">
+            {photoCard('max-w-[400px] xl:max-w-[420px]')}
           </Reveal>
         </div>
 
@@ -141,7 +141,7 @@ export function SupriyaAboutSection({
 
             {/* Photo placed right after '...ताकद आहे.', well-proportioned */}
             <div className="w-full flex justify-center my-6">
-              <PhotoCard className="max-w-[310px] sm:max-w-[350px]" />
+              {photoCard('max-w-[310px] sm:max-w-[350px]')}
             </div>
 
             {/* Paragraph 2 ('स्वामी विवेकानंदांच्या...') with Read More */}

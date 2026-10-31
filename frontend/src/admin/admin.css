@@ -1,6 +1,6 @@
-/* The admin panel's own look: Mukta (clear Marathi and English letters in forms and lists); headings keep the site's Tiro face */
+/* The admin panel's own look, in the site's one font: Anek Devanagari (clear Marathi and English letters in forms and lists) */
 .admin-root {
-  font-family: 'Mukta', 'Tiro Devanagari Marathi', system-ui, sans-serif;
+  font-family: 'Anek Devanagari Variable', 'Anek Devanagari', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.55;
   color: var(--color-charcoal-900);

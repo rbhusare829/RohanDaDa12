@@ -1,11 +1,5 @@
-import '@fontsource/mukta/devanagari-400.css'
-import '@fontsource/mukta/devanagari-500.css'
-import '@fontsource/mukta/devanagari-600.css'
-import '@fontsource/mukta/devanagari-700.css'
-import '@fontsource/mukta/latin-400.css'
-import '@fontsource/mukta/latin-500.css'
-import '@fontsource/mukta/latin-600.css'
-import '@fontsource/mukta/latin-700.css'
+// the site's one font, Anek Devanagari (also loaded by main.tsx; repeated so the admin panel never shows a fallback face)
+import '@fontsource-variable/anek-devanagari/wght.css'
 import './admin.css'
 import { useEffect } from 'react'
 import { LazyMotion, MotionConfig } from 'motion/react'

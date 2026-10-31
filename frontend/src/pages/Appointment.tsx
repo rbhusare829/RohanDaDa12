@@ -177,7 +177,7 @@ export default function AppointmentPage() {
                     <span className="text-xs font-semibold text-orange-800">
                       {isMr ? 'आपला संदर्भ क्रमांक (Reference Number):' : 'Your Reference Number:'}
                     </span>
-                    <span className="mt-1 font-mono text-xl sm:text-2xl font-black text-orange-600 tracking-wider">
+                    <span className="mt-1 tabular-nums text-xl sm:text-2xl font-black text-orange-600 tracking-wider">
                       {referenceNo}
                     </span>
                     <span className="mt-1 text-[11px] text-slate-500">
@@ -251,7 +251,7 @@ export default function AppointmentPage() {
                         value={formData.mobile}
                         onChange={(e) => setFormData({ ...formData, mobile: e.target.value.replace(/\D/g, '') })}
                         placeholder={isMr ? 'उदा. ९८XXXXXXXX' : '10-digit mobile number'}
-                        className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-stone-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all font-mono"
+                        className="w-full rounded-xl border border-stone-300 bg-white px-4 py-3 text-sm text-slate-800 placeholder:text-stone-400 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all tabular-nums"
                       />
                     </div>
                   </div>

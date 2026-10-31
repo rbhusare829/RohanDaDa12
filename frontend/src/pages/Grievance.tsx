@@ -180,7 +180,7 @@ export default function GrievancePage() {
                     <span className="text-xs font-semibold text-orange-800">
                       {isMr ? 'आपला संदर्भ क्रमांक (Reference Number):' : 'Your Reference Number:'}
                     </span>
-                    <span className="mt-1 font-mono text-xl sm:text-2xl font-black text-orange-600 tracking-wider">
+                    <span className="mt-1 tabular-nums text-xl sm:text-2xl font-black text-orange-600 tracking-wider">
                       {referenceNo}
                     </span>
                     <span className="mt-1 text-[11px] text-slate-500">

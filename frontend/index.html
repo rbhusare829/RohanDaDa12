@@ -8,10 +8,11 @@
     <link rel="icon" type="image/png" sizes="192x192" href="/icon.png" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
     <title>Rohan Subhash Deshmukh</title>
-    <!-- Tiro Devanagari Marathi is self-hosted (index.css, @fontsource): no Google Fonts request (the site's CSP blocks it anyway) -->
+    <!-- The site's font, Anek Devanagari, is self-hosted (main.tsx, @fontsource): no Google Fonts request (the site's CSP blocks it anyway).
+         This start-up screen shows before it loads, so it names it first and falls back to the system font. -->
     <style>
       /* shown until the app has started (a slow phone or network): the page colour, the name and a thin moving bar instead of a blank white screen */
-      .boot { position: fixed; inset: 0; display: grid; place-items: center; background: #faf6f0; color: #0e1e34; font: 700 1.35rem/1.3 system-ui, 'Noto Sans Devanagari', sans-serif; letter-spacing: .01em }
+      .boot { position: fixed; inset: 0; display: grid; place-items: center; background: #faf6f0; color: #0e1e34; font: 700 1.35rem/1.3 'Anek Devanagari Variable', system-ui, sans-serif; letter-spacing: .01em }
       .boot span { display: block; margin: .6rem auto 0; width: 4.4rem; height: 4px; border-radius: 9999px; background: linear-gradient(90deg, #dc2626 0 76%, transparent 76% 84%, #ff7a00 84%) }
       .boot::before { content: ''; position: fixed; top: 0; left: 0; height: 3px; width: 40%; background: linear-gradient(90deg, #dc2626, #ff7a00); animation: boot 1.2s ease-in-out infinite }
       @keyframes boot { from { transform: translateX(-100%) } to { transform: translateX(260%) } }

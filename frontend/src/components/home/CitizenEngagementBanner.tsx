@@ -21,7 +21,7 @@ export function NewIndiaManifestoBanner({
       <Reveal delay={0.3} y={30} className="overflow-hidden rounded-2xl bg-white border-t-4 border-[#ff7a00] shadow-[0_20px_50px_rgba(0,13,61,0.14)]">
         <div className="relative flex flex-col lg:flex-row lg:items-center justify-between gap-6 p-6 sm:p-8 lg:px-10 lg:py-8">
           {/* Reliance Foundation style elegant background quote watermark */}
-          <span aria-hidden className="pointer-events-none absolute right-4 -bottom-10 select-none font-serif text-[10rem] font-bold text-orange-500/10 leading-none">”</span>
+          <span aria-hidden className="pointer-events-none absolute right-4 -bottom-10 select-none text-[10rem] font-bold text-orange-500/10 leading-none">”</span>
           <div className="min-w-0 max-w-4xl flex-1 space-y-2.5">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.14em] text-saffron-700">
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
@@ -154,7 +154,7 @@ export function CitizenServiceSection({
                     <h4 className="font-display font-bold text-lg sm:text-xl text-[#000d3d] group-hover:text-orange-600 transition-colors mb-2">
                       {card.title}
                     </h4>
-                    <p className="font-mukta text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
+                    <p className="text-xs sm:text-sm text-stone-600 leading-relaxed mb-6">
                       {card.desc}
                     </p>
                   </div>

@@ -1,70 +1,5 @@
 @import 'tailwindcss';
 
-/* DB Hindi fonts (identical to subhashdeshmukh.com) */
-@font-face {
-  font-family: 'DB Hindi 6';
-  src: url('/fonts/db-hindi/db-hindi-6.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 6';
-  src: url('/fonts/db-hindi/db-hindi-6-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 2';
-  src: url('/fonts/db-hindi/db-hindi-2.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 2';
-  src: url('/fonts/db-hindi/db-hindi-2-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 5';
-  src: url('/fonts/db-hindi/db-hindi-5.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 5';
-  src: url('/fonts/db-hindi/db-hindi-5-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 7';
-  src: url('/fonts/db-hindi/db-hindi-7.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'DB Hindi 7';
-  src: url('/fonts/db-hindi/db-hindi-7-bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   /* Stitch design (Oct 2026, "Rohan Deshmukh Official Portal"): BJP navy · kesariya saffron · tricolour green · warm ivory.
      Token names are kept ("charcoal" = navy, "saffron" = kesariya, "cream" = sand band) so every page follows the new theme. */
@@ -125,13 +60,38 @@
   --color-danger: #b42318;   --color-danger-soft: #fdeceb;
   --color-info: #1d4ed8;     --color-info-soft: #e8efff;
 
-  --font-marathi: 'Mukta', sans-serif;
-  --font-display: 'DB Hindi 6', 'Baloo 2', 'Mukta', 'Space Grotesk Variable', sans-serif;
-  --font-sans: 'Mukta', 'Plus Jakarta Sans Variable', sans-serif;
-  --font-quote: 'Literata Variable', 'Literata', 'Mukta', Georgia, serif;
-  --font-db-6: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif;
-  --font-baloo: 'Baloo 2', 'Mukta', sans-serif;
-  --font-mukta: 'Mukta', sans-serif;
+  /* Typography (Oct 2026): one family for the whole site — Anek Devanagari (self-hosted, @fontsource-variable/anek-devanagari, loaded in
+     main.tsx). It has Devanagari and Latin letters and every weight from 100 to 800, so Marathi and English read in the same face;
+     the system font is only a fallback while it loads. Every font token points at it, so font-sans / font-display / font-quote /
+     font-serif / font-mono all give the same letters. */
+  --font-anek: 'Anek Devanagari Variable', 'Anek Devanagari', system-ui, sans-serif;
+  --font-sans: var(--font-anek);
+  --font-display: var(--font-anek);
+  --font-quote: var(--font-anek);
+  --font-serif: var(--font-anek);
+  --font-mono: var(--font-anek);
+  /* Tailwind's own defaults (<html>, and <code>/<kbd>/<pre>) follow too */
+  --default-font-family: var(--font-anek);
+  --default-mono-font-family: var(--font-anek);
+
+  /* The type scale (also Tailwind utilities: text-h1 … text-caption). Headings grow from phone to desktop: H1 32 → 48px, H2 28 → 36px,
+     H3 22 → 28px, H4 20 → 22px; body 16px, navigation and buttons 16px, captions 13px. */
+  --text-h1: clamp(2rem, 1.6rem + 1.6vw, 3rem);
+  --text-h1--line-height: 1.2;
+  --text-h2: clamp(1.75rem, 1.55rem + 0.8vw, 2.25rem);
+  --text-h2--line-height: 1.22;
+  --text-h3: clamp(1.375rem, 1.23rem + 0.6vw, 1.75rem);
+  --text-h3--line-height: 1.28;
+  --text-h4: clamp(1.25rem, 1.2rem + 0.2vw, 1.375rem);
+  --text-h4--line-height: 1.32;
+  --text-body: 1rem;
+  --text-body--line-height: 1.7;
+  --text-nav: 1rem;
+  --text-nav--line-height: 1.4;
+  --text-button: 1rem;
+  --text-button--line-height: 1.3;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.5;
 
   --animate-fade-up: fade-up 0.6s var(--ease-soft) both;
   /* a tab panel that opens: the same rise, shorter and quicker than a page's own entrance */
@@ -250,17 +210,43 @@
     font-kerning: normal;
   }
 
-  /* Default headings */
+  /* Typography (Oct 2026): every element inherits Anek Devanagari from <body>; the element defaults below follow the type scale
+     (a component's own Tailwind classes still set its size and weight). */
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.015em;
     color: var(--color-charcoal-900);
     text-wrap: balance;
+  }
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--text-h1--line-height);
+    font-weight: 800;
+  }
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--text-h2--line-height);
+    font-weight: 700;
+  }
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--text-h3--line-height);
+    font-weight: 700;
+  }
+  h4 {
+    font-size: var(--text-h4);
+    line-height: var(--text-h4--line-height);
+    font-weight: 600;
+  }
+  h5,
+  h6 {
+    font-size: 1.125rem;
+    line-height: 1.4;
+    font-weight: 600;
   }
 
   p,
@@ -268,135 +254,39 @@
     text-wrap: pretty;
   }
 
-  /* ==========================================================================
-     Marathi Typography (identical to subhashdeshmukh.com):
-     - Headings & Display: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif
-     - Body, Paragraphs, Navigation, Buttons, Cards: 'Mukta', sans-serif
-     - Numbers & Counters: 'Baloo 2', 'Mukta', sans-serif
-     ========================================================================== */
-  html[lang='mr'],
-  [lang='mr'],
-  .lang-mr {
-    --font-display: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif;
-    --font-sans: 'Mukta', sans-serif;
-    --font-quote: 'Mukta', sans-serif;
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.16px;
+  /* navigation 500, buttons 600, captions 13px; form fields take the page's font (browsers give them their own otherwise) */
+  nav {
+    font-weight: 500;
   }
-
-  html[lang='mr'] body {
-    font-family: 'Mukta', sans-serif;
-    font-size: 1rem;
-    line-height: 1.65;
-    letter-spacing: 0.16px;
-    color: rgb(41, 37, 36);
-  }
-
-  /* Headings: DB Hindi 6 + Baloo 2 + Mukta */
-  html[lang='mr'] h1,
-  html[lang='mr'] h2,
-  html[lang='mr'] h3,
-  html[lang='mr'] h4,
-  html[lang='mr'] h5,
-  html[lang='mr'] h6,
-  html[lang='mr'] .font-display,
-  html[lang='mr'] .h-section,
-  html[lang='mr'] .h-hero {
-    font-family: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif !important;
-    letter-spacing: 0.015em;
-    line-height: 1.25;
-    font-weight: 700;
-  }
-
-  /* Paragraphs and list items: Mukta */
-  html[lang='mr'] p,
-  html[lang='mr'] li,
-  html[lang='mr'] blockquote {
-    font-family: 'Mukta', sans-serif;
-    line-height: 1.68;
-    letter-spacing: 0.16px;
-  }
-
-  /* Navigation & Header: Mukta */
-  html[lang='mr'] nav,
-  html[lang='mr'] header,
-  html[lang='mr'] header a,
-  html[lang='mr'] header button,
-  html[lang='mr'] header span,
-  html[lang='mr'] .nav-link {
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.16px;
+  button,
+  .btn,
+  [role='button'] {
     font-weight: 600;
   }
-
-  /* Buttons: Mukta */
-  html[lang='mr'] button,
-  html[lang='mr'] .btn,
-  html[lang='mr'] [role='button'],
-  html[lang='mr'] a.btn,
-  html[lang='mr'] .more-link {
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.2px;
-    font-weight: 700;
+  input,
+  textarea,
+  select,
+  button,
+  optgroup {
+    font-family: inherit;
+  }
+  small,
+  figcaption,
+  caption {
+    font-size: var(--text-caption);
+    line-height: var(--text-caption--line-height);
   }
 
-  /* Cards & Tiles */
-  html[lang='mr'] .tile,
-  html[lang='mr'] .tile-title,
-  html[lang='mr'] .tile-text,
-  html[lang='mr'] .tile-kicker,
-  html[lang='mr'] .card,
-  html[lang='mr'] .card-title {
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.16px;
+  /* English headings sit a touch tighter; Devanagari keeps normal spacing (tracking can break its joined letters) and a little more
+     line height for the vowel signs above and below */
+  html[lang='en'] :is(h1, h2, h3, h4) {
+    letter-spacing: -0.015em;
   }
-
-  /* Statistics & Numbers: Baloo 2 + Mukta */
-  html[lang='mr'] .stat-value,
-  html[lang='mr'] .stat-label,
-  html[lang='mr'] .stat-card,
-  html[lang='mr'] dl,
-  html[lang='mr'] dt,
-  html[lang='mr'] dd {
-    font-family: 'Baloo 2', 'Mukta', sans-serif;
-    letter-spacing: 0;
+  html[lang='mr'] body {
+    line-height: 1.65;
   }
-
-  /* Footer: Mukta */
-  html[lang='mr'] footer,
-  html[lang='mr'] footer h3,
-  html[lang='mr'] footer p,
-  html[lang='mr'] footer a,
-  html[lang='mr'] footer span,
-  html[lang='mr'] footer li {
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.16px;
-  }
-
-  /* Form controls */
-  html[lang='mr'] input,
-  html[lang='mr'] textarea,
-  html[lang='mr'] select,
-  html[lang='mr'] label {
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.16px;
-  }
-
-  /* Devanagari characters anywhere on page */
-  :lang(mr) {
-    font-family: 'Mukta', sans-serif;
-    letter-spacing: 0.16px;
-  }
-
-  /* Utility classes */
-  .font-db-6 {
-    font-family: 'DB Hindi 6', 'Baloo 2', 'Mukta', sans-serif !important;
-  }
-  .font-baloo {
-    font-family: 'Baloo 2', 'Mukta', sans-serif !important;
-  }
-  .font-mukta {
-    font-family: 'Mukta', sans-serif !important;
+  html[lang='mr'] :is(h1, h2, h3, h4, h5, h6, .h-section, .h-hero) {
+    line-height: 1.28;
   }
 
   ::selection {
@@ -483,7 +373,7 @@
   }
 
   /* section title with a short saffron bar under it — the one heading style used on every section */
-  /* section title (Stitch: Space Grotesk bold, 30 → 36px, navy, no underline) */
+  /* section title (Stitch: bold, 30 → 36px, navy, no underline) */
   .h-section {
     font-size: 1.875rem;
     line-height: 2.25rem;
@@ -1452,4 +1342,4 @@ img[data-rd-img][data-ready='fade'] {
 
 .object-cover {
   object-fit: cover;
-}
+}

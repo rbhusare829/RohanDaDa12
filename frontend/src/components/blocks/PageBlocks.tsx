@@ -25,7 +25,7 @@ const Heading = ({ eyebrow, heading }: { eyebrow?: string | null; heading?: stri
 type Content = Extract<PageBlock, { blockType: 'content' }>
 
 /** Stitch design: consecutive Content blocks share one row of cards; Media + text blocks become numbered chapters when there are two or more */
-function StitchList({ blocks, plainChapters, accent }: { blocks: PageBlock[]; plainChapters?: boolean; accent?: boolean }) {
+function StitchList({ blocks, plainChapters, accent, lively }: { blocks: PageBlock[]; plainChapters?: boolean; accent?: boolean; lively?: boolean }) {
   const list = blocks.filter((b) => !('hidden' in b && b.hidden))
   const chapters = list.filter((b) => b.blockType === 'mediaText').length
   const groups: { key: string; node: ReactNode; anchor?: string }[] = []
@@ -39,7 +39,7 @@ function StitchList({ blocks, plainChapters, accent }: { blocks: PageBlock[]; pl
       groups.push({ key, node: <StitchContent blocks={run} />, anchor: b.heading ? `s-${i}` : undefined })
     } else if (b.blockType === 'mediaText') {
       chapter++
-      groups.push({ key, node: <StitchChapter b={b} n={chapters > 1 ? chapter : undefined} plain={plainChapters} accent={accent} />, anchor: b.heading ? `s-${i}` : undefined })
+      groups.push({ key, node: <StitchChapter b={b} n={chapters > 1 ? chapter : undefined} plain={plainChapters} accent={accent} lively={lively} />, anchor: b.heading ? `s-${i}` : undefined })
     } else groups.push({ key, node: <StitchBlock b={b} accent={accent} />, anchor: 'heading' in b && b.heading ? `s-${i}` : undefined })
   }
   return (
@@ -54,9 +54,9 @@ function StitchList({ blocks, plainChapters, accent }: { blocks: PageBlock[]; pl
 }
 
 /** The content blocks of a page (Pages → Content in the admin), one after another. `design="stitch"`: the Stitch look (Oct 2026) */
-export function PageBlocks({ blocks, design, plainChapters, accent }: { blocks?: PageBlock[] | null; design?: 'stitch'; /** stitch: Media + text without the card around the text */ plainChapters?: boolean; /** stitch: the red and saffron bars under each heading */ accent?: boolean }) {
+export function PageBlocks({ blocks, design, plainChapters, accent, lively }: { blocks?: PageBlock[] | null; design?: 'stitch'; /** stitch: Media + text without the card around the text */ plainChapters?: boolean; /** stitch: the red and saffron bars under each heading */ accent?: boolean; /** stitch: Media + text chapters without number or label, with the bars and the Social Activities animations (Political Career) */ lively?: boolean }) {
   if (!blocks?.length) return null
-  if (design === 'stitch') return <StitchList blocks={blocks} plainChapters={plainChapters} accent={accent} />
+  if (design === 'stitch') return <StitchList blocks={blocks} plainChapters={plainChapters} accent={accent} lively={lively} />
   return (
     <div className="space-y-10 sm:space-y-16 md:space-y-24">
       {blocks.filter((b) => !('hidden' in b && b.hidden)).map((b, i) => (

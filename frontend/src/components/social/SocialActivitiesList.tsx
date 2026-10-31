@@ -2,23 +2,11 @@ import { Trophy } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useHashTarget } from '@/lib/use-hash-target'
 import { ACTIVITIES, type Activity, type Text } from '@/lib/social-activities'
-import { m, type Variants } from 'motion/react'
+import { m } from 'motion/react'
+import { draw, group, inView, photo, rise } from '@/lib/scroll-motion'
 
-/* Scroll-in animations (Oct 2026), once per activity; <MotionConfig reducedMotion="user"> (RootLayout) keeps them still for visitors
-   who ask their device for reduced motion. The photo slides in from its own side, the words rise one after another, the red-and-saffron
-   bar draws itself, and the key facts rise in turn. */
-const EASE = [0.22, 1, 0.36, 1] as const
-const group: Variants = { hidden: {}, show: { transition: { staggerChildren: 0.08 } } }
-const rise: Variants = { hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: EASE } } }
-const draw: Variants = { hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.6, ease: EASE } } }
-const photo = (fromRight: boolean): Variants => ({
-  hidden: { opacity: 0, x: fromRight ? 48 : -48, scale: 0.96 },
-  show: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.75, ease: EASE } },
-})
 /** activities shown on a white band (the rest sit on the page's own background) */
 const WHITE = new Set(['chhota-udyojak-motha-udyojak', 'yuva-sahitya-sammelan', 'rural-sports-competitions'])
-const inView = { initial: 'hidden', whileInView: 'show', viewport: { once: true, amount: 0.2 } } as const
-
 
 /**
  * The four social activities in full (Oct 2026) — the "सामाजिक उपक्रम / Social Activities" tab of the Political Career page.

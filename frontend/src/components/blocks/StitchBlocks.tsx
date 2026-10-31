@@ -11,6 +11,8 @@ import { YouTube } from '../ui/YouTube'
 import { FaqAccordion } from '../home/FaqAccordion'
 import { CountUp } from '../ui/CountUp'
 import { Reveal, Stagger, StaggerItem } from '../ui/Motion'
+import { m } from 'motion/react'
+import { draw, group, inView, photo, rise } from '@/lib/scroll-motion'
 import type { PageBlock } from './PageBlocks'
 
 /**
@@ -132,11 +134,54 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
   )
 }
 
+/**
+ * The Political Career chapters (Oct 2026): just the title with the red and saffron bars under it (no number or label), then the photo
+ * beside the words — in the Social Activities animations: the title rises, the bars draw themselves, the photo slides in from its own
+ * side and the words rise after it, once, as the chapter scrolls into view.
+ */
+function LivelyChapter({ b, hasImg, fit, right }: { b: MediaText; hasImg: boolean; fit: ReturnType<typeof photoFit>; right: boolean }) {
+  return (
+    <m.section {...inView} variants={group} className="flex flex-col gap-8 md:gap-10">
+      {b.heading && (
+        <div>
+          <m.h2 variants={rise} className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{b.heading}</m.h2>
+          <m.div variants={draw} aria-hidden className="mt-3 flex origin-left items-center gap-1.5">
+            <span className="h-1.5 w-12 rounded-full bg-red-600 sm:w-14" />
+            <span className="h-1.5 w-3 rounded-full bg-saffron-500 sm:w-3.5" />
+          </m.div>
+        </div>
+      )}
+      <div className={cn('grid grid-cols-1 items-stretch gap-8', hasImg && 'lg:grid-cols-12')}>
+        {hasImg && (
+          <m.div variants={photo(right)} className={cn('lg:col-span-7', right && 'lg:order-2')}>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl bg-stone-100 shadow-md lg:aspect-auto lg:h-full lg:min-h-[400px]">
+              <Img media={b.image} variant="card" alt={mediaAlt(b.image, b.heading ?? '')} fill sizes="(max-width:1024px) 100vw, 680px" className="h-full w-full transition-transform duration-[1.2s] ease-out hover:scale-[1.03]" style={{ ...fit, objectPosition: '50% 6%' }} />
+            </div>
+          </m.div>
+        )}
+        <m.div variants={rise} className={cn('flex flex-col gap-6 lg:justify-center', hasImg && 'lg:col-span-5')}>
+          <RichText html={b.body} readMore />
+          {!!b.buttons?.length && (
+            <div className="flex flex-wrap gap-3 border-t border-stone-200/80 pt-6">
+              {b.buttons.map((l, i) => (
+                <CMSLink key={l.id} url={l.url} newTab={l.newTab} className={cn('btn', i > 0 && 'btn-ghost')}>
+                  {l.label} <ArrowRight className="size-4" />
+                </CMSLink>
+              ))}
+            </div>
+          )}
+        </m.div>
+      </div>
+    </m.section>
+  )
+}
+
 /** Media + text as a Stitch chapter: chip + heading, then the photo beside a text card (`plain`: the text straight on the page, no card) */
-export function StitchChapter({ b, n, plain, accent }: { b: MediaText; n?: number; plain?: boolean; /** the red and saffron bars under the heading */ accent?: boolean }) {
+export function StitchChapter({ b, n, plain, accent, lively }: { b: MediaText; n?: number; plain?: boolean; /** the red and saffron bars under the heading */ accent?: boolean; lively?: boolean }) {
   const hasImg = Boolean(mediaUrl(b.image, 'card'))
   const fit = photoFit(b.image, 1.5, 0.45)
   const right = b.imagePosition === 'right'
+  if (lively) return <LivelyChapter b={b} hasImg={hasImg} fit={fit} right={right} />
   return (
     <section className="flex flex-col gap-8 md:gap-10">
       <Reveal className="flex flex-col gap-3">

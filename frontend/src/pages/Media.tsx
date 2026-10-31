@@ -15,8 +15,12 @@ import { notFound, searchOf } from './helpers'
 
 /* ---------------------------------------------------------------- Photo Gallery: one card per album */
 
+/** albums left off the website (Oct 2026: "व्यक्तिमत्त्व आणि नेतृत्व / Leadership & Portraits"); they stay in the admin */
+const HIDDEN_ALBUMS = ['leadership-portraits']
+
 export async function photosLoader() {
-  return cms.find('albums', { limit: 60, depth: 1, sort: '-date' })
+  const res = await cms.find('albums', { limit: 60, depth: 1, sort: '-date' })
+  return { ...res, docs: res.docs.filter((a) => !HIDDEN_ALBUMS.includes(a.slug ?? '')) }
 }
 
 export function PhotosPage() {
@@ -80,7 +84,9 @@ export function PhotosPage() {
 /* ---------------------------------------------------------------- one album */
 
 export async function albumLoader({ params }: LoaderFunctionArgs) {
-  const album = await cms.findOne('albums', { where: { slug: { equals: decodeURIComponent(params.slug ?? '') } }, depth: 1 })
+  const slug = decodeURIComponent(params.slug ?? '')
+  if (HIDDEN_ALBUMS.includes(slug)) return notFound()
+  const album = await cms.findOne('albums', { where: { slug: { equals: slug } }, depth: 1 })
   return album ?? notFound()
 }
 

@@ -25,7 +25,7 @@ const COVERS = {
     alt: { en: 'Rohan Deshmukh handing a Lotus scholarship to a student', mr: 'रोहन देशमुख विद्यार्थिनीला लोटस शिष्यवृत्ती प्रदान करताना' },
   },
   'lokmangal-annapurna-yojana': {
-    filename: 'lmf-annapurna-yojana-10.webp',
+    filename: 'annapurna-10.webp',
     alt: { en: 'A Lokmangal Annapurna Yojana meal tiffin handed to an elderly man', mr: 'लोकमंगल अन्नपूर्णा योजनेचा जेवणाचा डबा ज्येष्ठ नागरिकाला देताना' },
   },
 }

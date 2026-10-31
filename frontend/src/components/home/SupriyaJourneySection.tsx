@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, m } from 'motion/react'
-import { ChevronLeft, ChevronRight, MapPin, Pause, Play } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 import type { Home } from '@/types/cms'
 import { cn } from '@/lib/utils'
 import { Reveal } from './HomeMotion'
@@ -17,6 +17,9 @@ interface MilestoneData {
   image: string
   imgPos?: string
 }
+
+/** how long each milestone stays before the next one (Oct 2026: 2 seconds) */
+const AUTOPLAY_MS = 5000
 
 const MILESTONES: MilestoneData[] = [
   {
@@ -84,36 +87,32 @@ export function SupriyaJourneySection({
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
   const [progress, setProgress] = useState(0)
+  const progressRef = useRef(0)
 
   const activeMilestone = MILESTONES[activeIndex]
 
-  const nextMilestone = useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % MILESTONES.length)
+  /** show one milestone, its bar starting from empty */
+  const go = useCallback((idx: number) => {
+    progressRef.current = 0
     setProgress(0)
+    setActiveIndex(idx)
   }, [])
 
-  const prevMilestone = useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + MILESTONES.length) % MILESTONES.length)
-    setProgress(0)
-  }, [])
-
-  // Auto-play timer with smooth segmented progress bar (identical to subhashdeshmukh.com)
+  // Auto-play (Oct 2026): the next milestone every 2 seconds, its green bar filling meanwhile; it waits while the pointer is over the
+  // card and carries on from where it was
   useEffect(() => {
     if (!isPlaying) return
-    setProgress(0)
-    const interval = 50
-    const duration = 6000
+    const step = 50
     const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          nextMilestone()
-          return 0
-        }
-        return prev + (interval / duration) * 100
-      })
-    }, interval)
+      progressRef.current += (step / AUTOPLAY_MS) * 100
+      if (progressRef.current >= 100) {
+        progressRef.current = 0
+        setActiveIndex((i) => (i + 1) % MILESTONES.length)
+      }
+      setProgress(progressRef.current)
+    }, step)
     return () => clearInterval(timer)
-  }, [isPlaying, activeIndex, nextMilestone])
+  }, [isPlaying])
 
   return (
     <section
@@ -174,10 +173,7 @@ export function SupriyaJourneySection({
           {MILESTONES.map((item, idx) => (
             <div
               key={item.id}
-              onClick={() => {
-                setActiveIndex(idx)
-                setProgress(0)
-              }}
+              onClick={() => go(idx)}
               className="h-1.5 sm:h-2 flex-1 rounded-full bg-white/40 overflow-hidden cursor-pointer transition-colors hover:bg-white/60"
               title={isMr ? item.title.mr : item.title.en}
             >
@@ -199,11 +195,7 @@ export function SupriyaJourneySection({
               <button
                 key={item.id}
                 type="button"
-                onClick={() => {
-                  setActiveIndex(idx)
-                  setProgress(0)
-                  setIsPlaying(false) // pause on manual user click
-                }}
+                onClick={() => go(idx)}
                 className={cn(
                   'rounded-xl sm:rounded-2xl border px-2 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-base font-bold whitespace-nowrap text-center transition-all duration-300 select-none shadow-sm',
                   isActive
@@ -282,45 +274,6 @@ export function SupriyaJourneySection({
                     </p>
                   </div>
 
-                  {/* Timeline Navigation Controls (subhashdeshmukh.com style) */}
-                  <div className="mt-8 pt-6 border-t border-stone-100 flex items-center justify-between gap-2 sm:gap-4">
-                    {/* Previous Button */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        prevMilestone()
-                        setIsPlaying(false)
-                      }}
-                      className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-stone-100 hover:bg-orange-500 hover:text-white px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-slate-700 transition-colors shrink-0"
-                    >
-                      <ChevronLeft className="size-4" />
-                      <span>{isMr ? 'मागील' : 'Previous'}</span>
-                    </button>
-
-                    {/* Pause/Play Toggle Button */}
-                    <button
-                      type="button"
-                      onClick={() => setIsPlaying(!isPlaying)}
-                      className="inline-flex items-center gap-1 rounded-full bg-stone-100 hover:bg-stone-200 px-3 py-1.5 text-xs font-semibold text-slate-600 transition-colors"
-                      title={isPlaying ? 'थांबवा' : 'सुरू करा'}
-                    >
-                      {isPlaying ? <Pause className="size-3 text-orange-600" /> : <Play className="size-3 fill-current text-emerald-600" />}
-                      <span>{isPlaying ? (isMr ? 'थांबवा' : 'Pause') : (isMr ? 'सुरू करा' : 'Play')}</span>
-                    </button>
-
-                    {/* Next Button */}
-                    <button
-                      type="button"
-                      onClick={() => {
-                        nextMilestone()
-                        setIsPlaying(false)
-                      }}
-                      className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-orange-600 hover:bg-[#000d3d] px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-white transition-colors shadow-sm shrink-0"
-                    >
-                      <span>{isMr ? 'पुढील' : 'Next'}</span>
-                      <ChevronRight className="size-4" />
-                    </button>
-                  </div>
                 </div>
               </div>
             </m.div>

@@ -1,7 +1,5 @@
-import { useState } from 'react'
 import {
   Calendar,
-  ChevronDown,
   GraduationCap,
   Heart,
   MapPin,
@@ -22,7 +20,7 @@ interface IntroJourneyProps {
 /**
  * स्वपरिचय (About / Introduction) Page:
  * Section-wise layout with distinct rich backgrounds:
- * 1. Early Life, Ideals & Core Philosophy (Clean white canvas with compact white-shirt photo, bio with Read More toggle, & quick facts)
+ * 1. Early Life, Ideals & Core Philosophy (Clean white canvas with compact white-shirt photo, the full bio, & quick facts)
  * 2. Inspiring Quote Ribbon (Deep royal navy banner with visionary quote)
  * 3. Positions Held (Soft ice-blue watermark section with real photo cards)
  */
@@ -47,19 +45,18 @@ export function IntroJourney({ locale = 'mr' }: IntroJourneyProps) {
    Section 1: Philosophy, Ideals & Early Life (विचारसरणी आणि समाजकारण)
    - Clean white background
    - Compact photo without name overlay (clean portrait)
-   - Narrative with "अधिक वाचा / Read More" expandable toggle
+   - The full narrative (every paragraph)
    - Quick Facts Grid
    ========================================================================== */
 function PhilosophySection({ isMr }: { isMr: boolean }) {
-  const [expanded, setExpanded] = useState(false)
   const paragraphs = isMr ? ROHAN_BIO.mr : ROHAN_BIO.en
 
   // Paragraph 0 is the lead intro paragraph
   const leadParagraph = paragraphs[0]
   // Remaining paragraphs start from index 1
   const remainingParagraphs = paragraphs.slice(1)
-  // When collapsed, show the first paragraph of remaining (i.e. paragraphs[1]), rest when expanded
-  const visibleRemaining = expanded ? remainingParagraphs : remainingParagraphs.slice(0, 1)
+  // the whole bio is shown (Oct 2026: no Read More toggle)
+  const visibleRemaining = remainingParagraphs
 
   return (
     <section
@@ -157,26 +154,6 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
                 ))}
               </div>
 
-              {/* Read More / Show Less Toggle Button */}
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={() => setExpanded(!expanded)}
-                  className="group inline-flex items-center gap-2 rounded-xl bg-red-600 hover:bg-[#000d3d] px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md transition-all duration-200 hover:scale-102 active:scale-98 cursor-pointer"
-                >
-                  <span>
-                    {expanded
-                      ? (isMr ? 'कमी माहिती पहा' : 'Show Less')
-                      : (isMr ? 'अधिक वाचा' : 'Read More')}
-                  </span>
-                  <ChevronDown
-                    className={cn(
-                      'size-4 transition-transform duration-300',
-                      expanded && 'rotate-180',
-                    )}
-                  />
-                </button>
-              </div>
             </Reveal>
 
             {/* Quick Facts Grid */}
@@ -275,26 +252,6 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
               ))}
             </div>
 
-            {/* Read More / Show Less Toggle Button */}
-            <div className="pt-4">
-              <button
-                type="button"
-                onClick={() => setExpanded(!expanded)}
-                className="group inline-flex items-center gap-2 rounded-xl bg-red-600 hover:bg-[#000d3d] px-5 py-2.5 text-xs sm:text-sm font-bold text-white shadow-md transition-all duration-200 hover:scale-102 active:scale-98 cursor-pointer"
-              >
-                <span>
-                  {expanded
-                    ? (isMr ? 'कमी माहिती पहा' : 'Show Less')
-                    : (isMr ? 'अधिक वाचा' : 'Read More')}
-                </span>
-                <ChevronDown
-                  className={cn(
-                    'size-4 transition-transform duration-300',
-                    expanded && 'rotate-180',
-                  )}
-                />
-              </button>
-            </div>
 
             {/* Quick Facts Grid */}
             <div className="w-full pt-4">

@@ -25,8 +25,8 @@ const FEATURED_VIDEOS = [
     eyebrow: { mr: 'व्हिडिओ', en: 'Video' },
     title: { mr: 'लोकमंगल अन्नपूर्णा योजना — शेकडो आजी-आजोबांसाठी अन्नसेवेची अनोखी कहाणी', en: 'Lokmangal Annapurna Yojana: Nutritious Meals for the Elderly' },
     text: {
-      mr: 'सोलापूरच्या लोकमंगल अन्नपूर्णा योजनेच्या माध्यमातून दररोज शेकडो गरजू, वृद्ध आजी-आजोबांना मिळणारे मोफत व सकस अन्न — एका कल्याणकारी विचाराची हृदयस्पर्शी कहाणी.',
-      en: 'The heartwarming story of Lokmangal Annapurna Yojana serving free, dignified and nutritious daily meals to hundreds of elderly citizens in Solapur.',
+      mr: 'लोकमंगल अन्नपूर्णा योजनेच्या माध्यमातून गरजू आणि ज्येष्ठ नागरिकांना दररोज मिळणारे मोफत व सकस अन्न! समाजातील गरजूंची काळजी घेणाऱ्या आणि त्यांना आधार देणाऱ्या एका चांगल्या उपक्रमाची प्रेरणादायी कहाणी.',
+      en: 'Through Lokmangal Annapurna Yojana, needy and elderly people get free, healthy food every day. It is a caring program that gives support to those who need it most. Read its inspiring story.',
     },
     button: { mr: 'YouTube वर पहा', en: 'Watch on YouTube' },
   },

@@ -1,5 +1,5 @@
 import { m } from 'motion/react'
-import { ArrowRight, ArrowUpRight, Quote } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import type { Page } from '@/types/cms'
 import { cn, toMarathiDigits } from '@/lib/utils'
 import { LOCALE } from '@/lib/i18n'
@@ -234,17 +234,30 @@ function StatsBand({ block }: { block: Stats }) {
   )
 }
 
-/** the quote as a large centred statement */
-function Statement(_: { block: QuoteBlock }) {
+/** the quote as an elegant, clean vision card */
+function Statement({ block }: { block: QuoteBlock }) {
+  const quoteText = block?.text || t(COPY.quote)
+  const authorText = block?.author || t(COPY.author)
+
   return (
-    <Reveal as="figure" className="relative mx-auto max-w-5xl px-2 py-6 text-center md:py-10">
-      <span aria-hidden className="mx-auto mb-8 flex items-center justify-center gap-3">
-        <span className="h-px w-12 bg-red-600" />
-        <Quote className="size-7 text-red-600" />
-        <span className="h-px w-12 bg-saffron-500" />
-      </span>
-      <blockquote className="font-quote relative text-2xl leading-relaxed text-[#000d3d] sm:text-3xl lg:text-[2.4rem] lg:leading-[1.45]">{t(COPY.quote)}</blockquote>
-      <figcaption className="mt-8 text-sm font-extrabold uppercase tracking-widest text-red-600">— {t(COPY.author)}</figcaption>
+    <Reveal as="figure" className="relative mx-auto my-6 max-w-5xl px-3 sm:px-6">
+      <div className="relative overflow-hidden rounded-3xl border border-amber-200/70 bg-gradient-to-br from-[#fffdfa] via-[#fff9f2] to-[#fff4e6] px-6 py-10 text-center shadow-lg shadow-amber-900/5 sm:px-12 sm:py-14 md:py-16">
+        {/* Quote Marathi Statement */}
+        <blockquote className="relative z-10 mx-auto max-w-4xl font-display text-xl font-bold not-italic leading-relaxed text-[#000d3d] sm:text-2xl md:text-3xl md:leading-[1.55] lg:text-[2.15rem]">
+          “{quoteText}”
+        </blockquote>
+
+        {/* Author Attribution */}
+        <figcaption className="relative z-10 mt-6 flex flex-col items-center justify-center gap-1 sm:mt-8">
+          <div className="flex items-center gap-3">
+            <span aria-hidden className="h-0.5 w-8 rounded-full bg-gradient-to-r from-transparent to-red-600" />
+            <span className="font-display text-base font-bold tracking-wide text-red-600 sm:text-lg">
+              — {authorText}
+            </span>
+            <span aria-hidden className="h-0.5 w-8 rounded-full bg-gradient-to-l from-transparent to-red-600" />
+          </div>
+        </figcaption>
+      </div>
     </Reveal>
   )
 }

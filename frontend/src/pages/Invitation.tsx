@@ -1,9 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { Calendar, CheckCircle2, Clock, HelpCircle, Loader2, MapPin, Paperclip, Send, ShieldCheck, Sparkles, UserCheck } from 'lucide-react'
+import { Calendar, CheckCircle2, ChevronRight, Clock, Home, Loader2, MapPin, Paperclip, Send } from 'lucide-react'
 import { api } from '@/lib/api'
 import { getLocale } from '@/lib/i18n'
-import { InnerPage } from '@/components/layout/InnerPage'
 import { Seo } from '@/components/layout/Seo'
 import { Reveal } from '@/components/ui/Motion'
 
@@ -18,8 +17,7 @@ export default function InvitationPage() {
     eventTime: '',
     location: '',
     description: '',
-    website: '',
-  })
+    website: '' })
   const [file, setFile] = useState<File | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [referenceNo, setReferenceNo] = useState<string | null>(null)
@@ -86,8 +84,7 @@ export default function InvitationPage() {
       eventTime: '',
       location: '',
       description: '',
-      website: '',
-    })
+      website: '' })
     setFile(null)
     setReferenceNo(null)
     setErrorMsg(null)
@@ -99,68 +96,43 @@ export default function InvitationPage() {
         title={isMr ? 'शुभकार्य आमंत्रण — रोहन सुभाष देशमुख' : 'Event Invitation — Rohan Subhash Deshmukh'}
         description={isMr ? 'विवाह सोहळा, उद्घाटन किंवा सामाजिक व कौटुंबिक कार्यक्रमाचे आमंत्रण थेट रोहनदादांना पाठवा.' : 'Send wedding, opening ceremony, and family function invitations to Rohan Subhash Deshmukh.'}
       />
-      <InnerPage
-        path="/invitation"
-        title={isMr ? 'शुभकार्य आमंत्रण' : 'Event Invitation'}
-        subtitle={isMr ? 'विवाह सोहळा, उद्घाटन किंवा सामाजिक व कौटुंबिक कार्यक्रमाचे आमंत्रण थेट रोहनदादांना पाठवा.' : 'Invite Rohan Subhash Deshmukh to your family, cultural, or community ceremonies.'}
-        variant="navy"
-      >
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* Left: Info Card */}
-          <div className="space-y-6 lg:col-span-4">
-            <Reveal className="rounded-3xl border border-stone-200/90 bg-[#f8fafc] p-6 sm:p-8">
-              <span className="inline-flex size-12 items-center justify-center rounded-2xl bg-orange-600 text-white shadow-md">
-                <Sparkles className="size-6" />
-              </span>
-              <h2 className="mt-4 font-display text-xl sm:text-2xl font-bold text-[#000d3d]">
-                {isMr ? 'आपल्या आनंदात सहभाग' : 'Sharing Your Joy'}
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                {isMr
-                  ? 'आपल्या घरातील विवाह सोहळा, वास्तूशांती, नामकरण, उद्‌घाटन किंवा संस्थेचा विशेष कार्यक्रम असो — रोहनदादांना आमंत्रित करण्यासाठी डिजिटल निमंत्रण पत्रिका व तपशील येथे पाठवा.'
-                  : 'Whether it is a wedding, inauguration, or social gathering, submit your invitation details and invite card directly.'}
-              </p>
-
-              <div className="mt-6 space-y-3.5 border-t border-stone-200/80 pt-6 text-xs text-slate-600">
-                <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="mt-0.5 size-4 shrink-0 text-emerald-600" />
-                  <span>{isMr ? 'प्रत्येक आमंत्रणाची कार्यालयात अधिकृत नोंद ठेवली जाते.' : 'Official registration & tracking number generated instantly.'}</span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <UserCheck className="mt-0.5 size-4 shrink-0 text-orange-600" />
-                  <span>{isMr ? 'रोहनदादांच्या दौऱ्याच्या नियोजनात कार्यक्रमाचा समावेश केला जातो.' : 'Scheduled into Rohan Deshmukh’s tour and visit calendar.'}</span>
-                </div>
-                <div className="flex items-start gap-2.5">
-                  <HelpCircle className="mt-0.5 size-4 shrink-0 text-blue-600" />
-                  <span>{isMr ? 'कार्यालय संपर्क: ०२१७ २६०६०७० / ९४२२४ ५६०००' : 'Office Helpline: 0217 2606070 / 94224 56000'}</span>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Quick Links */}
-            <div className="rounded-3xl border border-stone-200/90 bg-white p-6 shadow-xs">
-              <h3 className="font-display text-sm font-bold uppercase tracking-wider text-slate-800">
-                {isMr ? 'इतर नागरिक सेवा' : 'Other Citizen Services'}
-              </h3>
-              <div className="mt-4 space-y-2 text-sm">
-                <Link to="/grievance" className="flex items-center justify-between rounded-xl p-3 font-semibold text-[#000d3d] hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                  <span>{isMr ? 'कामाचे निवेदन' : 'Grievance / Work Petition'}</span>
-                  <span>→</span>
-                </Link>
-                <Link to="/appointment" className="flex items-center justify-between rounded-xl p-3 font-semibold text-[#000d3d] hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                  <span>{isMr ? 'भेटीची विनंती' : 'Meeting Request'}</span>
-                  <span>→</span>
-                </Link>
-                <Link to="/contact" className="flex items-center justify-between rounded-xl p-3 font-semibold text-[#000d3d] hover:bg-orange-50 hover:text-orange-600 transition-colors">
-                  <span>{isMr ? 'कार्यालय संपर्क' : 'Contact Office'}</span>
-                  <span>→</span>
-                </Link>
-              </div>
-            </div>
+      {/* Clean Page Title Header (Without Photo / Extra Space) */}
+      <section className="relative w-full overflow-hidden bg-gradient-to-r from-[#eaf3fd] via-[#f0f6fd] to-[#e8f2fc] text-[#001f5c]">
+        <div aria-hidden className="h-[2px] w-full bg-gradient-to-r from-transparent via-saffron-500/40 to-transparent" />
+        <div className="container-x py-5 sm:py-8">
+          <h1 className="text-2xl font-extrabold leading-[1.2] tracking-tight text-[#001f5c] sm:text-3xl lg:text-4xl">
+            {isMr ? 'शुभकार्य आमंत्रण' : 'Event Invitation'}
+          </h1>
+          <div className="mt-3 flex items-center gap-1.5">
+            <span className="h-1.5 w-12 sm:w-14 rounded-full bg-red-600" />
+            <span className="h-1.5 w-3 sm:w-3.5 rounded-full bg-saffron-500" />
           </div>
+        </div>
+      </section>
 
-          {/* Right: The Form Card */}
-          <div className="lg:col-span-8">
+      {/* Breadcrumbs Bar: Exact match to other pages */}
+      <nav aria-label="Breadcrumb" className="border-b border-stone-200 bg-[#f8fafc] py-2.5 text-xs text-slate-600">
+        <ol className="container-x pl-12 sm:pl-14 lg:pl-16 xl:pl-12 flex items-center gap-2 overflow-x-auto whitespace-nowrap">
+          <li>
+            <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] transition-colors hover:text-red-600">
+              <Home aria-hidden className="size-3.5" />
+              <span>{isMr ? 'मुख्य पृष्ठ' : 'Home'}</span>
+            </Link>
+          </li>
+          <li className="flex items-center gap-2">
+            <ChevronRight aria-hidden className="size-3 text-slate-400" />
+            <span aria-current="page" className="line-clamp-1 font-semibold text-slate-900">
+              {isMr ? 'शुभकार्य आमंत्रण' : 'Event Invitation'}
+            </span>
+          </li>
+        </ol>
+      </nav>
+
+      <main className="min-h-[60vh] bg-[#f8fafc] py-8 sm:py-12">
+        <div className="container-x">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+          {/* Main Form: Appears FIRST on mobile (order-1), and on the right in desktop (lg:order-2) */}
+          <div className="order-1 lg:order-2 lg:col-span-8">
             <Reveal className="overflow-hidden rounded-3xl border border-stone-200/90 bg-white p-6 sm:p-10 shadow-[0_20px_50px_rgba(0,13,61,0.06)]">
               {referenceNo ? (
                 /* Success View */
@@ -402,8 +374,32 @@ export default function InvitationPage() {
               )}
             </Reveal>
           </div>
+
+          {/* Quick Links: Appears BELOW the form on mobile (order-2), and on the left in desktop (lg:order-1) */}
+          <div className="order-2 lg:order-1 lg:col-span-4">
+            <div className="lg:sticky lg:top-28 rounded-3xl border border-stone-200/90 bg-white p-6 sm:p-7 shadow-xs">
+              <h3 className="font-display text-base sm:text-lg font-bold text-[#000d3d]">
+                {isMr ? 'इतर नागरिक सेवा' : 'Other Citizen Services'}
+              </h3>
+              <div className="mt-4 space-y-2 text-sm">
+                <Link to="/grievance" className="flex items-center justify-between rounded-xl p-3 font-semibold text-[#000d3d] hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                  <span>{isMr ? 'कामाचे निवेदन' : 'Grievance / Work Petition'}</span>
+                  <span className="text-base text-slate-400">→</span>
+                </Link>
+                <Link to="/appointment" className="flex items-center justify-between rounded-xl p-3 font-semibold text-[#000d3d] hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                  <span>{isMr ? 'भेटीची विनंती' : 'Meeting Request'}</span>
+                  <span className="text-base text-slate-400">→</span>
+                </Link>
+                <Link to="/contact" className="flex items-center justify-between rounded-xl p-3 font-semibold text-[#000d3d] hover:bg-orange-50 hover:text-orange-600 transition-colors">
+                  <span>{isMr ? 'संपर्क साधा' : 'Contact Office'}</span>
+                  <span className="text-base text-slate-400">→</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+          </div>
         </div>
-      </InnerPage>
+      </main>
     </>
   )
 }

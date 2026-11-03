@@ -97,7 +97,7 @@ export default function ContactPage() {
             <span aria-hidden className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-gold/10 blur-3xl" />
             <div className="relative mb-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{tc('getInTouch')}</p>
-              <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{tc('contactUs')}</h2>
+              <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl">{tc('contactUs')}</h2>
             </div>
             <Suspense fallback={<div aria-hidden className="min-h-[36rem] rounded-2xl bg-ivory" />}>
               <ContactForm offices={offices.map((o) => ({ value: String(o.id), label: o.name }))} />

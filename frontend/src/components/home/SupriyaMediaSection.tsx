@@ -81,7 +81,7 @@ export function SupriyaMediaSection({
       <section className="container-x">
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F5C63]">
               {isMr ? 'ताज्या बातम्या (Latest News)' : 'Latest News'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
@@ -137,7 +137,7 @@ export function SupriyaMediaSection({
                     <span className="text-[11px] font-extrabold uppercase tracking-wider text-saffron-700">
                       [{item.source}]
                     </span>
-                    <h3 className="mt-1 font-display text-sm sm:text-[0.95rem] font-bold leading-snug text-charcoal-900 group-hover:text-saffron-700 transition-colors line-clamp-3">
+                    <h3 className="mt-1 font-display text-sm sm:text-[0.95rem] font-bold leading-snug text-[#182126] group-hover:text-saffron-700 transition-colors line-clamp-3">
                       {item.title}
                     </h3>
                   </div>
@@ -158,7 +158,7 @@ export function SupriyaMediaSection({
                 {isMr ? 'व्हिडिओ गॅलरी' : 'Video Gallery'}
               </span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F5C63]">
               {isMr ? 'भाषणे, मुलाखती व संवाद' : 'Speeches & Media'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
@@ -212,7 +212,7 @@ export function SupriyaMediaSection({
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h5 className="font-display text-xs sm:text-sm font-bold leading-snug text-charcoal-900 group-hover:text-saffron-700 transition-colors line-clamp-2">
+                        <h5 className="font-display text-xs sm:text-sm font-bold leading-snug text-[#182126] group-hover:text-saffron-700 transition-colors line-clamp-2">
                           {v.title}
                         </h5>
                         <span className="mt-1 block text-[11px] text-muted">

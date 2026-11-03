@@ -35,7 +35,7 @@ export function SocialWorkSection({
           <Reveal>
             <h2
               id="social-work-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]"
             >
               {isMr ? 'समाजकार्य' : 'Social Work'}
             </h2>
@@ -75,7 +75,7 @@ export function SocialWorkSection({
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <Reveal delay={0.2} x={40}>
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-charcoal-900">
+              <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold leading-snug sm:leading-tight text-[#182126]">
                 {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून जनसेवा' : 'Community Service through Lokmangal Foundation'}
               </h3>
 

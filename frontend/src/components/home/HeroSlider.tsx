@@ -292,7 +292,7 @@ export function HeroSlider({
                   className={cn(
                     'font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight',
                     activeSlide.desktopTheme === 'light'
-                      ? 'text-charcoal-900'
+                      ? 'text-[#182126]'
                       : 'text-paper drop-shadow-[0_2px_12px_rgba(8,44,48,0.55)]',
                   )}
                 >

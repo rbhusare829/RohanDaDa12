@@ -80,7 +80,7 @@ export default function EventPage() {
             label: locale === 'mr' ? toMarathiDigits(e.year) : String(e.year),
             content: (
               <div>
-                {e.title && <h2 className="text-[1.6rem] leading-tight text-charcoal-900 md:text-[2rem]">{e.title}</h2>}
+                {e.title && <h2 className="text-[1.6rem] leading-tight text-[#182126] md:text-[2rem]">{e.title}</h2>}
                 {e.text && <p className="lead mb-8 mt-3 max-w-3xl">{e.text}</p>}
                 <Gallery images={toGallery(e.images, `${d.title} ${e.year}`)} />
               </div>

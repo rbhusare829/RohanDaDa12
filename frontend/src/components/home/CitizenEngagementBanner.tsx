@@ -27,7 +27,7 @@ export function NewIndiaManifestoBanner({
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </p>
 
-            <h2 className="font-display text-xl sm:text-2xl lg:text-[1.4rem] font-bold leading-snug text-pretty tracking-tight text-charcoal-900">
+            <h2 className="font-display text-xl sm:text-2xl lg:text-[1.4rem] font-bold leading-snug text-pretty tracking-tight text-[#0F5C63]">
               {isMr
                 ? 'आजच्या नव्या कल्पना, उद्याच्या आत्मनिर्भर भारताचा पाया!'
                 : 'Building a self-reliant India from its rural heartland, with integrity and enterprise.'}
@@ -111,7 +111,7 @@ export function CitizenServiceSection({
           <span className="text-xs font-extrabold uppercase tracking-widest text-saffron-700">
             {isMr ? 'नागरिक सेवा केंद्र' : 'Citizen Service Portal'}
           </span>
-          <h2 className="mt-1.5 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
+          <h2 className="mt-1.5 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F5C63]">
             {isMr ? (
               <>
                 तुमचे काम. <span className="hl-saffron">थेट रोहनदादांपर्यंत.</span>
@@ -150,7 +150,7 @@ export function CitizenServiceSection({
 
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="font-display font-bold text-lg sm:text-xl text-charcoal-900 group-hover:text-saffron-700 transition-colors mb-2">
+                    <h3 className="font-display font-bold text-lg sm:text-xl text-[#182126] group-hover:text-saffron-700 transition-colors mb-2">
                       {card.title}
                     </h3>
                     <p className="text-sm text-muted leading-relaxed mb-6">

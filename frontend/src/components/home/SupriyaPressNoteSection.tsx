@@ -84,7 +84,7 @@ export function SupriyaPressNoteSection({
         {/* Header Row */}
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F5C63]">
               {isMr ? 'ताज्या घडामोडी' : 'Press Notes'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
@@ -132,7 +132,7 @@ export function SupriyaPressNoteSection({
 
                     {/* 3. Headline underneath image */}
                     <div className="pt-3 flex-1 flex flex-col justify-between">
-                      <h3 className="font-display text-sm sm:text-[0.92rem] font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700 line-clamp-3">
+                      <h3 className="font-display text-sm sm:text-[0.92rem] font-bold leading-snug text-[#182126] transition-colors group-hover:text-saffron-700 line-clamp-3">
                         {post.title}
                       </h3>
                     </div>

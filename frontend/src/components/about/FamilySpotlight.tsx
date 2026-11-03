@@ -80,7 +80,7 @@ export function FamilySpotlight({ members, panels, labels }: { members: Spotligh
               {panels[i]?.media}
               <div className="min-w-0 md:py-2">
                 <p className="eyebrow">{m.relation}</p>
-                <h3 className="mt-2 text-[1.7rem] leading-snug text-charcoal-900 md:text-[2.2rem]">{m.title}</h3>
+                <h3 className="mt-2 text-[1.7rem] leading-snug text-[#182126] md:text-[2.2rem]">{m.title}</h3>
                 <div className="mt-4">{panels[i]?.body}</div>
                 {count > 1 && (
                   <div className="mt-7 flex flex-wrap gap-3">

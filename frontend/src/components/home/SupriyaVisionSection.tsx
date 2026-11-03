@@ -54,7 +54,7 @@ export function SupriyaVisionSection({
         <div className="text-center mb-6 sm:mb-8">
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-saffron-700">{eyebrow}</span>
           {heading && (
-            <h2 id="home-vision-title" className="mx-auto mt-1 max-w-4xl font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
+            <h2 id="home-vision-title" className="mx-auto mt-1 max-w-4xl font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]">
               {heading}
             </h2>
           )}
@@ -75,7 +75,7 @@ export function SupriyaVisionSection({
           {/* the words */}
           <div className="flex flex-col justify-center p-6 sm:p-10 lg:col-span-8">
             <p className="text-xs font-extrabold uppercase tracking-widest text-saffron-700">{isMr ? 'पुस्तक' : 'The book'}</p>
-            <h3 className="mt-2 font-display text-xl font-bold leading-snug text-charcoal-900 sm:text-2xl">
+            <h3 className="mt-2 font-display text-xl font-bold leading-snug text-[#182126] sm:text-2xl">
               {bookTitle}
             </h3>
             <div className="mt-3 mb-4 flex items-center gap-1.5">

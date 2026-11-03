@@ -289,7 +289,7 @@ export function SupriyaJourneySection({
                     </div>
 
                     {/* Headline */}
-                    <h3 className="font-display text-2xl sm:text-3xl font-bold leading-tight text-charcoal-900">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold leading-tight text-[#182126]">
                       {isMr ? activeMilestone.title.mr : activeMilestone.title.en}
                     </h3>
 

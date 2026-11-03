@@ -92,7 +92,7 @@ export default function AppointmentPage() {
       {/* Clean page title band (no photo): Cloud, Modern Teal title, the saffron underline + jade dot (Modern Teal + Saffron) */}
       <section className="relative w-full overflow-hidden bg-cream text-charcoal-900">
         <div className="container-x py-5 sm:py-8">
-          <h1 className="text-2xl font-bold leading-[1.2] tracking-tight text-charcoal-900 sm:text-3xl lg:text-4xl">
+          <h1 className="text-2xl font-bold leading-[1.2] tracking-tight text-[#0F5C63] sm:text-3xl lg:text-4xl">
             {isMr ? 'भेटीचे विवरण' : 'Meeting / Appointment'}
           </h1>
           <div aria-hidden className="mt-3 flex items-center gap-1.5">
@@ -135,7 +135,7 @@ export default function AppointmentPage() {
                   <span className="mt-5 inline-block text-xs font-bold uppercase tracking-widest text-leaf-700">
                     {isMr ? 'भेटीची विनंती यशस्वीरित्या प्राप्त झाली!' : 'Appointment Request Received!'}
                   </span>
-                  <h2 className="mt-2 font-display text-2xl sm:text-3xl font-bold text-charcoal-900">
+                  <h2 className="mt-2 font-display text-2xl sm:text-3xl font-bold text-[#182126]">
                     {isMr ? 'धन्यवाद, आपली विनंती नोंदवली गेली आहे.' : 'Thank you, your appointment request has been recorded.'}
                   </h2>
                   <p className="mx-auto mt-3 max-w-lg text-sm text-muted">
@@ -181,7 +181,7 @@ export default function AppointmentPage() {
                     <p className="text-xs font-bold uppercase tracking-wider text-saffron-700">
                       {isMr ? 'भेटीचे तपशील' : 'Appointment Details'}
                     </p>
-                    <h2 className="font-display text-xl sm:text-2xl font-bold text-charcoal-900">
+                    <h2 className="font-display text-xl sm:text-2xl font-bold text-[#182126]">
                       {isMr ? 'आपली माहिती व भेटीचे कारण' : 'Enter Your Meeting Request Details'}
                     </h2>
                   </div>
@@ -353,7 +353,7 @@ export default function AppointmentPage() {
           {/* Quick Links: Appears BELOW the form on mobile (order-2), and on the left in desktop (lg:order-1) */}
           <div className="order-2 lg:order-1 lg:col-span-4">
             <div className="lg:sticky lg:top-28 rounded-3xl border border-line bg-cream p-6 sm:p-7 shadow-xs">
-              <h2 className="font-display text-base sm:text-lg font-bold text-charcoal-900">
+              <h2 className="font-display text-base sm:text-lg font-bold text-[#182126]">
                 {isMr ? 'इतर नागरिक सेवा' : 'Other Citizen Services'}
               </h2>
               <div className="mt-4 space-y-2 text-sm">

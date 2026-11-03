@@ -40,7 +40,7 @@ export function SupriyaStayConnectedSection({ locale = 'mr' }: { locale?: 'mr' |
         {/* Header */}
         <div className="mb-10 text-center">
           <span className="text-xs font-extrabold uppercase tracking-widest text-saffron-700">{isMr ? 'सोशल मीडिया' : 'Social Media'}</span>
-          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-charcoal-900 sm:text-3xl lg:text-4xl">{isMr ? 'संपर्कात रहा' : 'Stay Connected'}</h2>
+          <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-[#0F5C63] sm:text-3xl lg:text-4xl">{isMr ? 'संपर्कात रहा' : 'Stay Connected'}</h2>
           <div className="mt-2.5 flex items-center justify-center gap-1.5">
             <span className="h-1 w-14 rounded-full bg-saffron-600" />
             <span className="h-1 w-3 rounded-full bg-saffron-500" />

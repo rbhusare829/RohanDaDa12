@@ -234,7 +234,7 @@ export function DocumentEditor({ collection, global, doc: initialDoc }: Props) {
             )}
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="min-w-0">
-                <h1 className="break-words font-display text-[1.9rem] leading-tight text-charcoal-900">{title}</h1>
+                <h1 className="break-words font-display text-[1.9rem] leading-tight text-[#182126]">{title}</h1>
                 <p className="mt-1.5 flex flex-wrap items-center gap-2 text-[0.88rem] text-charcoal-800/70">
                   {status && <Pill tone={status}>{status}</Pill>}
                   {def.admin.description && !doc && <span>{def.admin.description}</span>}

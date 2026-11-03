@@ -85,7 +85,7 @@ export function LeadStory({ post, locale, badge, readFull }: { post: Post; local
 export function LatestList({ posts, locale, title, footer }: { posts: Post[]; locale: string; title: string; footer?: string }) {
   return (
     <aside className="flex flex-col">
-      <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-charcoal-900">
+      <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-[#182126]">
         <span aria-hidden className="h-0.5 w-6 shrink-0 rounded-full bg-gold" /> {title}
       </h3>
       <ul className="divide-y divide-line">
@@ -95,7 +95,7 @@ export function LatestList({ posts, locale, title, footer }: { posts: Post[]; lo
             <li key={p.id} className="group relative grid grid-cols-[1fr_5.5rem] gap-4 py-5">
               <div className="min-w-0">
                 {cat && <p className="text-[0.75rem] font-semibold text-saffron-700">{cat.title}</p>}
-                <h4 className="mt-0.5 line-clamp-2 text-[1rem] font-semibold leading-snug text-charcoal-900 transition group-hover:text-saffron-700">
+                <h4 className="mt-0.5 line-clamp-2 text-[1rem] font-semibold leading-snug text-[#182126] transition group-hover:text-saffron-700">
                   <Link to={`/blog/${p.slug}`} className="after:absolute after:inset-0">{p.title}</Link>
                 </h4>
                 <p className="mt-1.5 flex items-center gap-1.5 text-xs text-ink"><CalendarDays className="size-3.5" />{formatDate(p.publishedAt, locale)}</p>
@@ -117,7 +117,7 @@ export function BlogRow({ post, locale, readMore, share }: { post: Post; locale:
     <article className="group relative grid grid-cols-[1fr_6.5rem] gap-4 py-6 sm:grid-cols-[1fr_13rem] sm:gap-6 md:py-7">
       <div className="min-w-0">
         <PostMeta post={post} locale={locale} />
-        <h3 className="mt-2.5 line-clamp-2 text-lg leading-snug text-charcoal-900 group-hover:text-saffron-700 sm:text-xl md:text-[1.4rem]">
+        <h3 className="mt-2.5 line-clamp-2 text-lg leading-snug text-[#182126] group-hover:text-saffron-700 sm:text-xl md:text-[1.4rem]">
           <Link to={`/blog/${post.slug}`} className="after:absolute after:inset-0">{post.title}</Link>
         </h3>
         {post.excerpt && <p className="mt-2 line-clamp-2 text-[0.95rem] leading-relaxed text-muted sm:line-clamp-3">{post.excerpt}</p>}
@@ -141,7 +141,7 @@ export function TopicsCard({ cats, active, title, allLabel }: { cats: Category[]
   const items = [{ slug: '', title: allLabel }, ...cats.map((c) => ({ slug: c.slug, title: c.title }))]
   return (
     <section>
-      <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-charcoal-900"><Tag className="size-5 text-saffron-600" /> {title}</h3>
+      <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-[#182126]"><Tag className="size-5 text-saffron-600" /> {title}</h3>
       <div className="mt-5 flex flex-wrap gap-2">
         {items.map((c) => {
           const on = (active ?? '') === c.slug
@@ -160,7 +160,7 @@ export function TopicsCard({ cats, active, title, allLabel }: { cats: Category[]
 export function RecentList({ posts, locale, title }: { posts: Post[]; locale: string; title: string }) {
   return (
     <section>
-      <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-charcoal-900"><TrendingUp className="size-5 text-saffron-600" /> {title}</h3>
+      <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-[#182126]"><TrendingUp className="size-5 text-saffron-600" /> {title}</h3>
       <ol className="divide-y divide-line">
         {posts.map((p, i) => (
           <li key={p.id} className="group relative flex gap-4 py-4">
@@ -168,7 +168,7 @@ export function RecentList({ posts, locale, title }: { posts: Post[]; locale: st
               {locale === 'mr' ? toMarathiDigits(i + 1) : i + 1}
             </span>
             <div className="min-w-0">
-              <h4 className="line-clamp-2 text-[0.97rem] font-semibold leading-snug text-charcoal-900 transition group-hover:text-saffron-700">
+              <h4 className="line-clamp-2 text-[0.97rem] font-semibold leading-snug text-[#182126] transition group-hover:text-saffron-700">
                 <Link to={`/blog/${p.slug}`} className="after:absolute after:inset-0">{p.title}</Link>
               </h4>
               <p className="mt-1 text-xs text-ink">{primaryCategory(p)?.title ? `${primaryCategory(p)!.title} • ` : ''}{formatDate(p.publishedAt, locale)}</p>

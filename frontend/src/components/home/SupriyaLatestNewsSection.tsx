@@ -87,7 +87,7 @@ export function SupriyaLatestNewsSection({
             <Reveal>
               <h2
                 id="home-news-heading"
-                className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900"
+                className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0F5C63]"
               >
                 {isMr ? 'ब्लॉग' : 'Blogs'}
               </h2>
@@ -154,7 +154,7 @@ export function SupriyaLatestNewsSection({
 
                   {/* Headline in bold deep navy text below the photo */}
                   <div className="pt-0.5">
-                    <h3 className="font-display text-sm sm:text-[15px] font-bold leading-snug text-charcoal-900 group-hover:text-saffron-700 transition-colors line-clamp-3">
+                    <h3 className="font-display text-sm sm:text-[15px] font-bold leading-snug text-[#182126] group-hover:text-saffron-700 transition-colors line-clamp-3">
                       {item.title}
                     </h3>
                   </div>

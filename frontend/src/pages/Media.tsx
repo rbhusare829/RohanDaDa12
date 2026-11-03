@@ -132,7 +132,7 @@ export function VideosPage() {
           {res.docs.map((v) => (
             <StaggerItem key={v.id}>
               <YouTube url={v.youtubeUrl} />
-              <h2 className="mt-3 text-lg text-charcoal-900">{v.title}</h2>
+              <h2 className="mt-3 text-lg text-[#182126]">{v.title}</h2>
               <p className="text-sm text-muted">{[v.playlist, formatDate(v.publishedAt, locale)].filter(Boolean).join(' · ')}</p>
             </StaggerItem>
           ))}

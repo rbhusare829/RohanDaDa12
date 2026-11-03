@@ -169,7 +169,7 @@ export default function PostPage() {
 function KeyPoints({ headings, title, num }: { headings: { id: string; text: string }[]; title: string; num: (n: number) => string }) {
   return (
     <>
-      <h2 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-charcoal-900"><CircleCheckBig className="size-5 text-saffron-600" /> {title}</h2>
+      <h2 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-[#182126]"><CircleCheckBig className="size-5 text-saffron-600" /> {title}</h2>
       <ol className="mt-2 divide-y divide-line">
         {headings.map((h, i) => (
           <li key={h.id}>

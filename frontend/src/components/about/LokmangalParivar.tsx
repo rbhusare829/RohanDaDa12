@@ -219,7 +219,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                 )}
 
                 {intro.heading && (
-                  <h2 className="mb-4 mt-3 font-display text-2xl font-extrabold leading-tight tracking-tight text-charcoal-900 sm:text-3xl md:text-4xl">
+                  <h2 className="mb-4 mt-3 font-display text-2xl font-extrabold leading-tight tracking-tight text-[#182126] sm:text-3xl md:text-4xl">
                     {intro.heading}
                   </h2>
                 )}
@@ -273,7 +273,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
 
                         <div className="flex-1 min-w-0 pl-0.5">
                           {it.title && (
-                            <h3 className="font-display text-base font-bold text-charcoal-900 transition-colors group-hover:text-saffron-700">
+                            <h3 className="font-display text-base font-bold text-[#182126] transition-colors group-hover:text-saffron-700">
                               {it.title}
                             </h3>
                           )}
@@ -303,7 +303,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                 <span className="text-xs font-bold uppercase tracking-widest text-saffron-700">
                   {isMr ? 'लोकमंगल परिवार कार्यक्षेत्रे' : 'Conglomerate Sectors'}
                 </span>
-                <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal-900 mt-1">
+                <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#182126] mt-1">
                   {isMr ? 'प्रमुख ५ कार्यक्षेत्रे आणि संस्था समूह' : '5 Core Pillars & Institutions'}
                 </h2>
               </div>
@@ -454,7 +454,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                               </span>
                             </div>
 
-                            <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-charcoal-900">
+                            <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-[#182126]">
                               {sec.heading}
                             </h3>
 
@@ -519,7 +519,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                           </span>
                         </div>
 
-                        <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-charcoal-900">
+                        <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-[#182126]">
                           {currentSector?.heading}
                         </h3>
 
@@ -617,7 +617,7 @@ function InstitutionCard({
       <div className="relative">
         {/* Top Header: Title & Link Arrow */}
         <div className="mb-2 flex items-start justify-between gap-3">
-          <h4 className="font-display text-lg font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700">
+          <h4 className="font-display text-lg font-bold leading-snug text-[#182126] transition-colors group-hover:text-saffron-700">
             {item.title}
           </h4>
           {item.url && (

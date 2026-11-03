@@ -115,7 +115,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6">
             <Reveal className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
               {intro.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{intro.eyebrow}</p>}
-              {intro.heading && <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{intro.heading}</h2>}
+              {intro.heading && <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl">{intro.heading}</h2>}
               <span aria-hidden className="mt-5 flex items-center gap-1.5"><span className="h-1 w-14 rounded-full bg-gold" /><span className="h-1 w-3 rounded-full bg-leaf-600" /></span>
             </Reveal>
             {/* the whole family: a Cloud frame like the cards below, the faces kept in view (object-top) */}
@@ -200,7 +200,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                   {/* the name and the whole story */}
                   <div className="flex flex-1 flex-col px-3 pb-4 pt-4 lg:pt-5">
                     {member.heading && (
-                      <h3 className="font-display text-[1.28rem] font-bold leading-snug tracking-tight text-charcoal-900 sm:text-[1.35rem] md:text-[1.4rem] lg:text-[1.3rem] xl:text-[1.4rem]">
+                      <h3 className="font-display text-[1.28rem] font-bold leading-snug tracking-tight text-[#182126] sm:text-[1.35rem] md:text-[1.4rem] lg:text-[1.3rem] xl:text-[1.4rem]">
                         {member.heading}
                       </h3>
                     )}

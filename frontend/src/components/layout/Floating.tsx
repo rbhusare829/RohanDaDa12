@@ -116,7 +116,7 @@ export function SitePopup() {
               </div>
             )}
             <div className="p-6">
-              {popup.title && <h3 className="font-display text-xl font-bold text-charcoal-900">{popup.title}</h3>}
+              {popup.title && <h3 className="font-display text-xl font-bold text-[#182126]">{popup.title}</h3>}
               {popup.text && <p className="mt-2 text-sm leading-relaxed text-muted">{popup.text}</p>}
               {popup.linkLabel && popup.linkUrl && (
                 <div className="mt-4">

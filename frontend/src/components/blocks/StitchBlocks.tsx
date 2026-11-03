@@ -45,7 +45,7 @@ export function StitchHead({ eyebrow, heading, intro, as: H = 'h2', className, a
   return (
     <Reveal className={cn('mb-6 sm:mb-10 max-w-3xl space-y-2', className)}>
       {eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{eyebrow}</p>}
-      {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{heading}</H>}
+      {heading && <H className="font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl">{heading}</H>}
       {heading && accent && <div aria-hidden className="mt-3 flex items-center gap-1.5"><span className="h-1.5 w-12 rounded-full bg-gold sm:w-14" /><span className="h-1.5 w-3 rounded-full bg-leaf-600 sm:w-3.5" /></div>}
       {intro && <p className="pt-1 text-base leading-relaxed text-muted">{intro}</p>}
     </Reveal>
@@ -64,7 +64,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
         <span aria-hidden className="pointer-events-none absolute right-0 top-0 size-32 rounded-bl-full bg-gradient-to-bl from-saffron-100/60 to-transparent" />
         <div className="relative max-w-4xl">
           {b.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{b.eyebrow}</p>}
-          {b.heading && <h2 className="mb-5 mt-1 font-display text-2xl font-bold leading-tight text-charcoal-900 md:text-3xl">{b.heading}</h2>}
+          {b.heading && <h2 className="mb-5 mt-1 font-display text-2xl font-bold leading-tight text-[#182126] md:text-3xl">{b.heading}</h2>}
           <RichText html={b.body} readMore />
         </div>
       </Reveal>
@@ -115,7 +115,7 @@ export function StitchContent({ blocks }: { blocks: Content[] }) {
                   </span>
                   <div className="min-w-0">
                     {b.eyebrow && <p className={cn('text-[11px] font-bold uppercase tracking-[0.2em]', isSocial ? 'text-leaf-700' : 'text-saffron-700')}>{b.eyebrow}</p>}
-                    {b.heading && <h2 className="font-display text-xl font-bold leading-snug text-charcoal-900 md:text-2xl">{b.heading}</h2>}
+                    {b.heading && <h2 className="font-display text-xl font-bold leading-snug text-[#182126] md:text-2xl">{b.heading}</h2>}
                   </div>
                 </div>
                 <span aria-hidden className="font-display text-xs font-bold text-gold">{pad(i + 1)}</span>
@@ -150,7 +150,7 @@ function LivelyChapter({ b, hasImg, fit, right }: { b: MediaText; hasImg: boolea
         <div className="relative">
           {/* the timeline node of this chapter (the rail is drawn by the list, see PageBlocks) */}
           <span aria-hidden className="absolute -left-14 top-2.5 hidden size-4 rounded-full border-[3px] border-paper bg-gold shadow-[0_0_0_2px_rgba(15,92,99,0.5)] lg:block" />
-          <m.h2 variants={rise} className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{b.heading}</m.h2>
+          <m.h2 variants={rise} className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl">{b.heading}</m.h2>
           <m.div variants={draw} aria-hidden className="mt-3 flex origin-left items-center gap-1.5">
             <span className="h-1.5 w-12 rounded-full bg-gold sm:w-14" />
             <span className="h-1.5 w-3 rounded-full bg-leaf-600 sm:w-3.5" />
@@ -198,7 +198,7 @@ export function StitchChapter({ b, n, plain, accent, lively }: { b: MediaText; n
             {b.eyebrow && <span className="rounded bg-saffron-50 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-saffron-700">{b.eyebrow}</span>}
           </div>
         )}
-        {b.heading && <h2 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{b.heading}</h2>}
+        {b.heading && <h2 className="max-w-4xl font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl">{b.heading}</h2>}
         {b.heading && accent && <div aria-hidden className="mt-3 flex items-center gap-1.5"><span className="h-1.5 w-12 rounded-full bg-gold sm:w-14" /><span className="h-1.5 w-3 rounded-full bg-leaf-600 sm:w-3.5" /></div>}
       </Reveal>
 
@@ -251,7 +251,7 @@ function Cards({ b, accent }: { b: Extract<PageBlock, { blockType: 'cards' }>; a
                 )}
                 <div className="flex flex-1 flex-col gap-2 p-6">
                   {c.meta && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">{c.meta}</p>}
-                  <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
+                  <CardTitle className="font-display text-xl font-bold leading-snug text-[#182126] transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
                   {c.text && <p className="whitespace-pre-line text-sm leading-relaxed text-muted">{c.text}</p>}
                 </div>
               </>
@@ -281,7 +281,7 @@ function Cards({ b, accent }: { b: Extract<PageBlock, { blockType: 'cards' }>; a
                     </span>
                     <span aria-hidden className="font-display text-xs font-bold text-gold">{pad(i + 1)}</span>
                   </div>
-                  <CardTitle className="font-display text-xl font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
+                  <CardTitle className="font-display text-xl font-bold leading-snug text-[#182126] transition-colors group-hover:text-saffron-700">{c.title}</CardTitle>
                   {c.text && <p className="whitespace-pre-line text-[0.95rem] leading-relaxed text-muted">{c.text}</p>}
                   {!!c.tags?.length && (
                     <ul className="flex flex-wrap gap-1.5 pt-1">

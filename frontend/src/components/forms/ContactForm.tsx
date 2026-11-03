@@ -72,7 +72,7 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
         <span className="animate-pop-in grid size-16 place-items-center rounded-full bg-leaf-600 text-white shadow-lg shadow-leaf-600/30">
           <CheckCircle2 className="size-8" />
         </span>
-        <p className="animate-fade-up mt-5 font-display text-2xl font-bold text-charcoal-900" style={{ animationDelay: '180ms' }}>{t('success')}</p>
+        <p className="animate-fade-up mt-5 font-display text-2xl font-bold text-[#182126]" style={{ animationDelay: '180ms' }}>{t('success')}</p>
       </div>
     )
 

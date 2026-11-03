@@ -18,7 +18,7 @@ const Heading = ({ eyebrow, heading }: { eyebrow?: string | null; heading?: stri
   eyebrow || heading ? (
     <div className="mb-7 max-w-3xl">
       {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-      {heading && <h2 className="mt-2 text-[1.7rem] leading-tight text-charcoal-900 md:text-[2.2rem]">{heading}</h2>}
+      {heading && <h2 className="mt-2 text-[1.7rem] leading-tight text-[#182126] md:text-[2.2rem]">{heading}</h2>}
     </div>
   ) : null
 

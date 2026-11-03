@@ -12,11 +12,11 @@ function Frame({ title, intro, children }: { title: string; intro: string; child
         <div className="flex items-center gap-3">
           <span aria-hidden className="grid size-12 place-items-center rounded-xl bg-gradient-to-br from-charcoal-900 to-charcoal-950 font-display text-2xl text-white">रो</span>
           <div className="leading-tight">
-            <p className="font-display text-[1.3rem] text-charcoal-900">रोहन सुभाष देशमुख</p>
+            <p className="font-display text-[1.3rem] text-[#182126]">रोहन सुभाष देशमुख</p>
             <p className="text-[0.82rem] text-charcoal-800/75">Website admin panel</p>
           </div>
         </div>
-        <h1 className="mt-6 font-display text-[1.6rem] text-charcoal-900">{title}</h1>
+        <h1 className="mt-6 font-display text-[1.6rem] text-[#182126]">{title}</h1>
         <p className="mt-1 text-[0.92rem] text-charcoal-800/70">{intro}</p>
         <div className="mt-5">{children}</div>
       </div>

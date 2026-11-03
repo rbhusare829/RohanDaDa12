@@ -40,7 +40,7 @@ export default function FamilyPage() {
                 )}
                 <Reveal delay={0.1}>
                   {m.relation && <p className="eyebrow">{m.relation}</p>}
-                  <h2 className="mt-2 text-[1.8rem] leading-tight text-charcoal-900 md:text-[2.3rem]">{m.name}</h2>
+                  <h2 className="mt-2 text-[1.8rem] leading-tight text-[#182126] md:text-[2.3rem]">{m.name}</h2>
                   <div className="prose-rd mt-5 max-w-2xl">{paras.map((p, k) => <p key={k}>{p}</p>)}</div>
                 </Reveal>
               </article>

@@ -44,7 +44,7 @@ export function SocialActivitiesList({ locale = 'mr', extra = [] }: { locale?: '
               <m.div {...inView} variants={group} className="grid grid-cols-1 items-start gap-x-12 gap-y-5 lg:grid-cols-12 lg:gap-y-0">
                 {/* the title (first on phones) */}
                 <m.div variants={group} className={cn('lg:col-span-7 lg:row-start-1', flip ? 'lg:col-start-1' : 'lg:col-start-6')}>
-                  <m.h2 variants={rise} id={`${a.id}-title`} className="font-display text-2xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-3xl lg:text-4xl">
+                  <m.h2 variants={rise} id={`${a.id}-title`} className="font-display text-2xl font-bold leading-tight tracking-tight text-[#182126] sm:text-3xl lg:text-4xl">
                     {t(a.title)}
                   </m.h2>
                   <m.div variants={draw} aria-hidden className="mt-2.5 flex origin-left items-center gap-1.5 lg:mb-5">

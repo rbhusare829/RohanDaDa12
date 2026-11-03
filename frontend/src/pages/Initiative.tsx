@@ -61,7 +61,7 @@ export default function InitiativePage() {
         </Link>
 
         {/* no photo banner on the project pages (Oct 2026): the title opens the page, with the red and saffron bars */}
-        <h1 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl lg:text-5xl">{d.title}</h1>
+        <h1 className="mt-6 font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl lg:text-5xl">{d.title}</h1>
         <div className="mt-3 flex items-center gap-1.5">
           <span className="h-1.5 w-12 rounded-full bg-gold sm:w-14" />
           <span className="h-1.5 w-3 rounded-full bg-saffron-600 sm:w-3.5" />
@@ -79,7 +79,7 @@ export default function InitiativePage() {
             {d.objective && (
               /* the objective in a soft jade note — the one highlighted block on the page */
               <Reveal as="section" className="mt-6 sm:mt-10 rounded-[1.5rem] border-l-4 border-leaf-600 bg-leaf-50 p-6 md:p-8">
-                <h2 className="flex items-center gap-2.5 text-lg font-semibold text-charcoal-900"><Target aria-hidden className="size-5 text-leaf-700" /> {x.objective}</h2>
+                <h2 className="flex items-center gap-2.5 text-lg font-semibold text-[#182126]"><Target aria-hidden className="size-5 text-leaf-700" /> {x.objective}</h2>
                 <p className="mt-3 text-[1.08rem] leading-relaxed text-ink">{d.objective}</p>
               </Reveal>
             )}
@@ -88,7 +88,7 @@ export default function InitiativePage() {
 
             {hasVideo && (
               <Reveal as="section" className="mt-10 sm:mt-16 md:mt-20">
-                <h2 className="mb-6 flex items-center gap-2.5 text-[1.5rem] leading-tight text-charcoal-900 md:text-[1.8rem]"><Clapperboard aria-hidden className="size-6 text-leaf-700" /> {x.videos}</h2>
+                <h2 className="mb-6 flex items-center gap-2.5 text-[1.5rem] leading-tight text-[#182126] md:text-[1.8rem]"><Clapperboard aria-hidden className="size-6 text-leaf-700" /> {x.videos}</h2>
                 <div className="space-y-6">
                   {d.youtubeUrl && <YouTube url={d.youtubeUrl} title={d.title} />}
                   {files.length > 0 && (files.some((v) => youtubeId(v.url)) ? files.map((v) => <YouTube key={v.url} url={v.url} title={v.title} />) : <ProjectVideos videos={files} countLabel={x.videoCount(files.length)} />)}
@@ -99,7 +99,7 @@ export default function InitiativePage() {
             {photos.length > 0 && (
               <section className="mt-10 sm:mt-16 md:mt-20">
                 <Reveal as="div">
-                  <h2 className="mb-6 flex items-center gap-2.5 text-[1.5rem] leading-tight text-charcoal-900 md:text-[1.8rem]">
+                  <h2 className="mb-6 flex items-center gap-2.5 text-[1.5rem] leading-tight text-[#182126] md:text-[1.8rem]">
                     <Images aria-hidden className="size-6 text-leaf-700" /> {x.photos}
                     <span className="font-display text-base text-saffron-700">({num(photos.length)})</span>
                   </h2>
@@ -117,7 +117,7 @@ export default function InitiativePage() {
             </div>
             {events.length > 0 && (
               <section>
-                <h2 className="border-b-2 border-charcoal-900 pb-3 text-lg text-charcoal-900">{t('events')}</h2>
+                <h2 className="border-b-2 border-charcoal-900 pb-3 text-lg text-[#182126]">{t('events')}</h2>
                 <ul className="divide-y divide-line">
                   {events.map((e) => <li key={e.id}><Link to={`/events/${e.slug}`} className="flex items-center justify-between gap-3 py-3 font-medium text-charcoal-900 transition hover:text-saffron-700">{e.title} <span aria-hidden>→</span></Link></li>)}
                 </ul>
@@ -131,7 +131,7 @@ export default function InitiativePage() {
 
         {related.length > 0 && (
           <section className="mt-12 sm:mt-24 md:mt-28">
-            <Reveal><h2 className="mb-9 text-[1.7rem] leading-tight text-charcoal-900 md:text-[2.2rem]">{tc('relatedPosts')}</h2></Reveal>
+            <Reveal><h2 className="mb-9 text-[1.7rem] leading-tight text-[#182126] md:text-[2.2rem]">{tc('relatedPosts')}</h2></Reveal>
             <Stagger className="grid gap-x-7 gap-y-8 sm:gap-y-12 md:grid-cols-2 lg:grid-cols-3">{related.map((r) => <StaggerItem key={r.id}><NewsCard post={r} locale={locale} /></StaggerItem>)}</Stagger>
           </section>
         )}

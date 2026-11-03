@@ -21,7 +21,7 @@ export function FrontHeading({ children, label, aside }: { children: ReactNode; 
     <Reveal className="mb-8 flex flex-wrap items-end justify-between gap-4">
       <div className="space-y-2">
         {label && <p className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{label}</p>}
-        <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{children}</h2>
+        <h2 className="font-display text-3xl font-bold leading-tight tracking-tight text-[#182126] sm:text-4xl">{children}</h2>
       </div>
       {aside}
     </Reveal>
@@ -89,7 +89,7 @@ export function FrontLead({ post, locale, badge, readFull }: { post: Post; local
 export function FrontLatest({ posts, locale, title, footer }: { posts: Post[]; locale: string; title: string; footer?: string }) {
   return (
     <Reveal delay={0.1} as="article" className="flex h-full flex-col rounded-3xl border border-line bg-cream p-6 shadow-[0_20px_50px_-12px_rgba(24,33,38,0.1)] md:p-7">
-      <h3 className="flex items-center gap-3 font-display text-lg font-bold text-charcoal-900">
+      <h3 className="flex items-center gap-3 font-display text-lg font-bold text-[#182126]">
         <span className="grid size-9 place-items-center rounded-xl bg-saffron-500/10 text-saffron-600"><TrendingUp className="size-5" /></span>
         {title}
       </h3>
@@ -99,7 +99,7 @@ export function FrontLatest({ posts, locale, title, footer }: { posts: Post[]; l
             <span className={cn('font-display text-2xl font-bold leading-none', i % 2 ? 'text-leaf-700' : 'text-saffron-700')}>{n(i + 1, locale)}</span>
             <div className="min-w-0">
               {primaryCategory(p) && <p className="text-[11px] font-bold uppercase tracking-wider text-saffron-700">{primaryCategory(p)!.title}</p>}
-              <h4 className="mt-0.5 line-clamp-2 text-[0.95rem] font-semibold leading-snug text-charcoal-900 transition group-hover:text-saffron-700">
+              <h4 className="mt-0.5 line-clamp-2 text-[0.95rem] font-semibold leading-snug text-[#182126] transition group-hover:text-saffron-700">
                 <Link to={`/blog/${p.slug}`} className="after:absolute after:inset-0">{p.title}</Link>
               </h4>
               <p className="mt-1 text-xs text-ink">{formatDate(p.publishedAt, locale)}</p>
@@ -128,7 +128,7 @@ export function FrontRow({ post, locale, readMore, share }: { post: Post; locale
           <Chip cat={primaryCategory(post)} />
           <Meta post={post} locale={locale} />
         </div>
-        <h3 className="line-clamp-2 font-display text-lg font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700 md:text-xl">
+        <h3 className="line-clamp-2 font-display text-lg font-bold leading-snug text-[#182126] transition-colors group-hover:text-saffron-700 md:text-xl">
           <Link to={`/blog/${post.slug}`} className="after:absolute after:inset-0">{post.title}</Link>
         </h3>
         {post.excerpt && <p className="line-clamp-2 text-[0.95rem] leading-relaxed text-muted">{post.excerpt}</p>}
@@ -148,7 +148,7 @@ export function FrontTopics({ cats, active, title, allLabel }: { cats: Category[
   const items = [{ slug: '', title: allLabel }, ...cats.map((c) => ({ slug: c.slug, title: c.title }))]
   return (
     <Reveal as="article" className="rounded-2xl border border-line bg-cream p-6 shadow-sm">
-      <h3 className="flex items-center gap-3 font-display text-lg font-bold text-charcoal-900">
+      <h3 className="flex items-center gap-3 font-display text-lg font-bold text-[#182126]">
         <span className="grid size-9 place-items-center rounded-xl bg-leaf-600/10 text-leaf-700"><Tag className="size-5" /></span>
         {title}
       </h3>

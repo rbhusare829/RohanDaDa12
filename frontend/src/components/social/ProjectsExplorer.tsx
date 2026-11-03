@@ -52,7 +52,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
   return (
     <div>
       <div className="flex flex-col items-center gap-4">
-        <div role="group" aria-label={labels.filters} className="flex flex-wrap justify-center gap-2">
+        <div role="group" aria-label={labels.filters} className="flex flex-wrap justify-center gap-2.5">
           {chips.map((c) => {
             const on = cat === c.value
             return (
@@ -62,8 +62,8 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
                 aria-pressed={on}
                 onClick={() => setCat(c.value)}
                 className={cn(
-                  'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-sm font-semibold transition',
-                  on ? 'border-charcoal-900 bg-charcoal-900 text-paper' : 'border-field bg-paper text-charcoal-900 hover:border-charcoal-900 hover:bg-cream',
+                  'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4.5 py-2 text-sm font-semibold transition-all duration-200 cursor-pointer',
+                  on ? 'border-btn bg-btn text-ink font-bold shadow-md shadow-saffron-600/25 scale-[1.02]' : 'border-line/90 bg-white text-ink font-medium hover:border-btn hover:bg-saffron-50 hover:text-ink',
                 )}
               >
                 {c.label}
@@ -80,7 +80,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={labels.search}
-            className="min-h-11 w-full rounded-full border border-field bg-white py-2.5 pl-10 pr-4 text-sm text-charcoal-900 outline-none transition placeholder:text-muted hover:border-field-hover focus:border-saffron-700 focus:ring-2 focus:ring-saffron-700"
+            className="min-h-11 w-full rounded-full border border-field/40 bg-white py-2.5 pl-10 pr-4 text-sm text-charcoal-900 outline-none transition placeholder:text-muted hover:border-field focus:border-btn focus:ring-2 focus:ring-btn/30"
           />
         </label>
       </div>
@@ -97,7 +97,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
       ) : (
         <div className="mt-10 rounded-2xl bg-cream p-10 text-center">
           <p className="text-muted">{labels.empty}</p>
-          <button type="button" onClick={() => { setQ(''); setCat('') }} className="btn btn-light mt-4 px-5 py-2">
+          <button type="button" onClick={() => { setQ(''); setCat('') }} className="btn mt-4 px-6 py-2.5 shadow-md">
             <X aria-hidden className="size-4" /> {labels.clear}
           </button>
         </div>
@@ -157,11 +157,11 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
               {p.stat && <span className="inline-flex items-center gap-1.5 text-saffron-700"><TrendingUp aria-hidden className="size-4" /> {p.stat}</span>}
               <span className="rounded-full bg-cream px-2.5 py-0.5 text-xs text-charcoal-800">{p.categoryLabel}</span>
             </div>
-            <h3 className="mt-3 text-[1.45rem] leading-snug text-charcoal-900 md:text-[1.75rem]">{p.title}</h3>
+            <h3 className="mt-3 text-[1.45rem] leading-snug text-[#182126] md:text-[1.75rem]">{p.title}</h3>
             {p.text && <p className="mt-3 line-clamp-3 text-[0.95rem] leading-relaxed text-muted md:line-clamp-4">{p.text}</p>}
 
             <div className="mt-6 flex flex-wrap items-center justify-between gap-4 md:mt-auto md:pt-6">
-              <Link to={p.href} className="btn btn-primary px-5 py-2.5">
+              <Link to={p.href} className="btn px-6 py-2.5 shadow-md">
                 {labels.readMore} <ArrowRight aria-hidden className="size-4" />
               </Link>
               {count > 1 && (

@@ -21,7 +21,7 @@ export function SupriyaSocialActivitiesSection({ locale = 'mr' }: { locale?: 'mr
     <section className="bg-cream border-t border-line py-6 sm:py-10 lg:py-12" aria-labelledby="social-activities-title">
       <div className="container-x">
         <div className="text-center mb-6 sm:mb-8">
-          <h2 id="social-activities-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
+          <h2 id="social-activities-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]">
             {isMr ? 'सामाजिक उपक्रम' : 'Social Activities'}
           </h2>
           <div aria-hidden className="mt-2.5 flex justify-center items-center gap-1.5">

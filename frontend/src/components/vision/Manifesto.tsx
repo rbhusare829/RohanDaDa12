@@ -243,7 +243,7 @@ function Statement({ block }: { block: QuoteBlock }) {
     <Reveal as="figure" className="relative mx-auto my-6 max-w-5xl px-3 sm:px-6">
       <div className="relative overflow-hidden rounded-3xl border border-line bg-cream px-6 py-10 text-center shadow-lg shadow-charcoal-950/5 sm:px-12 sm:py-14 md:py-16">
         {/* Quote Marathi Statement */}
-        <blockquote className="relative z-10 mx-auto max-w-4xl font-display text-xl font-bold not-italic leading-relaxed text-charcoal-900 sm:text-2xl md:text-3xl md:leading-[1.55] lg:text-[2.15rem]">
+        <blockquote className="relative z-10 mx-auto max-w-4xl font-display text-xl font-bold not-italic leading-relaxed text-[#182126] sm:text-2xl md:text-3xl md:leading-[1.55] lg:text-[2.15rem]">
           “{quoteText}”
         </blockquote>
 
@@ -293,7 +293,7 @@ function HowItWorks({ block }: { block: Cards }) {
                   {pad(i + 1)}
                 </span>
                 <div className="mt-6 flex flex-1 flex-col items-center gap-2 rounded-2xl border border-line bg-cream p-6 text-center shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-gold group-hover:shadow-lg">
-                  <h3 className="font-display text-xl font-bold text-charcoal-900 transition-colors group-hover:text-saffron-700">{c.title}</h3>
+                  <h3 className="font-display text-xl font-bold text-[#182126] transition-colors group-hover:text-saffron-700">{c.title}</h3>
                   {c.text && <p className="text-sm leading-relaxed text-muted">{c.text}</p>}
                   {c.url && <ArrowUpRight aria-hidden className="mt-auto size-5 text-saffron-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
                 </div>

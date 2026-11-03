@@ -11,13 +11,14 @@
      "gold" = the highlight role (saffron lines, underlines, dots), "paper" = the Cloud White page, "cream" = a teal-tinted mist for
      alternating bands and cards. */
 
-  /* Modern Teal #0F5C63: headings, the hero and the Political Journey band, outline buttons, stat cards (Cloud White words on it 6.8:1) */
+  /* Modern Teal #0F5C63: the hero and the Political Journey band, outline buttons, stat cards (Cloud White words on it 6.8:1) */
   --color-charcoal-900: #0F5C63;
   --color-charcoal-700: #0F5C63;
   --color-charcoal-600: #0F5C63;
-  /* Charcoal Black #182126: the footer, overlays on photos, menu words (14.5:1 on Cloud White) */
+  /* Charcoal Black #182126: primary headings and titles, the footer, overlays on photos, menu words (14.5:1 on Cloud White) */
   --color-charcoal-950: #182126;
   --color-charcoal-800: #182126;
+  --color-heading: #182126;
 
   /* Saffron Amber #E99532: buttons, lines, dots, icon tiles, big figures on teal or charcoal. It is light (2.1:1 on Cloud White), so it is
      never used for words on a light background, and the words on it are Charcoal Black (6.9:1), never white. Saffron words only on Charcoal
@@ -233,7 +234,7 @@
   }
 
   /* Typography: every element inherits the body font (Inter / Noto Sans Devanagari) from <body>, headings take the serif heading font
-     (Playfair Display / Noto Serif Devanagari) in Modern Teal; the element defaults below follow the type scale (a component's own Tailwind
+     (Playfair Display / Noto Serif Devanagari) in Charcoal Black #182126; the element defaults below follow the type scale (a component's own Tailwind
      classes still set its size and weight). */
   h1,
   h2,
@@ -242,7 +243,7 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    color: var(--color-charcoal-900);
+    color: #182126;
     text-wrap: balance;
   }
   h1 {
@@ -405,14 +406,14 @@
     color: var(--color-paper);
   }
 
-  /* section title: the serif heading font, bold, 30 → 36px, Modern Teal */
+  /* section title: the serif heading font, bold, 30 → 36px, Modern Teal #0F5C63 */
   .h-section {
     font-family: var(--font-display);
     font-size: 1.875rem;
     line-height: 2.25rem;
     font-weight: 700;
     letter-spacing: -0.02em;
-    color: var(--color-charcoal-900);
+    color: #0F5C63;
     margin-top: .25rem;
   }
 
@@ -821,7 +822,7 @@
   .tile-title {
     font-family: var(--font-display);
     font-weight: 700;
-    color: var(--color-charcoal-900);
+    color: #182126;
     font-size: 1.125rem;
     line-height: 1.4;
     transition: color .2s;
@@ -1035,14 +1036,14 @@
   .prose-rd h2 {
     font-size: 1.75rem;
     line-height: 1.3;
-    color: var(--color-charcoal-900);
+    color: #182126;
     margin-top: 1.7em;
   }
 
   .prose-rd h3 {
     font-size: 1.4rem;
     line-height: 1.35;
-    color: var(--color-charcoal-900);
+    color: #182126;
     margin-top: 1.5em;
   }
 

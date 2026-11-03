@@ -78,7 +78,7 @@ export function PageHeading({ title, description, actions }: { title: ReactNode;
   return (
     <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
       <div className="min-w-0">
-        <h1 className="font-display text-[1.9rem] leading-tight text-charcoal-900">{title}</h1>
+        <h1 className="font-display text-[1.9rem] leading-tight text-[#182126]">{title}</h1>
         {description && <p className="mt-1 max-w-2xl text-[0.92rem] text-charcoal-800/70">{description}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
@@ -94,7 +94,7 @@ export function EmptyState({ children }: { children: ReactNode }) {
 export function Unavailable({ title = 'Not available', children, retry }: { title?: string; children?: ReactNode; retry?: () => void }) {
   return (
     <div className="mx-auto max-w-lg py-16 text-center">
-      <h1 className="font-display text-[1.7rem] text-charcoal-900">{title}</h1>
+      <h1 className="font-display text-[1.7rem] text-[#182126]">{title}</h1>
       {children && <p className="mt-2 text-charcoal-800/70">{children}</p>}
       <div className="mt-5 flex items-center justify-center gap-4">
         {retry && <Button onClick={retry}>Try again</Button>}
@@ -164,7 +164,7 @@ export function Modal({ open, onClose, title, children, wide, footer }: { open: 
             className={cn('flex max-h-[90vh] w-full flex-col overflow-hidden rounded-2xl bg-white shadow-2xl outline-none', wide ? 'max-w-5xl' : 'max-w-lg')}
           >
             <div className="flex items-center justify-between gap-4 border-b border-charcoal-900/10 px-5 py-3.5">
-              <h2 id={id} className="font-display text-[1.25rem] text-charcoal-900">{title}</h2>
+              <h2 id={id} className="font-display text-[1.25rem] text-[#182126]">{title}</h2>
               <IconButton label="Close" onClick={onClose}><X className="size-5" /></IconButton>
             </div>
             <div className="min-h-0 flex-1 overflow-y-auto p-5">{children}</div>

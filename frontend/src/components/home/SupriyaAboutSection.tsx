@@ -71,7 +71,7 @@ export function SupriyaAboutSection({
             </span>
 
             {/* Heading */}
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]">
               {headingText}
             </h2>
 
@@ -112,7 +112,7 @@ export function SupriyaAboutSection({
             </span>
 
             {/* Heading */}
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-tight text-charcoal-900">
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#0F5C63]">
               {headingText}
             </h2>
 

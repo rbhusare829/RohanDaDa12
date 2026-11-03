@@ -152,7 +152,7 @@ export function SupriyaVideoReelsSection({
       <div className="container-x">
         {/* Section Heading: Only 'व्हिडिओ' (Single Title) */}
         <div className="text-center mb-6 sm:mb-10">
-          <h2 id="video-reels-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
+          <h2 id="video-reels-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]">
             {isMr ? 'व्हिडिओ' : 'Video'}
           </h2>
           <AccentBar center className="mt-2.5" bar="h-1 w-16" dot="h-1.5 w-3.5" />
@@ -193,7 +193,7 @@ export function SupriyaVideoReelsSection({
                           <SocialIcon name="youtube" className="size-4" /> {item.eyebrow}
                         </p>
                         {item.title && (
-                          <h3 className="mt-2 font-display text-xl font-bold leading-snug text-charcoal-900 sm:text-2xl">
+                          <h3 className="mt-2 font-display text-xl font-bold leading-snug text-[#182126] sm:text-2xl">
                             {item.title}
                           </h3>
                         )}
@@ -247,7 +247,7 @@ export function SupriyaVideoReelsSection({
           <div className="mt-12 sm:mt-16 border-t border-line pt-10">
             <div className="text-center mb-6 sm:mb-10">
               <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-saffron-700">{r.eyebrow}</span>
-              <h3 className="mt-1 font-display text-2xl sm:text-3xl font-bold tracking-tight text-charcoal-900">{r.title}</h3>
+              <h3 className="mt-1 font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#182126]">{r.title}</h3>
               <AccentBar center className="mt-2.5" bar="h-1 w-14" dot="h-1.5 w-3" />
             </div>
             <InstagramReels reels={r.items} />

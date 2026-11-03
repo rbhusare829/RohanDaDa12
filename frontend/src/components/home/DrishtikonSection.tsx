@@ -37,7 +37,7 @@ export function DrishtikonSection({
           <Reveal>
             <h2
               id="vision-section-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]"
             >
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </h2>
@@ -92,7 +92,7 @@ export function DrishtikonSection({
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <Reveal delay={0.2} x={40}>
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-charcoal-900">
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#182126]">
                 {isMr
                   ? 'उद्योजकतेतून सक्षम महाराष्ट्राची निर्मिती'
                   : 'Building an Empowered Maharashtra through Entrepreneurship'}

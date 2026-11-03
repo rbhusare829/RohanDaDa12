@@ -71,7 +71,7 @@ export function SupriyaInitiativesSection({
           <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-saffron-700">
             {isMr ? 'विकासाची ध्येये' : 'Key Focus Areas'}
           </span>
-          <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
+          <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#0F5C63]">
             {isMr ? 'प्रमुख कार्यक्षेत्रे आणि उपक्रम' : 'Key Initiatives & Social Work'}
           </h2>
           <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
@@ -103,7 +103,7 @@ export function SupriyaInitiativesSection({
                       </div>
                     </div>
 
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-charcoal-900 group-hover:text-saffron-700 transition-colors">
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-[#182126] group-hover:text-saffron-700 transition-colors">
                       {isMr ? it.title : it.enTitle}
                     </h3>
 

@@ -119,7 +119,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
           <div className="lg:col-span-8 space-y-5">
             <Reveal>
               {/* Heading / Core Tagline */}
-              <h2 className="font-display text-2xl lg:text-[2.2rem] font-bold leading-snug tracking-tight text-charcoal-900">
+              <h2 className="font-display text-2xl lg:text-[2.2rem] font-bold leading-snug tracking-tight text-[#182126]">
                 {isMr ? (
                   <>
                     <span>सर्वसामान्यांच्या हितासाठी आणि</span>{' '}
@@ -180,7 +180,7 @@ function PhilosophySection({ isMr }: { isMr: boolean }) {
         <div className="block lg:hidden">
           <Reveal className="flex flex-col items-start">
             {/* Heading / Core Tagline */}
-            <h2 className="font-display text-xl sm:text-2xl font-bold leading-snug tracking-tight text-charcoal-900">
+            <h2 className="font-display text-xl sm:text-2xl font-bold leading-snug tracking-tight text-[#182126]">
               {isMr ? (
                 <>
                   <span>सर्वसामान्यांच्या हितासाठी आणि</span>{' '}
@@ -416,7 +416,7 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
             <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-saffron-700">
               {isMr ? 'प्रशासकीय व संस्थात्मक अनुभव' : 'Governance & Institutional Experience'}
             </p>
-            <h2 className="mt-1.5 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
+            <h2 className="mt-1.5 font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#182126]">
               {isMr ? 'भूषविलेली पदे व जबाबदाऱ्या' : 'Positions Held'}
             </h2>
             {/* the saffron underline + teal dot */}
@@ -473,7 +473,7 @@ function PositionsHeldSection({ isMr }: { isMr: boolean }) {
                       <span className="text-[11px] font-extrabold uppercase tracking-wider text-saffron-700">
                         {item.role}
                       </span>
-                      <h3 className="mt-0.5 font-display text-base sm:text-lg font-bold text-charcoal-900">
+                      <h3 className="mt-0.5 font-display text-base sm:text-lg font-bold text-[#182126]">
                         {item.org}
                       </h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted">

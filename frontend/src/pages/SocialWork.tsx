@@ -36,7 +36,7 @@ export default function SocialWorkPage() {
           {groups.map((g) => (
             <section key={g.value} aria-labelledby={`cat-${g.value}`}>
               <Reveal className="mb-8 flex items-center gap-4">
-                <h2 id={`cat-${g.value}`} className="text-[1.6rem] leading-tight text-charcoal-900 md:text-[2rem]">{categoryLabel(g.value, locale)}</h2>
+                <h2 id={`cat-${g.value}`} className="text-[1.6rem] leading-tight text-[#182126] md:text-[2rem]">{categoryLabel(g.value, locale)}</h2>
                 <DrawRule />
                 <span className="text-sm text-muted">{g.items.length}</span>
               </Reveal>

@@ -142,7 +142,7 @@ function StitchBanner({
                 {eyebrow}
               </span>
             )}
-            <h1 className="animate-fade-up text-2xl font-bold leading-[1.2] tracking-tight text-charcoal-900 sm:text-4xl lg:text-5xl">
+            <h1 className="animate-fade-up text-2xl font-bold leading-[1.2] tracking-tight text-[#0F5C63] sm:text-4xl lg:text-5xl">
               {title}
             </h1>
             <div aria-hidden className="mt-3 mb-2 flex items-center gap-1.5">

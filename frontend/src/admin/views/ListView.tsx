@@ -212,7 +212,7 @@ function CollectionList({ def }: { def: CollectionDef }) {
           <>
             {exportHref && <a href={exportHref} className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-white px-4 text-[0.9rem] font-semibold ring-1 ring-charcoal-900/15 hover:bg-cream"><Download className="size-4" aria-hidden /> Export CSV</a>}
             {def.permissions.create && !isPhotos && (
-              <Link to={`/admin/collections/${def.slug}/create`} className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-saffron-600 px-4 text-[0.9rem] font-semibold text-white hover:bg-saffron-700"><Plus className="size-4" aria-hidden /> {def.upload ? 'Upload' : `New ${def.labels.singular.toLowerCase()}`}</Link>
+              <Link to={`/admin/collections/${def.slug}/create`} className="inline-flex min-h-10 items-center gap-2 rounded-lg bg-saffron-600 px-4 text-[0.9rem] font-semibold text-ink hover:bg-saffron-700 hover:text-white"><Plus className="size-4" aria-hidden /> {def.upload ? 'Upload' : `New ${def.labels.singular.toLowerCase()}`}</Link>
             )}
           </>
         }
@@ -281,7 +281,7 @@ function CollectionList({ def }: { def: CollectionDef }) {
           })}
         </ul>
       ) : (
-        <div className="overflow-x-auto rounded-xl bg-white shadow-[0_1px_2px_rgb(20_33_61/0.06)] ring-1 ring-charcoal-900/[0.07]" aria-busy={list.loading}>
+        <div className="overflow-x-auto rounded-xl bg-white shadow-[0_1px_2px_rgb(24_33_38/0.06)] ring-1 ring-charcoal-900/[0.07]" aria-busy={list.loading}>
           <table className="w-full min-w-[40rem] text-left text-[0.92rem]">
             <thead>
               <tr className="border-b border-charcoal-900/10 text-[0.78rem] uppercase tracking-wide text-charcoal-800/75">

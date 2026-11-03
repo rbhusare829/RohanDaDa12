@@ -18,7 +18,7 @@ export default function PhotoLightbox({ slides, index, onClose }: { slides: Ligh
       slides={slides}
       plugins={[Captions, Zoom]}
       animation={{ fade: 220, swipe: 380, easing: { fade: 'ease', swipe: 'cubic-bezier(0.22, 1, 0.36, 1)', navigation: 'cubic-bezier(0.22, 1, 0.36, 1)' } }}
-      styles={{ container: { backgroundColor: 'rgba(12,30,20,.96)' } }}
+      styles={{ container: { backgroundColor: 'rgba(24,33,38,.96)' } }}
     />
   )
 }

@@ -7,10 +7,10 @@ type Block = NonNullable<Home['sections']>[number]
 type AboutBlock = Extract<Block, { blockType: 'aboutIntro' }>
 
 /**
- * About Section:
- * - Desktop (lg+): Clean 2-column layout. Left column has Header, lead paragraph,
- *   and second paragraph with Read More together (no artificial row gaps).
- *   Right column has Rohan Deshmukh's framed portrait with deep black back shadow.
+ * About Section (Modern Teal + Saffron: Cloud White, editorial):
+ * - Desktop (lg+): Clean 2-column layout. Left column has the eyebrow, the heading, the tagline as a pull quote beside a saffron rule,
+ *   and both paragraphs with Read More together (no artificial row gaps).
+ *   Right column has Rohan Deshmukh's portrait in a Cloud White frame, a thin teal outline set off behind it and a small saffron block.
  * - Mobile (<lg): Flow: Header & lead text (ending in '...ताकद आहे.'), THEN
  *   Rohan sir's photo, THEN the second paragraph ('स्वामी विवेकानंदांच्या...') with Read More.
  */
@@ -34,22 +34,15 @@ export function SupriyaAboutSection({
     ? 'सर्वसामान्यांच्या हितासाठी आणि सर्वांगीण विकासासाठी कटिबद्ध'
     : "I'm committed to the betterment of the people"
 
-  // Shared photo card component with rich black back shadow
+  // the portrait, editorial style: a Cloud White frame with a soft charcoal shadow, a thin Modern Teal outline set off behind it and a small
+  // Saffron Amber block at its top corner (decoration only)
   const photoCard = (className = '') => (
-    <div className={`group relative w-full ${className}`}>
-      {/* Deep diffused black back shadow behind the photo */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-3 -bottom-6 top-8 -z-10 rounded-3xl bg-black/45 blur-2xl transition-all duration-500 group-hover:bg-black/60 group-hover:blur-3xl group-hover:-bottom-7"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -inset-2 -z-10 rounded-[2rem] bg-black/25 blur-xl transition-all duration-500"
-      />
+    <div className={`group relative isolate w-full ${className}`}>
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-2xl border-[1.5px] border-charcoal-900/70 transition-transform duration-500 sm:translate-x-5 sm:translate-y-5 sm:rounded-3xl motion-safe:group-hover:translate-x-6 motion-safe:group-hover:translate-y-6" />
+      <div aria-hidden className="pointer-events-none absolute -left-3 -top-3 -z-10 size-16 rounded-lg bg-gold sm:-left-4 sm:-top-4 sm:size-20" />
 
-      {/* Framed portrait card with deep black elevation shadow */}
-      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-white bg-white shadow-[0_20px_45px_-10px_rgba(0,0,0,0.35),0_10px_20px_-6px_rgba(0,0,0,0.2)] ring-1 ring-stone-200/80 transition-all duration-500 group-hover:shadow-[0_30px_60px_-10px_rgba(0,0,0,0.45)] group-hover:-translate-y-1">
-        <div className="aspect-[3/4] w-full overflow-hidden bg-stone-100">
+      <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl border-3 sm:border-4 border-paper bg-paper shadow-[0_24px_48px_-20px_rgba(24,33,38,0.45)] transition-all duration-500 motion-safe:group-hover:-translate-y-1 group-hover:shadow-[0_32px_60px_-22px_rgba(24,33,38,0.55)]">
+        <div className="aspect-[3/4] w-full overflow-hidden bg-cream">
           <img
             src="/images/portraits/rohan-peach-kurta-namaskar.webp"
             alt={headingText}
@@ -64,7 +57,7 @@ export function SupriyaAboutSection({
   )
 
   return (
-    <section className="bg-white py-10 sm:py-12 lg:py-16 overflow-hidden">
+    <section className="bg-paper py-12 sm:py-16 lg:py-20 overflow-hidden">
       <div className="container-x">
         {/* ============================================================== */}
         {/* DESKTOP LAYOUT (lg: and up): Clean 2-column, no vertical gap   */}
@@ -72,29 +65,29 @@ export function SupriyaAboutSection({
         <div className="hidden lg:grid lg:grid-cols-12 lg:gap-12 xl:gap-14 lg:items-center">
           {/* Left Column: All text continuous */}
           <Reveal className="flex flex-col items-start lg:col-span-7">
-            {/* Red Eyebrow */}
-            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
+            {/* small eyebrow in Modern Teal after a saffron bar (saffron words that small would be too faint) */}
+            <span className="eyebrow sm:text-sm">
               {eyebrowText}
             </span>
 
             {/* Heading */}
-            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
+            <h2 className="mt-2 font-display text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
               {headingText}
             </h2>
 
-            {/* Signature Red & Saffron Underline Accent Bar */}
-            <div className="mt-3 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
-              <span className="h-1 w-3 rounded-full bg-saffron-500" />
+            {/* the saffron underline + teal dot */}
+            <div aria-hidden className="mt-3 flex items-center gap-1.5">
+              <span className="h-1 w-14 rounded-full bg-gold" />
+              <span className="h-1 w-3 rounded-full bg-leaf-600" />
             </div>
 
-            {/* Tagline */}
-            <p className="mt-3 mb-6 font-display text-lg lg:text-xl font-bold sm:font-semibold text-red-600">
+            {/* Tagline: a pull quote beside a saffron rule */}
+            <p className="mt-5 mb-7 border-l-4 border-gold pl-4 font-display text-lg lg:text-xl font-semibold leading-snug text-charcoal-950">
               {taglineText}
             </p>
 
             {/* Continuous Bio Body Text - both paragraphs together */}
-            <div className="space-y-4 text-base leading-relaxed text-charcoal-800 lg:text-[1.03rem]">
+            <div className="space-y-4 text-base leading-relaxed text-ink lg:text-[1.03rem]">
               <p>{bioShort}</p>
               <p>
                 {bioRest} <ReadMore isMr={isMr} />
@@ -113,29 +106,29 @@ export function SupriyaAboutSection({
         {/* ============================================================== */}
         <div className="block lg:hidden">
           <Reveal className="flex flex-col items-start">
-            {/* Red Eyebrow */}
-            <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
+            {/* small eyebrow in Modern Teal after a saffron bar (saffron words that small would be too faint) */}
+            <span className="eyebrow sm:text-sm">
               {eyebrowText}
             </span>
 
             {/* Heading */}
-            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-tight text-[#000d3d]">
+            <h2 className="mt-2 font-display text-3xl sm:text-4xl font-bold tracking-tight text-charcoal-900">
               {headingText}
             </h2>
 
-            {/* Signature Red & Saffron Underline Accent Bar */}
-            <div className="mt-3 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
-              <span className="h-1 w-3 rounded-full bg-saffron-500" />
+            {/* the saffron underline + teal dot */}
+            <div aria-hidden className="mt-3 flex items-center gap-1.5">
+              <span className="h-1 w-14 rounded-full bg-gold" />
+              <span className="h-1 w-3 rounded-full bg-leaf-600" />
             </div>
 
-            {/* Tagline */}
-            <p className="mt-3 mb-5 font-display text-[1.15rem] leading-snug sm:text-lg font-bold sm:font-semibold text-red-600">
+            {/* Tagline: a pull quote beside a saffron rule */}
+            <p className="mt-4 mb-5 border-l-4 border-gold pl-3.5 font-display text-[1.15rem] leading-snug sm:text-lg font-semibold text-charcoal-950">
               {taglineText}
             </p>
 
             {/* Paragraph 1 (ends with '...ताकद आहे.') */}
-            <p className="text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
+            <p className="text-base leading-relaxed text-ink sm:text-[1.03rem]">
               {bioShort}
             </p>
 
@@ -145,7 +138,7 @@ export function SupriyaAboutSection({
             </div>
 
             {/* Paragraph 2 ('स्वामी विवेकानंदांच्या...') with Read More */}
-            <p className="text-base leading-relaxed text-charcoal-800 sm:text-[1.03rem]">
+            <p className="text-base leading-relaxed text-ink sm:text-[1.03rem]">
               {bioRest} <ReadMore isMr={isMr} />
             </p>
           </Reveal>
@@ -158,7 +151,7 @@ export function SupriyaAboutSection({
 const ReadMore = ({ isMr }: { isMr: boolean }) => (
   <Link
     to="/about/introduction"
-    className="font-bold text-[#000d3d] hover:text-red-600 underline underline-offset-4 ml-1 inline-block"
+    className="font-bold text-charcoal-900 underline decoration-gold decoration-2 underline-offset-4 ml-1 inline-block transition-colors hover:text-ink"
   >
     {isMr ? 'अधिक वाचा' : 'Read More'}
   </Link>

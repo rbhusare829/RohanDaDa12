@@ -148,11 +148,11 @@ export function SupriyaVideoReelsSection({
   if (!videoList.length && !r?.items.length) return null
 
   return (
-    <section className="bg-white border-t border-stone-200 py-6 sm:py-10 lg:py-14" aria-labelledby="video-reels-title">
+    <section className="bg-cream border-t border-line py-6 sm:py-10 lg:py-14" aria-labelledby="video-reels-title">
       <div className="container-x">
         {/* Section Heading: Only 'व्हिडिओ' (Single Title) */}
         <div className="text-center mb-6 sm:mb-10">
-          <h2 id="video-reels-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
+          <h2 id="video-reels-title" className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
             {isMr ? 'व्हिडिओ' : 'Video'}
           </h2>
           <AccentBar center className="mt-2.5" bar="h-1 w-16" dot="h-1.5 w-3.5" />
@@ -175,13 +175,13 @@ export function SupriyaVideoReelsSection({
               >
                 {videoList.map((item, idx) => (
                   <div key={item.url || idx} className="w-full shrink-0">
-                    <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-sm transition-shadow hover:shadow-md lg:grid-cols-12">
+                    <div className="grid grid-cols-1 overflow-hidden rounded-2xl border border-line bg-paper shadow-sm transition-shadow hover:shadow-md lg:grid-cols-12">
                       {/* Video Player / Thumbnail */}
-                      <div className="flex items-center bg-[#000d3d] lg:col-span-7 xl:col-span-8 [&>div]:rounded-none">
+                      <div className="flex items-center bg-charcoal-950 lg:col-span-7 xl:col-span-8 [&>div]:rounded-none">
                         <YouTube
                           url={item.url}
                           title={null}
-                          playClassName="bg-red-600"
+                          playClassName="bg-saffron-600"
                           poster={POSTERS[youtubeId(item.url) ?? '']}
                           onPlay={() => setHasPlayedVideo(true)}
                         />
@@ -189,26 +189,27 @@ export function SupriyaVideoReelsSection({
 
                       {/* Content Side */}
                       <div className="flex flex-col justify-center p-6 sm:p-8 lg:col-span-5 xl:col-span-4">
-                        <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-red-600">
+                        <p className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-widest text-saffron-700">
                           <SocialIcon name="youtube" className="size-4" /> {item.eyebrow}
                         </p>
                         {item.title && (
-                          <h3 className="mt-2 font-display text-xl font-bold leading-snug text-[#000d3d] sm:text-2xl">
+                          <h3 className="mt-2 font-display text-xl font-bold leading-snug text-charcoal-900 sm:text-2xl">
                             {item.title}
                           </h3>
                         )}
                         <AccentBar className="mt-3 mb-4" bar="h-1 w-12" dot="h-1.5 w-3" />
                         {item.text && (
-                          <p className="text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
+                          <p className="text-sm leading-relaxed text-muted sm:text-[0.95rem]">
                             {item.text}
                           </p>
                         )}
+                        {/* the saffron play button on the video is this card's main action, so "watch on YouTube" is the Modern Teal outline */}
                         <div className="mt-6 flex flex-wrap gap-3">
                           <a
                             href={item.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group inline-flex items-center gap-2.5 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
+                            className="group inline-flex items-center gap-2.5 rounded-full px-6 py-2.5 text-sm font-bold text-charcoal-900 shadow-[inset_0_0_0_2px_var(--color-charcoal-900)] transition-all duration-300 hover:bg-charcoal-900 hover:text-paper hover:shadow-lg hover:-translate-y-0.5"
                           >
                             {item.buttonLabel} <ArrowUpRight aria-hidden className="size-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                           </a>
@@ -231,7 +232,7 @@ export function SupriyaVideoReelsSection({
                     onClick={() => goToSlide(i)}
                     className={cn(
                       'h-2.5 rounded-full transition-all duration-300',
-                      currentIndex === i ? 'w-8 bg-red-600' : 'w-2.5 bg-stone-300 hover:bg-stone-400'
+                      currentIndex === i ? 'w-8 bg-saffron-600' : 'w-2.5 bg-field hover:bg-charcoal-900'
                     )}
                     aria-label={`${isMr ? 'व्हिडिओ' : 'Video'} ${i + 1}`}
                   />
@@ -243,10 +244,10 @@ export function SupriyaVideoReelsSection({
 
         {/* Instagram Reels Grid */}
         {r && r.items.length > 0 && (
-          <div className="mt-12 sm:mt-16 border-t border-stone-100 pt-10">
+          <div className="mt-12 sm:mt-16 border-t border-line pt-10">
             <div className="text-center mb-6 sm:mb-10">
-              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">{r.eyebrow}</span>
-              <h3 className="mt-1 font-display text-2xl sm:text-3xl font-bold tracking-tight text-[#000d3d]">{r.title}</h3>
+              <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-saffron-700">{r.eyebrow}</span>
+              <h3 className="mt-1 font-display text-2xl sm:text-3xl font-bold tracking-tight text-charcoal-900">{r.title}</h3>
               <AccentBar center className="mt-2.5" bar="h-1 w-14" dot="h-1.5 w-3" />
             </div>
             <InstagramReels reels={r.items} />

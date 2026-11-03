@@ -21,7 +21,7 @@ export function ProjectVideos({ videos, countLabel }: { videos: { url: string; t
                 onClick={() => setActive(i)}
                 className={cn(
                   'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-left text-sm font-semibold transition',
-                  i === active ? 'border-btn bg-btn text-white' : 'border-field bg-white text-charcoal-900 hover:border-field-hover hover:bg-cream',
+                  i === active ? 'border-charcoal-900 bg-charcoal-900 text-paper' : 'border-field bg-paper text-charcoal-900 hover:border-charcoal-900 hover:bg-cream',
                 )}
               >
                 <PlayCircle aria-hidden className="size-4 shrink-0" /> {v.title || `${i + 1}`}

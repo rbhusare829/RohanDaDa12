@@ -30,14 +30,14 @@ export function CategoryChip({ cat, dark }: { cat: Category | null; dark?: boole
         dark ? '-my-3 min-h-11 items-center' : 'tap-pad text-[0.85rem] text-saffron-700 hover:text-charcoal-900',
       )}
     >
-      {dark ? <span className="rounded-full bg-white/90 px-2.5 py-0.5 text-xs text-charcoal-900 transition group-hover/chip:bg-white">{cat.title}</span> : cat.title}
+      {dark ? <span className="rounded-full bg-paper/90 px-2.5 py-0.5 text-xs text-charcoal-900 transition group-hover/chip:bg-paper">{cat.title}</span> : cat.title}
     </Link>
   )
 }
 
 export function PostMeta({ post, locale, className, withCategory = true }: { post: Post; locale: string; className?: string; withCategory?: boolean }) {
   return (
-    <div className={cn('flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.82rem] text-muted', className)}>
+    <div className={cn('flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.82rem] text-ink', className)}>
       {withCategory && <CategoryChip cat={primaryCategory(post)} />}
       <span className="inline-flex items-center gap-1.5">
         <CalendarDays className="size-3.5 text-saffron-600" />
@@ -61,12 +61,12 @@ export function LeadStory({ post, locale, badge, readFull }: { post: Post; local
       <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-charcoal-900 sm:aspect-[16/10]">
         <Img media={post.coverImage} variant="hero" alt={mediaAlt(post.coverImage, post.title)} fill priority sizes="(max-width:1024px) 100vw, 60vw" className="object-cover transition duration-700 group-hover:scale-[1.03]" style={photoFit(post.coverImage, 1.6, 0.6)} />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-900/25 to-transparent" />
-        <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-saffron-600 px-3 py-1 text-xs font-semibold text-white">
+        <span className="absolute left-5 top-5 inline-flex items-center gap-1.5 rounded-full bg-saffron-600 px-3 py-1 text-xs font-semibold text-ink">
           <Sparkles className="size-3.5" /> {badge}
         </span>
         <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
           <CategoryChip cat={cat} dark />
-          <h3 className="mt-3 line-clamp-3 text-2xl leading-snug text-white md:text-[2rem]">
+          <h3 className="mt-3 line-clamp-3 text-2xl leading-snug text-paper md:text-[2rem]">
             <Link to={`/blog/${post.slug}`} className="after:absolute after:inset-0">{post.title}</Link>
           </h3>
         </div>
@@ -86,7 +86,7 @@ export function LatestList({ posts, locale, title, footer }: { posts: Post[]; lo
   return (
     <aside className="flex flex-col">
       <h3 className="flex items-center gap-2.5 border-b-2 border-charcoal-900 pb-3 text-lg text-charcoal-900">
-        <span aria-hidden className="h-0.5 w-6 shrink-0 rounded-full bg-saffron-500" /> {title}
+        <span aria-hidden className="h-0.5 w-6 shrink-0 rounded-full bg-gold" /> {title}
       </h3>
       <ul className="divide-y divide-line">
         {posts.map((p) => {
@@ -98,7 +98,7 @@ export function LatestList({ posts, locale, title, footer }: { posts: Post[]; lo
                 <h4 className="mt-0.5 line-clamp-2 text-[1rem] font-semibold leading-snug text-charcoal-900 transition group-hover:text-saffron-700">
                   <Link to={`/blog/${p.slug}`} className="after:absolute after:inset-0">{p.title}</Link>
                 </h4>
-                <p className="mt-1.5 flex items-center gap-1.5 text-xs text-muted"><CalendarDays className="size-3.5" />{formatDate(p.publishedAt, locale)}</p>
+                <p className="mt-1.5 flex items-center gap-1.5 text-xs text-ink"><CalendarDays className="size-3.5" />{formatDate(p.publishedAt, locale)}</p>
               </div>
               <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-cream">
                 <Img media={p.coverImage} variant="thumb" alt="" fill sizes="96px" className="object-cover transition duration-500 group-hover:scale-105" style={photoFit(p.coverImage, 4 / 3, 0.6)} />
@@ -107,7 +107,7 @@ export function LatestList({ posts, locale, title, footer }: { posts: Post[]; lo
           )
         })}
       </ul>
-      {footer && <p className="mt-auto border-t border-line pt-3 text-center text-xs text-muted">{footer}</p>}
+      {footer && <p className="mt-auto border-t border-line pt-3 text-center text-xs text-ink">{footer}</p>}
     </aside>
   )
 }
@@ -147,7 +147,7 @@ export function TopicsCard({ cats, active, title, allLabel }: { cats: Category[]
           const on = (active ?? '') === c.slug
           return (
             <Link key={c.slug || 'all'} to={c.slug ? `/blog?category=${c.slug}` : '/blog'} aria-current={on ? 'true' : undefined}
-              className={cn('inline-flex min-h-11 items-center rounded-xl border px-4 py-1.5 text-sm font-medium transition', on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-charcoal-800 hover:border-btn hover:bg-btn hover:text-white')}>
+              className={cn('inline-flex min-h-11 items-center rounded-xl border px-4 py-1.5 text-sm font-medium transition', on ? 'border-charcoal-900 bg-charcoal-900 text-paper' : 'border-field bg-paper text-charcoal-900 hover:border-charcoal-900 hover:bg-charcoal-900 hover:text-paper')}>
               {c.title}
             </Link>
           )
@@ -171,7 +171,7 @@ export function RecentList({ posts, locale, title }: { posts: Post[]; locale: st
               <h4 className="line-clamp-2 text-[0.97rem] font-semibold leading-snug text-charcoal-900 transition group-hover:text-saffron-700">
                 <Link to={`/blog/${p.slug}`} className="after:absolute after:inset-0">{p.title}</Link>
               </h4>
-              <p className="mt-1 text-xs text-muted">{primaryCategory(p)?.title ? `${primaryCategory(p)!.title} • ` : ''}{formatDate(p.publishedAt, locale)}</p>
+              <p className="mt-1 text-xs text-ink">{primaryCategory(p)?.title ? `${primaryCategory(p)!.title} • ` : ''}{formatDate(p.publishedAt, locale)}</p>
             </div>
           </li>
         ))}

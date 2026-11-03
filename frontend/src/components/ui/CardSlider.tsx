@@ -60,7 +60,7 @@ export function CardSlider({ cards, readMore, prevLabel = 'Previous', nextLabel 
                     ) : (
                       // no photo yet: branded placeholder with the first letter
                       <div aria-hidden className="grid h-full place-items-center bg-gradient-to-br from-saffron-50 via-paper to-saffron-100">
-                        <span className="grid size-16 place-items-center rounded-full bg-white font-display text-3xl text-saffron-600 shadow-sm ring-1 ring-saffron-100">{c.title.trim().charAt(0)}</span>
+                        <span className="grid size-16 place-items-center rounded-full bg-paper font-display text-3xl text-saffron-600 shadow-sm ring-1 ring-saffron-100">{c.title.trim().charAt(0)}</span>
                       </div>
                     )}
                   </div>

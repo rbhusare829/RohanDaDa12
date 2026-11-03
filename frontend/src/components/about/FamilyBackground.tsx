@@ -14,14 +14,14 @@ type MediaText = Extract<Block, { blockType: 'mediaText' }>
 type Content = Extract<Block, { blockType: 'content' }>
 
 /**
- * One colour family per member (kesariya, green, navy), the same as the homepage's कौटुंबिक पार्श्वभूमी cards: the tint of the
- * photo panel, and the halo behind the father only. The portraits are cut-outs on a transparent background, so the panel colour is
+ * One colour family per member (Modern Teal + Saffron: Saffron Amber, Jade, Modern Teal — soft tints of each), the same as the homepage's
+ * कौटुंबिक पार्श्वभूमी cards: the tint of the photo panel, and the halo behind the father only. The portraits are cut-outs on a transparent background, so the panel colour is
  * what they stand on.
  */
 const ACCENTS = [
-  { panel: 'from-saffron-100/90 via-saffron-50 to-orange-50/60', halo: '' },
-  { panel: 'from-emerald-100/80 via-leaf-50 to-emerald-50/50', halo: 'bg-leaf-300/35' },
-  { panel: 'from-slate-200/90 via-slate-100 to-indigo-50/50', halo: '' },
+  { panel: 'from-saffron-100 via-saffron-50 to-paper', halo: '' },
+  { panel: 'from-leaf-50 via-leaf-50/60 to-paper', halo: 'bg-leaf-200/50' },
+  { panel: 'from-charcoal-900/10 via-charcoal-900/5 to-paper', halo: '' },
 ] as const
 
 /** the homepage's family photos (same order: grandfather, father, brother), used when a member has no photo in the admin */
@@ -44,7 +44,7 @@ const rise: Variants = { hidden: { opacity: 0, y: 22, scale: 0.97 }, show: (i: n
  * कौटुंबिक पार्श्वभूमी page (Stitch design, Oct 2026): the family introduction (परिवार) — the whole family's photo on the left, the
  * heading and the text beside it (on phones: heading, photo, text) — then the family
  * members (the page's consecutive Media + text blocks, edited under Pages in the admin) as cards in the homepage's कौटुंबिक
- * पार्श्वभूमी style — a tinted photo panel with the relation label in maroon, then the name and the whole story (on phones shortened behind "Read more"). On mobile, it seamlessly presents an interactive swipeable snap-carousel with
+ * पार्श्वभूमी style — a tinted photo panel with the relation label in Modern Teal, then the name and the whole story (on phones shortened behind "Read more"). On mobile, it seamlessly presents an interactive swipeable snap-carousel with
  * dot indicators and touch navigation; on wide screens, members sit side by side in a clean responsive grid.
  */
 export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; locale?: 'mr' | 'en' }) {
@@ -115,12 +115,12 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:grid-rows-[auto_1fr] lg:gap-x-12 lg:gap-y-6">
             <Reveal className="lg:col-span-7 lg:col-start-6 lg:row-start-1">
               {intro.eyebrow && <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-saffron-700">{intro.eyebrow}</p>}
-              {intro.heading && <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-950 sm:text-4xl">{intro.heading}</h2>}
-              <span aria-hidden className="mt-5 block h-1 w-16 rounded-full bg-gradient-to-r from-saffron-600 to-leaf-600" />
+              {intro.heading && <h2 className="mt-1 font-display text-3xl font-bold leading-tight tracking-tight text-charcoal-900 sm:text-4xl">{intro.heading}</h2>}
+              <span aria-hidden className="mt-5 flex items-center gap-1.5"><span className="h-1 w-14 rounded-full bg-gold" /><span className="h-1 w-3 rounded-full bg-leaf-600" /></span>
             </Reveal>
-            {/* the whole family: a white frame like the cards below, the faces kept in view (object-top) */}
+            {/* the whole family: a Cloud frame like the cards below, the faces kept in view (object-top) */}
             <Reveal delay={0.05} className="lg:col-span-5 lg:col-start-1 lg:row-span-2 lg:row-start-1 lg:self-center">
-              <figure className="overflow-hidden rounded-3xl bg-white p-2.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.35)] ring-1 ring-stone-200/85">
+              <figure className="overflow-hidden rounded-3xl bg-cream p-2.5 shadow-[0_16px_36px_-24px_rgba(24,33,38,0.35)] ring-1 ring-line">
                 <img
                   src={FAMILY_PHOTO.src}
                   width={FAMILY_PHOTO.width}
@@ -158,16 +158,16 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                   key={member.id ?? i}
                   data-member-card={i}
                   className={cn(
-                    'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.25)] ring-1 ring-stone-200/85',
-                    'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(14,30,52,0.35)] motion-safe:hover:-translate-y-1.5',
+                    'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl bg-cream p-3.5 shadow-[0_16px_36px_-24px_rgba(24,33,38,0.25)] ring-1 ring-line',
+                    'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(24,33,38,0.35)] motion-safe:hover:-translate-y-1.5',
                     'md:h-full md:w-auto md:max-w-none md:shrink md:snap-align-none',
                   )}
                 >
-                  {/* the photo panel: a soft tint, the halo (father only), the relation label in maroon */}
+                  {/* the photo panel: a soft tint, the halo (father only), the relation label in Modern Teal */}
                   <div className={cn('relative isolate aspect-[4/3.1] overflow-hidden rounded-2xl bg-gradient-to-b', a.panel)}>
                     {a.halo && <m.span aria-hidden variants={bloom} custom={i} className={cn('absolute left-1/2 top-[56%] -z-10 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full', a.halo)} />}
                     {member.eyebrow && (
-                      <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-[#800020]">{relation(member.eyebrow)}</span>
+                      <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-saffron-700">{relation(member.eyebrow)}</span>
                     )}
                     {photo || fallback ? (
                       <m.div variants={rise} custom={i} className="absolute inset-x-[4%] bottom-0 top-[10%]">
@@ -200,12 +200,12 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                   {/* the name and the whole story */}
                   <div className="flex flex-1 flex-col px-3 pb-4 pt-4 lg:pt-5">
                     {member.heading && (
-                      <h3 className="font-display text-[1.28rem] font-bold leading-snug tracking-tight text-charcoal-950 sm:text-[1.35rem] md:text-[1.4rem] lg:text-[1.3rem] xl:text-[1.4rem]">
+                      <h3 className="font-display text-[1.28rem] font-bold leading-snug tracking-tight text-charcoal-900 sm:text-[1.35rem] md:text-[1.4rem] lg:text-[1.3rem] xl:text-[1.4rem]">
                         {member.heading}
                       </h3>
                     )}
                     {/* phones: the first lines and "अधिक वाचा / Read more"; tablets and desktops: the whole story */}
-                    <RichText readMore html={member.body} className="mt-3 text-[0.95rem] leading-[1.75] text-slate-600" />
+                    <RichText readMore html={member.body} className="mt-3 text-[0.95rem] leading-[1.75] text-muted" />
                   </div>
                 </StaggerItem>
               )
@@ -216,10 +216,10 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
           {count > 1 && (
             <div className="mt-4 flex items-center justify-between px-2 pr-14 md:pr-0 md:hidden">
               {/* Swipe prompt with subtle animated hint */}
-              <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-500">
-                <span className="inline-block animate-pulse text-saffron-600">←</span>
+              <div className="inline-flex items-center gap-1.5 text-xs font-semibold text-ink">
+                <span aria-hidden className="inline-block animate-pulse text-saffron-600">←</span>
                 <span>{isMr ? 'स्वाइप करा' : 'Swipe'}</span>
-                <span className="inline-block animate-pulse text-saffron-600">→</span>
+                <span aria-hidden className="inline-block animate-pulse text-saffron-600">→</span>
               </div>
 
               {/* Dot Indicators: the dot stays small, the button around it is a full 44 px tap area */}
@@ -237,8 +237,8 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                       className={cn(
                         'block h-2 rounded-full transition-all duration-300',
                         activeIndex === dotIdx
-                          ? 'w-6 bg-gradient-to-r from-saffron-600 to-saffron-500 shadow-sm shadow-saffron-600/30'
-                          : 'w-2 bg-stone-300 group-hover:bg-stone-400',
+                          ? 'w-6 bg-saffron-600 shadow-sm shadow-saffron-600/30'
+                          : 'w-2 bg-field group-hover:bg-charcoal-900',
                       )}
                     />
                   </button>
@@ -252,7 +252,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                   onClick={() => scrollToIndex(Math.max(0, activeIndex - 1))}
                   disabled={activeIndex === 0}
                   aria-label={isMr ? 'मागील' : 'Previous'}
-                  className="grid size-11 place-items-center rounded-full border border-stone-200 bg-white text-charcoal-700 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
+                  className="grid size-11 place-items-center rounded-full border border-line bg-paper text-charcoal-900 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
                 >
                   <ChevronLeft className="size-4" />
                 </button>
@@ -261,7 +261,7 @@ export function FamilyBackground({ blocks, locale }: { blocks?: Block[] | null; 
                   onClick={() => scrollToIndex(Math.min(count - 1, activeIndex + 1))}
                   disabled={activeIndex === count - 1}
                   aria-label={isMr ? 'पुढील' : 'Next'}
-                  className="grid size-11 place-items-center rounded-full border border-stone-200 bg-white text-charcoal-700 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
+                  className="grid size-11 place-items-center rounded-full border border-line bg-paper text-charcoal-900 shadow-sm transition-all active:scale-95 disabled:pointer-events-none disabled:opacity-30"
                 >
                   <ChevronRight className="size-4" />
                 </button>

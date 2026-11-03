@@ -88,30 +88,30 @@ const goalsList = () => `<ul>${COPY.goals.map((g) => `<li><strong>${esc(t(g.titl
 /** 01, 02… (Devanagari digits on the Marathi site) */
 const pad = (n: number) => (LOCALE === 'mr' ? toMarathiDigits(String(n).padStart(2, '0')) : String(n).padStart(2, '0'))
 const bleed = 'relative left-1/2 w-screen -translate-x-1/2'
-const NAVY = 'text-[#000d3d]'
-/** the step numbers: red, navy, saffron (as on the homepage) */
-const stepBg = (i: number) => (i % 3 === 1 ? 'bg-[#000d3d]' : i % 3 === 2 ? 'bg-saffron-500' : 'bg-red-600')
-/** the homepage buttons: red, navy on hover; the second one outlined in navy */
+const NAVY = 'text-charcoal-900'
+/** the step numbers: Saffron Amber (Charcoal Black figure), Modern Teal (white figure), Jade (white figure) */
+const stepBg = (i: number) => (i % 3 === 1 ? 'bg-charcoal-900 text-paper' : i % 3 === 2 ? 'bg-leaf-700 text-white' : 'bg-saffron-600 text-ink')
+/** the palette's buttons: the first is the saffron one (Charcoal Black words; under the pointer Charcoal sweeps in and the words turn Cloud White), the second a Modern Teal outline */
 const btn = (i: number) =>
   cn(
     'inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-bold shadow-sm transition-colors',
-    i === 0 ? 'bg-red-600 text-white hover:bg-[#000d3d]' : 'border border-[#000d3d]/20 bg-white text-[#000d3d] hover:border-red-600 hover:text-red-600',
+    i === 0 ? 'btn-sweep bg-btn text-ink hover:text-white' : 'border-2 border-charcoal-900 bg-transparent text-charcoal-900 hover:bg-charcoal-900 hover:text-paper',
   )
 
-/** the red-and-saffron bar under every homepage heading */
+/** the saffron underline + teal dot under every heading */
 function Bar({ center }: { center?: boolean }) {
   return (
     <span aria-hidden className={cn('flex items-center gap-1.5', center && 'justify-center')}>
-      <span className="h-1 w-14 rounded-full bg-red-600" />
-      <span className="h-1 w-3 rounded-full bg-saffron-500" />
+      <span className="h-1 w-14 rounded-full bg-gold" />
+      <span className="h-1 w-3 rounded-full bg-leaf-600" />
     </span>
   )
 }
 
 /**
  * Vision page (redesign, Oct 2026) — the page's blocks from Pages in the admin, each in a look made for the manifesto, in the
- * homepage's colours (navy titles, red labels and buttons that turn navy on hover, the red-and-saffron bar, light-blue bands,
- * white cards with stone borders):
+ * Modern Teal + Saffron (Modern Teal titles and small labels, one saffron button and a blue outline, the saffron underline + jade
+ * dot, Cloud cards with cool hairlines):
  *  - a Cards block without a heading (the Read · Pledge · Act bar) is not shown
  *  - Media + text (the book) → the cover in 3D beside the text and buttons
  *  - Stats → a navy band of big numbers
@@ -166,18 +166,18 @@ function Book({ block }: { block: MediaText }) {
         <Reveal delay={0.1} className={cn('flex flex-col gap-5', hasImg && 'lg:col-span-7 lg:row-start-1 lg:self-end', hasImg && (right ? 'lg:col-start-1' : 'lg:col-start-6'))}>
           <div>
             <h2 className={cn('font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl', NAVY)}>{t(COPY.title)}</h2>
-            <p className="mt-3 font-display text-lg font-semibold leading-snug text-slate-700 sm:text-xl">{t(COPY.pledge)}</p>
+            <p className="mt-3 font-display text-lg font-semibold leading-snug text-ink sm:text-xl">{t(COPY.pledge)}</p>
           </div>
           <Bar />
-          <p className="font-display text-lg font-bold text-red-600">{t(COPY.motto)}</p>
+          <p className="font-display text-lg font-bold text-saffron-700">{t(COPY.motto)}</p>
           <RichText html={`<p>${esc(t(COPY.intro))}</p>`} className="max-w-2xl" />
         </Reveal>
         {hasImg && (
           <Reveal className={cn('flex items-center justify-center lg:col-span-5 lg:row-span-2 lg:row-start-1', right ? 'lg:col-start-8' : 'lg:col-start-1')}>
             <div className="relative [perspective:1400px]">
-              <div aria-hidden className="absolute inset-6 -z-10 rounded-full bg-[#000d3d]/15 blur-3xl" />
+              <div aria-hidden className="absolute inset-6 -z-10 rounded-full bg-charcoal-900/15 blur-3xl" />
               <m.div
-                className="relative w-60 overflow-hidden rounded-r-xl rounded-l-sm shadow-[24px_32px_60px_-20px_rgba(9,20,34,0.55)] sm:w-72 lg:w-80"
+                className="relative w-60 overflow-hidden rounded-r-xl rounded-l-sm shadow-[24px_32px_60px_-20px_rgba(24,33,38,0.55)] sm:w-72 lg:w-80"
                 initial={{ rotateY: -18, rotateX: 4 }}
                 whileHover={{ rotateY: -4, rotateX: 0, y: -6 }}
                 transition={{ type: 'spring', stiffness: 120, damping: 16 }}
@@ -185,7 +185,7 @@ function Book({ block }: { block: MediaText }) {
               >
                 <Img media={block.image} variant="card" alt={mediaAlt(block.image, t(COPY.title))} width={size.width} height={size.height} sizes="(max-width:640px) 240px, 320px" className="h-auto w-full" />
                 {/* spine shading */}
-                <span aria-hidden className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-black/35 to-transparent" />
+                <span aria-hidden className="absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-charcoal-950/35 to-transparent" />
               </m.div>
             </div>
           </Reveal>
@@ -211,21 +211,21 @@ function Book({ block }: { block: MediaText }) {
 function StatsBand({ block }: { block: Stats }) {
   const items = block.items ?? []
   return (
-    <section className={cn(bleed, 'on-dark overflow-hidden border-t-4 border-t-red-600 bg-[#000d3d] text-white')}>
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] opacity-[0.04] [background-size:24px_24px]" />
+    <section className={cn(bleed, 'on-dark overflow-hidden border-t-4 border-t-gold bg-charcoal-900 text-paper')}>
+      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--color-paper)_1px,transparent_1px)] opacity-[0.05] [background-size:24px_24px]" />
       <div className="container-x relative grid grid-cols-1 items-center gap-6 sm:gap-10 py-8 sm:py-14 lg:grid-cols-12 lg:py-20">
         <Reveal className="space-y-2 lg:col-span-4">
-          {block.eyebrow && <p className="text-xs font-extrabold uppercase tracking-widest text-saffron-400">{block.eyebrow}</p>}
-          {block.heading && <h2 className="font-display text-3xl font-bold leading-tight text-white sm:text-4xl">{block.heading}</h2>}
+          {block.eyebrow && <p className="text-xs font-extrabold uppercase tracking-widest text-paper">{block.eyebrow}</p>}
+          {block.heading && <h2 className="font-display text-3xl font-bold leading-tight text-paper sm:text-4xl">{block.heading}</h2>}
           <Bar />
         </Reveal>
-        <Stagger className={cn('grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-white/10 sm:grid-cols-[repeat(var(--n),minmax(0,1fr))] lg:col-span-8')} style={{ ['--n' as string]: items.length }}>
+        <Stagger className={cn('grid grid-cols-1 gap-px overflow-hidden rounded-2xl bg-paper/10 sm:grid-cols-[repeat(var(--n),minmax(0,1fr))] lg:col-span-8')} style={{ ['--n' as string]: items.length }}>
           {items.map((s, i) => (
-            <StaggerItem key={s.id ?? i} className="bg-[#000d3d] p-6 md:p-8">
-              <p className={cn('font-display text-4xl font-bold tracking-tight lg:text-5xl', i % 2 ? 'text-white' : 'text-saffron-400')}>
+            <StaggerItem key={s.id ?? i} className="bg-charcoal-900 p-6 md:p-8">
+              <p className={cn('font-display text-4xl font-bold tracking-tight lg:text-5xl', i % 2 ? 'text-paper' : 'text-gold')}>
                 <CountUp value={s.value} />
               </p>
-              <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-slate-300">{s.label}</p>
+              <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-paper/80">{s.label}</p>
             </StaggerItem>
           ))}
         </Stagger>
@@ -241,20 +241,20 @@ function Statement({ block }: { block: QuoteBlock }) {
 
   return (
     <Reveal as="figure" className="relative mx-auto my-6 max-w-5xl px-3 sm:px-6">
-      <div className="relative overflow-hidden rounded-3xl border border-amber-200/70 bg-gradient-to-br from-[#fffdfa] via-[#fff9f2] to-[#fff4e6] px-6 py-10 text-center shadow-lg shadow-amber-900/5 sm:px-12 sm:py-14 md:py-16">
+      <div className="relative overflow-hidden rounded-3xl border border-line bg-cream px-6 py-10 text-center shadow-lg shadow-charcoal-950/5 sm:px-12 sm:py-14 md:py-16">
         {/* Quote Marathi Statement */}
-        <blockquote className="relative z-10 mx-auto max-w-4xl font-display text-xl font-bold not-italic leading-relaxed text-[#000d3d] sm:text-2xl md:text-3xl md:leading-[1.55] lg:text-[2.15rem]">
+        <blockquote className="relative z-10 mx-auto max-w-4xl font-display text-xl font-bold not-italic leading-relaxed text-charcoal-900 sm:text-2xl md:text-3xl md:leading-[1.55] lg:text-[2.15rem]">
           “{quoteText}”
         </blockquote>
 
         {/* Author Attribution */}
         <figcaption className="relative z-10 mt-6 flex flex-col items-center justify-center gap-1 sm:mt-8">
           <div className="flex items-center gap-3">
-            <span aria-hidden className="h-0.5 w-8 rounded-full bg-gradient-to-r from-transparent to-red-600" />
-            <span className="font-display text-base font-bold tracking-wide text-red-600 sm:text-lg">
+            <span aria-hidden className="h-0.5 w-8 rounded-full bg-gradient-to-r from-transparent to-gold" />
+            <span className="font-display text-base font-bold tracking-wide text-saffron-700 sm:text-lg">
               — {authorText}
             </span>
-            <span aria-hidden className="h-0.5 w-8 rounded-full bg-gradient-to-l from-transparent to-red-600" />
+            <span aria-hidden className="h-0.5 w-8 rounded-full bg-gradient-to-l from-transparent to-gold" />
           </div>
         </figcaption>
       </div>
@@ -268,16 +268,16 @@ function HowItWorks({ block }: { block: Cards }) {
   return (
     <section>
       <Reveal className="mx-auto mb-12 max-w-2xl space-y-2 text-center">
-        {block.eyebrow && <p className="text-xs font-extrabold uppercase tracking-widest text-red-600 sm:text-sm">{block.eyebrow}</p>}
+        {block.eyebrow && <p className="text-xs font-extrabold uppercase tracking-widest text-saffron-700 sm:text-sm">{block.eyebrow}</p>}
         <h2 className={cn('font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl', NAVY)}>{t(COPY.stepsTitle)}</h2>
         <Bar center />
-        {block.intro && <p className="pt-1 text-base leading-relaxed text-slate-600">{block.intro}</p>}
+        {block.intro && <p className="pt-1 text-base leading-relaxed text-muted">{block.intro}</p>}
       </Reveal>
       <div className="relative">
         {items.length > 1 && (
           <m.span
             aria-hidden
-            className="absolute top-10 hidden h-0.5 origin-left bg-[repeating-linear-gradient(90deg,var(--color-red-600)_0_10px,transparent_10px_18px)] md:block"
+            className="absolute top-10 hidden h-0.5 origin-left bg-[repeating-linear-gradient(90deg,var(--color-gold)_0_10px,transparent_10px_18px)] md:block"
             style={{ left: `calc(100% / ${items.length * 2})`, right: `calc(100% / ${items.length * 2})` }}
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
@@ -289,13 +289,13 @@ function HowItWorks({ block }: { block: Cards }) {
           {items.map((c, i) => {
             const inner = (
               <>
-                <span className={cn('relative z-10 mx-auto grid size-20 place-items-center rounded-full font-display text-2xl font-bold text-white shadow-lg ring-8 ring-white transition-transform duration-300 group-hover:scale-110', stepBg(i))}>
+                <span className={cn('relative z-10 mx-auto grid size-20 place-items-center rounded-full font-display text-2xl font-bold shadow-lg ring-8 ring-paper transition-transform duration-300 group-hover:scale-110', stepBg(i))}>
                   {pad(i + 1)}
                 </span>
-                <div className="mt-6 flex flex-1 flex-col items-center gap-2 rounded-2xl border border-stone-200/90 bg-white p-6 text-center shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-red-300 group-hover:shadow-lg">
-                  <h3 className="font-display text-xl font-bold text-[#000d3d] transition-colors group-hover:text-red-600">{c.title}</h3>
-                  {c.text && <p className="text-sm leading-relaxed text-slate-600">{c.text}</p>}
-                  {c.url && <ArrowUpRight aria-hidden className="mt-auto size-5 text-red-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
+                <div className="mt-6 flex flex-1 flex-col items-center gap-2 rounded-2xl border border-line bg-cream p-6 text-center shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:border-gold group-hover:shadow-lg">
+                  <h3 className="font-display text-xl font-bold text-charcoal-900 transition-colors group-hover:text-saffron-700">{c.title}</h3>
+                  {c.text && <p className="text-sm leading-relaxed text-muted">{c.text}</p>}
+                  {c.url && <ArrowUpRight aria-hidden className="mt-auto size-5 text-saffron-600 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}
                 </div>
               </>
             )

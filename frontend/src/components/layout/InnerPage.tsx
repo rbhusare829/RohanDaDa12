@@ -20,6 +20,8 @@ type Props = {
   eyebrow?: string | null
   /** full width: children provide their own full-bleed sections & container-x */
   fullWidth?: boolean
+  /** the section's accent (index.css): 'jade' = Teal with Jade Green accents (Lokmangal), 'development' = Jade Green and Cloud White (development work) */
+  tone?: 'jade' | 'development'
   children: ReactNode
 }
 
@@ -28,29 +30,29 @@ type Props = {
  * banner (breadcrumb, title, sibling pages as tabs) → content on the site grid, starting at the same
  * left edge as the title. Blocks inside decide their own reading width.
  */
-export function InnerPage({ path, title, subtitle, image, imagePosition, crumbs, sideMenu = true, variant, eyebrow, fullWidth, children }: Props) {
+export function InnerPage({ path, title, subtitle, image, imagePosition, crumbs, sideMenu = true, variant, eyebrow, fullWidth, tone, children }: Props) {
   const { header } = useLayout()
   const menu = getSectionMenu(path, header)
   const autoCrumbs: Crumb[] = crumbs ?? [...(menu.title && menu.title !== title ? [{ label: menu.title, href: menu.sectionHref }] : []), { label: title }]
   const section = useSectionInView(path, menu.items.map((it) => it.href))
   const tabs = sideMenu && menu.items.length > 1 ? menu.items.map((it) => ({ ...it, active: it.href === (section ? `${path}#${section}` : path) })) : undefined
   return (
-    <>
+    // display: contents — the wrapper only carries the accent variables down to the page, it makes no box of its own
+    <div className={tone === 'jade' ? 'accent-jade contents' : tone === 'development' ? 'theme-development contents' : 'contents'}>
       <PageBanner title={title} subtitle={subtitle} crumbs={autoCrumbs} image={image} imagePosition={imagePosition} tabs={tabs} tabsLabel={menu.title ?? undefined} path={path} variant={variant} eyebrow={eyebrow} />
       {fullWidth ? (
-        <main className="relative min-h-[60vh] text-slate-800">
+        <div className="relative min-h-[60vh] text-ink">
           {children}
-        </main>
+        </div>
       ) : (
-        <main className="relative min-h-[60vh] bg-white text-slate-800">
-          {/* Soft atmospheric gradient top fade from breadcrumb row */}
-          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#f8fafc] via-[#f8fafc]/40 to-transparent" />
+        // the page itself sits on the Cloud White page; <RootLayout> already gives the one <main> landmark
+        <div className="relative min-h-[60vh] text-ink">
           <div className={variant ? 'container-x relative z-10 pb-12 sm:pb-20 pt-8 sm:pt-12 md:pb-28 md:pt-14' : 'container-x relative z-10 pb-12 sm:pb-20 pt-6 sm:pt-10 md:pb-24 md:pt-12'}>
             <div className="min-w-0">{children}</div>
           </div>
-        </main>
+        </div>
       )}
-    </>
+    </div>
   )
 }
 

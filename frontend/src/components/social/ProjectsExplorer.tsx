@@ -63,7 +63,7 @@ export function ProjectsExplorer({ items, categories, labels, locale }: { items:
                 onClick={() => setCat(c.value)}
                 className={cn(
                   'inline-flex min-h-11 items-center gap-2 rounded-xl border px-4 py-1.5 text-sm font-semibold transition',
-                  on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-charcoal-900 hover:border-field-hover hover:bg-cream',
+                  on ? 'border-charcoal-900 bg-charcoal-900 text-paper' : 'border-field bg-paper text-charcoal-900 hover:border-charcoal-900 hover:bg-cream',
                 )}
               >
                 {c.label}
@@ -143,11 +143,11 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
       onFocusCapture={() => setHold(true)}
       onBlurCapture={() => setHold(false)}
     >
-      <div className="overflow-hidden rounded-[1.6rem] bg-surface shadow-[0_24px_60px_-34px_rgb(20_33_61/0.35)] ring-1 ring-charcoal-900/[0.06]">
+      <div className="overflow-hidden rounded-[1.6rem] bg-paper shadow-[0_24px_60px_-34px_rgb(17_24_39/0.3)] ring-1 ring-charcoal-900/[0.06]">
         <div key={p.id} aria-roledescription="slide" aria-label={`${n(i + 1)} / ${n(count)}`} className="grid animate-fade-up md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
           <div className="relative aspect-[16/10] md:aspect-auto md:min-h-[340px]">
             <Photo p={p} sizes="(max-width:768px) 100vw, 640px" />
-            <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-saffron-600 px-3 py-1 text-xs text-white shadow-lg">
+            <span className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-saffron-600 px-3 py-1 text-xs font-semibold text-ink shadow-lg">
               <Sparkles aria-hidden className="size-3.5" /> {labels.featured}
             </span>
           </div>
@@ -191,7 +191,7 @@ function FeaturedSlider({ items, labels, n }: { items: ProjectCard[]; labels: La
               className="group grid h-11 min-w-11 place-items-center"
             >
               {/* the dot stays small; the button around it is a full 44px tap area */}
-              <span className={cn('block h-2 rounded-full transition-all', k === i ? 'w-7 bg-saffron-500' : 'w-2 bg-frame group-hover:bg-saffron-400')} />
+              <span className={cn('block h-2 rounded-full transition-all', k === i ? 'w-7 bg-saffron-600' : 'w-2 bg-field group-hover:bg-charcoal-900')} />
             </button>
           ))}
         </div>
@@ -213,7 +213,7 @@ function GridCard({ p, labels }: { p: ProjectCard; labels: Labels }) {
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <span className="tile-kicker">{p.categoryLabel}</span>
           {p.stat && (
-            <span className="inline-flex min-w-0 items-center gap-1.5 text-xs font-medium text-muted">
+            <span className="inline-flex min-w-0 items-center gap-1.5 text-xs font-medium text-ink">
               <TrendingUp aria-hidden className="size-3.5 shrink-0 text-saffron-600" /> <span className="line-clamp-1">{p.stat}</span>
             </span>
           )}

@@ -12,7 +12,7 @@ import { ReadingProgress } from '../ui/Motion'
 
 /**
  * While the next page is loading (only if it takes a moment): the thin saffron bar at the top, and a preloader over the page — the
- * name in the site's navy with a red-and-saffron ring turning around it — so a click on a link (the footer's, say) never shows the old
+ * name in Modern Teal with a saffron-and-jade ring turning around it — so a click on a link (the footer's, say) never shows the old
  * page sliding about. The new page then simply appears at its top (see InstantPageJump).
  */
 function TopLoader() {
@@ -34,7 +34,7 @@ function TopLoader() {
           <m.div
             key="bar"
             aria-hidden
-            className="fixed inset-x-0 top-0 z-[91] h-[3px] origin-left bg-saffron-500 shadow-[0_0_10px_#FF7A00,0_0_5px_#FF7A00]"
+            className="fixed inset-x-0 top-0 z-[91] h-[3px] origin-left bg-saffron-600 shadow-[0_0_10px_rgba(233,149,50,0.55)]"
             initial={{ scaleX: 0, opacity: 1 }}
             animate={{ scaleX: 0.85, transition: { duration: 6, ease: 'easeOut' } }}
             exit={{ scaleX: 1, opacity: 0, transition: { duration: 0.35 } }}
@@ -43,18 +43,18 @@ function TopLoader() {
             key="preloader"
             role="status"
             aria-label={getLocale() === 'en' ? 'Loading' : 'लोड होत आहे'}
-            className="fixed inset-0 z-[90] grid place-items-center bg-white/95 backdrop-blur-sm"
+            className="fixed inset-0 z-[90] grid place-items-center bg-paper/95 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, transition: { duration: 0.2 } }}
             exit={{ opacity: 0, transition: { duration: 0.25 } }}
           >
             <div className="flex flex-col items-center gap-5">
               <span aria-hidden className="relative grid size-20 place-items-center">
-                <span className="absolute inset-0 rounded-full border-4 border-stone-200" />
-                <span className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-red-600 border-r-saffron-500" />
-                <span className="size-3 rounded-full bg-[#000d3d]" />
+                <span className="absolute inset-0 rounded-full border-4 border-line" />
+                <span className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-saffron-600 border-r-leaf-600" />
+                <span className="size-3 rounded-full bg-charcoal-900" />
               </span>
-              <img src="/brand/logo-name.svg" alt="" aria-hidden width={180} height={46} className="h-9 w-auto [filter:brightness(0)_saturate(100%)_invert(8%)_sepia(60%)_saturate(4000%)_hue-rotate(225deg)]" />
+              <span aria-hidden className="block h-9 w-[141px] bg-charcoal-900 [mask:url(/brand/logo-name.svg)_center/contain_no-repeat]" />
             </div>
           </m.div>
         </>
@@ -153,7 +153,7 @@ export function RootLayout() {
       <MotionConfig reducedMotion="user">
         <TopLoader />
         <ReadingProgress />
-        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-btn focus:px-5 focus:py-2 focus:text-white">
+        <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-btn focus:px-5 focus:py-2 focus:text-ink">
           {tn('skip')}
         </a>
         <Header />

@@ -3,18 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#FAF6F0" />
+    <meta name="theme-color" content="#F2F1EB" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" type="image/png" sizes="192x192" href="/icon.png" />
     <link rel="apple-touch-icon" href="/apple-icon.png" />
     <title>Rohan Subhash Deshmukh</title>
-    <!-- The site's font, Anek Devanagari, is self-hosted (main.tsx, @fontsource): no Google Fonts request (the site's CSP blocks it anyway).
-         This start-up screen shows before it loads, so it names it first and falls back to the system font. -->
+    <!-- The site's fonts (Playfair Display + Noto Serif Devanagari for headings, Inter + Noto Sans Devanagari for text) are self-hosted
+         (main.tsx, @fontsource): no Google Fonts request (the site's CSP blocks it anyway). This start-up screen shows before they load,
+         so it names the heading font first and falls back to the system serif. Colours: Modern Teal + Saffron (Cloud White, Modern Teal, Saffron Amber, Jade Green). -->
     <style>
       /* shown until the app has started (a slow phone or network): the page colour, the name and a thin moving bar instead of a blank white screen */
-      .boot { position: fixed; inset: 0; display: grid; place-items: center; background: #faf6f0; color: #0e1e34; font: 700 1.35rem/1.3 'Anek Devanagari Variable', system-ui, sans-serif; letter-spacing: .01em }
-      .boot span { display: block; margin: .6rem auto 0; width: 4.4rem; height: 4px; border-radius: 9999px; background: linear-gradient(90deg, #dc2626 0 76%, transparent 76% 84%, #ff7a00 84%) }
-      .boot::before { content: ''; position: fixed; top: 0; left: 0; height: 3px; width: 40%; background: linear-gradient(90deg, #dc2626, #ff7a00); animation: boot 1.2s ease-in-out infinite }
+      .boot { position: fixed; inset: 0; display: grid; place-items: center; background: #f2f1eb; color: #0f5c63; font: 700 1.35rem/1.3 'Noto Serif Devanagari Variable', Georgia, serif; letter-spacing: .01em }
+      .boot span { display: block; margin: .6rem auto 0; width: 4.4rem; height: 4px; border-radius: 9999px; background: linear-gradient(90deg, #e99532 0 76%, transparent 76% 84%, #2b8067 84%) }
+      .boot::before { content: ''; position: fixed; top: 0; left: 0; height: 3px; width: 40%; background: #e99532; animation: boot 1.2s ease-in-out infinite }
       @keyframes boot { from { transform: translateX(-100%) } to { transform: translateX(260%) } }
       @media (prefers-reduced-motion: reduce) { .boot::before { animation: none; width: 100%; opacity: .5 } }
     </style>

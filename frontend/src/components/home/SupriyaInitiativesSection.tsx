@@ -65,20 +65,20 @@ export function SupriyaInitiativesSection({
   const isMr = locale !== 'en'
 
   return (
-    <section className="bg-[#f0f6fc] border-t border-stone-200 py-6 sm:py-10 lg:py-12">
+    <section className="bg-cream border-t border-line py-6 sm:py-10 lg:py-12">
       <div className="container-x">
         <div className="text-center mb-6 sm:mb-8">
-          <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-red-600">
+          <span className="text-xs sm:text-sm font-extrabold uppercase tracking-widest text-saffron-700">
             {isMr ? 'विकासाची ध्येये' : 'Key Focus Areas'}
           </span>
-          <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]">
+          <h2 className="mt-1 font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900">
             {isMr ? 'प्रमुख कार्यक्षेत्रे आणि उपक्रम' : 'Key Initiatives & Social Work'}
           </h2>
           <div className="mt-2.5 mb-4 flex justify-center items-center gap-1.5">
-            <span className="h-1 w-14 rounded-full bg-red-600" />
+            <span className="h-1 w-14 rounded-full bg-saffron-600" />
             <span className="h-1 w-3 rounded-full bg-saffron-500" />
           </div>
-          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-slate-600">
+          <p className="mx-auto max-w-2xl text-sm sm:text-base leading-relaxed text-muted">
             {isMr
               ? 'सहकार, उद्योग, शिक्षण, आरोग्य आणि समाजसेवेच्या माध्यमातून सोलापूर व महाराष्ट्राच्या प्रगतीसाठी अविरत कार्य.'
               : 'Working dedicatedly across banking, industries, education, healthcare and community service.'}
@@ -94,25 +94,25 @@ export function SupriyaInitiativesSection({
                 <Link
                   key={i}
                   to={it.link}
-                  className="group flex w-[80vw] max-w-[320px] shrink-0 snap-center flex-col justify-between h-auto rounded-2xl bg-white border border-stone-200/90 p-5 shadow-sm sm:h-full sm:w-auto sm:max-w-none sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-red-400"
+                  className="group flex w-[80vw] max-w-[320px] shrink-0 snap-center flex-col justify-between h-auto rounded-2xl bg-white border border-line/90 p-5 shadow-sm sm:h-full sm:w-auto sm:max-w-none sm:p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-saffron-600"
                 >
                   <div>
                     <div className="mb-4">
-                      <div className="grid size-12 place-items-center rounded-xl bg-red-50 text-red-600 transition-transform duration-300 group-hover:scale-110 group-hover:bg-red-600 group-hover:text-white">
+                      <div className="grid size-12 place-items-center rounded-xl bg-saffron-50 text-saffron-700 transition-transform duration-300 group-hover:scale-110 group-hover:bg-saffron-600 group-hover:text-ink">
                         <Icon className="size-6" />
                       </div>
                     </div>
 
-                    <h3 className="font-display text-lg sm:text-xl font-bold text-[#000d3d] group-hover:text-red-600 transition-colors">
+                    <h3 className="font-display text-lg sm:text-xl font-bold text-charcoal-900 group-hover:text-saffron-700 transition-colors">
                       {isMr ? it.title : it.enTitle}
                     </h3>
 
-                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-slate-600">
+                    <p className="mt-2.5 text-xs sm:text-sm leading-relaxed text-muted">
                       {isMr ? it.description : it.enDescription}
                     </p>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between text-xs font-bold text-red-600">
+                  <div className="mt-6 pt-4 border-t border-line flex items-center justify-between text-xs font-bold text-saffron-700">
                     <span>{isMr ? 'अधिक माहिती पहा' : 'Learn more'}</span>
                     <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                   </div>

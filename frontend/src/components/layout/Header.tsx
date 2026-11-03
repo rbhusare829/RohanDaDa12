@@ -14,7 +14,7 @@ const EASE_MENU = [0.22, 1, 0.36, 1] as const
 const EASE_SHEET = [0.32, 0.72, 0, 1] as const
 
 /** 4 Connect Services matching the citizen portal layout */
-export const CONNECT_ITEMS = [
+const CONNECT_ITEMS = [
   {
     titleMr: 'निवेदन',
     titleEn: 'Petition',
@@ -87,23 +87,40 @@ const maskStyle = (logoUrl: string) => ({
 const VECTOR_LOGO = '/brand/logo-name.svg'
 const ORIGINAL_LOGO = 'logo-light.webp'
 
-/** the logo for light backgrounds (or the white one drawn in navy through a mask) */
-function Logo({ siteName, logoUrl, logoDarkUrl, small }: { siteName: string; logoUrl?: string | null; logoDarkUrl?: string | null; small?: boolean }) {
-  if (logoDarkUrl) return <img src={logoDarkUrl} alt={siteName} width={190} height={48} fetchPriority="high" className={cn('w-auto shrink-0 object-contain object-left transition-opacity duration-200 hover:opacity-80', small ? 'h-8' : 'h-10')} />
-  if (logoUrl) return <span role="img" aria-label={siteName} className={cn('block shrink-0 bg-charcoal-950 transition-opacity duration-200 hover:opacity-80', small ? 'h-9 w-[134px]' : 'h-11 w-[164px] max-[379px]:h-10 max-[379px]:w-[146px] xl:h-10 xl:w-[148px]')} style={maskStyle(logoUrl)} />
-  return <span className="font-display text-xl font-bold text-charcoal-950 transition-[color] hover:text-saffron-600">{siteName}</span>
+/**
+ * The logo on the Cloud White header: the vector name logo drawn in Charcoal Black through a mask (Modern Teal under the pointer), or —
+ * when a "logo for light backgrounds" has been uploaded in Site settings — that file as it is.
+ */
+function Logo({ siteName, logoUrl, small }: { siteName: string; logoUrl?: string | null; small?: boolean }) {
+  if (logoUrl && logoUrl !== VECTOR_LOGO) return <img src={logoUrl} alt={siteName} width={190} height={48} fetchPriority="high" className={cn('w-auto shrink-0 object-contain object-left transition-opacity duration-200 hover:opacity-80', small ? 'h-8' : 'h-10')} />
+  if (logoUrl) return <span role="img" aria-label={siteName} className={cn('block shrink-0 bg-charcoal-950 transition-[background-color] duration-200 hover:bg-charcoal-900', small ? 'h-9 w-[134px]' : 'h-11 w-[164px] max-[379px]:h-10 max-[379px]:w-[146px] xl:h-10 xl:w-[148px]')} style={maskStyle(logoUrl)} />
+  return <span className="font-display text-xl font-bold text-charcoal-950 transition-[color] hover:text-charcoal-900">{siteName}</span>
 }
 
-/** Segmented language toggle: switches dynamically between Marathi (default) and English */
-function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
+/**
+ * Segmented language toggle: switches between Marathi (default) and English. On the Cloud White header and in the phone drawer
+ * (`tone="light"`) the chosen language is a Modern Teal pill with Cloud White words; `tone="dark"` (Cloud White pill with teal words) is
+ * for a teal background — never saffron, so the header's one saffron button stays the Connect button.
+ */
+function LanguageToggle({ isMobile = false, tone = 'light' }: { isMobile?: boolean; tone?: 'dark' | 'light' }) {
   const currentLocale = getLocale()
+  const dark = tone === 'dark'
+  const pill = (on: boolean) =>
+    cn(
+      'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
+      isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
+      on
+        ? dark ? 'bg-paper text-charcoal-900 shadow-xs' : 'bg-charcoal-900 text-paper shadow-xs'
+        : dark ? 'text-paper/85 hover:bg-paper/10 hover:text-paper' : 'text-charcoal-800 hover:bg-paper hover:text-charcoal-900',
+    )
 
   return (
     <div
       role="group"
       aria-label="Language selection"
       className={cn(
-        'inline-flex items-center rounded-full border border-stone-200/90 bg-stone-100/90 p-0.5 shadow-2xs transition-colors',
+        'inline-flex items-center rounded-full border p-0.5 transition-colors',
+        dark ? 'border-paper/20 bg-paper/10' : 'border-line bg-cream',
         isMobile ? 'text-[11px]' : 'text-xs',
       )}
     >
@@ -114,13 +131,7 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
         }}
         aria-pressed={currentLocale === 'mr'}
         title={currentLocale === 'en' ? 'Read in Marathi' : 'मराठी मध्ये वाचा'}
-        className={cn(
-          'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
-          isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
-          currentLocale === 'mr'
-            ? 'bg-saffron-600 text-white shadow-xs'
-            : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-stone-200/60',
-        )}
+        className={pill(currentLocale === 'mr')}
       >
         मराठी
       </button>
@@ -131,13 +142,7 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
         }}
         aria-pressed={currentLocale === 'en'}
         title={currentLocale === 'en' ? 'Read in English' : 'इंग्रजीमध्ये वाचा'}
-        className={cn(
-          'flex items-center justify-center rounded-full font-bold transition-all duration-200 active:scale-95 cursor-pointer',
-          isMobile ? 'relative px-2 py-0.5 after:absolute after:inset-x-0 after:-inset-y-2.5' : 'px-2.5 py-1',
-          currentLocale === 'en'
-            ? 'bg-saffron-600 text-white shadow-xs'
-            : 'text-charcoal-700 hover:text-charcoal-950 hover:bg-stone-200/60',
-        )}
+        className={pill(currentLocale === 'en')}
       >
         ENG
       </button>
@@ -147,10 +152,12 @@ function LanguageToggle({ isMobile = false }: { isMobile?: boolean }) {
 
 /* ------------------------------------------------------------------ desktop menu */
 
+/* Charcoal Black links on the Cloud White bar (14.5:1); the pointer and the current section bring the Modern Teal accent — teal words
+   (6.8:1) and a 2px teal underline that grows in from the left */
 const navBase =
-  "relative flex h-10 items-center gap-1 whitespace-nowrap rounded-lg px-3 text-[0.95rem] font-medium transition-[color] xl:px-3.5 after:pointer-events-none after:absolute after:inset-x-3 after:-bottom-5 after:h-0.5 after:rounded-full after:bg-saffron-600 after:transition-transform after:duration-200 after:ease-out after:content-[''] xl:after:inset-x-3.5"
-const navIdle = 'text-charcoal-800 after:origin-right after:scale-x-0 hover:text-saffron-700 hover:after:origin-left hover:after:scale-x-100'
-const navOn = 'text-saffron-700 after:origin-left after:scale-x-100'
+  "relative flex h-10 items-center gap-1 whitespace-nowrap rounded-lg px-3 text-[0.95rem] font-medium transition-[color] xl:px-3.5 after:pointer-events-none after:absolute after:inset-x-3 after:-bottom-3 after:h-0.5 after:rounded-full after:bg-charcoal-900 after:transition-transform after:duration-200 after:ease-out after:content-[''] xl:after:inset-x-3.5"
+const navIdle = 'text-charcoal-800 after:origin-right after:scale-x-0 hover:text-charcoal-900 hover:after:origin-left hover:after:scale-x-100'
+const navOn = 'text-charcoal-900 font-semibold after:origin-left after:scale-x-100'
 
 /** one link inside a dropdown */
 function DropLink({ node, pathname, onNavigate }: { node: NavNode; pathname: string; onNavigate: () => void }) {
@@ -163,7 +170,7 @@ function DropLink({ node, pathname, onNavigate }: { node: NavNode; pathname: str
       aria-current={pointsHere(node.url, pathname, true) ? 'page' : undefined}
       className={cn(
         'flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-[0.92rem] leading-snug transition-[color,background-color]',
-        active ? 'bg-saffron-50 font-semibold text-saffron-800' : 'text-charcoal-800 hover:bg-saffron-50 hover:text-saffron-800',
+        active ? 'bg-cream font-semibold text-charcoal-900' : 'text-charcoal-800 hover:bg-cream hover:text-charcoal-900',
       )}
     >
       <span>{node.label}</span>
@@ -186,14 +193,14 @@ function Dropdown({ id, items, align, pathname, onNavigate }: { id: string; item
     >
       <div
         className={cn(
-          'rounded-2xl border border-stone-200 bg-white shadow-[0_22px_48px_-16px_rgba(14,30,52,0.3)]',
+          'on-light rounded-2xl border border-line bg-paper shadow-[0_22px_48px_-16px_rgba(24,33,38,0.28)]',
           mega ? cn('grid gap-x-4 p-4', items.length === 1 ? 'w-72' : items.length === 2 ? 'w-[min(520px,90vw)] grid-cols-2' : 'w-[min(760px,90vw)] grid-cols-3') : 'w-60 p-1.5',
         )}
       >
         {mega ? (
           items.map((c, j) => (
             <div key={c.id ?? j}>
-              <NavLink node={c} onClick={onNavigate} className="mb-1 block px-3 pt-1 text-xs font-semibold uppercase tracking-wider text-stone-500 transition-[color] hover:text-saffron-700">
+              <NavLink node={c} onClick={onNavigate} className="mb-1 block px-3 pt-1 text-xs font-bold uppercase tracking-wider text-saffron-700 transition-[color] hover:text-charcoal-900">
                 {c.label}
               </NavLink>
               <ul>
@@ -400,9 +407,13 @@ function ConnectMenu({ pathname }: { pathname: string }) {
     }
   }, [open])
 
-  useEffect(() => {
-    close()
-  }, [pathname])
+  // a new page closes the panel (state adjusted while rendering, like the other menus — no effect that sets state)
+  const [panelFor, setPanelFor] = useState(pathname)
+  if (panelFor !== pathname) {
+    setPanelFor(pathname)
+    setOpen(false)
+    setPinned(false)
+  }
 
   return (
     <div
@@ -411,6 +422,7 @@ function ConnectMenu({ pathname }: { pathname: string }) {
       onMouseEnter={show}
       onMouseLeave={hide}
     >
+      {/* the header's one saffron button (one saffron call to action per section) */}
       <button
         ref={triggerRef}
         type="button"
@@ -418,10 +430,12 @@ function ConnectMenu({ pathname }: { pathname: string }) {
         aria-expanded={open}
         aria-haspopup="true"
         className={cn(
-          'group flex h-10 shrink-0 items-center gap-1.5 rounded-lg px-4 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all duration-200 active:scale-95 cursor-pointer',
+          'group flex h-10 shrink-0 items-center gap-1.5 rounded-lg px-4 text-xs font-bold uppercase tracking-wider shadow-sm transition-all duration-200 active:scale-95 cursor-pointer',
+          // Saffron Amber with Charcoal words (6.9:1), Charcoal sweeping in under the pointer (Cloud White words); open or on a citizen-service
+          // page it is Modern Teal with Cloud White words (6.8:1)
           isConnectActive || open
-            ? 'bg-[#c25e00] ring-2 ring-[#c25e00]/40 shadow-md'
-            : 'bg-[#000d3d] hover:bg-[#c25e00]',
+            ? 'bg-charcoal-900 text-paper shadow-md'
+            : 'btn-sweep bg-saffron-600 text-ink hover:text-paper',
         )}
       >
         <span>{isMr ? 'कनेक्ट' : 'Connect'}</span>
@@ -443,8 +457,9 @@ function ConnectMenu({ pathname }: { pathname: string }) {
             transition={{ duration: 0.18, ease: EASE_MENU }}
             className="absolute right-0 top-full z-50 pt-2"
           >
-            {/* Matches Image 4 (media_1793356995960_a83a0043.png): Deep saffron orange rounded card */}
-            <div className="w-[316px] rounded-2xl bg-[#c25e00] p-3 shadow-[0_22px_48px_-12px_rgba(194,94,0,0.5)] ring-1 ring-black/5">
+            {/* the four citizen services as a 2×2 card: Cloud White like every menu panel (saffron stays for the button itself — a whole
+                saffron panel would shout); each service has a mist icon tile with a teal icon that turns saffron under the pointer */}
+            <div className="on-light w-[316px] rounded-2xl border border-line bg-paper p-3 shadow-[0_22px_48px_-12px_rgba(24,33,38,0.28)]">
               <div className="grid grid-cols-2 gap-2">
                 {CONNECT_ITEMS.map((item) => {
                   const Icon = item.icon
@@ -454,17 +469,16 @@ function ConnectMenu({ pathname }: { pathname: string }) {
                       key={item.to}
                       to={item.to}
                       onClick={close}
+                      aria-current={active ? 'page' : undefined}
                       className={cn(
-                        'group/item flex items-center gap-2.5 rounded-xl p-2.5 transition-all duration-150 cursor-pointer',
-                        active
-                          ? 'bg-white/25 shadow-xs font-semibold'
-                          : 'hover:bg-white/20 active:bg-white/30',
+                        'group/item flex items-center gap-2.5 rounded-xl p-2.5 transition-[color,background-color] duration-150 cursor-pointer',
+                        active ? 'bg-saffron-50' : 'hover:bg-saffron-50 active:bg-saffron-100',
                       )}
                     >
-                      <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-white/20 text-white shadow-2xs group-hover/item:bg-white/30 group-hover/item:scale-105 transition-all">
+                      <span className={cn('flex size-9 shrink-0 items-center justify-center rounded-xl transition-[color,background-color,transform] group-hover/item:scale-105', active ? 'bg-saffron-600 text-ink' : 'bg-cream text-charcoal-900 group-hover/item:bg-saffron-600 group-hover/item:text-ink')}>
                         <Icon className="size-4.5" />
                       </span>
-                      <span className="font-display text-[0.92rem] font-bold text-white tracking-wide leading-tight">
+                      <span className={cn('text-[0.92rem] font-bold leading-tight', active ? 'text-saffron-800' : 'text-charcoal-900')}>
                         {isMr ? item.titleMr : item.titleEn}
                       </span>
                     </Link>
@@ -479,9 +493,17 @@ function ConnectMenu({ pathname }: { pathname: string }) {
   )
 }
 
+/**
+ * The quiet edge under the Cloud White header: a charcoal hairline (no flag or Ashoka Chakra as decoration). It lies along the bottom edge
+ * of its (positioned) parent.
+ */
+function AccentStripe() {
+  return <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-line" />
+}
+
 /* ------------------------------------------------------------------ phone & tablet drawer */
 
-const mobileRow = 'flex min-h-12 items-center rounded-xl px-4 text-[1.02rem] font-semibold transition-[color,background-color] active:bg-saffron-100'
+const mobileRow = 'flex min-h-12 items-center rounded-xl px-4 text-[1.02rem] font-semibold transition-[color,background-color] active:bg-leaf-100'
 
 function MobileMenu({
   id, nav, pathname, logo, menuLabel, closeLabel, onClose, onNavigate,
@@ -539,23 +561,25 @@ function MobileMenu({
         role="dialog"
         aria-modal="true"
         aria-label={menuLabel}
-        className="absolute inset-y-0 left-0 flex w-[min(24rem,calc(100vw-3rem))] flex-col bg-ivory shadow-2xl will-change-transform"
+        className="absolute inset-y-0 left-0 flex w-[min(24rem,calc(100vw-3rem))] flex-col bg-paper shadow-2xl will-change-transform"
         initial={{ x: '-100%' }}
         animate={{ x: 0 }}
         exit={{ x: '-100%' }}
         transition={{ type: 'tween', duration: 0.42, ease: EASE_SHEET }}
       >
-        <div className="flex h-16 shrink-0 items-center justify-between gap-4 border-b border-saffron-100 pl-6 pr-3 sm:h-[4.5rem]">
+        {/* the drawer's top row repeats the header: Cloud White, the Charcoal logo, the hairline under it */}
+        <div className="relative flex h-16 shrink-0 items-center justify-between gap-4 bg-paper pl-6 pr-3 sm:h-[4.5rem]">
           {logo}
           <button
             type="button"
             onClick={onClose}
             aria-label={closeLabel}
             autoFocus
-            className="grid size-11 place-items-center rounded-xl text-charcoal-800 transition-[color,background-color] hover:bg-saffron-50 hover:text-saffron-800 active:bg-saffron-100"
+            className="grid size-11 place-items-center rounded-xl text-charcoal-950 transition-[color,background-color] hover:bg-cream hover:text-charcoal-900 active:bg-leaf-100"
           >
             <X aria-hidden className="size-6" />
           </button>
+          <AccentStripe />
         </div>
 
         <nav aria-label="Mobile" className="flex-1 overflow-y-auto overscroll-contain px-3 py-3">
@@ -570,7 +594,7 @@ function MobileMenu({
                       node={n}
                       onClick={onNavigate}
                       aria-current={pointsHere(n.url, pathname, true) ? 'page' : undefined}
-                      className={cn(mobileRow, active ? 'bg-saffron-50 text-saffron-800' : 'text-charcoal-900 hover:bg-saffron-50')}
+                      className={cn(mobileRow, active ? 'bg-cream text-charcoal-900' : 'text-charcoal-800 hover:bg-cream hover:text-charcoal-900')}
                     >
                       {n.label}
                     </NavLink>
@@ -585,14 +609,14 @@ function MobileMenu({
                     aria-expanded={open}
                     aria-controls={panelId}
                     onClick={() => setGroup(open ? null : i)}
-                    className={cn(mobileRow, 'w-full justify-between gap-3 text-left hover:bg-saffron-50', active ? 'text-saffron-800' : 'text-charcoal-900', open && 'bg-saffron-50')}
+                    className={cn(mobileRow, 'w-full justify-between gap-3 text-left hover:bg-cream', active ? 'text-charcoal-900' : 'text-charcoal-800', open && 'bg-cream')}
                   >
                     <span>{n.label}</span>
-                    <ChevronDown aria-hidden className={cn('size-5 shrink-0 transition-transform duration-200', open ? 'rotate-180 text-saffron-700' : 'text-stone-400')} />
+                    <ChevronDown aria-hidden className={cn('size-5 shrink-0 transition-transform duration-200', open ? 'rotate-180 text-charcoal-900' : 'text-muted')} />
                   </button>
                   <div id={panelId} className={cn('grid transition-[grid-template-rows] duration-200 ease-out', open ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]')}>
                     <div inert={!open} className="min-h-0 overflow-hidden">
-                      <ul className="mb-2 ml-6 mt-1 space-y-0.5 border-l-2 border-saffron-100 pl-2">
+                      <ul className="mb-2 ml-6 mt-1 space-y-0.5 border-l-2 border-gold/60 pl-2">
                         {kids.map((c, j) => {
                           const here = inSection(c, pathname)
                           return (
@@ -601,7 +625,7 @@ function MobileMenu({
                                 node={c}
                                 onClick={onNavigate}
                                 aria-current={pointsHere(c.url, pathname, true) ? 'page' : undefined}
-                                className={cn('flex min-h-11 items-center rounded-lg px-3 text-[0.97rem] transition-[color,background-color] active:bg-saffron-100', here ? 'bg-saffron-50 font-semibold text-saffron-800' : 'text-charcoal-800 hover:bg-saffron-50')}
+                                className={cn('flex min-h-11 items-center rounded-lg px-3 text-[0.97rem] transition-[color,background-color] active:bg-leaf-100', here ? 'bg-cream font-semibold text-charcoal-900' : 'text-charcoal-800 hover:bg-cream hover:text-charcoal-900')}
                               >
                                 {c.label}
                               </NavLink>
@@ -617,11 +641,10 @@ function MobileMenu({
           </ul>
         </nav>
 
-        {/* Bottom Panel with 2x2 Connect Box + Language Selector */}
-        <div className="shrink-0 space-y-3 border-t border-saffron-100 p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-          {/* 2x2 Connect Grid matching desktop Image 4 */}
-          <div className="rounded-2xl bg-[#c25e00] p-2.5 shadow-md">
-            <div className="mb-2 px-1 text-[11px] font-bold uppercase tracking-wider text-orange-100">
+        {/* Bottom panel: the four citizen services on a Modern Teal block (saffron icons, Cloud White names) + the language choice */}
+        <div className="shrink-0 space-y-3 border-t border-line p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+          <div className="on-dark rounded-2xl bg-charcoal-900 p-2.5 shadow-md">
+            <div className="mb-2 px-1 text-[11px] font-bold uppercase tracking-wider text-paper">
               {getLocale() === 'mr' ? 'नागरिक सेवा — थेट कनेक्ट' : 'Citizen Connect Services'}
             </div>
             <div className="grid grid-cols-2 gap-1.5">
@@ -633,15 +656,16 @@ function MobileMenu({
                     key={item.to}
                     to={item.to}
                     onClick={onNavigate}
+                    aria-current={active ? 'page' : undefined}
                     className={cn(
-                      'flex items-center gap-2 rounded-xl p-2 transition-all cursor-pointer',
-                      active ? 'bg-white/25 font-bold shadow-2xs' : 'hover:bg-white/20 active:bg-white/30',
+                      'flex items-center gap-2 rounded-xl p-2 transition-[color,background-color] cursor-pointer',
+                      active ? 'bg-paper/15 font-bold' : 'hover:bg-paper/10 active:bg-paper/20',
                     )}
                   >
-                    <span className="flex size-7.5 shrink-0 items-center justify-center rounded-lg bg-white/20 text-white">
+                    <span className="flex size-7.5 shrink-0 items-center justify-center rounded-lg bg-paper/10 text-gold">
                       <Icon className="size-4" />
                     </span>
-                    <span className="text-xs font-bold text-white tracking-wide">
+                    <span className="text-xs font-bold text-paper tracking-wide">
                       {getLocale() === 'mr' ? item.titleMr : item.titleEn}
                     </span>
                   </Link>
@@ -650,12 +674,12 @@ function MobileMenu({
             </div>
           </div>
 
-          <div className="flex items-center justify-between rounded-xl border border-stone-200/70 bg-stone-50 px-3 py-2">
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-charcoal-700">
+          <div className="flex items-center justify-between rounded-xl border border-line bg-cream px-3 py-2">
+            <span className="flex items-center gap-1.5 text-xs font-semibold text-charcoal-900">
               <Globe className="size-3.5 text-saffron-600" />
               <span>{getLocale() === 'mr' ? 'भाषा निवडा:' : 'Language:'}</span>
             </span>
-            <LanguageToggle isMobile />
+            <LanguageToggle isMobile tone="light" />
           </div>
         </div>
       </m.div>
@@ -670,8 +694,9 @@ export function Header() {
   const tn = useTranslations('nav')
   const nav = normalizeNav(header.nav as never)
   const siteName = settings.siteName
-  const logoUrl = isMedia(settings.logoLight) && settings.logoLight.filename === ORIGINAL_LOGO ? VECTOR_LOGO : mediaUrl(settings.logoLight)
-  const logoDarkUrl = mediaUrl(settings.logoDark)
+  // the header is Cloud White, so it shows the "logo for light backgrounds" (Site settings → logoDark) when one has been uploaded; otherwise the
+  // name logo is drawn as the vector, in Charcoal (the original upload, logo-light.webp, is white words for dark backgrounds)
+  const logoUrl = isMedia(settings.logoDark) && settings.logoDark.filename !== ORIGINAL_LOGO ? mediaUrl(settings.logoDark) || VECTOR_LOGO : VECTOR_LOGO
 
   const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
@@ -714,15 +739,17 @@ export function Header() {
 
   return (
     <>
+      {/* Modern Teal + Saffron: the header is Cloud White with Charcoal Black words (14.5:1) and Modern Teal accents, a charcoal hairline
+          along its bottom edge and a soft shadow once the page scrolls */}
       <header
         className={cn(
-          'sticky top-0 z-50 border-b bg-white transition-[box-shadow,border-color] duration-300 lg:bg-white/95 lg:backdrop-blur-md',
-          scrolled ? 'border-stone-200/90 shadow-[0_4px_20px_-4px_rgba(0,13,61,0.08)]' : 'border-stone-100',
+          'sticky top-0 z-50 bg-paper text-ink transition-[box-shadow] duration-300',
+          scrolled && 'shadow-[0_8px_24px_-12px_rgba(24,33,38,0.35)]',
         )}
       >
         <div className="container-x flex h-16 items-center sm:h-[4.5rem] lg:h-20">
           <Link to="/" className="flex min-h-11 min-w-0 shrink-0 items-center" aria-label={siteName}>
-            <Logo siteName={siteName} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} />
+            <Logo siteName={siteName} logoUrl={logoUrl} />
           </Link>
 
           <DesktopNav nav={nav} pathname={pathname} />
@@ -744,12 +771,13 @@ export function Header() {
               aria-label={tn('menu')}
               aria-expanded={mobileOpen}
               aria-controls={mobileOpen ? drawerId : undefined}
-              className="grid size-11 place-items-center rounded-lg bg-[#000d3d] text-white shadow-xs transition-colors hover:bg-saffron-700 active:scale-95"
+              className="grid size-11 place-items-center rounded-lg bg-cream text-charcoal-900 ring-1 ring-line transition-[color,background-color] hover:bg-leaf-100 active:scale-95"
             >
               <Menu aria-hidden="true" className="size-5.5 stroke-[2.2]" />
             </button>
           </div>
         </div>
+        <AccentStripe />
       </header>
 
       <AnimatePresence>
@@ -758,7 +786,7 @@ export function Header() {
             id={drawerId}
             nav={nav}
             pathname={pathname}
-            logo={<Logo siteName={siteName} logoUrl={logoUrl} logoDarkUrl={logoDarkUrl} small />}
+            logo={<Logo siteName={siteName} logoUrl={logoUrl} small />}
             menuLabel={tn('menu')}
             closeLabel={tn('close')}
             onClose={closeDrawer}

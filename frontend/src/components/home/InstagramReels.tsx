@@ -34,7 +34,7 @@ function ReelCard({ reel }: { reel: Reel }) {
   }, [])
 
   return (
-    <div ref={ref} className="relative h-[640px] overflow-hidden rounded-2xl border border-stone-200/90 bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-orange-300/80">
+    <div ref={ref} className="relative h-[640px] overflow-hidden rounded-2xl border border-line bg-white shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:border-gold">
       {/* placeholder (also what shows if Instagram is blocked): a link to the reel */}
       <a href={reel.url} target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-cream p-6 text-center text-charcoal-900">
         <SocialIcon name="instagram" className="size-10 animate-pulse text-saffron-600" />

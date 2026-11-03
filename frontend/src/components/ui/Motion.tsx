@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils'
  * also switches off the movement of everything else that animates.
  * - Reveal: a block fades and rises once as it scrolls into view.
  * - Stagger + StaggerItem: the items of a row or grid come in one after another.
- * - AccentBar: the red + kesariya bar under a heading draws itself in. DrawRule: a thin rule after a heading draws itself out to the right.
+ * - AccentBar: the saffron underline + teal dot under a heading draws itself in. DrawRule: a thin saffron rule after a heading draws itself out to the right.
  * - Lift: a card that rises a little on hover and presses down on tap.
  * - ReadingProgress: a thin bar at the top of the screen that fills while an article is read.
  */
@@ -77,7 +77,8 @@ export function StaggerItem({ as = 'div', className, children, style, ref, ...re
 }
 
 /**
- * The short red bar and the kesariya dot under a heading: the bar draws itself in, then the dot pops after it.
+ * The short Saffron Amber underline and the Jade dot under a heading (Modern Teal + Saffron: saffron as the accent, jade as the fresh support):
+ * the bar draws itself in, then the dot pops after it.
  * `className` places it (margins, justify-center); `bar` / `dot` change their size.
  */
 export function AccentBar({ className, bar = 'h-1 w-14', dot = 'h-1 w-3', center = false }: { className?: string; bar?: string; dot?: string; center?: boolean }) {
@@ -92,12 +93,12 @@ export function AccentBar({ className, bar = 'h-1 w-14', dot = 'h-1 w-3', center
       viewport={VIEWPORT}
     >
       <m.span
-        className={cn('rounded-full bg-red-600', bar)}
+        className={cn('rounded-full bg-gold', bar)}
         style={{ originX: center ? 0.5 : 0 }}
         variants={{ hidden: { scaleX: 0 }, show: { scaleX: 1, transition: { duration: 0.55, ease: EASE_OUT } } }}
       />
       <m.span
-        className={cn('rounded-full bg-saffron-500', dot)}
+        className={cn('rounded-full bg-leaf-600', dot)}
         variants={{ hidden: { scale: 0, opacity: 0 }, show: { scale: 1, opacity: 1, transition: { duration: 0.35, ease: [0.34, 1.56, 0.64, 1] } } }}
       />
     </m.div>
@@ -105,7 +106,7 @@ export function AccentBar({ className, bar = 'h-1 w-14', dot = 'h-1 w-3', center
 }
 
 /** A thin rule (after a heading, in a flex row) that draws itself out to the right when it scrolls into view */
-export function DrawRule({ className, tone = 'bg-saffron-300' }: { className?: string; tone?: string }) {
+export function DrawRule({ className, tone = 'bg-gold' }: { className?: string; tone?: string }) {
   const calm = useReducedMotion()
   return (
     <span aria-hidden className={cn('relative h-px flex-1 overflow-hidden bg-line', className)}>
@@ -140,7 +141,7 @@ export function ReadingProgress({ className }: { className?: string }) {
   const { scrollYProgress } = useScroll()
   const smooth = useSpring(scrollYProgress, { stiffness: 160, damping: 30, restDelta: 0.001 })
   return createPortal(
-    <m.div aria-hidden className={cn('fixed inset-x-0 top-0 z-[89] h-[3px] origin-left bg-gradient-to-r from-red-600 to-saffron-500', className)} style={{ scaleX: calm ? scrollYProgress : smooth }} />,
+    <m.div aria-hidden className={cn('fixed inset-x-0 top-0 z-[89] h-[3px] origin-left bg-saffron-600', className)} style={{ scaleX: calm ? scrollYProgress : smooth }} />,
     document.body,
   )
 }

@@ -1,78 +1,100 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Stitch design (Oct 2026, "Rohan Deshmukh Official Portal"): BJP navy · kesariya saffron · tricolour green · warm ivory.
-     Token names are kept ("charcoal" = navy, "saffron" = kesariya, "cream" = sand band) so every page follows the new theme. */
-  --color-charcoal-950: #091422;
-  /* navy dark: footer, hero gradient top */
-  --color-charcoal-900: #0e1e34;
-  /* navy: headings, dark buttons, dark bands */
-  --color-charcoal-800: #142540;
-  /* navy surface */
-  --color-charcoal-700: #1c3150;
-  /* navy accent */
-  --color-charcoal-600: #2a4266;
-  --color-saffron-50: #fff7ed;
-  --color-saffron-100: #ffedd5;
-  /* card borders */
-  --color-saffron-200: #fed7aa;
-  --color-saffron-300: #fdba74;
-  /* highlight on navy */
-  --color-saffron-400: #fb923c;
-  --color-saffron-500: #ff7a00;
-  /* kesariya */
-  --color-saffron-600: #e65100;
-  /* kesariya deep: buttons, numbers, eyebrows */
-  --color-saffron-700: #c2410c;
-  /* small orange text on light backgrounds, hover */
-  --color-saffron-800: #9a3412;
-  --color-leaf-50: #e8f5e9;
-  --color-leaf-200: #86d988;
-  --color-leaf-600: #138808;
-  /* tricolour green */
-  --color-cream: #f3ede3;
-  /* sand band (alternate sections) */
-  --color-ivory: #fdfbf7;
-  /* header */
-  --color-paper: #faf6f0;
-  /* page background */
-  --color-surface: #ffffff;
-  /* cards */
-  --color-ink: #374151;
-  /* body text */
-  --color-muted: #4b5563;
-  /* secondary text */
-  --color-line: #ffedd5;
-  /* borders */
-  --color-frame: #fed7aa;
-  --color-highlight: #fdba74;
-  --color-overlay: rgb(9 20 34 / .55);
-  /* solid buttons, chips, the current page number: white text on them must be 4.5:1 (WCAG AA) — #c2410c is 5.2:1 (#e65100 was 3.8:1) */
-  --color-btn: #c2410c;
-  --color-btn-hover: #9a3412;
-  --color-btn-active: #7c2d12;    /* while pressed */
-  /* form controls (from the UX pass): field edges 3.1:1 on white — the pale --color-line stays for dividers only */
-  --color-field: #8b93a1;
-  --color-field-hover: #5c6779;
-  /* meaning, not decoration: each colour is at least 4.5:1 on white and on its own soft background */
-  --color-success: #1f7a3a;  --color-success-soft: #ebf5ee;
-  --color-warning: #a84a06;  --color-warning-soft: #fdf1df;
-  --color-danger: #b42318;   --color-danger-soft: #fdeceb;
-  --color-info: #1d4ed8;     --color-info-soft: #e8efff;
+  /* "Modern Teal + Saffron" (Nov 2026, replaces Palette B): a premium, quiet look for a public figure — Cloud White #F2F1EB pages, Modern Teal
+     #0F5C63 for authority and trust (headings, the hero, the Political Journey band), Saffron Amber #E99532 for highlights and the calls to
+     action, Charcoal Black #182126 for text and the footer, Jade Green #2B8067 for development work and success. Only these five colours —
+     and soft tints / deeper shades of them — appear on the public site (Tailwind's own white and black are mapped onto Cloud White and
+     Charcoal Black below, so `bg-white` / `text-white` follow the palette too).
+     Token names are kept from the earlier themes so every page follows: "charcoal-900" = Modern Teal (the brand colour), "charcoal-950" /
+     "charcoal-800" = Charcoal Black, "saffron" = Saffron Amber (its 700–900 steps = Teal, for small accent words), "leaf" = Jade Green,
+     "gold" = the highlight role (saffron lines, underlines, dots), "paper" = the Cloud White page, "cream" = a teal-tinted mist for
+     alternating bands and cards. */
 
-  /* Typography (Oct 2026): one family for the whole site — Anek Devanagari (self-hosted, @fontsource-variable/anek-devanagari, loaded in
-     main.tsx). It has Devanagari and Latin letters and every weight from 100 to 800, so Marathi and English read in the same face;
-     the system font is only a fallback while it loads. Every font token points at it, so font-sans / font-display / font-quote /
-     font-serif / font-mono all give the same letters. */
-  --font-anek: 'Anek Devanagari Variable', 'Anek Devanagari', system-ui, sans-serif;
-  --font-sans: var(--font-anek);
-  --font-display: var(--font-anek);
-  --font-quote: var(--font-anek);
-  --font-serif: var(--font-anek);
-  --font-mono: var(--font-anek);
+  /* Modern Teal #0F5C63: headings, the hero and the Political Journey band, outline buttons, stat cards (Cloud White words on it 6.8:1) */
+  --color-charcoal-900: #0F5C63;
+  --color-charcoal-700: #0F5C63;
+  --color-charcoal-600: #0F5C63;
+  /* Charcoal Black #182126: the footer, overlays on photos, menu words (14.5:1 on Cloud White) */
+  --color-charcoal-950: #182126;
+  --color-charcoal-800: #182126;
+
+  /* Saffron Amber #E99532: buttons, lines, dots, icon tiles, big figures on teal or charcoal. It is light (2.1:1 on Cloud White), so it is
+     never used for words on a light background, and the words on it are Charcoal Black (6.9:1), never white. Saffron words only on Charcoal
+     (6.9:1), or large on Teal (3.2:1, 24px+ / 19px bold). Small "accent" words (saffron-700 / 800 / 900: eyebrows, links, labels) are
+     Modern Teal. 50–200 are soft tints of the saffron on Cloud White. */
+  --color-saffron-50: #F1E8D9;
+  --color-saffron-100: #F0E1CA;
+  --color-saffron-200: #EFD2A9;
+  --color-saffron-300: #E99532;
+  --color-saffron-400: #E99532;
+  --color-saffron-500: #E99532;
+  --color-saffron-600: #E99532;
+  --color-saffron-700: #0F5C63;
+  --color-saffron-800: #0F5C63;
+  --color-saffron-900: #0F5C63;
+
+  /* the highlight role: Saffron Amber lines, underlines, borders, dots (graphics; on light backgrounds never words) */
+  --color-gold: #E99532;
+  /* selected text: a saffron tint under Charcoal */
+  --color-highlight: #EFD2A9;
+
+  /* Jade Green #2B8067: development work, success, the second accent. Jade words only large on Cloud White (4.2:1); small jade words and
+     Cloud White words on a jade fill use the deeper jade-700 #28725D (5.1:1). 50–200 are soft tints. */
+  --color-leaf-50: #E5EAE3;
+  --color-leaf-100: #DAE3DB;
+  --color-leaf-200: #BFD4C8;
+  --color-leaf-600: #2B8067;
+  --color-leaf-700: #28725D;
+
+  /* Cloud White #F2F1EB: the page, the header, cards · a teal-tinted mist for alternating bands (cards on it are Cloud White again) */
+  --color-paper: #F2F1EB;
+  --color-cream: #E4E8E3;
+  --color-ivory: #F2F1EB;
+  --color-surface: #F2F1EB;
+  --color-white: #F2F1EB;
+  --color-black: #182126;
+
+  /* Charcoal Black #182126: paragraphs (14.5:1) · a charcoal grey for captions, dates, placeholders (5.7:1 on Cloud White, 5.2:1 on the mist) */
+  --color-ink: #182126;
+  --color-muted: #595F61;
+
+  /* hairlines: steps of charcoal on Cloud White (decoration, never text) */
+  --color-line: #D6D6D1;
+  --color-frame: #C2C3C0;
+  --color-overlay: rgb(24 33 38 / .6);
+
+  /* the one saffron button of a section: Saffron Amber with Charcoal words (6.9:1); under the pointer Charcoal Black sweeps in from the left
+     and the words turn Cloud White (14.5:1) — see .btn */
+  --color-btn: #E99532;
+  --color-btn-hover: #182126;
+  --color-btn-active: #182126;
+
+  /* form controls: a charcoal-grey edge, 4.2:1 on Cloud White and 3.8:1 on the mist (WCAG non-text contrast) */
+  --color-field: #6F7475;
+  --color-field-hover: #4F5557;
+
+  /* meaning, not decoration: success is a deeper Jade, warning a deep amber; errors keep a clear red (the palette has none, and an error must
+     not look like the brand accent) — each is at least 4.5:1 on Cloud White and on its own soft background */
+  --color-success: #28725D;  --color-success-soft: #E5EAE3;
+  --color-warning: #815B2C;  --color-warning-soft: #F1E8D9;
+  --color-danger: #B42318;   --color-danger-soft: #F6E3DE;
+  --color-info: #0F5C63;     --color-info-soft: #E0E6E2;
+
+  /* Typography (the PDF's usage guide): serif headings for dignity, a sans-serif body that keeps long text clean — Playfair Display with
+     Noto Serif Devanagari for headings, Inter with Noto Sans Devanagari for everything else. All four are self-hosted (@fontsource-variable,
+     loaded in main.tsx). The browser takes every letter from the first font in the list that has it: English words get Playfair / Inter,
+     Marathi gets the Noto pair, which render Marathi and Hindi reliably. */
+  --font-heading: 'Playfair Display Variable', 'Noto Serif Devanagari Variable', Georgia, serif;
+  --font-body: 'Inter Variable', 'Noto Sans Devanagari Variable', system-ui, sans-serif;
+  --font-sans: var(--font-body);
+  --font-display: var(--font-heading);
+  --font-quote: var(--font-heading);
+  --font-serif: var(--font-heading);
+  --font-mono: var(--font-body);
   /* Tailwind's own defaults (<html>, and <code>/<kbd>/<pre>) follow too */
-  --default-font-family: var(--font-anek);
-  --default-mono-font-family: var(--font-anek);
+  --default-font-family: var(--font-body);
+  --default-mono-font-family: var(--font-body);
 
   /* The type scale (also Tailwind utilities: text-h1 … text-caption). Headings grow from phone to desktop: H1 32 → 48px, H2 28 → 36px,
      H3 22 → 28px, H4 20 → 22px; body 16px, navigation and buttons 16px, captions 13px. */
@@ -172,8 +194,8 @@
     /* a jump to #part of a page, or keyboard focus, never ends under the sticky header (64 / 72 / 80 px, see Header.tsx);
        sections add their own scroll-mt-* for the breathing room or a sticky tab bar */
     scroll-padding-top: 4rem;
-    /* a tap is answered at once with a faint kesariya flash instead of the browser's grey box */
-    -webkit-tap-highlight-color: rgb(230 81 0 / .14);
+    /* a tap is answered at once with a faint saffron flash instead of the browser's grey box */
+    -webkit-tap-highlight-color: rgb(233 149 50 / .18);
   }
 
   @media (min-width: 640px) {
@@ -210,8 +232,9 @@
     font-kerning: normal;
   }
 
-  /* Typography (Oct 2026): every element inherits Anek Devanagari from <body>; the element defaults below follow the type scale
-     (a component's own Tailwind classes still set its size and weight). */
+  /* Typography: every element inherits the body font (Inter / Noto Sans Devanagari) from <body>, headings take the serif heading font
+     (Playfair Display / Noto Serif Devanagari) in Modern Teal; the element defaults below follow the type scale (a component's own Tailwind
+     classes still set its size and weight). */
   h1,
   h2,
   h3,
@@ -300,8 +323,18 @@
     border-radius: 4px;
   }
 
+  /* on Teal / Charcoal the ring is Saffron Amber (3.2:1 and 6.9:1); on a Jade fill it is Cloud White (saffron there is only 2:1); a light
+     panel inside a dark area (the header's menus, a card on a teal band) marks itself .on-light */
   :is(.on-dark, .band-navy, .stat-card, footer, [data-hero-overlay], [class~='bg-charcoal-900'], [class~='bg-charcoal-950']) :focus-visible {
-    outline-color: var(--color-saffron-300);
+    outline-color: var(--color-gold);
+  }
+
+  :is(.on-jade, [class~='bg-leaf-600'], [class~='bg-leaf-700']) :focus-visible {
+    outline-color: var(--color-paper);
+  }
+
+  .on-light :focus-visible {
+    outline-color: var(--color-saffron-700);
   }
 
   /* People who ask for less motion: nothing slides, grows or bounces. Colour, opacity and shadow changes stay (short fades are fine),
@@ -345,8 +378,8 @@
     padding-inline: 24px;
   }
 
-  /* small label above a heading (like a section mark on an official site) */
-  /* Stitch eyebrow: small bold capitals in deep kesariya, with a short pill-shaped bar before it */
+  /* small label above a heading (like a section mark on an official site): small bold capitals in Modern Teal (6.8:1 — Saffron Amber is
+     only 2.1:1 on Cloud White, too little for words), with a short saffron bar before it */
   .eyebrow {
     display: inline-flex;
     align-items: center;
@@ -356,7 +389,6 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: .1em;
-    /* small orange words use the deeper kesariya: #e65100 is only 3.5:1 on the page background, #c2410c is 4.9:1 (WCAG AA) */
     color: var(--color-saffron-700);
   }
 
@@ -365,16 +397,17 @@
     width: .625rem;
     height: .25rem;
     border-radius: 9999px;
-    background: var(--color-saffron-500);
+    background: var(--color-gold);
   }
 
+  /* on Teal: Cloud White (small saffron words would be 3.2:1) */
   .on-dark .eyebrow {
-    color: var(--color-saffron-200);
+    color: var(--color-paper);
   }
 
-  /* section title with a short saffron bar under it — the one heading style used on every section */
-  /* section title (Stitch: bold, 30 → 36px, navy, no underline) */
+  /* section title: the serif heading font, bold, 30 → 36px, Modern Teal */
   .h-section {
+    font-family: var(--font-display);
     font-size: 1.875rem;
     line-height: 2.25rem;
     font-weight: 700;
@@ -391,11 +424,17 @@
   }
 
   .on-dark .h-section {
-    color: #fff;
+    color: var(--color-paper);
   }
 
-  /* Stitch buttons: 48px tall, 12px corners, bold small text. Primary = kesariya gradient, dark = navy, ghost = white outline card */
+  /* Buttons: 48px tall, 12px corners, bold small text. One saffron button per section (.btn: Saffron Amber with Charcoal words, 6.9:1 —
+     Cloud White words on it would be only 2.1:1). Its hover is the one elegant movement a button makes: a fill sweeps in from the left
+     (a background layer that grows — Charcoal Black on the saffron button, so the words turn Cloud White, 14.5:1), the button lifts 1px under
+     a mouse pointer and its arrow steps forward. The other actions of a section are Teal outlines (.btn-outline, .btn-ghost, .btn-light)
+     that fill with Teal the same way; .btn-dark is a solid Teal button; on teal or on a photo the second action is a Cloud White outline
+     (.btn-outline-light). Each variant only names its sweep colour (--btn-sweep). */
   .btn {
+    --btn-sweep: var(--color-btn-hover);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -406,16 +445,21 @@
     font-weight: 700;
     font-size: .875rem;
     line-height: 1.25rem;
-    color: #fff;
-    background-image: linear-gradient(to right, var(--color-saffron-600), var(--color-saffron-500), #f97316);
-    box-shadow: 0 10px 15px -3px rgb(255 122 0 / .3), 0 4px 6px -4px rgb(255 122 0 / .3);
-    transition: background .2s, transform .2s var(--ease-soft), box-shadow .25s var(--ease-soft), filter .2s;
+    color: var(--color-ink);
+    background-color: var(--color-btn);
+    background-image: linear-gradient(var(--btn-sweep), var(--btn-sweep));
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 0% 100%;
+    box-shadow: 0 8px 18px -8px rgb(233 149 50 / .6);
+    transition: background-size .45s var(--ease-soft), color .25s ease .08s, transform .2s var(--ease-soft), translate .2s var(--ease-soft), scale .2s var(--ease-soft), box-shadow .3s var(--ease-soft);
     white-space: nowrap;
   }
 
   .btn:hover {
-    filter: brightness(.94);
-    box-shadow: 0 20px 25px -5px rgb(255 122 0 / .4), 0 8px 10px -6px rgb(255 122 0 / .4);
+    color: var(--color-paper);
+    background-size: 100% 100%;
+    box-shadow: 0 14px 26px -12px rgb(24 33 38 / .5);
   }
 
   /* a mouse pointer lifts the button 1px (never on a touch screen, where hover would stick after a tap); the press below wins over it */
@@ -430,92 +474,111 @@
   }
 
   .btn svg {
-    transition: transform .2s;
+    transition: transform .25s var(--ease-soft);
   }
 
   .btn:hover svg.lucide-arrow-right {
     transform: translateX(3px);
   }
 
+  .btn:hover svg.lucide-arrow-up-right {
+    transform: translate(2px, -2px);
+  }
+
+  /* a solid Teal button (Cloud White words 6.8:1) for a lone action that is not the section's saffron one; Charcoal sweeps in under the pointer */
   .btn-dark {
-    background: var(--color-charcoal-950);
-    background-image: none;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / .1), 0 2px 4px -2px rgb(0 0 0 / .1);
+    --btn-sweep: var(--color-charcoal-950);
+    color: var(--color-paper);
+    background-color: var(--color-charcoal-900);
+    box-shadow: 0 8px 16px -8px rgb(15 92 99 / .55);
   }
 
   .btn-dark:hover {
-    background: var(--color-charcoal-900);
-    filter: none;
-    box-shadow: 0 10px 15px -3px rgb(0 0 0 / .12);
+    box-shadow: 0 12px 22px -10px rgb(24 33 38 / .55);
   }
 
   .btn-dark svg {
-    color: var(--color-saffron-500);
+    color: var(--color-gold);
   }
 
+  /* secondary actions: a Teal outline with teal words (6.8:1 on Cloud White); Teal sweeps in on hover and the words turn Cloud White */
+  .btn-outline,
   .btn-ghost,
   .btn-light {
-    background: #fff;
-    background-image: none;
-    color: var(--color-charcoal-950);
-    box-shadow: inset 0 0 0 1px var(--color-saffron-200), 0 1px 2px rgb(0 0 0 / .05);
+    --btn-sweep: var(--color-charcoal-900);
+    background-color: transparent;
+    color: var(--color-charcoal-900);
+    box-shadow: inset 0 0 0 2px var(--color-charcoal-900);
   }
 
+  .btn-outline:hover,
   .btn-ghost:hover,
   .btn-light:hover {
-    filter: none;
-    box-shadow: inset 0 0 0 1px var(--color-saffron-500), 0 1px 2px rgb(0 0 0 / .05);
+    color: var(--color-paper);
+    box-shadow: inset 0 0 0 2px var(--color-charcoal-900);
   }
 
+  .btn-outline svg,
   .btn-ghost svg,
   .btn-light svg {
-    color: var(--color-saffron-600);
+    color: currentColor;
   }
 
-  /* on an orange band a button keeps a white outline so it stays visible */
-  .on-saffron .btn {
-    box-shadow: inset 0 0 0 2px #fff;
-  }
-
-  /* icon-only buttons (slider arrows, pagination arrows, back to top) */
+  /* icon-only buttons (slider arrows, pagination arrows): Teal with a Cloud White icon; Saffron with a Charcoal icon under the pointer */
   .btn-icon {
     display: grid;
     place-items: center;
     border-radius: .75rem;
     background: var(--color-charcoal-900);
-    color: #fff;
-    transition: background .2s, opacity .2s;
+    color: var(--color-paper);
+    transition: background-color .2s, color .2s, opacity .2s;
   }
 
   .btn-icon:hover {
-    background: var(--color-btn-hover);
+    background: var(--color-btn);
+    color: var(--color-ink);
   }
 
   .btn-icon:active {
     background: var(--color-btn-active);
+    color: var(--color-paper);
   }
 
-  /* a second button on a photo or on navy: white text, a clear white outline, no fill (declared after .btn so it wins) */
+  /* the second action on teal or on a photo: Cloud White words and outline, no fill (declared after .btn so it wins) */
   .btn.btn-outline-light {
-    background: transparent;
-    box-shadow: inset 0 0 0 2px rgb(255 255 255 / .9);
-  }
-
-  .btn.btn-outline-light:hover {
-    background: rgb(255 255 255 / .16);
+    --btn-sweep: rgb(242 241 235 / .16);
+    background-color: transparent;
+    color: var(--color-paper);
+    box-shadow: inset 0 0 0 2px rgb(242 241 235 / .9);
   }
 
   .btn.btn-outline-light:active {
-    background: rgb(255 255 255 / .26);
+    background-color: rgb(242 241 235 / .24);
   }
 
-  /* Stitch card: white, 16px corners, kesariya-100 hairline, soft shadow that grows on hover */
+  /* on teal the teal outline would vanish: secondary buttons there turn into the Cloud White outline */
+  .on-dark :is(.btn-outline, .btn-ghost, .btn-light) {
+    --btn-sweep: rgb(242 241 235 / .16);
+    color: var(--color-paper);
+    box-shadow: inset 0 0 0 2px rgb(242 241 235 / .9);
+  }
+
+  .on-dark :is(.btn-outline, .btn-ghost, .btn-light):hover {
+    color: var(--color-paper);
+  }
+
+  /* card: the mist surface with a hairline, 16px corners, a soft shadow that grows on hover; a card on a mist band turns Cloud White so it
+     still stands out */
   .card {
-    background: var(--color-surface);
+    background: var(--color-cream);
     border: 1px solid var(--color-line);
     border-radius: 1rem;
     overflow: hidden;
-    box-shadow: 0 1px 2px rgb(0 0 0 / .05);
+    box-shadow: 0 1px 2px rgb(24 33 38 / .05);
+  }
+
+  .band-cream .card {
+    background: var(--color-paper);
   }
 
   .card-hover {
@@ -525,8 +588,8 @@
   @media (hover: hover) {
     .card-hover:hover {
       transform: translateY(-4px);
-      border-color: var(--color-saffron-500);
-      box-shadow: 0 14px 22px -6px rgb(14 30 52 / .12), 0 6px 8px -6px rgb(14 30 52 / .1);
+      border-color: var(--color-gold);
+      box-shadow: 0 14px 22px -6px rgb(24 33 38 / .12), 0 6px 8px -6px rgb(24 33 38 / .1);
     }
   }
 
@@ -564,25 +627,27 @@
     }
   }
 
+  /* sections alternate between the Cloud White page and mist bands */
   .band-cream {
     background: var(--color-cream);
   }
 
   .band-white {
-    background: var(--color-surface);
+    background: var(--color-paper);
   }
 
   .band-cream {
     border-block: 1px solid var(--color-line);
   }
 
+  /* a Modern Teal band (the closing call-to-action block) with a thin saffron edge; words on it are Cloud White (6.8:1) */
   .band-navy {
-    background-image: linear-gradient(to bottom, var(--color-charcoal-950), var(--color-charcoal-900));
-    color: #fff;
-    border-top: 4px solid var(--color-saffron-500);
+    background-color: var(--color-charcoal-900);
+    color: var(--color-paper);
+    border-top: 3px solid var(--color-gold);
   }
 
-  /* soft kesariya and green glows on navy bands (decorative, behind the content) */
+  /* soft saffron and jade glows on teal bands (decorative, behind the content) */
   .glow-tl,
   .glow-br {
     position: absolute;
@@ -596,13 +661,53 @@
   .glow-tl {
     top: -8rem;
     right: -8rem;
-    background: rgb(255 122 0 / .18);
+    background: rgb(233 149 50 / .16);
   }
 
   .glow-br {
     bottom: 0;
     left: 2.5rem;
-    background: rgb(19 136 8 / .13);
+    background: rgb(43 128 103 / .22);
+  }
+
+  /* the depth of a teal band: a soft light from the upper left and a deeper teal toward the lower right (both only teal and Cloud White),
+     with the faint grain of good paper — used by the hero, the Political Journey band and the page banners */
+  .teal-depth {
+    background-color: var(--color-charcoal-900);
+    background-image:
+      radial-gradient(120% 90% at 0% 0%, rgb(242 241 235 / .07), transparent 55%),
+      radial-gradient(90% 80% at 100% 100%, rgb(24 33 38 / .28), transparent 60%);
+  }
+
+  /* Section accents. Every Tailwind colour utility reads its theme variable, so a page part can re-point a variable for everything inside it.
+     .accent-jade — Lokmangal Foundation and Parivar: Teal with Jade Green accents (the saffron lines, bars and dots of the part turn Jade;
+     the buttons stay Saffron Amber, the one colour for actions).
+     .theme-development — development work (Social Work, the initiatives): Jade Green and Cloud White — Jade lines and dots, and the small
+     accent words (eyebrows, kickers, links) in the deeper Jade (5.1:1 on Cloud White). */
+  .accent-jade,
+  .theme-development {
+    --color-gold: var(--color-leaf-600);
+  }
+
+  .theme-development {
+    --color-saffron-700: var(--color-leaf-700);
+    --color-saffron-800: var(--color-leaf-700);
+    --color-saffron-900: var(--color-leaf-700);
+  }
+
+  /* jade on a teal or charcoal fill would be faint (1.6:1): inside those, the highlight goes back to Saffron Amber */
+  :is(.accent-jade, .theme-development) :is(.on-dark, .band-navy, .stat-card, footer, [class~='bg-charcoal-900'], [class~='bg-charcoal-950']) {
+    --color-gold: #E99532;
+  }
+
+  /* a word picked out in a heading on a light background: the heading's own colour with a saffron marker stroke under it (saffron words
+     themselves would be only 2.1:1 on Cloud White) */
+  .hl-saffron {
+    background-image: linear-gradient(transparent 62%, rgb(233 149 50 / .55) 62%, rgb(233 149 50 / .55) 90%, transparent 90%);
+    background-repeat: no-repeat;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding-inline: .06em;
   }
 
   /* section heading: eyebrow → title → short intro; centred variant for list/grid sections */
@@ -660,7 +765,7 @@
   }
 
   .on-dark .lead {
-    color: rgb(255 255 255 / .75);
+    color: rgb(242 241 235 / .88);
   }
 
   /* ---------- open "story" tiles: photo + text on the page itself, no box around them ---------- */
@@ -674,7 +779,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 1rem;
-    background: var(--color-saffron-100);
+    background: var(--color-cream);
     isolation: isolate;
   }
 
@@ -734,7 +839,7 @@
   }
 
   .on-dark .tile-title {
-    color: #fff;
+    color: var(--color-paper);
   }
 
   .on-dark .tile:hover .tile-title {
@@ -742,15 +847,14 @@
   }
 
   .on-dark .tile-text {
-    color: rgb(255 255 255 / .7);
+    color: rgb(242 241 235 / .84);
   }
 
-  /* text link with an arrow that nudges on hover */
+  /* text link with an arrow that nudges on hover: Modern Teal words (small saffron words would be too faint), Charcoal under the pointer */
   .more-link {
     display: inline-flex;
     align-items: center;
     gap: .3rem;
-    font-family: var(--font-display);
     font-size: .875rem;
     font-weight: 700;
     color: var(--color-saffron-700);
@@ -760,7 +864,7 @@
   .more-link:hover,
   .tile:hover .more-link {
     gap: .55rem;
-    color: var(--color-saffron-800);
+    color: var(--color-ink);
   }
 
   /* phones: a 44 px-high tap area for text links, without changing the layout */
@@ -772,12 +876,12 @@
   }
 
   .on-dark .more-link {
-    color: var(--color-saffron-300);
+    color: var(--color-paper);
   }
 
   .on-dark .more-link:hover,
   .on-dark .tile:hover .more-link {
-    color: #fff;
+    color: var(--color-highlight);
   }
 
   /* a small text link keeps its looks and gets a 44px-high touch area: padding that its negative margin takes back */
@@ -796,7 +900,7 @@
     height: 1.5rem;
     border: 2px solid var(--color-field);
     border-radius: .4rem;
-    background: #fff;
+    background: var(--color-paper);
     transition: background-color .15s, border-color .15s;
   }
 
@@ -808,7 +912,8 @@
     content: '';
     width: .85rem;
     height: .85rem;
-    background: #fff;
+    /* the tick is Charcoal on the saffron box (6.9:1) */
+    background: var(--color-ink);
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0, 43% 62%);
     opacity: 0;
     transition: opacity .12s;
@@ -839,10 +944,11 @@
   }
 
   .stat-item {
-    border-left: 2px solid var(--color-saffron-500);
+    border-left: 2px solid var(--color-gold);
     padding-left: 1.1rem;
   }
 
+  /* key numbers: large Modern Teal figures on the Cloud White page (6.8:1) beside a saffron rule (saffron figures there would be 2.1:1) */
   .stat-value {
     font-family: var(--font-display);
     font-weight: 700;
@@ -852,28 +958,27 @@
     font-variant-numeric: tabular-nums;
   }
 
-  /* a soft, slightly raised card — used only for key numbers */
-  /* key numbers on a navy card (palette: "dark button, stat card") */
+  /* key numbers on a Modern Teal card: saffron figures (3.2:1, large), Cloud White labels */
   .stat-card {
     border-radius: 1rem;
     background: var(--color-charcoal-900);
-    color: #fff;
+    color: var(--color-paper);
     padding: 1.35rem 1.25rem 1.25rem;
-    box-shadow: 0 18px 40px -28px rgb(14 30 52 / .6);
+    box-shadow: 0 18px 40px -28px rgb(15 92 99 / .7);
     transition: transform .3s, box-shadow .3s;
   }
 
   .stat-card:hover {
     transform: translateY(-2px);
-    box-shadow: 0 24px 46px -26px rgb(20 33 61 / .65);
+    box-shadow: 0 24px 46px -26px rgb(15 92 99 / .75);
   }
 
   .stat-card .stat-value {
-    color: #7ddc9a;
+    color: var(--color-gold);
   }
 
   .stat-card .stat-label {
-    color: rgb(255 255 255 / .75);
+    color: rgb(242 241 235 / .88);
   }
 
   @media (min-width: 768px) {
@@ -890,11 +995,11 @@
   }
 
   .on-dark .stat-value {
-    color: #7ddc9a;
+    color: var(--color-gold);
   }
 
   .on-dark .stat-label {
-    color: rgb(255 255 255 / .72);
+    color: rgb(242 241 235 / .88);
   }
 
   /* photo with a soft offset colour block behind it (instead of an outlined frame) */
@@ -950,8 +1055,8 @@
   }
 
   .prose-rd a:hover {
-    color: var(--color-charcoal-900);
-    text-decoration-color: var(--color-saffron-500);
+    color: var(--color-ink);
+    text-decoration-color: var(--color-gold);
   }
 
   .prose-rd ul {
@@ -969,7 +1074,7 @@
   }
 
   .prose-rd blockquote {
-    border-left: 4px solid var(--color-saffron-500);
+    border-left: 4px solid var(--color-gold);
     padding: .2em 0 .2em 1.2em;
     font-family: var(--font-quote);
     font-style: italic;
@@ -982,7 +1087,7 @@
     border-radius: 1rem;
   }
 
-  /* article page (newspaper style): saffron bar on sub-headings */
+  /* article page (newspaper style): a saffron bar beside the sub-headings, a gold one beside the smaller ones */
   .article-body .prose-rd {
     font-size: 1.0625rem;
     line-height: 1.8;
@@ -1257,6 +1362,20 @@
   animation: float-fluid 6.5s ease-in-out infinite;
 }
 
+/* the saffron buttons written with utilities (bg-btn …) get the same hover as .btn: Charcoal Black sweeps in from the left while the words turn
+   Cloud White (hover:text-white). Unlayered on purpose, so its transition list wins over a utility's transition-all / transition-colors. */
+.btn-sweep {
+  background-image: linear-gradient(var(--color-btn-hover), var(--color-btn-hover));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  transition: background-size .45s var(--ease-soft), color .25s ease .08s, box-shadow .3s var(--ease-soft), transform .2s var(--ease-soft), translate .2s var(--ease-soft), scale .2s var(--ease-soft);
+}
+
+.btn-sweep:hover {
+  background-size: 100% 100%;
+}
+
 /* the social icons on the left edge slip in one after another (the delay is set per icon) */
 .dock-in {
   animation: dock-in .5s var(--ease-soft) backwards;
@@ -1288,7 +1407,7 @@ img[data-rd-img][data-ready='fade'] {
   position: absolute;
   inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .55), transparent);
+  background: linear-gradient(90deg, transparent, rgb(242 241 235 / .6), transparent);
   animation: shimmer 1.5s ease-in-out infinite;
 }
 

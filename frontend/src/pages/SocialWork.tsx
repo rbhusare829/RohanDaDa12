@@ -30,7 +30,7 @@ export default function SocialWorkPage() {
   return (
     <>
       <Seo title={t('socialWork')} />
-      <InnerPage path="/social-work" title={t('socialWork')} subtitle={subtitle} variant="navy">
+      <InnerPage path="/social-work" title={t('socialWork')} subtitle={subtitle} variant="navy" tone="development">
         <FilterChips base="/social-work" active={category} items={[{ label: tc('all'), value: '' }, ...used.map((c) => ({ label: categoryLabel(c.value, locale), value: c.value }))]} />
         <div className="space-y-10 sm:space-y-20">
           {groups.map((g) => (
@@ -54,8 +54,8 @@ export default function SocialWorkPage() {
                         </span>
                       )}
                       {it.counters?.[0] && (
-                        <span className="absolute bottom-3 left-3 rounded-full bg-charcoal-900/90 px-3 py-1 text-sm text-white backdrop-blur max-sm:hidden">
-                          <b className="text-saffron-300"><CountUp value={it.counters[0].value} /></b> {it.counters[0].label}
+                        <span className="absolute bottom-3 left-3 rounded-full bg-charcoal-900/90 px-3 py-1 text-sm text-paper backdrop-blur max-sm:hidden">
+                          <b className="text-saffron-200"><CountUp value={it.counters[0].value} /></b> {it.counters[0].label}
                         </span>
                       )}
                     </div>

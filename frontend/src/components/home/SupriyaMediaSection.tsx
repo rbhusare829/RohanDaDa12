@@ -81,18 +81,18 @@ export function SupriyaMediaSection({
       <section className="container-x">
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
               {isMr ? 'ताज्या बातम्या (Latest News)' : 'Latest News'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-14 rounded-full bg-saffron-600" />
               <span className="h-1 w-3 rounded-full bg-saffron-500" />
             </div>
           </div>
 
           <Link
             to="/blog"
-            className="group inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-[#000d3d] hover:text-red-600 transition-colors"
+            className="group inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-charcoal-900 hover:text-saffron-700 transition-colors"
           >
             <span>{isMr ? 'सर्व पहा' : 'View all'}</span>
             <ChevronRight className="size-4.5 transition-transform group-hover:translate-x-1" />
@@ -102,8 +102,8 @@ export function SupriyaMediaSection({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {LATEST_NEWS_ITEMS.map((item, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <div className="group flex flex-col h-full overflow-hidden rounded-xl bg-white border border-stone-200 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-100">
+              <div className="group flex flex-col h-full overflow-hidden rounded-xl bg-white border border-line shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-cream">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -113,7 +113,7 @@ export function SupriyaMediaSection({
 
                   {/* LIVE Badge if active */}
                   {item.isLive && (
-                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded bg-red-600 px-2 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1 rounded bg-saffron-600 px-2 py-0.5 text-[10px] font-extrabold text-ink shadow-xs">
                       <span className="size-1.5 rounded-full bg-white animate-ping" />
                       <span>LIVE</span>
                     </div>
@@ -121,23 +121,23 @@ export function SupriyaMediaSection({
 
                   {/* Play icon overlay */}
                   <div className="absolute inset-0 grid place-items-center bg-black/25 opacity-0 transition-opacity group-hover:opacity-100">
-                    <span className="grid size-11 place-items-center rounded-full bg-red-600 text-white shadow-md">
+                    <span className="grid size-11 place-items-center rounded-full bg-saffron-600 text-ink shadow-md">
                       <Play className="size-5 fill-white ml-0.5" />
                     </span>
                   </div>
 
                   {/* Date Badge */}
-                  <div className="absolute bottom-2 right-2 rounded bg-[#000d3d]/90 px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-sm">
+                  <div className="absolute bottom-2 right-2 rounded bg-charcoal-900/90 px-2.5 py-0.5 text-[11px] font-semibold text-white shadow-sm">
                     {item.date}
                   </div>
                 </div>
 
                 <div className="p-4 flex-1 flex flex-col justify-between">
                   <div>
-                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-red-600">
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-saffron-700">
                       [{item.source}]
                     </span>
-                    <h3 className="mt-1 font-display text-sm sm:text-[0.95rem] font-bold leading-snug text-[#000d3d] group-hover:text-red-600 transition-colors line-clamp-3">
+                    <h3 className="mt-1 font-display text-sm sm:text-[0.95rem] font-bold leading-snug text-charcoal-900 group-hover:text-saffron-700 transition-colors line-clamp-3">
                       {item.title}
                     </h3>
                   </div>
@@ -149,20 +149,20 @@ export function SupriyaMediaSection({
       </section>
 
       {/* 2. Video Gallery & Speeches (Supriya Sule style) */}
-      <section className="bg-[#f8fafc] border-t border-stone-200 py-16">
+      <section className="bg-cream border-t border-line py-16">
         <div className="container-x">
           <div className="mb-8">
             <div className="flex items-center gap-2 mb-2">
-              <Video className="size-5 text-red-600" />
-              <span className="text-xs font-extrabold uppercase tracking-widest text-slate-500">
+              <Video className="size-5 text-saffron-700" />
+              <span className="text-xs font-extrabold uppercase tracking-widest text-muted">
                 {isMr ? 'व्हिडिओ गॅलरी' : 'Video Gallery'}
               </span>
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
               {isMr ? 'भाषणे, मुलाखती व संवाद' : 'Speeches & Media'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-14 rounded-full bg-saffron-600" />
               <span className="h-1 w-3 rounded-full bg-saffron-500" />
             </div>
           </div>
@@ -173,7 +173,7 @@ export function SupriyaMediaSection({
               <div className="aspect-video w-full">
                 <YouTube url={`https://www.youtube.com/watch?v=${selectedVideo.youtubeId}`} title={selectedVideo.title} />
               </div>
-              <div className="bg-[#000d3d] p-5 text-white">
+              <div className="bg-charcoal-900 p-5 text-white">
                 <span className="text-xs font-semibold text-saffron-400">
                   {selectedVideo.date}
                 </span>
@@ -185,7 +185,7 @@ export function SupriyaMediaSection({
 
             {/* Playlist on the Right (Supriya Sule style) */}
             <div className="lg:col-span-4 flex flex-col gap-3">
-              <h4 className="font-display text-sm font-bold uppercase tracking-wider text-slate-700 px-1">
+              <h4 className="font-display text-sm font-bold uppercase tracking-wider text-ink px-1">
                 {isMr ? 'इतर भाषणे' : 'More Speeches'}
               </h4>
               <div className="space-y-3">
@@ -198,11 +198,11 @@ export function SupriyaMediaSection({
                       onClick={() => setSelectedVideo(v)}
                       className={`group flex items-start gap-3 w-full p-3 rounded-xl border text-left transition-all ${
                         isSelected
-                          ? 'bg-white border-red-500 ring-2 ring-red-500/20 shadow-md'
-                          : 'bg-white/80 border-stone-200 hover:bg-white hover:border-slate-300'
+                          ? 'bg-white border-saffron-600 ring-2 ring-saffron-600/20 shadow-md'
+                          : 'bg-white/80 border-line hover:bg-white hover:border-frame'
                       }`}
                     >
-                      <div className="relative aspect-[16/10] w-28 shrink-0 overflow-hidden rounded-lg bg-stone-100">
+                      <div className="relative aspect-[16/10] w-28 shrink-0 overflow-hidden rounded-lg bg-cream">
                         <img src={v.thumbnail} alt={v.title} className="size-full object-cover object-top" />
                         <span className="absolute bottom-1 right-1 rounded bg-black/80 px-1.5 py-0.5 text-[10px] font-bold text-white">
                           {v.duration}
@@ -212,10 +212,10 @@ export function SupriyaMediaSection({
                         </div>
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h5 className="font-display text-xs sm:text-sm font-bold leading-snug text-[#000d3d] group-hover:text-red-600 transition-colors line-clamp-2">
+                        <h5 className="font-display text-xs sm:text-sm font-bold leading-snug text-charcoal-900 group-hover:text-saffron-700 transition-colors line-clamp-2">
                           {v.title}
                         </h5>
-                        <span className="mt-1 block text-[11px] text-slate-500">
+                        <span className="mt-1 block text-[11px] text-muted">
                           {v.date}
                         </span>
                       </div>

@@ -54,7 +54,7 @@ export function AdminLayout() {
   const menu = (
     <>
       <div className="flex items-center gap-3 px-5 pb-4 pt-5">
-        <span aria-hidden className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-saffron-500 to-saffron-700 font-display text-xl text-white">रो</span>
+        <span aria-hidden className="grid size-10 place-items-center rounded-xl bg-gradient-to-br from-charcoal-900 to-charcoal-950 font-display text-xl text-white">रो</span>
         <div className="leading-tight">
           <p className="font-display text-[1.05rem] text-white">रोहन सुभाष देशमुख</p>
           <p className="text-[0.75rem] text-white/60">Website admin</p>
@@ -66,7 +66,7 @@ export function AdminLayout() {
           {inbox && (
             <NavLink to="/admin/collections/contact-messages" className={linkClass}>
               <Inbox className="size-4" /> Inbox
-              {(unread.data ?? 0) > 0 && <span className="ml-auto rounded-full bg-saffron-500 px-2 py-0.5 text-[0.7rem] font-bold text-white">{unread.data}</span>}
+              {(unread.data ?? 0) > 0 && <span className="ml-auto rounded-full bg-saffron-500 px-2 py-0.5 text-[0.7rem] font-bold text-ink">{unread.data}</span>}
             </NavLink>
           )}
         </div>
@@ -90,7 +90,7 @@ export function AdminLayout() {
   )
 
   return (
-    <div className="min-h-dvh bg-[#f5f1ea] text-charcoal-900">
+    <div className="min-h-dvh bg-paper text-charcoal-900">
       <aside aria-label="Admin menu" className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col bg-charcoal-900 lg:flex">{menu}</aside>
 
       {/* phones and tablets: the menu slides over the page */}

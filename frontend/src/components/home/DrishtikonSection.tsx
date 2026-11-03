@@ -11,29 +11,25 @@ export function DrishtikonSection({
 
   return (
     <section
-      className="relative py-14 sm:py-18 lg:py-22 border-t border-b border-orange-100/80 overflow-hidden"
-      style={{
-        background:
-          'linear-gradient(110deg, #fff2e8 0%, #fff7f2 35%, #ffffff 75%, #ffffff 100%)',
-      }}
+      className="relative py-14 sm:py-18 lg:py-22 border-t border-b border-line bg-paper overflow-hidden"
       aria-labelledby="vision-section-heading"
     >
-      {/* Saffron watercolor texture from user reference image */}
+      {/* the watercolour texture (from the user's reference image), redrawn in Saffron Amber and kept faint */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-45 bg-no-repeat bg-left-top bg-cover sm:bg-[length:auto_100%]"
+        className="pointer-events-none absolute inset-0 opacity-[0.18] bg-no-repeat bg-left-top bg-cover sm:bg-[length:auto_100%]"
         style={{
-          backgroundImage: "url('/images/backgrounds/manifesto-pattern.png')",
+          backgroundImage: "url('/images/backgrounds/manifesto-pattern-amber.png')",
         }}
       />
-      {/* Soft warm saffron atmospheric glow */}
+      {/* soft saffron and gold glows (decorative) */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-12 -left-12 size-96 rounded-full bg-[#fdba74]/25 blur-3xl -z-10"
+        className="pointer-events-none absolute -top-12 -left-12 size-96 rounded-full bg-saffron-600/10 blur-3xl -z-10"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-[#fed7aa]/20 blur-3xl -z-10"
+        className="pointer-events-none absolute -bottom-10 right-10 size-80 rounded-full bg-gold/10 blur-3xl -z-10"
       />
       <div className="container-x relative z-10">
         {/* Section Header */}
@@ -41,17 +37,17 @@ export function DrishtikonSection({
           <Reveal>
             <h2
               id="vision-section-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900"
             >
               {isMr ? 'न्यू इंडिया मॅनिफेस्टो' : 'New India Manifesto'}
             </h2>
 
-            <div className="mt-3 flex justify-center items-center gap-1.5">
-              <span className="h-1 w-16 rounded-full bg-red-600" />
-              <span className="h-1 w-3.5 rounded-full bg-saffron-500" />
+            <div aria-hidden className="mt-3 flex justify-center items-center gap-1.5">
+              <span className="h-1 w-16 rounded-full bg-gold" />
+              <span className="h-1 w-3.5 rounded-full bg-leaf-600" />
             </div>
 
-            <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-muted leading-relaxed font-normal">
               {isMr
                 ? 'नवभारताच्या विचारांतून सक्षम, स्वावलंबी महाराष्ट्राचा ध्यास.'
                 : 'Dedicated to building an empowered, self-reliant Maharashtra through modern entrepreneurship.'}
@@ -64,7 +60,7 @@ export function DrishtikonSection({
           {/* Photo & Book Column */}
           <div className="lg:col-span-6">
             <Reveal delay={0.05} x={-40}>
-              <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/10 aspect-[4/3] sm:aspect-[16/11] bg-[#000d3d] group">
+              <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-charcoal-950/10 aspect-[4/3] sm:aspect-[16/11] bg-charcoal-950 group">
                 <img
                   src="/images/hero/rohan-hero-book.webp"
                   alt={isMr ? 'रोहन देशमुख - न्यू इंडिया मॅनिफेस्टो' : 'Rohan Deshmukh - The New India Manifesto'}
@@ -74,12 +70,12 @@ export function DrishtikonSection({
                 />
                 <div
                   aria-hidden
-                  className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent pointer-events-none"
+                  className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-950/40 to-transparent pointer-events-none"
                 />
 
                 {/* Centered Book Cover in the left dark zone */}
                 <div className="absolute top-1/2 -translate-y-1/2 left-[10%] sm:left-[14%] lg:left-[16%] z-10 flex items-center">
-                  <div className="relative group/book rounded-md overflow-hidden shadow-[0_16px_36px_rgba(0,0,0,0.85)] ring-1 ring-white/25 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
+                  <div className="relative group/book rounded-md overflow-hidden shadow-[0_16px_36px_rgba(24,33,38,0.85)] ring-1 ring-paper/25 transition-transform duration-300 group-hover:scale-105 group-hover:-translate-y-1">
                     <img
                       src="/images/vision/new-india-manifesto-cover.webp"
                       alt={isMr ? 'न्यू इंडिया मॅनिफेस्टो - पुस्तक मुखपृष्ठ' : 'The New India Manifesto - Book Cover'}
@@ -96,15 +92,15 @@ export function DrishtikonSection({
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <Reveal delay={0.2} x={40}>
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-charcoal-900">
                 {isMr
                   ? 'उद्योजकतेतून सक्षम महाराष्ट्राची निर्मिती'
                   : 'Building an Empowered Maharashtra through Entrepreneurship'}
               </h3>
 
-              <div className="mt-3 mb-5 flex items-center gap-1.5">
-                <span className="h-1 w-12 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
+              <div aria-hidden className="mt-3 mb-5 flex items-center gap-1.5">
+                <span className="h-1 w-12 rounded-full bg-gold" />
+                <span className="h-1 w-3 rounded-full bg-leaf-600" />
               </div>
 
               <div className="space-y-4">
@@ -119,7 +115,7 @@ export function DrishtikonSection({
                       'He believes young people should trust themselves, stand on their own feet, and create jobs for others instead of only looking for jobs.',
                     ]
                 ).map((text) => (
-                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
+                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-ink font-normal">
                     {text}
                   </p>
                 ))}
@@ -128,7 +124,7 @@ export function DrishtikonSection({
               <div className="mt-8 flex max-lg:justify-center">
                 <Link
                   to="/vision"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2.5 rounded-full btn-sweep bg-btn px-7 py-3 text-sm sm:text-base font-bold text-ink shadow-md transition-all duration-300 hover:text-white hover:shadow-lg hover:-translate-y-0.5"
                 >
                   <span>{isMr ? 'व्हिजन सविस्तर वाचा' : 'Read Full Vision'}</span>
                   <ArrowUpRight className="size-5" />

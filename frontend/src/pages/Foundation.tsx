@@ -90,16 +90,16 @@ export default function FoundationPage() {
   return (
     <>
       <Seo title={page.meta?.title || page.title} description={page.meta?.description || page.subtitle} image={mediaUrl(page.meta?.image, 'card') || mediaUrl(page.bannerImage, 'card')} />
-      <InnerPage path={PATH} title={page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant="navy">
+      <InnerPage path={PATH} title={page.title} subtitle={page.subtitle} image={mediaUrl(page.bannerImage, 'hero')} imagePosition={mediaPosition(page.bannerImage)} variant="navy" tone="jade">
         <section id="about" className="scroll-mt-36">
           <PageBlocks blocks={about} design="stitch" plainChapters accent />
         </section>
 
         <section id="projects" className="mt-4 sm:mt-6 scroll-mt-36">
           {/* same layout as lokmangalfoundation.com/projects → "Explore all social initiatives" */}
-          <div className="section !pt-8 sm:!pt-12 relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-stone-200/70 bg-ivory">
-            <div aria-hidden className="pointer-events-none absolute -top-24 right-0 size-96 rounded-full bg-saffron-500/5 blur-3xl" />
-            <div aria-hidden className="pointer-events-none absolute -left-20 top-1/2 size-80 rounded-full bg-leaf-600/5 blur-3xl" />
+          <div className="section !pt-8 sm:!pt-12 relative left-1/2 w-screen -translate-x-1/2 overflow-hidden border-y border-line bg-cream">
+            <div aria-hidden className="pointer-events-none absolute -top-24 right-0 size-96 rounded-full bg-charcoal-900/5 blur-3xl" />
+            <div aria-hidden className="pointer-events-none absolute -left-20 top-1/2 size-80 rounded-full bg-leaf-600/10 blur-3xl" />
             <div className="container-x relative">
               <Reveal className="section-head is-center relative">
                 <p className="eyebrow justify-center">{x.projectsEyebrow}</p>
@@ -109,7 +109,7 @@ export default function FoundationPage() {
               {projectCards.length ? (
                 <ProjectsExplorer items={projectCards} categories={projectCategories} labels={x.explorer} locale={locale} />
               ) : (
-                <p className="rounded-2xl bg-cream p-8 text-center text-muted">{x.soon}</p>
+                <p className="rounded-2xl bg-paper p-8 text-center text-muted">{x.soon}</p>
               )}
             </div>
           </div>

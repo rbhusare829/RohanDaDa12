@@ -51,7 +51,7 @@ export function FamilySpotlight({ members, panels, labels }: { members: Spotligh
               onClick={() => go(i)}
               className={cn(
                 'flex min-w-0 max-w-full items-center gap-3 rounded-full border py-1.5 pl-1.5 pr-5 text-left transition',
-                on ? 'border-btn bg-btn text-white' : 'border-field bg-white text-charcoal-900 hover:border-field-hover hover:bg-cream',
+                on ? 'border-btn bg-btn text-ink' : 'border-field bg-white text-charcoal-900 hover:border-field-hover hover:bg-cream',
               )}
             >
               <span className={cn('relative grid size-11 shrink-0 place-items-center overflow-hidden rounded-full text-sm font-semibold', on ? 'bg-white/25 text-white' : 'bg-cream text-saffron-700')}>

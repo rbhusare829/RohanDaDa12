@@ -7,7 +7,7 @@ type TabId = 'intro' | 'family'
 
 /**
  * The परिचय page's two tabs (Oct 2026) — परिचय / Introduction and कौटुंबिक पार्श्वभूमी / Family Background — on the same page, in the same
- * light-blue pill bar as the Political Career page (the open tab in red with white words), centred in its own band above the content.
+ * pill bar as the Political Career page (a Cloud track, the open tab in Modern Teal with white words), centred above the content.
  * The open tab is in the address (?tab=family), so it can be linked to and survives a refresh; the old Family Background address
  * (/about/biography) comes here with that tab open. Arrow keys move between the tabs.
  */
@@ -46,7 +46,7 @@ export function AboutTabs({ intro, family, locale = 'mr' }: { intro: ReactNode; 
           role="tablist"
           aria-label={isMr ? 'परिचय व कौटुंबिक पार्श्वभूमी' : 'Introduction and family background'}
           onKeyDown={onKey}
-          className="grid w-full max-w-md grid-cols-2 gap-1.5 rounded-full bg-[#f0f6fc] p-1.5 shadow-sm ring-1 ring-stone-200 sm:inline-flex sm:w-auto sm:max-w-none"
+          className="grid w-full max-w-md grid-cols-2 gap-1.5 rounded-full bg-cream p-1.5 shadow-sm ring-1 ring-line sm:inline-flex sm:w-auto sm:max-w-none"
         >
           {tabs.map(({ id, label, icon: Icon }) => {
             const selected = id === active
@@ -65,7 +65,7 @@ export function AboutTabs({ intro, family, locale = 'mr' }: { intro: ReactNode; 
                 onClick={() => open(id)}
                 className={cn(
                   'inline-flex items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-3 py-3 text-[13px] font-bold transition-all duration-300 sm:gap-2 sm:px-7 sm:text-base',
-                  selected ? 'bg-red-600 text-white shadow-md' : 'text-[#000d3d] hover:bg-white hover:text-red-600',
+                  selected ? 'bg-charcoal-900 text-paper shadow-md' : 'text-charcoal-900 hover:bg-paper hover:text-saffron-700',
                 )}
               >
                 <Icon aria-hidden className="size-4.5 shrink-0" />

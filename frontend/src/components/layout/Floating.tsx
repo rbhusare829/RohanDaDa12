@@ -18,16 +18,17 @@ export function FloatingButtons() {
     return () => window.removeEventListener('scroll', f)
   }, [])
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3">
+    // a landmark of its own, so every part of the page sits in one (axe: region)
+    <aside aria-label="Quick actions" className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-40 flex flex-col items-end gap-3">
       {/* Floating Quick Connect Button */}
       <Link
         to="/contact"
         aria-label="रोहनदादांशी संपर्क साधा"
-        className="group relative flex items-center justify-center size-12 sm:size-13 rounded-full bg-gradient-to-tr from-orange-600 via-orange-500 to-amber-500 text-white shadow-[0_8px_25px_rgba(234,88,12,0.45)] border-2 border-white transition-all duration-300 hover:scale-110 active:scale-95"
+        className="group relative flex items-center justify-center size-12 sm:size-13 rounded-full bg-saffron-600 text-ink shadow-[0_8px_25px_rgba(233,149,50,0.45)] border-2 border-paper transition-all duration-300 hover:scale-110 active:scale-95"
       >
-        <span className="absolute inset-0 rounded-full bg-orange-500 animate-ping opacity-25 pointer-events-none" />
+        <span className="absolute inset-0 rounded-full bg-saffron-600 animate-ping opacity-25 pointer-events-none" />
         <MessageCircle className="size-6 transition-transform duration-300 group-hover:rotate-12 relative z-10" />
-        <span className="absolute right-full mr-3 whitespace-nowrap rounded-xl bg-[#000d3d] px-3.5 py-1.5 text-xs font-bold text-white shadow-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none border border-white/10">
+        <span className="absolute right-full mr-3 whitespace-nowrap rounded-xl bg-charcoal-900 px-3.5 py-1.5 text-xs font-bold text-paper shadow-xl opacity-0 transition-opacity duration-200 group-hover:opacity-100 pointer-events-none border border-paper/10">
           थेट संपर्क साधा
         </span>
       </Link>
@@ -39,13 +40,13 @@ export function FloatingButtons() {
         aria-label={t('backToTop')}
         tabIndex={show ? 0 : -1}
         className={cn(
-          'grid size-10 sm:size-11 place-items-center rounded-full bg-[#000d3d] text-white shadow-[0_6px_20px_rgba(0,13,61,0.35)] border border-white/20 transition-all duration-300 hover:bg-orange-600 hover:scale-105 active:scale-95',
+          'grid size-10 sm:size-11 place-items-center rounded-full bg-charcoal-900 text-paper shadow-[0_6px_20px_rgba(15,92,99,0.35)] border border-paper/20 transition-all duration-300 hover:bg-saffron-600 hover:text-ink hover:scale-105 active:scale-95',
           show ? 'translate-y-0 opacity-100 pointer-events-auto' : 'pointer-events-none translate-y-4 opacity-0',
         )}
       >
         <ArrowUp className="size-4 sm:size-5" />
       </button>
-    </div>
+    </aside>
   )
 }
 
@@ -93,19 +94,19 @@ export function SitePopup() {
   return (
     <AnimatePresence>
       {active && open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal-950/60 backdrop-blur-sm">
           <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl"
+            className="relative w-full max-w-lg overflow-hidden rounded-2xl bg-paper shadow-2xl"
           >
             <button
               type="button"
               onClick={close}
               aria-label={t('close')}
-              className="absolute right-3 top-3 z-10 grid size-8 place-items-center rounded-full bg-black/40 text-white backdrop-blur-sm transition hover:bg-black/70"
+              className="absolute right-3 top-3 z-10 grid size-8 place-items-center rounded-full bg-charcoal-950/50 text-white backdrop-blur-sm transition hover:bg-charcoal-950/75"
             >
               <X className="size-4" />
             </button>
@@ -115,15 +116,15 @@ export function SitePopup() {
               </div>
             )}
             <div className="p-6">
-              {popup.title && <h3 className="font-display text-xl font-bold text-[#000d3d]">{popup.title}</h3>}
-              {popup.text && <p className="mt-2 text-sm leading-relaxed text-slate-600">{popup.text}</p>}
+              {popup.title && <h3 className="font-display text-xl font-bold text-charcoal-900">{popup.title}</h3>}
+              {popup.text && <p className="mt-2 text-sm leading-relaxed text-muted">{popup.text}</p>}
               {popup.linkLabel && popup.linkUrl && (
                 <div className="mt-4">
                   <a
                     href={popup.linkUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center rounded-xl bg-orange-600 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#000d3d]"
+                    className="inline-flex items-center rounded-xl btn-sweep bg-btn px-5 py-2.5 text-sm font-bold text-ink transition hover:text-white"
                   >
                     {popup.linkLabel}
                   </a>

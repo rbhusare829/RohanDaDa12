@@ -31,44 +31,41 @@ export function PhotosPage() {
     <>
       <Seo title={t('photoGallery')} />
       <InnerPage path="/media/photos" title={t('photoGallery')} variant="navy">
-        <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Gallery (Modern Teal + Saffron): image first, no frames — each album is its cover photo, tall, with the title, a line of
+            description and "View album" in Cloud White over a charcoal fade at its foot; a saffron bar that grows under the pointer */}
+        <Stagger className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {albums.map((a) => {
             const cover = a.cover ?? (a.photos?.[0] as never)
             return (
               <StaggerItem key={a.id}>
                 <Link
                   to={`/media/photos/${a.slug}`}
-                  className="group relative flex flex-col overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-stone-200/90 transition-[translate,box-shadow] duration-300 ease-soft motion-safe:hover:-translate-y-1.5 hover:shadow-xl hover:ring-saffron-400 active:scale-[0.99]"
+                  className="group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-xl bg-charcoal-950 text-paper transition-[translate] duration-300 ease-soft motion-safe:hover:-translate-y-1 active:scale-[0.99] sm:aspect-[3/4]"
                 >
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-charcoal-950">
-                    <Img
-                      media={cover}
-                      variant="card"
-                      alt={mediaAlt(a.cover, a.title)}
-                      fill
-                      sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
-                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                    />
-                    <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-charcoal-950/85 via-charcoal-950/20 to-transparent" />
-                  </div>
+                  <Img
+                    media={cover}
+                    variant="card"
+                    alt={mediaAlt(a.cover, a.title)}
+                    fill
+                    sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 33vw"
+                    className="-z-10 object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-charcoal-950 via-charcoal-950/55 via-35% to-transparent to-65%" />
 
-                  <div className="flex flex-1 flex-col justify-between p-5 sm:p-6">
-                    <div>
-                      <span aria-hidden className="mb-2.5 block h-1 w-10 rounded-full bg-saffron-500 transition-all duration-300 group-hover:w-16" />
-                      <h2 className="font-display text-lg sm:text-xl font-bold leading-snug text-charcoal-950 group-hover:text-saffron-700 transition-colors">
-                        {a.title}
-                      </h2>
-                      {a.description && (
-                        <p className="mt-2 line-clamp-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                          {a.description}
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-bold text-saffron-700">
-                      <span>{LOCALE === 'mr' ? 'अल्बम पहा' : 'View album'}</span>
-                      <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                    </div>
+                  <div className="p-5 sm:p-6">
+                    <span aria-hidden className="mb-3 block h-1 w-10 rounded-full bg-gold transition-all duration-300 group-hover:w-16" />
+                    <h2 className="font-display text-xl font-bold leading-snug text-paper sm:text-2xl">
+                      {a.title}
+                    </h2>
+                    {a.description && (
+                      <p className="mt-1.5 line-clamp-2 text-sm leading-relaxed text-paper/85">
+                        {a.description}
+                      </p>
+                    )}
+                    <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-paper">
+                      <span className="border-b border-paper/40 pb-0.5 transition-colors group-hover:border-gold">{LOCALE === 'mr' ? 'अल्बम पहा' : 'View album'}</span>
+                      <ArrowUpRight aria-hidden className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
                   </div>
                 </Link>
               </StaggerItem>
@@ -98,8 +95,8 @@ export function AlbumPage() {
       <Seo title={a.title} description={a.description} image={mediaUrl(a.cover, 'card')} />
       <InnerPage path={`/media/photos/${a.slug}`} title={a.title} subtitle={a.description || undefined} crumbs={[{ label: t('media') }, { label: t('photoGallery'), href: '/media/photos' }, { label: a.title }]} variant="navy">
         <Reveal className="mb-8">
-          <Link to="/media/photos" className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-charcoal-950 shadow-sm ring-1 ring-stone-200/80 transition hover:ring-saffron-400">
-            <ArrowLeft className="size-4 text-saffron-600 transition-transform group-hover:-translate-x-0.5" />
+          <Link to="/media/photos" className="group inline-flex min-h-11 items-center gap-2 rounded-full bg-paper px-4 py-2 text-sm font-semibold text-charcoal-900 shadow-sm ring-1 ring-line transition hover:ring-gold">
+            <ArrowLeft className="size-4 text-charcoal-900 transition-transform group-hover:-translate-x-0.5" />
             {t('photoGallery')}
           </Link>
         </Reveal>

@@ -86,7 +86,7 @@ export default function PostPage() {
         <div className="mt-7 flex flex-wrap items-center justify-between gap-4 border-t border-charcoal-900/10 pt-5">
           <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-[0.95rem] text-muted">
             <span className="inline-flex items-center gap-2.5">
-              <span aria-hidden className="grid size-8 place-items-center rounded-full bg-saffron-600 text-sm text-white">{author.trim().charAt(0)}</span>
+              <span aria-hidden className="grid size-8 place-items-center rounded-full bg-saffron-600 text-sm font-semibold text-ink">{author.trim().charAt(0)}</span>
               <span className="text-charcoal-900">{author}</span>
               <span className="inline-flex items-center gap-1"><MapPin className="size-3.5" />{tb('place')}</span>
             </span>
@@ -136,8 +136,8 @@ export default function PostPage() {
 
             {(!!tags.length || !!post.categories?.length) && (
               <div className="no-print mt-8 sm:mt-12 flex flex-wrap gap-2 border-t border-line pt-7">
-                {post.categories?.map((c) => typeof c === 'object' && <Link key={c.id} to={`/blog?category=${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-charcoal-900 px-4 py-1 text-sm text-white">{c.title}</Link>)}
-                {tags.map((tag) => <Link key={tag} to={`/blog?tag=${encodeURIComponent(tag)}`} className="inline-flex min-h-11 items-center rounded-full bg-white px-4 py-1 text-sm text-saffron-700 ring-1 ring-field transition hover:ring-field-hover">#{tag}</Link>)}
+                {post.categories?.map((c) => typeof c === 'object' && <Link key={c.id} to={`/blog?category=${c.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-charcoal-900 px-4 py-1 text-sm text-paper">{c.title}</Link>)}
+                {tags.map((tag) => <Link key={tag} to={`/blog?tag=${encodeURIComponent(tag)}`} className="inline-flex min-h-11 items-center rounded-full bg-paper px-4 py-1 text-sm text-saffron-700 ring-1 ring-field transition hover:ring-charcoal-900">#{tag}</Link>)}
               </div>
             )}
             <div className="no-print mt-8 border-t border-line pt-7"><Share url={url} title={post.title} label={tc('share')} /></div>

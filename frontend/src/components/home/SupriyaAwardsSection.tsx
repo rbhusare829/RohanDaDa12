@@ -49,9 +49,9 @@ const FAMILY_MEMBERS: FamilyItem[] = [
 
 /** Same colour families as the कौटुंबिक पार्श्वभूमी page (kesariya, green, navy): the photo panel tint, the halo (father only) */
 const ACCENTS = [
-  { panel: 'from-saffron-100/90 via-saffron-50 to-orange-50/60', halo: '' },
-  { panel: 'from-emerald-100/80 via-leaf-50 to-emerald-50/50', halo: 'bg-leaf-300/35' },
-  { panel: 'from-slate-200/90 via-slate-100 to-indigo-50/50', halo: '' },
+  { panel: 'from-saffron-100/90 via-saffron-50 to-saffron-50/60', halo: '' },
+  { panel: 'from-leaf-50/80 via-leaf-50 to-leaf-50/50', halo: 'bg-leaf-300/35' },
+  { panel: 'from-line/90 via-cream to-cream/50', halo: '' },
 ] as const
 
 /**
@@ -66,7 +66,7 @@ export function SupriyaAwardsSection({
   const isMr = locale !== 'en'
 
   return (
-    <section className="bg-[#000d3d] py-6 sm:py-10 lg:py-12 text-white overflow-hidden border-b border-white/10">
+    <section className="bg-charcoal-900 py-6 sm:py-10 lg:py-12 text-white overflow-hidden border-b border-white/10">
       <div className="container-x">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-6 sm:mb-8">
@@ -75,7 +75,7 @@ export function SupriyaAwardsSection({
               {isMr ? 'कौटुंबिक पार्श्वभूमी' : 'Family Background'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-14 rounded-full bg-saffron-600" />
               <span className="h-1 w-3 rounded-full bg-saffron-500" />
             </div>
           </div>
@@ -89,14 +89,14 @@ export function SupriyaAwardsSection({
                 <article
                   key={i}
                   className={cn(
-                    'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl sm:h-full sm:w-auto sm:max-w-none sm:shrink sm:snap-align-none bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(14,30,52,0.25)] ring-1 ring-stone-200/85',
-                    'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(14,30,52,0.35)] motion-safe:hover:-translate-y-1.5',
+                    'group relative flex w-[82vw] max-w-[340px] shrink-0 snap-center flex-col rounded-3xl sm:h-full sm:w-auto sm:max-w-none sm:shrink sm:snap-align-none bg-white p-3.5 shadow-[0_16px_36px_-24px_rgba(24,33,38,0.25)] ring-1 ring-line/85',
+                    'transition-[box-shadow,translate] duration-300 hover:shadow-[0_28px_56px_-24px_rgba(24,33,38,0.35)] motion-safe:hover:-translate-y-1.5',
                                   )}
                 >
                   {/* Photo panel: a soft tint, a halo behind the person, the relation label */}
                   <div className={cn('relative isolate aspect-[4/3.1] overflow-hidden rounded-2xl bg-gradient-to-b', a.panel)}>
                     {a.halo && <span aria-hidden className={cn('absolute left-1/2 top-[56%] -z-10 aspect-square w-[76%] -translate-x-1/2 -translate-y-1/2 rounded-full', a.halo)} />}
-                    <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-[#800020]">
+                    <span className="absolute left-3 top-3 z-10 text-[11px] font-bold uppercase tracking-wider text-saffron-700">
                       {isMr ? member.relationMr : member.relationEn}
                     </span>
                     <img
@@ -112,13 +112,13 @@ export function SupriyaAwardsSection({
                     <h3 className="font-display text-lg sm:text-xl font-bold leading-snug tracking-tight text-charcoal-950 line-clamp-2">
                       {isMr ? member.nameMr : member.nameEn}
                     </h3>
-                    <p className="mt-2 text-[13px] leading-relaxed text-slate-600 mb-3 flex-1 line-clamp-3">
+                    <p className="mt-2 text-[13px] leading-relaxed text-muted mb-3 flex-1 line-clamp-3">
                       {isMr ? member.descMr : member.descEn}
                     </p>
 
                     <Link
                       to={member.link}
-                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-bold text-red-600 hover:text-[#000d3d] transition-colors"
+                      className="group/btn mt-auto inline-flex items-center gap-1 self-start text-xs font-bold text-saffron-700 hover:text-charcoal-900 transition-colors"
                     >
                       <span>{isMr ? 'अधिक वाचा' : 'Read more'}</span>
                       <ArrowRight className="size-3 transition-transform group-hover/btn:translate-x-0.5" />

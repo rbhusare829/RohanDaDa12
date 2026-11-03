@@ -102,7 +102,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
   const textOnly = b.heroStyle === 'text'
   const isMr = locale !== 'en'
 
-  // The three final hero slides (Oct 2026):
+  // The three hero slides (Oct 2026 art, recoloured Nov 2026 for Modern Teal + Saffron: the portrait on deep teal with the saffron shape)
   // Desktop: slide19B, slide21, slide20
   // Mobile: Custom vertical mobile portraits from WhatsApp exports
   const slides: Slide[] = [
@@ -116,7 +116,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
         : 'Good leadership begins with understanding the problems of people at the grassroots',
       position: 'right center',
       mobilePosition: 'center top',
-      desktopTheme: 'light',
+      desktopTheme: 'dark',
     },
     {
       image: '/images/hero/hero-slide-2.webp',
@@ -128,7 +128,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
         : 'Author of The New India Manifesto: Going Beyond Possible',
       position: 'right center',
       mobilePosition: 'center top',
-      desktopTheme: 'light',
+      desktopTheme: 'dark',
     },
     {
       image: '/images/hero/hero-slide-3.webp',
@@ -140,7 +140,7 @@ function Hero({ b, locale }: { b: Of<'heroSlider'>; locale?: Locale }) {
         : 'Small steps toward change can lead to a big difference',
       position: 'right center',
       mobilePosition: 'center top',
-      desktopTheme: 'light',
+      desktopTheme: 'dark',
     },
   ]
 
@@ -196,7 +196,7 @@ export function AboutIntroSection({ b }: { b: Of<'aboutIntro'> }) {
               “{b.pledge}”
             </blockquote>
           )}
-          {b.text && <p className="text-base leading-relaxed text-gray-700">{b.text}</p>}
+          {b.text && <p className="text-base leading-relaxed text-ink">{b.text}</p>}
           {/* quick facts as small white tiles with a kesariya label */}
           {!!b.stats?.length && (
             <Stagger as="dl" className="grid w-full grid-cols-2 gap-3 pt-2 sm:grid-cols-4">
@@ -272,7 +272,7 @@ export function FeaturedVideoSection({ b }: { b: Of<'featuredVideo'> }) {
           </div>
           <div className="flex flex-col justify-between p-8 lg:col-span-5 lg:p-10">
             <div>
-              {b.text && <p className="mb-6 text-[0.95rem] leading-relaxed text-gray-600">{b.text}</p>}
+              {b.text && <p className="mb-6 text-[0.95rem] leading-relaxed text-muted">{b.text}</p>}
             </div>
             {links.length > 0 && (
               <div className="flex flex-wrap gap-3 pt-2">
@@ -328,7 +328,7 @@ export function InitiativesSection({ b, page }: { b: Of<'initiativesShowcase'>; 
           {mediaUrl(intro.image, 'card') && (
             /* the Foundation at work, on a soft saffron block */
             <div className="photo-backdrop mx-auto w-full max-w-xl lg:max-w-none">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-cream shadow-[0_30px_60px_-40px_rgb(20_33_61/0.55)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-cream shadow-[0_30px_60px_-40px_rgb(24_33_38/0.55)]">
                 <Img media={intro.image} variant="card" alt={mediaAlt(intro.image, intro.heading ?? '')} fill sizes="(max-width:1024px) 90vw, 46vw" className="object-cover" style={photoFit(intro.image, 4 / 3)} />
               </div>
             </div>
@@ -393,22 +393,22 @@ export function JourneySection({ b, locale }: { b: Of<'homeJourney'>; locale: Lo
               const last = i === items.length - 1
               const [place, sub] = (it.place ?? '').split(/\s+[—–-]\s+/)
               const Icon = JOURNEY_ICONS[i % JOURNEY_ICONS.length]
-              const accents = ['text-saffron-600', 'text-leaf-600', 'text-charcoal-900', 'text-saffron-600']
+              const accents = ['text-saffron-600', 'text-leaf-700', 'text-charcoal-900', 'text-saffron-600']
               return (
                 <StaggerItem as="li" key={it.id} className={cn('group relative flex flex-col justify-between overflow-hidden rounded-2xl bg-white p-6 shadow-sm transition-all hover:shadow-lg', last ? 'border-2 border-saffron-500' : 'border border-saffron-100 hover:border-saffron-500')}>
                   {last && <div aria-hidden className="absolute right-0 top-0 size-16 rounded-bl-3xl bg-saffron-500/10" />}
                   <div>
                     <div className="mb-4 flex flex-wrap items-center gap-3">
-                      <span className={cn('grid size-9 shrink-0 place-items-center rounded-full text-sm font-bold', last ? 'bg-gradient-to-r from-saffron-600 to-saffron-500 text-white shadow-sm' : 'border border-saffron-200 bg-saffron-50 text-saffron-600')}>
+                      <span className={cn('grid size-9 shrink-0 place-items-center rounded-full text-sm font-bold', last ? 'bg-gradient-to-r from-saffron-600 to-saffron-500 text-ink shadow-sm' : 'border border-saffron-200 bg-saffron-50 text-saffron-600')}>
                         {digits(i + 1, locale).padStart(2, locale === 'mr' ? '०' : '0')}
                       </span>
-                      {place && <span className={cn('rounded-md px-2.5 py-1 text-xs font-bold uppercase', last ? 'border border-saffron-200 bg-saffron-50 text-saffron-700' : 'bg-paper text-gray-700')}>{place}</span>}
+                      {place && <span className={cn('rounded-md px-2.5 py-1 text-xs font-bold uppercase', last ? 'border border-saffron-200 bg-saffron-50 text-saffron-700' : 'bg-paper text-ink')}>{place}</span>}
                     </div>
                     {it.title && <h3 className="mb-2 text-lg text-charcoal-950">{it.title}</h3>}
-                    {it.text && <p className="text-sm leading-relaxed text-gray-600">{it.text}</p>}
+                    {it.text && <p className="text-sm leading-relaxed text-muted">{it.text}</p>}
                   </div>
                   {sub && (
-                    <div className={cn('mt-6 flex items-center border-t border-gray-100 pt-4 text-xs font-bold', accents[i % accents.length])}>
+                    <div className={cn('mt-6 flex items-center border-t border-line pt-4 text-xs font-bold', accents[i % accents.length])}>
                       <Icon className="mr-1.5 size-[18px]" /> {sub}
                     </div>
                   )}
@@ -452,14 +452,14 @@ export function FamilySection({ b }: { b: Of<'family'> }) {
  * (kesariya, green, navy, deep kesariya, slate), then the "more" link.
  */
 export function ParivarSection({ b }: { b: Of<'homeParivar'> }) {
-  const bars = ['bg-saffron-500', 'bg-leaf-600', 'bg-charcoal-900', 'bg-saffron-600', 'bg-slate-500']
+  const bars = ['bg-saffron-500', 'bg-leaf-600', 'bg-charcoal-900', 'bg-saffron-600', 'bg-charcoal-950']
   const items = b.items ?? []
   return (
     <section className="container-x py-20 lg:py-28">
       <Reveal className="mb-14 max-w-3xl">
         {b.eyebrow && <p className="eyebrow mb-1">{b.eyebrow}</p>}
         {b.heading && <h2 className="h-section mb-3">{b.heading}</h2>}
-        {b.text && <p className="text-base leading-relaxed text-gray-700">{b.text}</p>}
+        {b.text && <p className="text-base leading-relaxed text-ink">{b.text}</p>}
       </Reveal>
       <Stagger as="ul" className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5 lg:gap-6">
         {items.map((g, i) => (
@@ -469,7 +469,7 @@ export function ParivarSection({ b }: { b: Of<'homeParivar'> }) {
               <span className="mb-1 block font-display text-3xl font-bold text-charcoal-950 sm:text-4xl">{g.value && <CountUp value={g.value} />}</span>
               {g.title && <span className="block text-xs font-bold uppercase tracking-wider text-charcoal-900">{g.title}</span>}
             </div>
-            {g.text && <p className="mt-3 text-xs text-gray-500">{g.text}</p>}
+            {g.text && <p className="mt-3 text-xs text-muted">{g.text}</p>}
           </StaggerItem>
         ))}
       </Stagger>
@@ -497,13 +497,13 @@ export function HighlightsSection({ b }: { b: Of<'homeHighlights'> }) {
             <StaggerItem as="li" key={c.id}>
               <Lift className="h-full">
                 <CMSLink url={c.url || b.buttonUrl || '#'} className={cn('group flex h-full flex-col overflow-hidden rounded-2xl bg-white shadow-md transition-shadow hover:shadow-2xl', i === 1 ? 'border-2 border-saffron-500' : 'border border-saffron-100')}>
-                  <div className="relative h-56 w-full overflow-hidden bg-gray-100">
+                  <div className="relative h-56 w-full overflow-hidden bg-cream">
                     {img && <Img media={c.image} variant="card" alt={mediaAlt(c.image, c.title ?? '')} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" style={photoFit(c.image, 1.6)} />}
                   </div>
                   <div className="flex flex-1 flex-col justify-between p-6">
                     <div>
                       {c.title && <h3 className="mb-3 text-lg text-charcoal-950 transition-colors group-hover:text-saffron-600">{c.title}</h3>}
-                      {c.text && <p className="text-sm leading-relaxed text-gray-600">{c.text}</p>}
+                      {c.text && <p className="text-sm leading-relaxed text-muted">{c.text}</p>}
                     </div>
                     <ArrowRight aria-hidden className="mt-6 size-5 text-saffron-600 transition-transform group-hover:translate-x-1" />
                   </div>
@@ -580,7 +580,7 @@ export function VisionSection({ b }: { b: Of<'homeVision'> }) {
           <Reveal className="flex flex-col items-start gap-4 lg:col-span-7">
             {b.eyebrow && <p className="eyebrow">{b.eyebrow}</p>}
             {b.heading && <h2 className="text-3xl leading-tight tracking-tight text-white sm:text-4xl lg:text-5xl">{b.heading}</h2>}
-            {b.text && <p className="font-quote text-lg leading-relaxed text-slate-200">{b.text}</p>}
+            {b.text && <p className="font-quote text-lg leading-relaxed text-paper">{b.text}</p>}
             {b.buttonUrl && (
               <CMSLink url={b.buttonUrl} className="btn mt-2 px-8">
                 {b.buttonLabel} <ArrowRight className="size-5" />
@@ -735,7 +735,7 @@ export function AppealSection({ b }: { b: Of<'appealBand'> }) {
   const wa = b.showWhatsapp ? settings.whatsappNumber?.replace(/\D/g, '') : null
   return (
     /* the page closes with one clear call to action on saffron */
-    <section className="on-saffron relative isolate overflow-hidden bg-saffron-600 text-white">
+    <section className="on-saffron relative isolate overflow-hidden bg-saffron-600 text-ink">
       <div aria-hidden className="absolute -right-20 -top-24 -z-10 size-80 rounded-full border-[40px] border-white/10" />
       <div className="container-x flex flex-col items-start gap-8 py-14 md:flex-row md:items-center md:justify-between md:py-16">
         <div className="max-w-2xl">

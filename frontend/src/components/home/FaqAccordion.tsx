@@ -13,7 +13,7 @@ export function FaqAccordion({ items, columns = 1 }: { items: { q: string; a: Re
           <div key={i} className="border-b border-line">
             <h3 className="font-sans">
               <button type="button" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : i)} className="group flex w-full items-start gap-4 py-5 text-left md:py-6">
-                <span className="font-display text-lg text-saffron-600">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-display text-lg text-saffron-700">{String(i + 1).padStart(2, '0')}</span>
                 <span className={cn('flex-1 text-[1.15rem] leading-snug transition-colors group-hover:text-saffron-700', isOpen ? 'text-saffron-700' : 'text-charcoal-900')}>{it.q}</span>
                 <Plus className={cn('mt-1 size-5 shrink-0 text-saffron-600 transition-transform', isOpen && 'rotate-45')} />
               </button>

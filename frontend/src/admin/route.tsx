@@ -1,5 +1,6 @@
-// the site's one font, Anek Devanagari (also loaded by main.tsx; repeated so the admin panel never shows a fallback face)
-import '@fontsource-variable/anek-devanagari/wght.css'
+// the site's body font, Inter + Noto Sans Devanagari (also loaded by main.tsx; repeated so the admin panel never shows a fallback face)
+import '@fontsource-variable/inter/wght.css'
+import '@fontsource-variable/noto-sans-devanagari/wght.css'
 import './admin.css'
 import { useEffect } from 'react'
 import { LazyMotion, MotionConfig } from 'motion/react'

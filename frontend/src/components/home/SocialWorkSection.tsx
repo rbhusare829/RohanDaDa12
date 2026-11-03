@@ -11,26 +11,23 @@ export function SocialWorkSection({
 
   return (
     <section
-      className="relative py-14 sm:py-18 lg:py-22 border-t border-b border-sky-100/80 overflow-hidden"
-      style={{
-        background:
-          'linear-gradient(180deg, #ffffff 0%, #f1f8fe 35%, #e1f3fd 75%, #d5eefc 100%)',
-      }}
+      className="relative py-14 sm:py-18 lg:py-22 border-t border-b border-leaf-200 bg-leaf-50 overflow-hidden"
       aria-labelledby="social-work-heading"
     >
-      {/* Crowd silhouette background pattern from user reference image */}
+      {/* Development work is Jade Green and Cloud White: a soft jade band, the crowd silhouette along the bottom (from the user's reference
+          image) redrawn in Jade, Cloud White panels on it */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-44 opacity-40 bg-repeat-x bg-bottom"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40 md:h-44 opacity-[0.14] bg-repeat-x bg-bottom"
         style={{
-          backgroundImage: "url('/images/backgrounds/social-work-pattern.png')",
+          backgroundImage: "url('/images/backgrounds/social-work-pattern-jade.png')",
           backgroundSize: 'auto 100%',
         }}
       />
-      {/* Soft atmospheric blue glow */}
+      {/* a soft jade glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-[#bae6fd]/30 blur-3xl -z-10"
+        className="pointer-events-none absolute -bottom-10 right-10 size-96 rounded-full bg-leaf-600/15 blur-3xl -z-10"
       />
       <div className="container-x relative z-10">
         {/* Section Header */}
@@ -38,17 +35,17 @@ export function SocialWorkSection({
           <Reveal>
             <h2
               id="social-work-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-[#000d3d]"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-charcoal-900"
             >
               {isMr ? 'समाजकार्य' : 'Social Work'}
             </h2>
 
-            <div className="mt-3 flex justify-center items-center gap-1.5">
-              <span className="h-1 w-16 rounded-full bg-red-600" />
-              <span className="h-1 w-3.5 rounded-full bg-saffron-500" />
+            <div aria-hidden className="mt-3 flex justify-center items-center gap-1.5">
+              <span className="h-1 w-16 rounded-full bg-leaf-600" />
+              <span className="h-1 w-3.5 rounded-full bg-gold" />
             </div>
 
-            <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-muted leading-relaxed font-normal">
               {isMr
                 ? 'लोकमंगल फाउंडेशनच्या माध्यमातून समाजाच्या गरजांनुसार विविध उपक्रम राबवून जनसेवा आणि सक्षमीकरणाचा ध्यास.'
                 : 'Dedicated to community service and empowering those in need through Lokmangal Foundation.'}
@@ -60,8 +57,10 @@ export function SocialWorkSection({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center max-w-6xl mx-auto">
           {/* Photo Column */}
           <div className="lg:col-span-6">
-            <Reveal delay={0.05} x={-40}>
-              <div className="relative overflow-hidden rounded-2xl shadow-xl ring-1 ring-black/5 aspect-[4/3] sm:aspect-[16/11] bg-stone-100 group">
+            <Reveal delay={0.05} x={-40} className="relative">
+              {/* a jade outline offset behind the photo, which sits in a Cloud White frame */}
+              <div aria-hidden className="absolute inset-0 translate-x-3 translate-y-3 rounded-2xl border-2 border-leaf-600/70 sm:translate-x-4 sm:translate-y-4" />
+              <div className="relative overflow-hidden rounded-2xl border-4 border-paper shadow-[0_24px_48px_-24px_rgba(24,33,38,0.45)] aspect-[4/3] sm:aspect-[16/11] bg-paper group">
                 <img
                   src="/images/social-work/rohan-lokmangal-914A2588.webp"
                   alt={isMr ? 'लोकमंगल फाउंडेशन समाजकार्य - सर्वधर्मीय सामुदायिक विवाह सोहळा' : 'Lokmangal Foundation Social Work'}
@@ -76,13 +75,13 @@ export function SocialWorkSection({
           {/* Text Column */}
           <div className="lg:col-span-6 flex flex-col justify-center">
             <Reveal delay={0.2} x={40}>
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-[#000d3d]">
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight text-charcoal-900">
                 {isMr ? 'लोकमंगल फाउंडेशनच्या माध्यमातून जनसेवा' : 'Community Service through Lokmangal Foundation'}
               </h3>
 
-              <div className="mt-3 mb-5 flex items-center gap-1.5">
-                <span className="h-1 w-12 rounded-full bg-red-600" />
-                <span className="h-1 w-3 rounded-full bg-saffron-500" />
+              <div aria-hidden className="mt-3 mb-5 flex items-center gap-1.5">
+                <span className="h-1 w-12 rounded-full bg-leaf-600" />
+                <span className="h-1 w-3 rounded-full bg-gold" />
               </div>
 
               {/* Marathi: one paragraph; English: two */}
@@ -94,7 +93,7 @@ export function SocialWorkSection({
                       'The foundation works to improve the quality of life for every section of society and gives people the strength to become self-reliant. It continues to work towards this vision every day.',
                     ]
                 ).map((text) => (
-                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-slate-700 font-normal">
+                  <p key={text} className="text-base sm:text-[17px] leading-relaxed text-ink font-normal">
                     {text}
                   </p>
                 ))}
@@ -103,7 +102,7 @@ export function SocialWorkSection({
               <div className="mt-8 flex max-lg:justify-center">
                 <Link
                   to="/lokmangal/foundation"
-                  className="inline-flex items-center gap-2.5 rounded-full bg-red-600 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md transition-all duration-300 hover:bg-[#000d3d] hover:shadow-lg hover:-translate-y-0.5"
+                  className="btn-sweep inline-flex items-center gap-2.5 rounded-full bg-leaf-700 px-7 py-3 text-sm sm:text-base font-bold text-white shadow-md shadow-leaf-700/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                 >
                   <span>{isMr ? 'फाउंडेशन कार्य सविस्तर पहा' : 'Explore Foundation Work'}</span>
                   <ArrowUpRight className="size-5" />

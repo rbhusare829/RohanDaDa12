@@ -7,10 +7,10 @@ import { Button, inputClass } from '../ui'
 /** The card all the sign-in screens share: navy background, the "रो" mark, a short welcome */
 function Frame({ title, intro, children }: { title: string; intro: string; children: ReactNode }) {
   return (
-    <main className="grid min-h-dvh place-items-center bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-[#3b2a35] p-4">
+    <main className="grid min-h-dvh place-items-center bg-gradient-to-br from-charcoal-900 via-charcoal-900 to-charcoal-950 p-4">
       <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl">
         <div className="flex items-center gap-3">
-          <span aria-hidden className="grid size-12 place-items-center rounded-xl bg-gradient-to-br from-saffron-500 to-saffron-700 font-display text-2xl text-white">रो</span>
+          <span aria-hidden className="grid size-12 place-items-center rounded-xl bg-gradient-to-br from-charcoal-900 to-charcoal-950 font-display text-2xl text-white">रो</span>
           <div className="leading-tight">
             <p className="font-display text-[1.3rem] text-charcoal-900">रोहन सुभाष देशमुख</p>
             <p className="text-[0.82rem] text-charcoal-800/75">Website admin panel</p>
@@ -93,7 +93,7 @@ export function ForgotPasswordView() {
   return (
     <Frame title="Forgot your password?" intro="Enter your e-mail address and we will send you a link to choose a new one.">
       {done ? (
-        <p className="rounded-lg bg-leaf-50 px-3 py-3 text-[0.92rem] text-leaf-600" role="status">{done}</p>
+        <p className="rounded-lg bg-leaf-50 px-3 py-3 text-[0.92rem] text-leaf-700" role="status">{done}</p>
       ) : (
         <form onSubmit={submit} className="space-y-4" noValidate>
           <Field label="Email"><input type="email" autoComplete="username" required value={email} onChange={(e) => setEmail(e.target.value)} className={inputClass} autoFocus /></Field>

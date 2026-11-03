@@ -69,10 +69,10 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
   if (sent)
     return (
       <div className="animate-tab-in flex flex-col items-center rounded-2xl bg-ivory px-6 py-12 text-center ring-1 ring-saffron-200" role="status">
-        <span className="animate-pop-in grid size-16 place-items-center rounded-full bg-gradient-to-br from-saffron-600 to-saffron-500 text-white shadow-lg shadow-saffron-500/30">
+        <span className="animate-pop-in grid size-16 place-items-center rounded-full bg-leaf-600 text-white shadow-lg shadow-leaf-600/30">
           <CheckCircle2 className="size-8" />
         </span>
-        <p className="animate-fade-up mt-5 font-display text-2xl font-bold text-charcoal-950" style={{ animationDelay: '180ms' }}>{t('success')}</p>
+        <p className="animate-fade-up mt-5 font-display text-2xl font-bold text-charcoal-900" style={{ animationDelay: '180ms' }}>{t('success')}</p>
       </div>
     )
 
@@ -115,7 +115,7 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
               e.target.value = ''
             } else setFile(f)
           }}
-          className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-saffron-200 bg-ivory px-4 py-3 text-sm text-gray-600 transition hover:border-saffron-400 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-charcoal-950 file:px-4 file:py-2 file:font-semibold file:text-white hover:file:bg-saffron-600"
+          className="block w-full cursor-pointer rounded-xl border-2 border-dashed border-field bg-paper px-4 py-3 text-sm text-muted transition hover:border-charcoal-900 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-charcoal-900 file:px-4 file:py-2 file:font-semibold file:text-paper hover:file:bg-saffron-600"
         />
         {fileError && <p id="f-attachment-error" className="animate-field-error mt-1 text-sm text-danger">{t.has(fileError) ? t(fileError) : fileError}</p>}
       </div>
@@ -143,7 +143,7 @@ export function ContactForm({ offices }: { offices: { value: string; label: stri
           {isSubmitting ? <><Loader2 className="size-4 animate-spin" /> {t('sending')}</> : <>{t('submit')} <Send className="size-4" /></>}
         </button>
         {captchaEnabled && (
-          <p className="mt-3 text-xs text-muted">
+          <p className="mt-3 text-xs text-ink">
             Protected by reCAPTCHA — Google <a className="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a> &amp; <a className="underline" href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms</a>.
           </p>
         )}
@@ -168,9 +168,9 @@ type FieldProps = {
 function Field({ id, label, required, error, full, as = 'input', inputProps, textareaProps, selectProps, options }: FieldProps) {
   const t = useTranslations('forms')
   const fieldId = `f-${id}`
-  // a 3.1:1 edge (UX pass) on the warm field, a clear orange ring while typing, red when something is wrong
+  // a slate-grey edge (3:1 and more) on the white field, a clear saffron ring while typing, red when something is wrong
   const cls = cn(
-    'w-full rounded-xl border bg-ivory px-4 py-3 text-charcoal-950 outline-none transition placeholder:text-gray-400 focus:bg-white focus:ring-4',
+    'w-full rounded-xl border bg-paper px-4 py-3 text-ink outline-none transition placeholder:text-muted focus:bg-white focus:ring-4',
     error ? 'border-danger focus:ring-danger-soft' : 'border-field hover:border-field-hover focus:border-saffron-600 focus:ring-saffron-100',
   )
   const message = error?.message

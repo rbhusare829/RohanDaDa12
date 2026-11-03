@@ -13,7 +13,7 @@ const HIDDEN_LEGAL = ['/privacy-policy', '/terms', '/disclaimer']
 const HIDDEN_LINKS = ['/appeal', '/about/family', '/social-work']
 
 /**
- * Footer (Stitch design, Oct 2026): deep navy with a kesariya top edge — contact details and social links
+ * Footer (Modern Teal + Saffron: Charcoal Black, Cloud White words 14.5:1, headings and icons in Saffron Amber 6.9:1) with a thin saffron top edge — contact details and social links
  * on the left, the footer menus from the CMS beside it, then the copyright line.
  */
 export function Footer() {
@@ -23,31 +23,31 @@ export function Footer() {
   const cols = footer.columns ?? []
 
   return (
-    <footer className="on-dark relative z-10 border-t-4 border-saffron-500 bg-[#000d3d] pb-10 pt-16 text-white">
+    <footer className="on-dark relative z-10 border-t-[3px] border-gold bg-charcoal-950 pb-10 pt-16 text-paper">
       <div className="container-x">
         {/* phones: one column — the contact block, then each link list under the previous one (Oct 2026); tablets: two side by side */}
-        <Stagger className="grid grid-cols-1 gap-x-6 gap-y-8 border-b border-white/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
+        <Stagger className="grid grid-cols-1 gap-x-6 gap-y-8 border-b border-paper/15 pb-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <StaggerItem className="flex flex-col items-start gap-4 lg:col-span-4">
             {/* h2: the footer's own headings come after any heading of the page, so no level is skipped */}
-            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{t('contactUs')}</h2>
+            <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold">{t('contactUs')}</h2>
             <img src="/brand/logo-name.svg" alt={settings.siteName} width={180} height={46} loading="lazy" className="h-11 w-auto brightness-0 invert" />
-            <ul className="space-y-2.5 pt-2 text-sm text-slate-300">
+            <ul className="space-y-2.5 pt-2 text-sm text-paper/80">
               {settings.address && (
                 <li className="flex gap-2">
-                  <MapPin className="mt-0.5 size-[18px] shrink-0 text-saffron-400" /> <span className="whitespace-pre-line">{settings.address}</span>
+                  <MapPin className="mt-0.5 size-[18px] shrink-0 text-gold" /> <span className="whitespace-pre-line">{settings.address}</span>
                 </li>
               )}
               {settings.email && (
                 <li>
-                  <a href={`mailto:${settings.email}`} className="flex items-center gap-2 break-all transition-colors hover:text-white max-lg:min-h-11">
-                    <Mail className="size-[18px] shrink-0 text-saffron-400" /> {settings.email}
+                  <a href={`mailto:${settings.email}`} className="flex items-center gap-2 break-all transition-colors hover:text-paper max-lg:min-h-11">
+                    <Mail className="size-[18px] shrink-0 text-gold" /> {settings.email}
                   </a>
                 </li>
               )}
               {settings.phone && (
                 <li>
-                  <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 transition-colors hover:text-white max-lg:min-h-11">
-                    <Phone className="size-[18px] shrink-0 text-saffron-400" /> {settings.phone}
+                  <a href={`tel:${settings.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 transition-colors hover:text-paper max-lg:min-h-11">
+                    <Phone className="size-[18px] shrink-0 text-gold" /> {settings.phone}
                   </a>
                 </li>
               )}
@@ -56,7 +56,7 @@ export function Footer() {
               <ul className="mt-2 flex flex-wrap gap-2" aria-label={t('followUs')}>
                 {social.map(([k, v]) => (
                   <li key={k}>
-                    <a href={v as string} target="_blank" rel="noopener noreferrer" aria-label={socialLabels[k] ?? k} className="grid size-11 place-items-center rounded-full bg-white/10 text-white transition-all hover:bg-saffron-700 hover:scale-105 active:scale-95 lg:size-9.5">
+                    <a href={v as string} target="_blank" rel="noopener noreferrer" aria-label={socialLabels[k] ?? k} className="grid size-11 place-items-center rounded-full bg-paper/10 text-paper transition-all hover:bg-saffron-600 hover:text-ink hover:scale-105 active:scale-95 lg:size-9.5">
                       <SocialIcon name={k === 'whatsappChannel' ? 'whatsapp' : k} className="size-4" />
                     </a>
                   </li>
@@ -67,12 +67,12 @@ export function Footer() {
 
           {cols.map((col, i) => (
             <StaggerItem key={col.id} className={i === cols.length - 1 && cols.length < 4 ? 'flex min-w-0 flex-col gap-3 lg:col-span-3' : 'flex min-w-0 flex-col gap-3 lg:col-span-2.5 lg:col-span-2'}>
-              <h2 className="font-display text-sm font-bold uppercase tracking-wider text-saffron-400">{col.title}</h2>
-              <ul className="space-y-2 text-sm text-slate-300 max-lg:space-y-0">
+              <h2 className="font-display text-sm font-bold uppercase tracking-wider text-gold">{col.title}</h2>
+              <ul className="space-y-2 text-sm text-paper/80 max-lg:space-y-0">
                 {col.links?.filter((l) => isLiveLink(l.url) && !HIDDEN_LINKS.includes(l.url ?? '')).map((l) => (
                   <li key={l.id}>
-                    <CMSLink url={l.url} newTab={l.newTab} className="group flex items-center gap-1.5 transition-colors hover:text-white max-lg:min-h-11">
-                      <span className="text-saffron-400 transition-transform group-hover:translate-x-0.5">&rsaquo;</span>
+                    <CMSLink url={l.url} newTab={l.newTab} className="group flex items-center gap-1.5 transition-colors hover:text-paper max-lg:min-h-11">
+                      <span className="text-gold transition-transform group-hover:translate-x-0.5">&rsaquo;</span>
                       <span>{l.label}</span>
                     </CMSLink>
                   </li>
@@ -82,14 +82,14 @@ export function Footer() {
           ))}
         </Stagger>
 
-        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-slate-400 sm:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-paper/70 sm:flex-row">
           <p className="text-center sm:text-left">
             {footer.copyright}
             {footer.developerCredit && (
               <span>
                 {' · '}
                 {footer.developerUrl ? (
-                  <a href={footer.developerUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:text-white hover:underline">
+                  <a href={footer.developerUrl} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:text-paper hover:underline">
                     {footer.developerCredit}
                   </a>
                 ) : (
@@ -100,7 +100,7 @@ export function Footer() {
           </p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             {footer.legalLinks?.filter((l) => isLiveLink(l.url) && !HIDDEN_LEGAL.includes(l.url ?? '')).map((l) => (
-              <CMSLink key={l.id} url={l.url} className="underline underline-offset-4 hover:text-white max-lg:inline-flex max-lg:min-h-11 max-lg:items-center">
+              <CMSLink key={l.id} url={l.url} className="underline underline-offset-4 hover:text-paper max-lg:inline-flex max-lg:min-h-11 max-lg:items-center">
                 {l.label}
               </CMSLink>
             ))}

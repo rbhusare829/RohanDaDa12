@@ -43,7 +43,10 @@ function StitchList({ blocks, plainChapters, accent, lively }: { blocks: PageBlo
     } else groups.push({ key, node: <StitchBlock b={b} accent={accent} />, anchor: 'heading' in b && b.heading ? `s-${i}` : undefined })
   }
   return (
-    <div className="space-y-10 sm:space-y-16 md:space-y-24">
+    // Political Career (lively): the chapters hang on a timeline from wide screens up — a thin Modern Teal rail down the left, a saffron node at
+    // each chapter title (LivelyChapter)
+    <div className={cn('space-y-10 sm:space-y-16 md:space-y-24', lively && 'relative lg:pl-14')}>
+      {lively && <div aria-hidden className="absolute bottom-0 left-[7px] top-4 hidden w-0.5 rounded-full bg-gradient-to-b from-charcoal-900/55 via-charcoal-900/25 to-transparent lg:block" />}
       {groups.map((g) => (
         <div key={g.key} id={g.anchor} className="scroll-mt-8">
           {g.node}
@@ -88,7 +91,7 @@ function render(b: PageBlock): ReactNode {
             <div
               className={cn(
                 'overflow-hidden bg-cream md:sticky md:top-28',
-                tall ? 'mx-auto w-full max-w-60 rounded-xl shadow-[0_24px_48px_-20px_rgba(20,33,61,.45)] sm:max-w-[18rem] lg:max-w-84' : 'rounded-[1.75rem]',
+                tall ? 'mx-auto w-full max-w-60 rounded-xl shadow-[0_24px_48px_-20px_rgba(24,33,38,.45)] sm:max-w-[18rem] lg:max-w-84' : 'rounded-[1.75rem]',
                 b.imagePosition === 'right' && 'md:order-2',
               )}
             >
@@ -142,7 +145,7 @@ function render(b: PageBlock): ReactNode {
                       <Img media={c.image} variant="card" alt={mediaAlt(c.image, c.title)} fill sizes="(max-width:768px) 100vw, 33vw" className="object-cover" style={photoFit(c.image, 1.6)} />
                     </div>
                   )}
-                  {!withImages && <span aria-hidden className="absolute -top-px left-0 h-[3px] w-12 bg-saffron-500 transition-all duration-300 group-hover:w-20" />}
+                  {!withImages && <span aria-hidden className="absolute -top-px left-0 h-[3px] w-12 bg-gold transition-all duration-300 group-hover:w-20" />}
                   <div className={cn('tile-body', !withImages && 'pt-6')}>
                     <CardTitle className="tile-title">{c.title}{c.url && <ArrowUpRight aria-hidden className="ml-1.5 inline size-4 -translate-y-px text-saffron-600 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />}</CardTitle>
                     {c.meta && <p className="tile-kicker mt-1">{c.meta}</p>}
@@ -189,9 +192,9 @@ function render(b: PageBlock): ReactNode {
       )
     case 'quote':
       return (
-        /* pull quote: words on the page, held by a saffron rule — no box */
-        <figure className="max-w-4xl border-l-4 border-saffron-500 py-2 pl-6 md:pl-10">
-          <Quote aria-hidden className="size-9 text-saffron-500" />
+        /* pull quote: words on the page, held by a gold rule — no box */
+        <figure className="max-w-4xl border-l-4 border-gold py-2 pl-6 md:pl-10">
+          <Quote aria-hidden className="size-9 text-saffron-600" />
           <blockquote className="font-quote mt-4 text-2xl leading-relaxed text-charcoal-900 md:text-[1.9rem] md:leading-[1.5]">{b.text}</blockquote>
           {b.author && <figcaption className="mt-5 font-semibold text-saffron-700">— {b.author}</figcaption>}
         </figure>
@@ -218,11 +221,11 @@ function render(b: PageBlock): ReactNode {
       )
     case 'cta':
       return (
-        /* closing invitation: a soft cream panel (the one place a page uses a panel) */
-        <div className="grid overflow-hidden rounded-[1.75rem] bg-cream md:grid-cols-[1.3fr_1fr]">
+        /* closing invitation: the Modern Teal call-to-action block (white words, the one saffron button, a white outline beside it) */
+        <div className="on-dark grid overflow-hidden rounded-[1.75rem] bg-charcoal-900 text-paper md:grid-cols-[1.3fr_1fr]">
           <div className="p-8 md:p-12">
             {b.eyebrow && <p className="eyebrow">{b.eyebrow}</p>}
-            {b.heading && <h2 className="mt-2 text-[1.75rem] leading-tight text-charcoal-900 md:text-[2.25rem]">{b.heading}</h2>}
+            {b.heading && <h2 className="mt-2 text-[1.75rem] leading-tight text-paper md:text-[2.25rem]">{b.heading}</h2>}
             {b.text && <p className="lead mt-4 whitespace-pre-line">{b.text}</p>}
             <div className="mt-8 flex flex-wrap gap-3">
               {b.buttons?.map((l, i) => (

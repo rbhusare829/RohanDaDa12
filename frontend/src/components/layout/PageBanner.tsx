@@ -27,10 +27,10 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
   const t = useTranslations('nav')
   if (!crumbs?.length) return null
   return (
-    <nav aria-label="Breadcrumb" className="border-b border-stone-200 bg-[#f8fafc] py-2.5 text-xs text-slate-600">
+    <nav aria-label="Breadcrumb" className="border-b border-line bg-paper py-2.5 text-xs text-ink">
       <ol className="container-x pl-12 sm:pl-14 lg:pl-16 xl:pl-12 flex items-center gap-2 overflow-x-auto whitespace-nowrap">
         <li>
-          <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-[#000d3d] transition-colors hover:text-red-600">
+          <Link to="/" className="inline-flex items-center gap-1.5 font-bold text-charcoal-900 transition-colors hover:text-saffron-700">
             <Home aria-hidden className="size-3.5" />
             <span>{t('home')}</span>
           </Link>
@@ -39,11 +39,11 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
           const isLast = idx === crumbs.length - 1
           return (
             <li key={idx} className="flex items-center gap-2">
-              <ChevronRight aria-hidden className="size-3 text-slate-400" />
+              <ChevronRight aria-hidden className="size-3 text-muted" />
               {isLast || !crumb.href ? (
-                <span aria-current={isLast ? 'page' : undefined} className="line-clamp-1 font-semibold text-slate-900">{crumb.label}</span>
+                <span aria-current={isLast ? 'page' : undefined} className="line-clamp-1 font-semibold text-charcoal-900">{crumb.label}</span>
               ) : (
-                <Link to={crumb.href} className="font-medium text-slate-600 transition-colors hover:text-red-600">
+                <Link to={crumb.href} className="font-medium text-ink transition-colors hover:text-saffron-700">
                   {crumb.label}
                 </Link>
               )}
@@ -56,9 +56,8 @@ function BreadcrumbsBar({ crumbs }: { crumbs?: Crumb[] }) {
 }
 
 /**
- * The top of every inner page — 100% Supriya Sule ja-masthead layout:
- * - Photographic banner with deep navy overlay
- * - Large title with signature red & saffron accent line
+ * The top of every inner page (Modern Teal + Saffron): a Cloud band with Rohan's photo melting in from the right edge
+ * - Large Modern Teal title with the saffron underline + jade dot
  * - Breadcrumb row (Home › Section › Current)
  * - Sibling pages as horizontal tab bar
  */
@@ -98,14 +97,11 @@ function StitchBanner({
 
   return (
     <>
-      {/* 100% Supriya Sule Official Style Banner: Light Ice-Blue Wash with Full-Bleed Melting Leader Photo */}
-      <section className="relative isolate w-full overflow-hidden bg-gradient-to-r from-[#eaf3fd] via-[#f0f6fd] to-[#e8f2fc] text-[#001f5c]">
-        {/* Subtle decorative saffron line at the top */}
-        <div aria-hidden className="h-[2px] w-full bg-gradient-to-r from-transparent via-saffron-500/40 to-transparent" />
-
-        {/* Ambient atmospheric glows */}
-        <div aria-hidden className="pointer-events-none absolute -top-32 right-1/4 -z-10 size-96 rounded-full bg-saffron-400/10 blur-[100px]" />
-        <div aria-hidden className="pointer-events-none absolute bottom-0 left-10 -z-10 size-80 rounded-full bg-blue-400/10 blur-[100px]" />
+      {/* Modern Teal + Saffron banner: a Cloud band (the palette's surface for alternating sections) under the header's saffron line,
+          strip, with the leader's photo melting in from the right edge */}
+      <section className="relative isolate w-full overflow-hidden bg-cream text-charcoal-900">
+        {/* one soft gold warmth behind the title (decorative) */}
+        <div aria-hidden className="pointer-events-none absolute -top-32 left-1/4 -z-10 size-96 rounded-full bg-gold/10 blur-[100px]" />
 
         {/* Leader Photo - Visible on all screens: full height on right edge, melting naturally on left */}
         {portraitSrc && (
@@ -130,10 +126,10 @@ function StitchBanner({
                   objectPosition: portraitPos || 'center bottom',
                 }}
               />
-              {/* Soft left-edge feather fade into light sky-blue background */}
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 lg:w-44 bg-gradient-to-r from-[#eaf3fd] via-[#eaf3fd]/70 to-transparent" />
-              {/* Soft bottom edge grounding fade */}
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-4 sm:h-6 bg-gradient-to-t from-[#eaf3fd]/50 to-transparent" />
+              {/* the photo's left edge feathers into the Cloud band */}
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 lg:w-44 bg-gradient-to-r from-cream via-cream/70 to-transparent" />
+              {/* a soft grounding fade along the bottom edge */}
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-4 sm:h-6 bg-gradient-to-t from-cream/50 to-transparent" />
             </div>
           </div>
         )}
@@ -141,17 +137,17 @@ function StitchBanner({
         <div className="container-x relative flex min-h-[220px] sm:min-h-[280px] lg:min-h-[310px] flex-col justify-center py-8 sm:py-12 lg:py-14">
           <div className="max-w-[54%] sm:max-w-2xl lg:max-w-3xl space-y-2.5 sm:space-y-3.5">
             {eyebrow && (
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-500/30 bg-saffron-500/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-paper/70 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700">
                 <Sparkles className="size-3.5 text-saffron-600" />
                 {eyebrow}
               </span>
             )}
-            <h1 className="animate-fade-up text-2xl font-extrabold leading-[1.2] tracking-tight text-[#001f5c] sm:text-4xl lg:text-5xl">
+            <h1 className="animate-fade-up text-2xl font-bold leading-[1.2] tracking-tight text-charcoal-900 sm:text-4xl lg:text-5xl">
               {title}
             </h1>
-            <div className="mt-3 mb-2 flex items-center gap-1.5">
-              <span className="h-1.5 w-12 sm:w-14 rounded-full bg-red-600" />
-              <span className="h-1.5 w-3 sm:w-3.5 rounded-full bg-saffron-500" />
+            <div aria-hidden className="mt-3 mb-2 flex items-center gap-1.5">
+              <span className="h-1.5 w-12 sm:w-14 rounded-full bg-gold" />
+              <span className="h-1.5 w-3 sm:w-3.5 rounded-full bg-leaf-600" />
             </div>
             {/* Subtitle removed per request: banner keeps clean title + accent line + photo */}
           </div>

@@ -160,7 +160,7 @@ export function MediaPicker({ open, onClose, collection = 'media', multiple, sel
                         <span className="min-w-0"><span className="block truncate font-medium">{plain(m.title) || m.filename}</span><span className="block truncate text-[0.8rem] text-charcoal-800/75">{m.filename}</span></span>
                       </>
                     )}
-                    {on && <span className="absolute right-1.5 top-1.5 grid size-6 place-items-center rounded-full bg-saffron-600 text-white shadow"><Check className="size-4" /></span>}
+                    {on && <span className="absolute right-1.5 top-1.5 grid size-6 place-items-center rounded-full bg-saffron-600 text-ink shadow"><Check className="size-4" /></span>}
                     {isImage && <span className="absolute inset-x-0 bottom-0 truncate bg-gradient-to-t from-black/70 to-transparent px-2 pb-1 pt-4 text-[0.72rem] text-white opacity-0 transition group-hover:opacity-100">{m.filename}</span>}
                   </button>
                 </li>

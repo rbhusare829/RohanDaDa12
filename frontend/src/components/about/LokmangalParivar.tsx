@@ -38,77 +38,56 @@ const num = (n: number, locale: string, width = 1) => {
   return locale === 'mr' ? s.replace(/\d/g, (d) => DEVANAGARI[Number(d)]) : s
 }
 
-/** 5 Sector Color & Icon Themes matching Lokmangal Core Sectors */
+/**
+ * The 5 sectors in Modern Teal + Saffron colours (Nov 2026) — finance in Modern Teal, industry in Saffron Amber, agriculture in Jade (the
+ * palette's support colour, for development work), education in Charcoal Black, social work in Saffron Amber. Each gives the icon tile,
+ * the chips, the sector's underline and the card edge on hover.
+ */
 const SECTOR_THEMES = [
   {
+    image: '/images/lokmangal/sector-banking.webp',
+    imageAlt: 'लोकमंगल मल्टिस्टेट व बँक मुख्यालय',
     icon: Landmark,
-    accentGradient: 'from-amber-500 to-saffron-600',
-    lightBg: 'bg-amber-50/80',
-    badge: 'bg-amber-100/90 text-amber-900 border-amber-300/80',
-    border: 'border-amber-200/90',
-    cardBorderHover: 'hover:border-amber-400/90',
-    glow: 'rgba(245, 158, 11, 0.2)',
-    bar: 'bg-gradient-to-r from-saffron-600 via-amber-500 to-yellow-500',
-    tileText: 'text-amber-400',
-    tileActive: 'border-amber-400/90 bg-gradient-to-b from-amber-500/25 to-amber-950/40 text-white shadow-[0_12px_28px_-6px_rgba(245,158,11,0.35)]',
-    tagBg: 'bg-amber-50/80 text-amber-900 border-amber-200/80',
-    iconBg: 'bg-amber-500/15 text-amber-600',
+    iconBg: 'bg-charcoal-900/10 text-charcoal-900',
+    badge: 'bg-charcoal-900/5 text-charcoal-900 border-charcoal-900/20',
+    bar: 'bg-charcoal-900',
+    cardBorderHover: 'hover:border-charcoal-900/40',
   },
   {
+    image: '/images/lokmangal/sector-industry.webp',
+    imageAlt: 'लोकमंगल साखर, इथेनॉल व वीजनिर्मिती कारखाना',
     icon: Factory,
-    accentGradient: 'from-orange-600 to-amber-600',
-    lightBg: 'bg-orange-50/80',
-    badge: 'bg-orange-100/90 text-orange-900 border-orange-300/80',
-    border: 'border-orange-200/90',
-    cardBorderHover: 'hover:border-orange-400/90',
-    glow: 'rgba(234, 88, 12, 0.2)',
-    bar: 'bg-gradient-to-r from-orange-600 via-amber-600 to-amber-500',
-    tileText: 'text-orange-400',
-    tileActive: 'border-orange-400/90 bg-gradient-to-b from-orange-500/25 to-orange-950/40 text-white shadow-[0_12px_28px_-6px_rgba(234,88,12,0.35)]',
-    tagBg: 'bg-orange-50/80 text-orange-900 border-orange-200/80',
-    iconBg: 'bg-orange-500/15 text-orange-600',
+    iconBg: 'bg-saffron-100 text-charcoal-950',
+    badge: 'bg-saffron-50 text-saffron-800 border-saffron-200',
+    bar: 'bg-saffron-600',
+    cardBorderHover: 'hover:border-saffron-600/50',
   },
   {
+    image: '/images/lokmangal/sector-dairy.webp',
+    imageAlt: 'लोकमंगल प्रॉडक्ट्स व दूध डेअरी',
     icon: Sprout,
-    accentGradient: 'from-emerald-600 to-teal-500',
-    lightBg: 'bg-emerald-50/80',
-    badge: 'bg-emerald-100/90 text-emerald-900 border-emerald-300/80',
-    border: 'border-emerald-200/90',
-    cardBorderHover: 'hover:border-emerald-400/90',
-    glow: 'rgba(16, 185, 129, 0.2)',
-    bar: 'bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500',
-    tileText: 'text-emerald-300',
-    tileActive: 'border-emerald-400/90 bg-gradient-to-b from-emerald-500/25 to-emerald-950/40 text-white shadow-[0_12px_28px_-6px_rgba(16,185,129,0.35)]',
-    tagBg: 'bg-emerald-50/80 text-emerald-900 border-emerald-200/80',
-    iconBg: 'bg-emerald-500/15 text-emerald-600',
+    iconBg: 'bg-leaf-600/10 text-leaf-700',
+    badge: 'bg-leaf-50 text-leaf-700 border-leaf-200',
+    bar: 'bg-leaf-600',
+    cardBorderHover: 'hover:border-leaf-600/50',
   },
   {
+    image: '/images/lokmangal/sector-education.webp',
+    imageAlt: 'लोकमंगल कृषी महाविद्यालय व शैक्षणिक संकुल वडाळा',
     icon: GraduationCap,
-    accentGradient: 'from-blue-600 to-indigo-600',
-    lightBg: 'bg-blue-50/80',
-    badge: 'bg-blue-100/90 text-blue-900 border-blue-300/80',
-    border: 'border-blue-200/90',
-    cardBorderHover: 'hover:border-blue-400/90',
-    glow: 'rgba(37, 99, 235, 0.2)',
-    bar: 'bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-500',
-    tileText: 'text-blue-300',
-    tileActive: 'border-blue-400/90 bg-gradient-to-b from-blue-500/25 to-blue-950/40 text-white shadow-[0_12px_28px_-6px_rgba(37,99,235,0.35)]',
-    tagBg: 'bg-blue-50/80 text-blue-900 border-blue-200/80',
-    iconBg: 'bg-blue-500/15 text-blue-600',
+    iconBg: 'bg-charcoal-950/10 text-ink',
+    badge: 'bg-charcoal-950/5 text-ink border-charcoal-950/20',
+    bar: 'bg-charcoal-950',
+    cardBorderHover: 'hover:border-charcoal-950/40',
   },
   {
+    image: '/images/lokmangal/sector-social.webp',
+    imageAlt: 'लोकमंगल फाऊंडेशन व लोकसंवाद',
     icon: HeartHandshake,
-    accentGradient: 'from-purple-600 to-pink-600',
-    lightBg: 'bg-purple-50/80',
-    badge: 'bg-purple-100/90 text-purple-900 border-purple-300/80',
-    border: 'border-purple-200/90',
-    cardBorderHover: 'hover:border-purple-400/90',
-    glow: 'rgba(147, 51, 234, 0.2)',
-    bar: 'bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500',
-    tileText: 'text-purple-300',
-    tileActive: 'border-purple-400/90 bg-gradient-to-b from-purple-500/25 to-purple-950/40 text-white shadow-[0_12px_28px_-6px_rgba(147,51,234,0.35)]',
-    tagBg: 'bg-purple-50/80 text-purple-900 border-purple-200/80',
-    iconBg: 'bg-purple-500/15 text-purple-600',
+    iconBg: 'bg-saffron-100 text-charcoal-950',
+    badge: 'bg-saffron-50 text-saffron-800 border-saffron-200',
+    bar: 'bg-saffron-600',
+    cardBorderHover: 'hover:border-saffron-600/50',
   },
 ] as const
 
@@ -219,9 +198,9 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
   return (
     <div className="relative isolate space-y-8 sm:space-y-16 md:space-y-20">
       {/* Ambient Atmospheric Lighting */}
-      <div aria-hidden className="pointer-events-none absolute -top-24 right-0 -z-10 size-96 rounded-full bg-saffron-500/10 blur-[130px]" />
-      <div aria-hidden className="pointer-events-none absolute top-[600px] left-0 -z-10 size-96 rounded-full bg-emerald-500/10 blur-[140px]" />
-      <div aria-hidden className="pointer-events-none absolute top-[1400px] right-0 -z-10 size-96 rounded-full bg-blue-500/10 blur-[140px]" />
+      <div aria-hidden className="pointer-events-none absolute -top-24 right-0 -z-10 size-96 rounded-full bg-gold/10 blur-[130px]" />
+      <div aria-hidden className="pointer-events-none absolute top-[600px] left-0 -z-10 size-96 rounded-full bg-leaf-600/10 blur-[140px]" />
+      <div aria-hidden className="pointer-events-none absolute top-[1400px] right-0 -z-10 size-96 rounded-full bg-charcoal-900/5 blur-[140px]" />
 
       {/* =========================================================================
           1. Hero & Introduction Section
@@ -233,36 +212,36 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
             <div className="relative flex flex-col justify-between lg:col-span-7 lg:pr-4">
               <div className="relative">
                 {intro.eyebrow && (
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-saffron-300/80 bg-saffron-50/90 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700 shadow-xs backdrop-blur-sm">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/50 bg-saffron-50/90 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-saffron-700 shadow-xs backdrop-blur-sm">
                     <Sparkles className="size-3.5 text-saffron-600" />
                     {intro.eyebrow}
                   </span>
                 )}
 
                 {intro.heading && (
-                  <h2 className="mb-4 mt-3 font-display text-2xl font-extrabold leading-tight tracking-tight text-charcoal-950 sm:text-3xl md:text-4xl">
+                  <h2 className="mb-4 mt-3 font-display text-2xl font-extrabold leading-tight tracking-tight text-charcoal-900 sm:text-3xl md:text-4xl">
                     {intro.heading}
                   </h2>
                 )}
 
-                {/* Saffron & Crimson Divider */}
+                {/* the saffron underline + teal dot */}
                 <AccentBar className="mb-5" bar="h-1.5 w-16" dot="h-1.5 w-3.5" />
 
                 {/* Narrative Text */}
-                <div className="leading-relaxed text-stone-700 font-normal text-base sm:text-[1.05rem]">
-                  <RichText html={parts ? parts.lead : intro.body} className="leading-relaxed text-stone-700" />
+                <div className="leading-relaxed text-ink font-normal text-base sm:text-[1.05rem]">
+                  <RichText html={parts ? parts.lead : intro.body} className="leading-relaxed text-ink" />
                 </div>
               </div>
 
               {/* Verified Trust Badge at bottom of card */}
-              <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-stone-200/80 pt-4 text-xs font-semibold text-stone-500">
-                <span className="flex items-center gap-1.5 text-emerald-700">
-                  <ShieldCheck className="size-4 text-emerald-600" />
+              <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-line pt-4 text-xs font-semibold text-ink">
+                <span className="flex items-center gap-1.5 text-leaf-700">
+                  <ShieldCheck className="size-4 text-leaf-700" />
                   {isMr ? '२५+ वर्षांची अखंड सेवा परंपरा' : '25+ Years Legacy of Trust'}
                 </span>
-                <span className="text-stone-300">•</span>
+                <span aria-hidden className="text-gold">•</span>
                 <span className="flex items-center gap-1.5 text-saffron-700">
-                  <Building2 className="size-4 text-saffron-600" />
+                  <Building2 className="size-4 text-leaf-700" />
                   {isMr ? 'महाराष्ट्र व कर्नाटकातील अग्रगण्य समूह' : 'Leading Maharashtra-Karnataka Conglomerate'}
                 </span>
               </div>
@@ -278,15 +257,15 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                     return (
                       <div
                         key={i}
-                        className="group relative flex items-start gap-3.5 border-b border-stone-200/80 py-4 last:border-b-0"
+                        className="group relative flex items-start gap-3.5 border-b border-line py-4 last:border-b-0"
                       >
                         {/* Icon Box */}
                         <div
                           className={cn(
                             'grid size-10 shrink-0 place-items-center rounded-xl shadow-xs transition-transform duration-300 group-hover:scale-105',
                             isEven
-                              ? 'border border-amber-200 bg-amber-50 text-amber-700'
-                              : 'border border-emerald-200 bg-emerald-50 text-emerald-700',
+                              ? 'border border-saffron-200 bg-saffron-50 text-saffron-700'
+                              : 'border border-leaf-200 bg-leaf-50 text-leaf-700',
                           )}
                         >
                           <IconComponent className="size-5" />
@@ -294,11 +273,11 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
 
                         <div className="flex-1 min-w-0 pl-0.5">
                           {it.title && (
-                            <h3 className="font-display text-base font-bold text-charcoal-950 transition-colors group-hover:text-saffron-700">
+                            <h3 className="font-display text-base font-bold text-charcoal-900 transition-colors group-hover:text-saffron-700">
                               {it.title}
                             </h3>
                           )}
-                          <p className="mt-1 text-xs sm:text-sm leading-relaxed text-stone-600">
+                          <p className="mt-1 text-sm leading-relaxed text-muted">
                             {it.body.replace(/^[–—: -]+/, '')}
                           </p>
                         </div>
@@ -324,24 +303,24 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                 <span className="text-xs font-bold uppercase tracking-widest text-saffron-700">
                   {isMr ? 'लोकमंगल परिवार कार्यक्षेत्रे' : 'Conglomerate Sectors'}
                 </span>
-                <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal-950 mt-1">
+                <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-charcoal-900 mt-1">
                   {isMr ? 'प्रमुख ५ कार्यक्षेत्रे आणि संस्था समूह' : '5 Core Pillars & Institutions'}
                 </h2>
               </div>
 
               {/* View Switcher (By Sector vs All 17 Institutions) - Desktop/Tablet Only */}
-              <div className="hidden sm:inline-flex rounded-xl border border-stone-200/90 bg-stone-100/80 p-1 shadow-xs backdrop-blur-sm">
+              <div className="hidden sm:inline-flex rounded-xl border border-line bg-cream p-1 shadow-xs backdrop-blur-sm">
                 <button
                   type="button"
                   onClick={() => handleSelectSector(typeof activeView === 'number' ? activeView : 0, false)}
                   className={cn(
                     'flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all cursor-pointer',
                     typeof activeView === 'number'
-                      ? 'bg-white text-charcoal-950 shadow-xs border border-stone-200/60'
-                      : 'text-stone-600 hover:text-charcoal-950',
+                      ? 'bg-paper text-charcoal-900 shadow-xs border border-line'
+                      : 'text-ink hover:text-charcoal-900',
                   )}
                 >
-                  <LayoutGrid className="size-3.5 text-saffron-600" />
+                  <LayoutGrid className="size-3.5 text-leaf-700" />
                   <span>{isMr ? 'विभागानुसार' : 'By Sector'}</span>
                 </button>
                 <button
@@ -350,11 +329,11 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                   className={cn(
                     'flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-bold transition-all cursor-pointer',
                     activeView === 'all'
-                      ? 'bg-white text-charcoal-950 shadow-xs border border-stone-200/60'
-                      : 'text-stone-600 hover:text-charcoal-950',
+                      ? 'bg-paper text-charcoal-900 shadow-xs border border-line'
+                      : 'text-ink hover:text-charcoal-900',
                   )}
                 >
-                  <Layers className="size-3.5 text-saffron-600" />
+                  <Layers className="size-3.5 text-leaf-700" />
                   <span>{isMr ? `सर्व ${num(totalInstitutions, locale)} संस्था` : `All ${totalInstitutions} Units`}</span>
                 </button>
               </div>
@@ -373,7 +352,6 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
               {sectors.map((s, i) => {
                 const isSelected = activeView === i
                 const theme = SECTOR_THEMES[i % SECTOR_THEMES.length]
-                const SectorIcon = theme.icon
 
                 return (
                   <li
@@ -389,8 +367,8 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                       className={cn(
                         'group relative flex w-full h-full flex-col justify-between gap-4 rounded-2xl border p-4 text-left transition-all duration-300 select-none cursor-pointer',
                         isSelected
-                          ? 'border-saffron-500 bg-white shadow-[0_16px_36px_-8px_rgba(245,158,11,0.28)] ring-2 ring-saffron-400/40 -translate-y-1'
-                          : 'border-stone-200/90 bg-white/95 hover:border-saffron-300 hover:shadow-md hover:-translate-y-0.5',
+                          ? 'border-saffron-600 bg-paper shadow-[0_16px_36px_-8px_rgba(233,149,50,0.25)] ring-2 ring-gold/40 -translate-y-1'
+                          : 'border-line bg-cream hover:border-gold hover:shadow-md hover:-translate-y-0.5',
                         'active:scale-95',
                       )}
                     >
@@ -398,27 +376,34 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                       {isSelected && (
                         <span
                           aria-hidden
-                          className="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-gradient-to-r from-red-600 via-saffron-500 to-amber-500"
+                          className="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-saffron-600"
                         />
                       )}
 
-                      {/* Header row: Icon & Units Count Pill */}
+                      {/* Header row: Real Photo Box & Units Count Pill */}
                       <div className="flex items-center justify-between w-full">
                         <div
                           className={cn(
-                            'grid size-10 place-items-center rounded-xl transition-all duration-300',
-                            isSelected ? 'bg-saffron-500 text-white shadow-xs scale-105' : theme.iconBg,
+                            'relative size-12 sm:size-13 overflow-hidden rounded-xl border bg-sand/30 shadow-xs transition-all duration-300 shrink-0',
+                            isSelected
+                              ? 'border-saffron-600 ring-2 ring-saffron-500/30 scale-105 shadow-md'
+                              : 'border-line/90 group-hover:border-gold group-hover:scale-105',
                           )}
                         >
-                          <SectorIcon className="size-5" />
+                          <img
+                            src={theme.image}
+                            alt={isMr ? theme.imageAlt : s.heading ?? ''}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
+                          />
                         </div>
 
                         <span
                           className={cn(
                             'rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider transition-colors',
                             isSelected
-                              ? 'bg-saffron-100 text-saffron-900 border border-saffron-300'
-                              : 'bg-stone-100 text-stone-600 border border-stone-200/60',
+                              ? 'bg-saffron-100 text-saffron-800 border border-saffron-200 font-extrabold'
+                              : 'bg-paper text-ink border border-line',
                           )}
                         >
                           {num(s.items?.length ?? 0, locale)} {isMr ? 'संस्था' : 'Units'}
@@ -430,7 +415,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                         <span
                           className={cn(
                             'block text-sm sm:text-base font-bold leading-snug transition-colors line-clamp-2',
-                            isSelected ? 'text-charcoal-950 font-extrabold' : 'text-stone-700 group-hover:text-charcoal-950',
+                            isSelected ? 'text-charcoal-900 font-extrabold' : 'text-ink group-hover:text-charcoal-900',
                           )}
                         >
                           {s.heading}
@@ -454,7 +439,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                   className="grid h-11 min-w-6 cursor-pointer place-items-center"
                 >
                   {/* the dot stays small; the button around it is a 44 px tap area */}
-                  <span className={cn('block h-1.5 rounded-full transition-all duration-300', activeView === dotIdx ? 'w-6 bg-saffron-600' : 'w-1.5 bg-stone-300')} />
+                  <span className={cn('block h-1.5 rounded-full transition-all duration-300', activeView === dotIdx ? 'w-6 bg-saffron-600' : 'w-1.5 bg-field')} />
                 </button>
               ))}
             </div>
@@ -473,24 +458,42 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                   return (
                     <div key={sec.id ?? secIdx} className="space-y-6">
                       {/* Sector Banner */}
-                      <div className="relative overflow-hidden rounded-2xl border border-stone-200/80 bg-gradient-to-br from-white via-white to-amber-50/20 p-5 sm:p-7 shadow-[0_10px_30px_-10px_rgba(14,30,52,0.06)] backdrop-blur-md">
-                        <div className="flex flex-wrap items-center gap-2 mb-2">
-                          <span className={cn('rounded-full border px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider', secTheme.badge)}>
-                            {sec.eyebrow || `${num(secItems.length, locale)} ${isMr ? 'संस्था' : 'Institutions'}`}
-                          </span>
+                      <div className="relative overflow-hidden rounded-2xl border border-line bg-cream p-5 sm:p-7 shadow-[0_10px_30px_-10px_rgba(24,33,38,0.06)] backdrop-blur-md">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                          <div className="flex-1 min-w-0">
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              <span className={cn('rounded-full border px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider', secTheme.badge)}>
+                                {sec.eyebrow || `${num(secItems.length, locale)} ${isMr ? 'संस्था' : 'Institutions'}`}
+                              </span>
+                            </div>
+
+                            <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-charcoal-900">
+                              {sec.heading}
+                            </h3>
+
+                            {sec.intro && (
+                              <p className="mt-2 text-sm sm:text-base leading-relaxed text-muted max-w-3xl">
+                                {sec.intro}
+                              </p>
+                            )}
+
+                            <span aria-hidden className={cn('mt-3.5 block h-1 w-20 rounded-full shadow-xs', secTheme.bar)} />
+                          </div>
+
+                          <div className="relative h-28 sm:h-32 w-full md:w-52 shrink-0 overflow-hidden rounded-xl border border-line bg-sand/30 shadow-xs">
+                            <img
+                              src={secTheme.image}
+                              alt={isMr ? secTheme.imageAlt : sec.heading ?? ''}
+                              className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                              loading="lazy"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/60 via-transparent to-transparent flex items-end p-2">
+                              <span className="text-[10px] font-bold text-white/95 line-clamp-1">
+                                {isMr ? secTheme.imageAlt : sec.heading}
+                              </span>
+                            </div>
+                          </div>
                         </div>
-
-                        <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-charcoal-950">
-                          {sec.heading}
-                        </h3>
-
-                        {sec.intro && (
-                          <p className="mt-2 text-sm sm:text-base leading-relaxed text-stone-600 max-w-3xl">
-                            {sec.intro}
-                          </p>
-                        )}
-
-                        <span aria-hidden className={cn('mt-3.5 block h-1 w-20 rounded-full shadow-xs', secTheme.bar)} />
                       </div>
 
                       {/* Institutions Grid */}
@@ -520,24 +523,43 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                   className="space-y-6"
                 >
                   {/* Sector Header Card */}
-                  <div className="relative overflow-hidden rounded-2xl border border-stone-200/80 bg-gradient-to-br from-white via-white to-amber-50/20 p-5 sm:p-7 shadow-[0_10px_30px_-10px_rgba(14,30,52,0.06)] backdrop-blur-md">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <span className={cn('rounded-full border px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider', currentTheme.badge)}>
-                        {currentSector?.eyebrow || `${num(currentItems.length, locale)} ${isMr ? 'संस्था' : 'Institutions'}`}
-                      </span>
+                  <div className="relative overflow-hidden rounded-2xl border border-line bg-cream p-5 sm:p-7 shadow-[0_10px_30px_-10px_rgba(24,33,38,0.06)] backdrop-blur-md">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className={cn('rounded-full border px-3 py-0.5 text-[11px] font-bold uppercase tracking-wider', currentTheme.badge)}>
+                            {currentSector?.eyebrow || `${num(currentItems.length, locale)} ${isMr ? 'संस्था' : 'Institutions'}`}
+                          </span>
+                        </div>
+
+                        <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-charcoal-900">
+                          {currentSector?.heading}
+                        </h3>
+
+                        {currentSector?.intro && (
+                          <p className="mt-2 text-sm sm:text-base leading-relaxed text-muted max-w-3xl">
+                            {currentSector.intro}
+                          </p>
+                        )}
+
+                        <span aria-hidden className={cn('mt-3.5 block h-1 w-20 rounded-full shadow-xs', currentTheme.bar)} />
+                      </div>
+
+                      {/* Real Photograph Thumbnail */}
+                      <div className="relative h-28 sm:h-32 w-full md:w-52 shrink-0 overflow-hidden rounded-xl border border-line bg-sand/30 shadow-xs">
+                        <img
+                          src={currentTheme.image}
+                          alt={isMr ? currentTheme.imageAlt : currentSector?.heading ?? ''}
+                          className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                          loading="lazy"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/60 via-transparent to-transparent flex items-end p-2">
+                          <span className="text-[10px] font-bold text-white/95 line-clamp-1">
+                            {isMr ? currentTheme.imageAlt : currentSector?.heading}
+                          </span>
+                        </div>
+                      </div>
                     </div>
-
-                    <h3 className="font-display text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight text-charcoal-950">
-                      {currentSector?.heading}
-                    </h3>
-
-                    {currentSector?.intro && (
-                      <p className="mt-2 text-sm sm:text-base leading-relaxed text-stone-600 max-w-3xl">
-                        {currentSector.intro}
-                      </p>
-                    )}
-
-                    <span aria-hidden className={cn('mt-3.5 block h-1 w-20 rounded-full shadow-xs', currentTheme.bar)} />
                   </div>
 
                   {/* Institutions View: 3-Column Responsive Grid on PC, 1-Col on Phone */}
@@ -598,21 +620,21 @@ function InstitutionCard({
     <CardBox
       url={item.url}
       className={cn(
-        'group relative flex h-full flex-col justify-between gap-3 overflow-hidden rounded-2xl border border-stone-200/90 p-5 sm:min-h-[220px] sm:gap-0 sm:p-6', // phones: only as tall as the content
-        'bg-white/95',
-        'shadow-[0_4px_16px_-4px_rgba(14,30,52,0.06),inset_0_1px_1px_rgba(255,255,255,1)]',
-        'transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_35px_-10px_rgba(14,30,52,0.12)]',
+        'group relative flex h-full flex-col justify-between gap-3 overflow-hidden rounded-2xl border border-line p-5 sm:min-h-[220px] sm:gap-0 sm:p-6', // phones: only as tall as the content
+        'bg-cream',
+        'shadow-[0_4px_16px_-4px_rgba(24,33,38,0.06)]',
+        'transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_35px_-10px_rgba(24,33,38,0.12)]',
         theme.cardBorderHover,
       )}
     >
       <div className="relative">
         {/* Top Header: Title & Link Arrow */}
         <div className="mb-2 flex items-start justify-between gap-3">
-          <h4 className="font-display text-lg font-bold leading-snug text-charcoal-950 transition-colors group-hover:text-saffron-700">
+          <h4 className="font-display text-lg font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700">
             {item.title}
           </h4>
           {item.url && (
-            <span className="grid size-7.5 shrink-0 place-items-center rounded-full border border-stone-200 bg-stone-50 text-stone-500 shadow-xs transition-all group-hover:border-saffron-400 group-hover:bg-saffron-500 group-hover:text-white group-hover:scale-105">
+            <span className="grid size-7.5 shrink-0 place-items-center rounded-full border border-line bg-paper text-charcoal-900 shadow-xs transition-all group-hover:border-saffron-600 group-hover:bg-saffron-600 group-hover:text-ink group-hover:scale-105">
               <ArrowUpRight className="size-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </span>
           )}
@@ -641,7 +663,7 @@ function InstitutionCard({
 
         {/* Main Body Text */}
         {item.text && (
-          <p className="mt-2 whitespace-pre-line text-xs sm:text-sm leading-relaxed text-stone-600">
+          <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted">
             {item.text}
           </p>
         )}
@@ -652,7 +674,7 @@ function InstitutionCard({
             {item.tags.map((t, ti) => (
               <span
                 key={ti}
-                className="rounded-md border border-stone-200/70 bg-stone-50 px-2 py-0.5 text-[11px] font-medium text-stone-600"
+                className="rounded-md border border-line bg-paper px-2 py-0.5 text-[11px] font-medium text-ink"
               >
                 {t}
               </span>
@@ -662,14 +684,14 @@ function InstitutionCard({
       </div>
 
       {/* Bottom Action Footer */}
-      <div className="mt-5 flex items-center justify-between border-t border-stone-100 pt-3 text-xs font-semibold">
-        <span className="flex items-center gap-1.5 text-stone-400 text-[11px]">
-          <span className={cn('size-1.5 rounded-full', item.url ? 'bg-saffron-500' : 'bg-stone-300')} />
+      <div className="mt-5 flex items-center justify-between border-t border-line pt-3 text-xs font-semibold">
+        <span className="flex items-center gap-1.5 text-ink text-[11px]">
+          <span aria-hidden className={cn('size-1.5 rounded-full', item.url ? 'bg-gold' : 'bg-frame')} />
           <span>{item.url ? (isMr ? 'अधिकृत संकेतस्थळ' : 'Official Portal') : (isMr ? 'लोकमंगल परिवार संलग्न' : 'Lokmangal Group')}</span>
         </span>
 
         {item.url && (
-          <span className="flex items-center gap-1 text-saffron-700 group-hover:text-saffron-800 group-hover:underline">
+          <span className="flex items-center gap-1 text-saffron-700 group-hover:text-charcoal-900 group-hover:underline">
             <span>{isMr ? 'संकेतस्थळ पहा' : 'Visit Website'}</span>
             <ArrowUpRight className="size-3.5" />
           </span>

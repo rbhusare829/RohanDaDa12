@@ -55,6 +55,7 @@ export default function CmsPage() {
         imagePosition={mediaPosition(page.bannerImage)}
         variant={STITCH_HEADER[path]}
         fullWidth={path === INTRO_PATH}
+        tone={path === PARIVAR_PATH ? 'jade' : undefined}
       >
         {path === INTRO_PATH ? <AboutTabs intro={<IntroJourney blocks={page.layout} locale={LOCALE} />} family={<FamilyBackground blocks={familyPage?.layout} locale={LOCALE} />} locale={LOCALE} /> : path === PARIVAR_PATH ? <LokmangalParivar blocks={page.layout} locale={LOCALE} /> : path === VISION_PATH ? <Manifesto blocks={page.layout} /> : path === POLITICAL_PATH ? <PoliticalCareerTabs career={<PageBlocks blocks={page.layout} design="stitch" plainChapters lively />} sportsEvents={sportsEvents} locale={LOCALE} /> : <PageBlocks blocks={page.layout} design={STITCH_HEADER[path] ? 'stitch' : undefined} />}
       </InnerPage>

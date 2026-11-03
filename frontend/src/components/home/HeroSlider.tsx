@@ -49,7 +49,7 @@ const slideItemVariants: Variants = {
  * Formats multi-word or newline-separated headings to match the iconic 2-line layout in Image 3:
  * "I Am Rohan" on line 1, "Subhash Deshmukh" on line 2.
  */
-function FormattedHeading({ text }: { text?: string | null }) {
+function FormattedHeading({ text, accent = '' }: { text?: string | null; accent?: string }) {
   if (!text) return null
 
   // If explicit newline exists
@@ -58,7 +58,7 @@ function FormattedHeading({ text }: { text?: string | null }) {
     return (
       <>
         <span>{lines[0]}</span>
-        <span className="block">{lines.slice(1).join(' ')}</span>
+        <span className={cn('block', accent)}>{lines.slice(1).join(' ')}</span>
       </>
     )
   }
@@ -68,7 +68,7 @@ function FormattedHeading({ text }: { text?: string | null }) {
     return (
       <>
         <span>I Am Rohan</span>
-        <span className="block">Subhash Deshmukh</span>
+        <span className={cn('block', accent)}>Subhash Deshmukh</span>
       </>
     )
   }
@@ -78,7 +78,7 @@ function FormattedHeading({ text }: { text?: string | null }) {
     return (
       <>
         <span>मी रोहन</span>
-        <span className="block">सुभाष देशमुख</span>
+        <span className={cn('block', accent)}>सुभाष देशमुख</span>
       </>
     )
   }
@@ -90,7 +90,7 @@ function FormattedHeading({ text }: { text?: string | null }) {
     return (
       <>
         <span>{words.slice(0, mid).join(' ')}</span>
-        <span className="block">{words.slice(mid).join(' ')}</span>
+        <span className={cn('block', accent)}>{words.slice(mid).join(' ')}</span>
       </>
     )
   }
@@ -99,10 +99,10 @@ function FormattedHeading({ text }: { text?: string | null }) {
 }
 
 /**
- * Hero Slider (matching Image 3):
- * Full-width background image with deep dark gradient on the left.
- * Saffron uppercase kicker, huge white bold heading, vertical slide indicators (— 01 / 02) on the right.
- * Responsive across mobile, tablet, and desktop viewports.
+ * Hero Slider (Modern Teal + Saffron, Nov 2026): each slide is the leader's portrait on deep Modern Teal with the Saffron Amber shape
+ * behind him (the slide art), the words on the left in Cloud White — a small kicker after a saffron bar, the heading with its second line in
+ * saffron from tablets up (large there: 20px+ bold, 3.2:1) — and the slide numbers (— 01 / 02) on the right with a saffron bar on the open one.
+ * Slides marked desktopTheme 'light' keep the older look (art with a light wall, teal words).
  */
 export function HeroSlider({
   slides,
@@ -155,10 +155,40 @@ export function HeroSlider({
   if (!count) return null
 
   const activeSlide = slides[index] ?? slides[0]
+  const isLight = activeSlide.desktopTheme === 'light'
+
+  /** the slide numbers (— 01 / 02 / 03): a saffron bar before the open one; a column on phones, a row from tablets up */
+  const indicators = (vertical: boolean) => (
+    <div className={cn('select-none z-30 flex', vertical ? 'shrink-0 flex-col items-start gap-2.5 sm:gap-4' : 'items-center gap-5 lg:gap-7')} aria-label="Carousel navigation">
+      {slides.map((_, idx) => {
+        const isActive = idx === index
+        return (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => show(idx)}
+            aria-label={`Go to slide ${pad(idx + 1)}`}
+            aria-current={isActive ? 'true' : undefined}
+            className={cn(
+              'group flex items-center font-display tracking-widest transition-all duration-300 cursor-pointer',
+              vertical ? 'text-xs sm:text-base' : 'min-h-11 text-base lg:text-lg',
+              isActive
+                ? isLight ? 'text-charcoal-900 font-bold' : 'text-paper font-bold'
+                : cn(isLight ? 'text-muted hover:text-charcoal-900' : 'text-paper/80 hover:text-paper', 'font-medium', vertical && 'pl-5 sm:pl-8'),
+            )}
+          >
+            {isActive && <span aria-hidden className={cn('inline-block h-[2px] mr-1.5 sm:mr-2.5 transition-all duration-300', vertical ? 'w-4 sm:w-6' : 'w-8 lg:w-10', isLight ? 'bg-saffron-600' : 'bg-gold')} />}
+            <span>{pad(idx + 1)}</span>
+          </button>
+        )
+      })}
+    </div>
+  )
 
   return (
     <section
-      className="relative isolate w-full overflow-hidden bg-[#00081c] text-white select-none"
+      // behind the photos: Modern Teal for the teal slides (their Cloud White words stay readable while a photo loads), Cloud White for a light one
+      className={cn('relative isolate w-full overflow-hidden select-none', activeSlide.desktopTheme === 'light' ? 'bg-paper text-charcoal-900' : 'teal-depth text-paper')}
       aria-roledescription="carousel"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
@@ -203,7 +233,7 @@ export function HeroSlider({
                     loading={i === 0 ? 'eager' : 'lazy'}
                     fetchPriority={i === 0 ? 'high' : 'low'}
                     decoding="async"
-                    className="size-full object-cover object-[var(--pos-mob)] md:object-[var(--pos-desk)]"
+                    className="size-full object-cover object-[var(--pos-mob)] md:object-[75%_50%] lg:object-[var(--pos-desk)]"
                     style={{
                       ['--pos-mob' as string]: s.mobilePosition ?? 'center top',
                       ['--pos-desk' as string]: s.position ?? 'right center',
@@ -214,9 +244,14 @@ export function HeroSlider({
             )
           })}
 
-          {/* Mobile Bottom Scrim: not needed when mobile image has a light bottom wall */}
+          {/* phones: the words sit on the teal lower part of the art; a soft teal fade under them keeps them clear of the portrait */}
           {activeSlide.desktopTheme !== 'light' && (
-            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#00081c] via-[#00081c]/70 to-transparent md:hidden z-10 pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-[42%] bg-gradient-to-t from-charcoal-900 via-charcoal-900/75 to-transparent md:hidden z-10 pointer-events-none" />
+          )}
+          {/* tablets and up: the teal deepens a little toward the left edge, under the words (charcoal over teal = a deeper teal), so the saffron
+              line of the heading keeps 3:1 or better on the paper grain of the art */}
+          {activeSlide.desktopTheme !== 'light' && (
+            <div className="absolute inset-y-0 left-0 hidden w-[70%] bg-gradient-to-r from-charcoal-950/45 via-charcoal-950/25 via-45% to-transparent md:block z-10 pointer-events-none" />
           )}
         </div>
       )}
@@ -227,7 +262,7 @@ export function HeroSlider({
       <div className="container-x relative z-20 min-h-[520px] sm:min-h-[560px] md:min-h-[580px] lg:min-h-[640px] xl:min-h-[700px] flex items-end md:items-center justify-between pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-24 md:pb-20 lg:pt-28 lg:pb-30">
         <div className="w-full flex items-end md:items-center justify-between gap-4 sm:gap-6 md:gap-8">
           {/* Words on the Left: at the bottom on mobile, vertically centered on desktop */}
-          <div className="flex-1 max-w-3xl lg:max-w-4xl py-2 md:py-6">
+          <div className="flex-1 max-w-3xl md:max-w-[42%] lg:max-w-3xl xl:max-w-4xl py-2 md:py-6">
             <AnimatePresence mode="wait">
               <m.div
                 key={index}
@@ -236,17 +271,17 @@ export function HeroSlider({
                 animate="visible"
                 exit="exit"
               >
-                {/* Orange/Saffron Uppercase Kicker */}
+                {/* small capitals after a short saffron bar (teal words on a light slide, Cloud White on teal — small saffron words would be
+                    only 3.2:1 there) */}
                 {activeSlide.kicker && (
                   <m.p
                     variants={slideItemVariants}
                     className={cn(
-                      'mb-2 sm:mb-3 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em]',
-                      activeSlide.desktopTheme === 'light'
-                        ? 'text-saffron-700'
-                        : 'text-[#ff7a00] drop-shadow-sm',
+                      'mb-2 sm:mb-3 inline-flex items-center gap-2 text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.14em]',
+                      activeSlide.desktopTheme === 'light' ? 'text-saffron-700' : 'text-paper',
                     )}
                   >
+                    <span aria-hidden className="h-0.5 w-6 rounded-full bg-gold sm:w-8" />
                     {activeSlide.kicker}
                   </m.p>
                 )}
@@ -257,11 +292,11 @@ export function HeroSlider({
                   className={cn(
                     'font-display text-sm sm:text-base md:text-xl lg:text-2xl xl:text-[1.75rem] font-bold leading-relaxed sm:leading-snug lg:leading-[1.28] tracking-tight',
                     activeSlide.desktopTheme === 'light'
-                      ? 'text-[#000d3d]'
-                      : 'text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]',
+                      ? 'text-charcoal-900'
+                      : 'text-paper drop-shadow-[0_2px_12px_rgba(8,44,48,0.55)]',
                   )}
                 >
-                  <FormattedHeading text={activeSlide.heading} />
+                  <FormattedHeading text={activeSlide.heading} accent={activeSlide.desktopTheme === 'light' ? '' : 'md:text-gold'} />
                 </m.h1>
 
                 {/* Subtitle / Description if provided */}
@@ -271,8 +306,8 @@ export function HeroSlider({
                     className={cn(
                       'mt-3 sm:mt-4 max-w-xl text-xs sm:text-sm md:text-base leading-relaxed font-normal',
                       activeSlide.desktopTheme === 'light'
-                        ? 'text-slate-700'
-                        : 'text-slate-200/90',
+                        ? 'text-ink'
+                        : 'text-paper/85',
                     )}
                   >
                     {activeSlide.subheading}
@@ -280,50 +315,11 @@ export function HeroSlider({
                 )}
               </m.div>
             </AnimatePresence>
+            {count > 1 && <div className="hidden md:block mt-8 lg:mt-10">{indicators(false)}</div>}
           </div>
 
-          {/* Right: Vertical Slide Indicators (— 01 / 02) */}
-          {count > 1 && (
-            <div
-              className="shrink-0 flex flex-col items-start gap-2.5 sm:gap-4 select-none z-30"
-              aria-label="Carousel navigation"
-            >
-              {slides.map((_, idx) => {
-                const isActive = idx === index
-                const isLight = activeSlide.desktopTheme === 'light'
-                return (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => show(idx)}
-                    aria-label={`Go to slide ${idx + 1}`}
-                    aria-current={isActive ? 'true' : undefined}
-                    className={cn(
-                      'group flex items-center text-xs sm:text-base md:text-lg font-display tracking-widest transition-all duration-300 cursor-pointer',
-                      isActive
-                        ? isLight
-                          ? 'text-[#000d3d] font-bold'
-                          : 'text-white font-bold'
-                        : isLight
-                          ? 'text-stone-500 hover:text-[#000d3d] font-medium pl-5 sm:pl-8 md:pl-10'
-                          : 'text-white/50 hover:text-white font-medium pl-5 sm:pl-8 md:pl-10',
-                    )}
-                  >
-                    {isActive && (
-                      <span
-                        aria-hidden
-                        className={cn(
-                          'inline-block w-4 sm:w-6 md:w-8 h-[2px] mr-1.5 sm:mr-2.5 transition-all duration-300',
-                          isLight ? 'bg-[#000d3d]' : 'bg-white',
-                        )}
-                      />
-                    )}
-                    <span>{pad(idx + 1)}</span>
-                  </button>
-                )
-              })}
-            </div>
-          )}
+          {/* Right on phones: the slide numbers in a column (— 01 / 02); from tablets up they sit in a row under the words (the right side is the portrait) */}
+          {count > 1 && <div className="md:hidden">{indicators(true)}</div>}
         </div>
       </div>
     </section>

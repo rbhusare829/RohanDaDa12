@@ -1,10 +1,10 @@
-/* The admin panel's own look, in the site's one font: Anek Devanagari (clear Marathi and English letters in forms and lists) */
+/* The admin panel's own look, in the site's body font: Inter with Noto Sans Devanagari (clear Marathi and English letters in forms and lists) */
 .admin-root {
-  font-family: 'Anek Devanagari Variable', 'Anek Devanagari', system-ui, sans-serif;
+  font-family: 'Inter Variable', 'Noto Sans Devanagari Variable', system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.55;
   color: var(--color-charcoal-900);
-  background: #f5f1ea;
+  background: var(--color-paper);
   min-height: 100dvh;
 }
 

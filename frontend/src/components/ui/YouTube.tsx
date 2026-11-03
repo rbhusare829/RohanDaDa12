@@ -54,7 +54,7 @@ export function YouTube({
           />
           <span className="absolute inset-0 bg-gradient-to-t from-charcoal-950/55 to-transparent" />
           <span
-            className={`absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-white shadow-xl transition group-hover:scale-110 ${playClassName ?? 'bg-btn'}`}
+            className={`absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full text-ink shadow-xl transition group-hover:scale-110 ${playClassName ?? 'bg-btn'}`}
           >
             <Play className="ml-1 size-7 fill-current" />
           </span>

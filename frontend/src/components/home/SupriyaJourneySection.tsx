@@ -116,20 +116,17 @@ export function SupriyaJourneySection({
 
   return (
     <section
-      className="relative py-14 sm:py-18 lg:py-22 overflow-hidden text-white"
-      style={{
-        background: 'linear-gradient(135deg, #f97316 0%, #ea580c 45%, #c2410c 100%)',
-      }}
+      className="on-dark teal-depth relative isolate py-16 sm:py-20 lg:py-24 overflow-hidden text-paper"
       aria-labelledby="journey-timeline-heading"
     >
-      {/* Decorative Indian Tricolor Aura in background */}
+      {/* Political Journey: a Modern Teal band; saffron only for the timeline (its rail, nodes and progress) — soft saffron and jade glows behind */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-20 -left-20 size-96 rounded-full bg-[#ffedd5]/25 blur-3xl -z-10"
+        className="pointer-events-none absolute -top-20 -left-20 size-96 rounded-full bg-gold/15 blur-3xl -z-10"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-20 -right-20 size-96 rounded-full bg-[#138808]/20 blur-3xl -z-10"
+        className="pointer-events-none absolute -bottom-20 -right-20 size-96 rounded-full bg-leaf-600/15 blur-3xl -z-10"
       />
 
       <div className="container-x relative z-10">
@@ -138,21 +135,21 @@ export function SupriyaJourneySection({
           <Reveal>
             <h2
               id="journey-timeline-heading"
-              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white drop-shadow-sm"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-paper"
             >
               {isMr ? 'कारकीर्द व प्रवास' : 'Journey & Milestones'}
             </h2>
 
             <div className="mt-3 flex justify-center items-center gap-1.5">
               <m.span
-                className="h-1 w-16 rounded-full bg-white origin-center"
+                className="h-1 w-16 rounded-full bg-gold origin-center"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               />
               <m.span
-                className="h-1 w-3.5 rounded-full bg-[#138808]"
+                className="h-1 w-3.5 rounded-full bg-paper/70"
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
@@ -160,7 +157,7 @@ export function SupriyaJourneySection({
               />
             </div>
 
-            <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-white/90 leading-relaxed font-normal">
+            <p className="mt-3.5 mx-auto max-w-2xl text-sm sm:text-base text-paper/85 leading-relaxed font-normal">
               {isMr
                 ? 'शालेय जीवनातील NCC शिस्तीपासून आंतरराष्ट्रीय उच्च शिक्षण आणि जनसेवेचे समर्थ नेतृत्व — रोहन देशमुख यांची प्रेरणादायी वाटचाल.'
                 : 'From NCC cadet discipline to international higher education and transformative public leadership.'}
@@ -168,17 +165,17 @@ export function SupriyaJourneySection({
           </Reveal>
         </div>
 
-        {/* Segmented Progress Bars (subhashdeshmukh.com style) */}
-        <div className="flex gap-1.5 sm:gap-2 mb-4 max-w-5xl mx-auto">
+        {/* phones: thin saffron progress segments over a 2x2 grid of quiet tabs (subhashdeshmukh.com style) */}
+        <div className="flex gap-1.5 mb-4 max-w-5xl mx-auto sm:hidden">
           {MILESTONES.map((item, idx) => (
             <div
               key={item.id}
               onClick={() => go(idx)}
-              className="h-1.5 sm:h-2 flex-1 rounded-full bg-white/40 overflow-hidden cursor-pointer transition-colors hover:bg-white/60"
+              className="h-1 flex-1 rounded-full bg-paper/20 overflow-hidden cursor-pointer transition-colors hover:bg-paper/40"
               title={isMr ? item.title.mr : item.title.en}
             >
               <div
-                className="h-full bg-[#138808] transition-[width] duration-75"
+                className="h-full bg-gold transition-[width] duration-75"
                 style={{
                   width: idx < activeIndex ? '100%' : idx === activeIndex ? `${progress}%` : '0%',
                 }}
@@ -187,8 +184,7 @@ export function SupriyaJourneySection({
           ))}
         </div>
 
-        {/* Interactive Milestone Selector Tabs (Inspired by subhashdeshmukh.com) */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 gap-2 mb-6 max-w-5xl mx-auto sm:hidden">
           {MILESTONES.map((item, idx) => {
             const isActive = activeIndex === idx
             return (
@@ -197,17 +193,55 @@ export function SupriyaJourneySection({
                 type="button"
                 onClick={() => go(idx)}
                 className={cn(
-                  'rounded-xl sm:rounded-2xl border px-2 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-base font-bold whitespace-nowrap text-center transition-all duration-300 select-none shadow-sm',
-                  isActive
-                    ? 'bg-[#138808] text-white border-[#138808] shadow-lg shadow-[#138808]/35 scale-[1.03]'
-                    : 'bg-white/90 text-[#000d3d] border-white/80 hover:bg-white shadow-sm'
+                  'flex min-h-11 items-center justify-center gap-1.5 rounded-xl border px-2 py-2.5 text-xs font-bold whitespace-nowrap text-center transition-[color,background-color,border-color] duration-300 select-none',
+                  isActive ? 'border-paper bg-paper text-charcoal-900' : 'border-paper/25 text-paper/90 hover:bg-paper/10 hover:text-paper',
                 )}
-                aria-selected={isActive}
+                aria-pressed={isActive}
               >
+                {isActive && <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-gold" />}
                 <span>{isMr ? item.yearTag.mr : item.yearTag.en}</span>
               </button>
             )
           })}
+        </div>
+
+        {/* from tablets up: the timeline — a thin rail with a node per milestone; the saffron fill runs up to the open one and on toward the
+            next while it plays */}
+        <div className="relative mx-auto mb-8 hidden max-w-5xl sm:block lg:mb-10">
+          <div aria-hidden className="absolute left-[12.5%] right-[12.5%] top-[9px] h-0.5 rounded-full bg-paper/20">
+            <div
+              className="h-full rounded-full bg-gold transition-[width] duration-75"
+              style={{ width: `${Math.min(100, ((activeIndex + progress / 100) / (MILESTONES.length - 1)) * 100)}%` }}
+            />
+          </div>
+          <ol className="relative grid grid-cols-4">
+            {MILESTONES.map((item, idx) => {
+              const isActive = activeIndex === idx
+              const reached = idx <= activeIndex
+              return (
+                <li key={item.id} className="flex justify-center">
+                  <button
+                    type="button"
+                    onClick={() => go(idx)}
+                    aria-pressed={isActive}
+                    className="group flex min-h-11 flex-col items-center gap-3 px-2 text-center select-none"
+                  >
+                    <span
+                      aria-hidden
+                      className={cn(
+                        'size-5 rounded-full border-2 transition-[background-color,border-color,box-shadow] duration-300',
+                        reached ? 'border-gold bg-gold' : 'border-paper/50 bg-charcoal-900 group-hover:border-paper',
+                        isActive && 'shadow-[0_0_0_6px_rgba(233,149,50,0.22)]',
+                      )}
+                    />
+                    <span className={cn('text-sm font-semibold leading-snug transition-colors lg:text-base', isActive ? 'text-paper' : 'text-paper/80 group-hover:text-paper')}>
+                      {isMr ? item.yearTag.mr : item.yearTag.en}
+                    </span>
+                  </button>
+                </li>
+              )
+            })}
+          </ol>
         </div>
 
         {/* Milestone Detail Card with Smooth Animation */}
@@ -221,11 +255,11 @@ export function SupriyaJourneySection({
               transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               onMouseEnter={() => setIsPlaying(false)}
               onMouseLeave={() => setIsPlaying(true)}
-              className="overflow-hidden rounded-2xl sm:rounded-3xl bg-white text-[#000d3d] shadow-2xl border border-white/40"
+              className="on-light overflow-hidden rounded-2xl sm:rounded-3xl bg-paper text-ink shadow-2xl border border-cream"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12">
                 {/* Photo Column */}
-                <div className="relative aspect-[16/10] lg:aspect-auto lg:col-span-5 bg-stone-100 overflow-hidden">
+                <div className="relative aspect-[16/10] lg:aspect-auto lg:col-span-5 bg-cream overflow-hidden">
                   <img
                     src={activeMilestone.image}
                     alt={isMr ? activeMilestone.title.mr : activeMilestone.title.en}
@@ -233,11 +267,11 @@ export function SupriyaJourneySection({
                   />
                   <div
                     aria-hidden
-                    className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:hidden"
+                    className="absolute inset-0 bg-gradient-to-t from-charcoal-950/60 via-transparent to-transparent lg:hidden"
                   />
                   <div className="absolute bottom-3 left-4 right-4 lg:hidden">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-black/60 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white">
-                      <MapPin className="size-3.5 text-orange-400" />
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-charcoal-950/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-paper">
+                      <MapPin className="size-3.5 text-gold" />
                       {isMr ? activeMilestone.location.mr : activeMilestone.location.en}
                     </span>
                   </div>
@@ -248,28 +282,28 @@ export function SupriyaJourneySection({
                   <div>
                     {/* Header Location Badge */}
                     <div className="mb-2 hidden lg:flex items-center">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-orange-50 border border-orange-200/80 px-3.5 py-1 text-xs font-bold text-orange-700">
-                        <MapPin className="size-3.5 text-orange-600" />
+                      <span className="inline-flex items-center gap-1.5 rounded-full bg-cream border border-line px-3.5 py-1 text-xs font-bold text-charcoal-900">
+                        <MapPin className="size-3.5 text-saffron-600" />
                         {isMr ? activeMilestone.location.mr : activeMilestone.location.en}
                       </span>
                     </div>
 
                     {/* Headline */}
-                    <h3 className="font-display text-2xl sm:text-3xl font-bold leading-tight text-[#000d3d]">
+                    <h3 className="font-display text-2xl sm:text-3xl font-bold leading-tight text-charcoal-900">
                       {isMr ? activeMilestone.title.mr : activeMilestone.title.en}
                     </h3>
 
-                    <p className="mt-1.5 font-display text-sm sm:text-base font-bold text-orange-600">
+                    <p className="mt-1.5 font-display text-sm sm:text-base font-bold text-saffron-700">
                       {isMr ? activeMilestone.subtitle.mr : activeMilestone.subtitle.en}
                     </p>
 
-                    <div className="mt-3 mb-4 flex items-center gap-1.5">
-                      <span className="h-1 w-12 rounded-full bg-red-600" />
-                      <span className="h-1 w-3 rounded-full bg-saffron-500" />
+                    <div aria-hidden className="mt-3 mb-4 flex items-center gap-1.5">
+                      <span className="h-1 w-12 rounded-full bg-gold" />
+                      <span className="h-1 w-3 rounded-full bg-leaf-600" />
                     </div>
 
                     {/* Description */}
-                    <p className="text-sm sm:text-base leading-relaxed text-slate-700">
+                    <p className="text-sm sm:text-base leading-relaxed text-ink">
                       {isMr ? activeMilestone.description.mr : activeMilestone.description.en}
                     </p>
                   </div>

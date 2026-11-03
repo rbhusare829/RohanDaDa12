@@ -422,14 +422,13 @@ every photo is checked, converted to WebP and resized before it is stored — wh
 ## 12. Accessibility & performance
 
 Checked with axe-core (WCAG 2.0/2.1 A + AA + best practices) on all public page types and the admin, on desktop and phone widths: **no violations**.
-What that took: the orange used behind white text is `#c9500b` (white on it is 4.5:1; the old `#f26b1d` was 3.0:1) — change `--color-saffron-600`,
-`--color-saffron-700`, `--color-btn`, `--color-btn-hover` and `--color-btn-active` in `frontend/src/index.css` to restyle it; heading levels that follow the page structure;
+What that took: colours picked for contrast (see "Colour with a job" below), heading levels that follow the page structure;
 visible text contained in every control's name; labelled form fields, editor and landmarks in the admin; keyboard support (Esc closes dialogs and the phone menu).
 
 A second pass looked at touch, edges, colour and motion (all tokens live in `@theme` at the top of `frontend/src/index.css`):
 
-* **Edges you can see** — the border of form fields, checkboxes, filter chips and share buttons is `--color-field` `#8b93a1` (3.1:1 on white, WCAG 1.4.11);
-  the pale `--color-line` is for dividers only. Fields get a 2 px dark-orange ring while typing; errors use `--color-danger` and are tied to their field with `aria-describedby`.
+* **Edges you can see** — the border of form fields, checkboxes, filter chips and share buttons is `--color-field` `#6F7475` (4.2:1 on Cloud White, 3.8:1 on
+  the mist band, WCAG 1.4.11); the pale `--color-line` is for dividers only. Errors use `--color-danger` and are tied to their field with `aria-describedby`.
 * **Touch targets** — on phones links, chips, tabs, share and pagination buttons and the footer links are at least 44 px high (`min-h-11`; the `.tap-pad`
   class gives a small text link a 44 px touch area without moving anything). The consent checkbox is a 24 px custom box (`.check`) inside a 44 px-high label.
   Small controls keep their looks and get a 44 px hit area around them: the header's language switch (an invisible band above and below), slider dots
@@ -442,13 +441,17 @@ A second pass looked at touch, edges, colour and motion (all tokens live in `@th
   sticky header. Taps flash a faint kesariya (`-webkit-tap-highlight-color`) and controls have `touch-action: manipulation`. While the app starts on a slow
   network the page shows its colour, the name and a thin moving bar (`.boot` in `index.html`) instead of a blank white screen. Tiro Devanagari Marathi is
   only self-hosted (no Google Fonts request — the CSP would block it).
-* **Colour with a job** — the bright `#f26b1d` is only for lines, dots and glows, never behind text or a button; buttons are `#c9500b` (hover `#a8430a`, pressed `#8f3a08`).
-  Small orange words on light backgrounds use `saffron-700` `#c2410c` (4.9:1 on the page background; `.eyebrow`, `.tile-kicker`, `.more-link` too), and the solid
-  button / chip colour `--color-btn` is `#c2410c` (white on it 5.2:1). The kesariya gradient of the big `.btn` buttons is unchanged (a brand choice; white on it is below 4.5:1).
-  Meaning colours: `--color-success #1f7a3a`, `--color-warning #a84a06`, `--color-danger #b42318`, `--color-info #1d4ed8`, each with a `-soft` background
-  (4.5:1 or better on white and on its own soft background; `warning` is a little darker than the usual amber `#b45309`, which is 4.46:1 on the admin page background).
-  Impact numbers are green. The cream sections use `#fff8f0`. The admin uses the same tokens for status pills, toasts and errors.
-* **Focus ring** — 3 px dark orange on light backgrounds, light saffron on navy and on the hero photo.
+* **Colour with a job** ("Modern Teal + Saffron", Nov 2026; all tokens live in `@theme` at the top of `frontend/src/index.css`) — Cloud White `#F2F1EB` pages and
+  header, Modern Teal `#0F5C63` for headings, small accent words, the hero and the Political Journey band (6.8:1 with Cloud White), Saffron Amber `#E99532` for
+  buttons, lines, dots and highlights, Charcoal Black `#182126` for text and the footer, Jade Green `#2B8067` for development work and success. Saffron Amber is
+  light (2.1:1 on Cloud White): it is never used for words on a light background (a word picked out in a heading gets a saffron marker stroke, `.hl-saffron`),
+  words on it are Charcoal (6.9:1), and saffron words appear only large on teal (3.2:1) or on charcoal. Small jade words use the deeper `#28725D` (5.1:1).
+  Tailwind's own `white` / `black` are mapped onto Cloud White and Charcoal Black, so only the five colours (and their tints) appear on the site;
+  `.accent-jade` (Lokmangal pages) and `.theme-development` (Social Work, the initiatives) re-point the accent variables for a part of a page. The
+  primary button is Saffron Amber with Charcoal words; under the pointer Charcoal sweeps in from the left (`.btn`, and `.btn-sweep` for buttons written
+  with utilities). Meaning colours: `--color-success #28725D`, `--color-warning #815B2C`, `--color-danger #B42318`, `--color-info #0F5C63`, each with a
+  `-soft` background (4.5:1 or better on Cloud White and on its own soft background). The admin uses the same tokens.
+* **Focus ring** — 3 px Modern Teal on light backgrounds, Saffron Amber on teal and charcoal, Cloud White on jade.
 * **Motion** — one rhythm for the whole site (the rules of the ui-ux-pro-max guide): only opacity and transform move, arrivals use one soft ease-out (`--ease-soft` in `index.css`,
   `EASE_OUT` in `frontend/src/lib/motion.ts`) for 0.5–0.6 s, hover and press feedback takes 0.15–0.25 s, and a row of cards follows its heading 70 ms apart (never more than half a second
   for the whole row). The pieces: `frontend/src/components/ui/Motion.tsx` (`Reveal`, `Stagger` / `StaggerItem`, `AccentBar` — the red bar under a heading draws itself —, `DrawRule`, `Lift`,
@@ -459,7 +462,9 @@ A second pass looked at touch, edges, colour and motion (all tokens live in `@th
   them, in a background tab and (the hero) off screen. With "reduce motion" on nothing moves — no sliding, growing, pulsing or scrolling tickers — everything is in place at once (there is no hidden first state),
   the few CSS entrances become plain fades, and the sliders do not play until the visitor presses Play.
 * **Rows that scroll sideways** (filter chips, tabs) fade at the edge where more is waiting and keep the current item in view; the filter chips wrap into rows on wider screens.
-* The words on the hero photo were measured against the actual pixels behind them (the worst 5 % of each text box, all four slides, ten screen sizes from a 360 px phone to a 1920 px desktop): all at or above 4.5:1 (3:1 for large text).
+* The hero words were measured against the actual pixels of the slide art behind them (the worst 5 % of each text box, three slides, eight screen sizes
+  from a 360 px phone to a 1920 px desktop): all at or above 4.5:1 (3:1 for large text). The art itself — the portrait on deep teal with the saffron
+  shape — was recoloured from the Oct 2026 slides (the person kept pixel for pixel; the phone versions are built from the desktop ones).
 
 Measured on the production build: layout shift 0.000 on every main page; about 198 kB (gzip) of JavaScript for the public site (the admin loads
 separately, only at `/admin`); the animation features and the contact form load only when needed; two self-hosted font files (122 kB in all); API answers in a few milliseconds.

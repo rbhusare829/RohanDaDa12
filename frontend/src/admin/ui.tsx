@@ -8,7 +8,8 @@ import { cn } from '@/lib/utils'
 
 type Variant = 'primary' | 'secondary' | 'ghost' | 'danger'
 const VARIANTS: Record<Variant, string> = {
-  primary: 'bg-saffron-600 text-white hover:bg-saffron-700 disabled:bg-saffron-300',
+  // Saffron Amber with Charcoal Black words (white on it is only 3:1); Modern Teal with white words under the pointer
+  primary: 'bg-saffron-600 text-ink hover:bg-saffron-700 hover:text-white disabled:bg-saffron-200 disabled:text-ink/60',
   secondary: 'bg-white text-charcoal-900 ring-1 ring-charcoal-900/15 hover:bg-cream disabled:text-charcoal-900/60',
   ghost: 'text-charcoal-800 hover:bg-charcoal-900/[0.06] disabled:text-charcoal-900/60',
   danger: 'bg-danger text-white hover:brightness-90 disabled:opacity-60',
@@ -55,7 +56,7 @@ export function Spinner({ label = 'Loading…' }: { label?: string }) {
 }
 
 export function Card({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn('rounded-xl bg-white p-5 shadow-[0_1px_2px_rgb(20_33_61/0.06)] ring-1 ring-charcoal-900/[0.07]', className)}>{children}</div>
+  return <div className={cn('rounded-xl bg-white p-5 shadow-[0_1px_2px_rgb(24_33_38/0.06)] ring-1 ring-charcoal-900/[0.07]', className)}>{children}</div>
 }
 
 const PILL: Record<string, string> = {

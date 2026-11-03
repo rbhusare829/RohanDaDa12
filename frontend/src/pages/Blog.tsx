@@ -75,7 +75,7 @@ export default function BlogPage() {
 
         {/* sections + search — stays at the top while scrolling */}
         <div className="relative z-30 mb-8 sm:mb-12 md:sticky md:top-[4.5rem] lg:top-20">
-          <div className="flex flex-col gap-3 rounded-2xl border border-stone-200/90 bg-white/95 p-3 shadow-[0_12px_30px_-12px_rgba(9,20,34,0.18)] backdrop-blur md:flex-row md:items-center md:gap-6 md:px-4">
+          <div className="flex flex-col gap-3 rounded-2xl border border-line bg-paper/95 p-3 shadow-[0_12px_30px_-12px_rgba(24,33,38,0.18)] backdrop-blur md:flex-row md:items-center md:gap-6 md:px-4">
             <div className="flex min-w-0 flex-1 items-center gap-3">
               <span className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-charcoal-900 sm:inline-flex"><span className="grid size-8 place-items-center rounded-lg bg-saffron-500/10 text-saffron-700"><SlidersHorizontal className="size-4" /></span> {t('sections')}</span>
               {/* padding keeps the focus ring from being clipped by the scrolling row */}
@@ -84,7 +84,7 @@ export default function BlogPage() {
                   const on = (category ?? '') === c.slug && !tag && !q
                   return (
                     <Link key={c.slug || 'all'} to={c.slug ? `/blog?category=${c.slug}` : '/blog'} aria-current={on ? 'true' : undefined}
-                      className={cn('inline-flex min-h-11 shrink-0 items-center rounded-full px-4 py-1.5 text-sm font-semibold transition', on ? 'bg-gradient-to-r from-saffron-600 to-saffron-500 text-white shadow-md shadow-saffron-500/25' : 'text-charcoal-800 hover:bg-saffron-50 hover:text-saffron-700')}>
+                      className={cn('inline-flex min-h-11 shrink-0 items-center rounded-full px-4 py-1.5 text-sm font-semibold transition', on ? 'bg-charcoal-900 text-paper shadow-md' : 'text-charcoal-900 hover:bg-saffron-50 hover:text-saffron-700')}>
                       {c.title}
                     </Link>
                   )
@@ -92,7 +92,7 @@ export default function BlogPage() {
               </ScrollRow>
             </div>
             <Form action="/blog" method="get" className="flex h-11 items-center gap-2 rounded-full bg-ivory px-4 ring-1 ring-field transition hover:ring-field-hover focus-within:bg-white focus-within:ring-2 focus-within:ring-saffron-700 md:w-80" role="search">
-              <Search className="size-4 shrink-0 text-saffron-600" />
+              <Search className="size-4 shrink-0 text-charcoal-900" />
               <input name="q" defaultValue={q ?? ''} key={q ?? ''} placeholder={t('searchPlaceholder')} className="h-full min-w-0 flex-1 bg-transparent text-base outline-none sm:text-sm" aria-label={t('searchPlaceholder')} />
             </Form>
           </div>
@@ -101,7 +101,7 @@ export default function BlogPage() {
         {/* article list + sidebar */}
         <div className="grid gap-8 sm:gap-12 lg:grid-cols-12 lg:gap-10">
           <section className="min-w-0 lg:col-span-8">
-            <FrontHeading aside={<span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-semibold text-gray-500 ring-1 ring-stone-200">{t('showing', { count: num(posts.length) })}</span>}>
+            <FrontHeading aside={<span className="shrink-0 rounded-full bg-cream px-3 py-1 text-xs font-semibold text-ink ring-1 ring-line">{t('showing', { count: num(posts.length) })}</span>}>
               {listTitle}
             </FrontHeading>
             <Stagger className="flex flex-col gap-5">
@@ -111,7 +111,7 @@ export default function BlogPage() {
                 </StaggerItem>
               ))}
             </Stagger>
-            {!posts.length && <p className="rounded-2xl bg-white py-8 sm:py-14 text-center text-muted ring-1 ring-stone-200">{tc('noResults')}</p>}
+            {!posts.length && <p className="rounded-2xl bg-cream py-8 sm:py-14 text-center text-muted ring-1 ring-line">{tc('noResults')}</p>}
             <Pagination page={res.page ?? 1} totalPages={res.totalPages} base="/blog" query={{ category, tag, q }} />
           </section>
 

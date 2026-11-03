@@ -74,7 +74,7 @@ export function ReadMore({ children, className }: { children: ReactNode; classNa
           aria-expanded={open}
           aria-controls={id}
           onClick={toggle}
-          className="mt-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-bold text-saffron-700 transition-colors hover:text-saffron-800"
+          className="mt-2 inline-flex min-h-11 items-center gap-1.5 rounded-lg text-sm font-bold text-saffron-700 transition-colors hover:text-charcoal-900"
         >
           {open ? t('readLess') : t('readMore')}
           <ChevronDown aria-hidden className={cn('size-4 transition-transform duration-300', open && 'rotate-180')} />

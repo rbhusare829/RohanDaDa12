@@ -79,23 +79,23 @@ export function SupriyaPressNoteSection({
   const displayPosts = posts.length >= 5 ? posts.slice(0, 5) : [...posts, ...FALLBACK_POSTS.slice(posts.length, 5)]
 
   return (
-    <section className="bg-[#f0f6fc] border-y border-stone-200/80 py-14 sm:py-18 overflow-hidden">
+    <section className="bg-cream border-y border-line/80 py-14 sm:py-18 overflow-hidden">
       <div className="container-x">
         {/* Header Row */}
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#000d3d]">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-charcoal-900">
               {isMr ? 'ताज्या घडामोडी' : 'Press Notes'}
             </h2>
             <div className="mt-2.5 flex items-center gap-1.5">
-              <span className="h-1 w-14 rounded-full bg-red-600" />
+              <span className="h-1 w-14 rounded-full bg-saffron-600" />
               <span className="h-1 w-3 rounded-full bg-saffron-500" />
             </div>
           </div>
 
           <Link
             to="/blog"
-            className="group inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-[#000d3d] hover:text-red-600 transition-colors shrink-0"
+            className="group inline-flex items-center gap-1.5 text-sm sm:text-base font-bold text-charcoal-900 hover:text-saffron-700 transition-colors shrink-0"
           >
             <span>{isMr ? 'सर्व पहा' : 'View all'}</span>
             <ChevronRight className="size-4.5 transition-transform group-hover:translate-x-1" />
@@ -116,12 +116,12 @@ export function SupriyaPressNoteSection({
                     className="group flex flex-col h-full bg-transparent transition-all duration-300"
                   >
                     {/* 1. Date on top of card (Supriya Sule style: mod-muted mod-small) */}
-                    <div className="mb-2 text-xs font-semibold text-slate-500">
+                    <div className="mb-2 text-xs font-semibold text-muted">
                       {dateText}
                     </div>
 
                     {/* 2. Image Thumbnail (height ~190px, rounded) */}
-                    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl bg-stone-100 shadow-xs border border-stone-200/80">
+                    <div className="relative aspect-[16/11] w-full overflow-hidden rounded-xl bg-cream shadow-xs border border-line/80">
                       <img
                         src={img}
                         alt={post.title}
@@ -132,7 +132,7 @@ export function SupriyaPressNoteSection({
 
                     {/* 3. Headline underneath image */}
                     <div className="pt-3 flex-1 flex flex-col justify-between">
-                      <h3 className="font-display text-sm sm:text-[0.92rem] font-bold leading-snug text-[#000d3d] transition-colors group-hover:text-red-600 line-clamp-3">
+                      <h3 className="font-display text-sm sm:text-[0.92rem] font-bold leading-snug text-charcoal-900 transition-colors group-hover:text-saffron-700 line-clamp-3">
                         {post.title}
                       </h3>
                     </div>

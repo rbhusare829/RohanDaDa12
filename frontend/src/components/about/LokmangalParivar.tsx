@@ -365,57 +365,44 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                       type="button"
                       onClick={() => handleSelectSector(i, true)}
                       className={cn(
-                        'group relative flex w-full h-full flex-col justify-between gap-4 rounded-2xl border p-4 text-left transition-all duration-300 select-none cursor-pointer',
+                        'group relative flex w-full h-full flex-col gap-3 rounded-2xl border p-3 sm:p-3.5 text-left transition-all duration-300 select-none cursor-pointer',
                         isSelected
-                          ? 'border-saffron-600 bg-paper shadow-[0_16px_36px_-8px_rgba(233,149,50,0.25)] ring-2 ring-gold/40 -translate-y-1'
-                          : 'border-line bg-cream hover:border-gold hover:shadow-md hover:-translate-y-0.5',
-                        'active:scale-95',
+                          ? 'border-charcoal-900 bg-paper shadow-lg ring-2 ring-charcoal-900/15 -translate-y-1'
+                          : 'border-line/80 bg-cream/60 hover:bg-paper hover:border-charcoal-900/30 hover:shadow-md hover:-translate-y-0.5',
+                        'active:scale-[0.98]',
                       )}
                     >
-                      {/* Active Top Bar Indicator */}
-                      {isSelected && (
-                        <span
-                          aria-hidden
-                          className="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-saffron-600"
+                      {/* Real Photograph Banner - Crisp, Clear & Prominent */}
+                      <div className="relative w-full h-28 sm:h-32 overflow-hidden rounded-xl bg-sand/30 border border-line/60 shadow-xs">
+                        <img
+                          src={theme.image}
+                          alt={isMr ? theme.imageAlt : s.heading ?? ''}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
                         />
-                      )}
-
-                      {/* Header row: Real Photo Box & Units Count Pill */}
-                      <div className="flex items-center justify-between w-full">
-                        <div
-                          className={cn(
-                            'relative size-12 sm:size-13 overflow-hidden rounded-xl border bg-sand/30 shadow-xs transition-all duration-300 shrink-0',
-                            isSelected
-                              ? 'border-saffron-600 ring-2 ring-saffron-500/30 scale-105 shadow-md'
-                              : 'border-line/90 group-hover:border-gold group-hover:scale-105',
-                          )}
-                        >
-                          <img
-                            src={theme.image}
-                            alt={isMr ? theme.imageAlt : s.heading ?? ''}
-                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            loading="lazy"
-                          />
+                        {/* Units Count Pill overlaid neatly in corner */}
+                        <div className="absolute top-2 right-2">
+                          <span
+                            className={cn(
+                              'rounded-full px-2.5 py-0.5 text-[11px] font-bold tracking-wider backdrop-blur-md transition-colors shadow-xs',
+                              isSelected
+                                ? 'bg-charcoal-900/90 text-paper border border-white/20'
+                                : 'bg-paper/90 text-charcoal-900 border border-line/80',
+                            )}
+                          >
+                            {num(s.items?.length ?? 0, locale)} {isMr ? 'संस्था' : 'Units'}
+                          </span>
                         </div>
-
-                        <span
-                          className={cn(
-                            'rounded-full px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider transition-colors',
-                            isSelected
-                              ? 'bg-saffron-100 text-saffron-800 border border-saffron-200 font-extrabold'
-                              : 'bg-paper text-ink border border-line',
-                          )}
-                        >
-                          {num(s.items?.length ?? 0, locale)} {isMr ? 'संस्था' : 'Units'}
-                        </span>
                       </div>
 
                       {/* Sector Title */}
-                      <div>
+                      <div className="px-0.5 pb-0.5">
                         <span
                           className={cn(
                             'block text-sm sm:text-base font-bold leading-snug transition-colors line-clamp-2',
-                            isSelected ? 'text-charcoal-900 font-extrabold' : 'text-ink group-hover:text-charcoal-900',
+                            isSelected
+                              ? 'text-charcoal-900 font-extrabold'
+                              : 'text-ink group-hover:text-charcoal-900',
                           )}
                         >
                           {s.heading}
@@ -439,7 +426,7 @@ export function LokmangalParivar({ blocks, locale }: { blocks?: Block[] | null; 
                   className="grid h-11 min-w-6 cursor-pointer place-items-center"
                 >
                   {/* the dot stays small; the button around it is a 44 px tap area */}
-                  <span className={cn('block h-1.5 rounded-full transition-all duration-300', activeView === dotIdx ? 'w-6 bg-saffron-600' : 'w-1.5 bg-field')} />
+                  <span className={cn('block h-1.5 rounded-full transition-all duration-300', activeView === dotIdx ? 'w-6 bg-charcoal-900' : 'w-1.5 bg-line')} />
                 </button>
               ))}
             </div>

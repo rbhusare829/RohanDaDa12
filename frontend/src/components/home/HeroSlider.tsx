@@ -296,7 +296,7 @@ export function HeroSlider({
                       : 'text-paper drop-shadow-[0_2px_12px_rgba(8,44,48,0.55)]',
                   )}
                 >
-                  <FormattedHeading text={activeSlide.heading} accent={activeSlide.desktopTheme === 'light' ? '' : 'md:text-gold'} />
+                  <FormattedHeading text={activeSlide.heading} accent={activeSlide.desktopTheme === 'light' ? '' : 'text-gold'} />
                 </m.h1>
 
                 {/* Subtitle / Description if provided */}
